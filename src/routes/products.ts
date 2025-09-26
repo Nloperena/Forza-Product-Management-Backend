@@ -17,6 +17,15 @@ function getProductController(): ProductController {
 // GET /api/products - Get all products
 router.get('/', (req, res) => getProductController().getAllProducts(req, res));
 
+// GET /api/products/test - Simple test endpoint
+router.get('/test', (req, res) => {
+  res.json({ 
+    success: true, 
+    message: 'Test endpoint working!',
+    timestamp: new Date().toISOString()
+  });
+});
+
 // GET /api/products/statistics - Get product statistics
 router.get('/statistics', (req, res) => getProductController().getStatistics(req, res));
 
@@ -24,10 +33,57 @@ router.get('/statistics', (req, res) => getProductController().getStatistics(req
 router.post('/seed', async (req, res) => {
   try {
     console.log('🌱 Starting database seeding via API...');
-    await seedDatabase();
+    
+    // Create a simple sample product directly
+    const { Pool } = require('pg');
+    const pool = new Pool({
+      connectionString: process.env.DATABASE_URL,
+      ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
+    });
+
+    // Create table first
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS products (
+        id SERIAL PRIMARY KEY,
+        product_id VARCHAR(255) UNIQUE NOT NULL,
+        name VARCHAR(255) NOT NULL,
+        full_name VARCHAR(255),
+        description TEXT,
+        brand VARCHAR(100),
+        industry VARCHAR(100),
+        chemistry TEXT,
+        url TEXT,
+        image TEXT,
+        benefits JSONB DEFAULT '[]',
+        applications JSONB DEFAULT '[]',
+        technical JSONB DEFAULT '[]',
+        sizing JSONB DEFAULT '[]',
+        published BOOLEAN DEFAULT false,
+        benefits_count INTEGER DEFAULT 0,
+        last_edited TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
+    // Clear existing data
+    await pool.query('DELETE FROM products');
+
+    // Insert sample products
+    await pool.query(`
+      INSERT INTO products (product_id, name, full_name, description, brand, industry, chemistry, url, image, benefits, applications, technical, sizing, published, benefits_count) VALUES
+      ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15),
+      ($16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30)
+    `, [
+      'SAMPLE001', 'Sample Product 1', 'Sample Product 1 - Test Product', 'This is a sample product for testing', 'forza_bond', 'industrial_industry', 'Sample Chemistry', 'https://example.com', 'sample1.jpg', '["Benefit 1", "Benefit 2"]', '["Application 1", "Application 2"]', '[{"property": "Property 1", "value": "Value 1"}]', '["Size 1", "Size 2"]', true, 2,
+      'SAMPLE002', 'Sample Product 2', 'Sample Product 2 - Another Test Product', 'This is another sample product for testing', 'forza_seal', 'automotive_industry', 'Sample Chemistry 2', 'https://example2.com', 'sample2.jpg', '["Benefit A", "Benefit B"]', '["Application A", "Application B"]', '[{"property": "Property A", "value": "Value A"}]', '["Size A", "Size B"]', true, 2
+    ]);
+
+    await pool.end();
+
     res.json({ 
       success: true, 
-      message: 'Database seeded successfully with Forza products' 
+      message: 'Database seeded successfully with sample products!' 
     });
   } catch (error) {
     console.error('❌ Error seeding database:', error);
