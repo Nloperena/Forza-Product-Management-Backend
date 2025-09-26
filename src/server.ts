@@ -123,7 +123,13 @@ async function startServer() {
     
     // Initialize ProductModel to create tables
     const { ProductModel } = require('./models/Product');
-    new ProductModel(databaseService.getDatabase());
+    if (databaseService.isPostgres()) {
+      // For PostgreSQL, ProductModel will use the pool automatically
+      new ProductModel();
+    } else {
+      // For SQLite, pass the database instance
+      new ProductModel(databaseService.getDatabase());
+    }
     console.log('Database tables initialized');
     
     // Start server
