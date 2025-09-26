@@ -130,7 +130,7 @@ async function startServer() {
       // For SQLite, pass the database instance
       new ProductModel(databaseService.getDatabase());
     }
-    console.log('Database tables initialized');
+    console.log('Database tables initialized successfully');
     
     // Start server
     app.listen(PORT, () => {
