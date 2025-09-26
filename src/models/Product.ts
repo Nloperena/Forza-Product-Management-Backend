@@ -166,6 +166,34 @@ export class ProductModel {
   }
 
   async createProduct(product: Omit<Product, 'id' | 'created_at' | 'updated_at'>): Promise<Product> {
+    if (this.isPostgres) {
+      const client = await databaseService.getClient();
+      try {
+        const id = product.product_id;
+        const sql = `
+          INSERT INTO products (
+            id, product_id, name, full_name, description, brand, industry,
+            chemistry, url, image, benefits, applications, technical, sizing,
+            published, benefits_count, last_edited
+          ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17)
+          RETURNING *
+        `;
+        
+        const params = [
+          id, product.product_id, product.name, product.full_name, product.description,
+          product.brand, product.industry, product.chemistry, product.url, product.image,
+          JSON.stringify(product.benefits), JSON.stringify(product.applications),
+          JSON.stringify(product.technical), JSON.stringify(product.sizing),
+          product.published, product.benefits_count, product.last_edited
+        ];
+
+        const result = await client.query(sql, params);
+        return this.parseProduct(result.rows[0]);
+      } finally {
+        client.release();
+      }
+    }
+
     return new Promise((resolve, reject) => {
       const id = product.product_id;
       const sql = `
@@ -201,6 +229,50 @@ export class ProductModel {
   }
 
   async updateProduct(id: string, updates: Partial<Product>): Promise<Product | null> {
+    if (this.isPostgres) {
+      const client = await databaseService.getClient();
+      try {
+        const fields = [];
+        const values = [];
+        let paramIndex = 1;
+
+        if (updates.name) { fields.push(`name = $${paramIndex++}`); values.push(updates.name); }
+        if (updates.full_name) { fields.push(`full_name = $${paramIndex++}`); values.push(updates.full_name); }
+        if (updates.description) { fields.push(`description = $${paramIndex++}`); values.push(updates.description); }
+        if (updates.brand) { fields.push(`brand = $${paramIndex++}`); values.push(updates.brand); }
+        if (updates.industry) { fields.push(`industry = $${paramIndex++}`); values.push(updates.industry); }
+        if (updates.chemistry) { fields.push(`chemistry = $${paramIndex++}`); values.push(updates.chemistry); }
+        if (updates.url) { fields.push(`url = $${paramIndex++}`); values.push(updates.url); }
+        if (updates.image) { fields.push(`image = $${paramIndex++}`); values.push(updates.image); }
+        if (updates.benefits) { fields.push(`benefits = $${paramIndex++}`); values.push(JSON.stringify(updates.benefits)); }
+        if (updates.applications) { fields.push(`applications = $${paramIndex++}`); values.push(JSON.stringify(updates.applications)); }
+        if (updates.technical) { fields.push(`technical = $${paramIndex++}`); values.push(JSON.stringify(updates.technical)); }
+        if (updates.sizing) { fields.push(`sizing = $${paramIndex++}`); values.push(JSON.stringify(updates.sizing)); }
+        if (updates.published !== undefined) { fields.push(`published = $${paramIndex++}`); values.push(updates.published); }
+        if (updates.benefits_count !== undefined) { fields.push(`benefits_count = $${paramIndex++}`); values.push(updates.benefits_count); }
+        if (updates.last_edited) { fields.push(`last_edited = $${paramIndex++}`); values.push(updates.last_edited); }
+
+        if (fields.length === 0) {
+          throw new Error('No fields to update');
+        }
+
+        fields.push(`updated_at = $${paramIndex++}`);
+        values.push(new Date().toISOString());
+        values.push(id);
+        values.push(id);
+
+        const sql = `UPDATE products SET ${fields.join(', ')} WHERE id = $${paramIndex++} OR product_id = $${paramIndex++} RETURNING *`;
+
+        const result = await client.query(sql, values);
+        if (result.rows.length > 0) {
+          return this.parseProduct(result.rows[0]);
+        }
+        return null;
+      } finally {
+        client.release();
+      }
+    }
+
     return new Promise((resolve, reject) => {
       const fields = [];
       const values = [];
@@ -244,9 +316,8 @@ export class ProductModel {
             } else if (row.changes === 0) {
               resolve(null);
             } else {
-              // Fetch the updated product
-              const productModel = new ProductModel(databaseService.getDatabase());
-              productModel.getProductById(id).then(resolve).catch(reject);
+              // Fetch the updated product using this instance
+              this.getProductById(id).then(resolve).catch(reject);
             }
           });
         }
@@ -255,6 +326,17 @@ export class ProductModel {
   }
 
   async deleteProduct(id: string): Promise<boolean> {
+    if (this.isPostgres) {
+      const client = await databaseService.getClient();
+      try {
+        const sql = 'DELETE FROM products WHERE id = $1 OR product_id = $1';
+        const result = await client.query(sql, [id]);
+        return (result.rowCount || 0) > 0;
+      } finally {
+        client.release();
+      }
+    }
+
     return new Promise((resolve, reject) => {
       const sql = 'DELETE FROM products WHERE id = ? OR product_id = ?';
       

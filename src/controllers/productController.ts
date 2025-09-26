@@ -6,7 +6,13 @@ export class ProductController {
   private productModel: ProductModel;
 
   constructor() {
-    this.productModel = new ProductModel(databaseService.getDatabase());
+    // For PostgreSQL, don't pass database instance - ProductModel will handle it internally
+    // For SQLite, pass the database instance
+    if (databaseService.isPostgres()) {
+      this.productModel = new ProductModel();
+    } else {
+      this.productModel = new ProductModel(databaseService.getDatabase());
+    }
   }
 
   async getAllProducts(_req: Request, res: Response): Promise<void> {
