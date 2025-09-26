@@ -357,6 +357,32 @@ export class ProductModel {
   }
 
   async getStatistics(): Promise<ProductStats> {
+    if (this.isPostgres) {
+      const client = await databaseService.getClient();
+      try {
+        const sql = `
+          SELECT 
+            COUNT(*) as total_products,
+            SUM(benefits_count) as total_benefits
+          FROM products
+        `;
+        
+        const result = await client.query(sql);
+        const row = result.rows[0];
+        
+        const stats: ProductStats = {
+          total_products: parseInt(row.total_products) || 0,
+          total_benefits: parseInt(row.total_benefits) || 0,
+          organized_date: new Date().toISOString().split('T')[0] || new Date().toISOString(),
+          hierarchy: "Brand → Industry → Products",
+          notes: "Forza Products Management System Database"
+        };
+        return stats;
+      } finally {
+        client.release();
+      }
+    }
+
     return new Promise((resolve, reject) => {
       const sql = `
         SELECT 
@@ -383,6 +409,27 @@ export class ProductModel {
   }
 
   async getBrandIndustryCounts(): Promise<BrandIndustryCounts> {
+    if (this.isPostgres) {
+      const client = await databaseService.getClient();
+      try {
+        const sql = 'SELECT brand, industry, COUNT(*) as count FROM products GROUP BY brand, industry';
+        const result = await client.query(sql);
+        
+        const counts: BrandIndustryCounts = {};
+        
+        result.rows.forEach(row => {
+          if (!counts[row.brand]) {
+            counts[row.brand] = {};
+          }
+          counts[row.brand][row.industry] = parseInt(row.count);
+        });
+        
+        return counts;
+      } finally {
+        client.release();
+      }
+    }
+
     return new Promise((resolve, reject) => {
       const sql = 'SELECT brand, industry, COUNT(*) as count FROM products GROUP BY brand, industry';
       
