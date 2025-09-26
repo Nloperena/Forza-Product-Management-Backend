@@ -123,14 +123,24 @@ async function startServer() {
     
     // Initialize ProductModel to create tables
     const { ProductModel } = require('./models/Product');
-    if (databaseService.isPostgres()) {
-      // For PostgreSQL, ProductModel will use the pool automatically
-      new ProductModel();
-    } else {
-      // For SQLite, pass the database instance
-      new ProductModel(databaseService.getDatabase());
+    
+    console.log('🔍 Database type check:');
+    console.log('  DATABASE_URL exists:', !!process.env.DATABASE_URL);
+    console.log('  isPostgres():', databaseService.isPostgres());
+    
+    try {
+      if (databaseService.isPostgres()) {
+        console.log('🐘 Using PostgreSQL - initializing ProductModel without database instance');
+        new ProductModel();
+      } else {
+        console.log('📁 Using SQLite - initializing ProductModel with database instance');
+        new ProductModel(databaseService.getDatabase());
+      }
+      console.log('✅ Database tables initialized successfully');
+    } catch (error) {
+      console.error('❌ Error initializing ProductModel:', error);
+      throw error;
     }
-    console.log('✅ Database tables initialized successfully');
     
     // Start server
     app.listen(PORT, () => {
