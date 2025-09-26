@@ -1,4 +1,5 @@
 import { Database } from 'sqlite3';
+import { Pool, PoolClient } from 'pg';
 import { databaseService } from '../services/database';
 
 export interface TechnicalProperty {
@@ -44,14 +45,27 @@ export interface BrandIndustryCounts {
 }
 
 export class ProductModel {
-  private db: Database;
+  private db: Database | null = null;
+  private pool: Pool | null = null;
+  private isPostgres: boolean;
 
-  constructor(database: Database) {
-    this.db = database;
+  constructor(database?: Database) {
+    this.isPostgres = databaseService.isPostgres();
+    if (database) {
+      this.db = database;
+    } else if (this.isPostgres) {
+      this.pool = databaseService.getPool();
+    }
     this.createTable();
   }
 
   private createTable(): void {
+    if (this.isPostgres) {
+      // PostgreSQL table creation is handled by databaseService.initializeDatabase()
+      console.log('PostgreSQL table creation handled by database service');
+      return;
+    }
+
     const sql = `
       CREATE TABLE IF NOT EXISTS products (
         id TEXT PRIMARY KEY,
@@ -76,20 +90,37 @@ export class ProductModel {
       )
     `;
 
-    this.db.run(sql, (err) => {
-      if (err) {
-        console.error('Error creating products table:', err);
-      } else {
-        console.log('Products table created successfully');
-      }
-    });
+    if (this.db) {
+      this.db.run(sql, (err) => {
+        if (err) {
+          console.error('Error creating products table:', err);
+        } else {
+          console.log('Products table created successfully');
+        }
+      });
+    }
   }
 
   async getAllProducts(): Promise<Product[]> {
+    if (this.isPostgres) {
+      const client = await databaseService.getClient();
+      try {
+        const result = await client.query('SELECT * FROM products ORDER BY created_at DESC');
+        return result.rows.map(row => this.parseProduct(row));
+      } finally {
+        client.release();
+      }
+    }
+
     return new Promise((resolve, reject) => {
+      if (!this.db) {
+        reject(new Error('Database not connected'));
+        return;
+      }
+      
       const sql = 'SELECT * FROM products ORDER BY created_at DESC';
       
-      this.db.all(sql, [], (err, rows: any[]) => {
+      this.db!.all(sql, [], (err, rows: any[]) => {
         if (err) {
           reject(err);
         } else {
@@ -101,10 +132,28 @@ export class ProductModel {
   }
 
   async getProductById(id: string): Promise<Product | null> {
+    if (this.isPostgres) {
+      const client = await databaseService.getClient();
+      try {
+        const result = await client.query('SELECT * FROM products WHERE id = $1 OR product_id = $1', [id]);
+        if (result.rows.length > 0) {
+          return this.parseProduct(result.rows[0]);
+        }
+        return null;
+      } finally {
+        client.release();
+      }
+    }
+
     return new Promise((resolve, reject) => {
+      if (!this.db) {
+        reject(new Error('Database not connected'));
+        return;
+      }
+      
       const sql = 'SELECT * FROM products WHERE id = ? OR product_id = ?';
       
-      this.db.get(sql, [id, id], (err, row: any) => {
+      this.db!.get(sql, [id, id], (err, row: any) => {
         if (err) {
           reject(err);
         } else if (row) {
@@ -135,7 +184,7 @@ export class ProductModel {
         product.published ? 1 : 0, product.benefits_count, product.last_edited
       ];
 
-      this.db.run(sql, params, function(err) {
+      this.db!.run(sql, params, function(err) {
         if (err) {
           reject(err);
         } else {
@@ -184,12 +233,12 @@ export class ProductModel {
       const sql = `UPDATE products SET ${fields.join(', ')} WHERE id = ? OR product_id = ?`;
       values.push(id); // Add id again for the second WHERE condition
 
-      this.db.run(sql, values, (err: any) => {
+      this.db!.run(sql, values, (err: any) => {
         if (err) {
           reject(err);
         } else {
           // Check if any rows were affected
-          this.db.get('SELECT changes() as changes', [], (err2: any, row: any) => {
+          this.db!.get('SELECT changes() as changes', [], (err2: any, row: any) => {
             if (err2) {
               reject(err2);
             } else if (row.changes === 0) {
@@ -209,11 +258,11 @@ export class ProductModel {
     return new Promise((resolve, reject) => {
       const sql = 'DELETE FROM products WHERE id = ? OR product_id = ?';
       
-      this.db.run(sql, [id, id], (err: any) => {
+      this.db!.run(sql, [id, id], (err: any) => {
         if (err) {
           reject(err);
         } else {
-          this.db.get('SELECT changes() as changes', [], (err2: any, row: any) => {
+          this.db!.get('SELECT changes() as changes', [], (err2: any, row: any) => {
             if (err2) {
               reject(err2);
             } else {
@@ -234,7 +283,7 @@ export class ProductModel {
         FROM products
       `;
       
-      this.db.get(sql, [], (err, row: any) => {
+      this.db!.get(sql, [], (err, row: any) => {
         if (err) {
           reject(err);
         } else {
@@ -255,7 +304,7 @@ export class ProductModel {
     return new Promise((resolve, reject) => {
       const sql = 'SELECT brand, industry, COUNT(*) as count FROM products GROUP BY brand, industry';
       
-      this.db.all(sql, [], (err, rows: any[]) => {
+      this.db!.all(sql, [], (err, rows: any[]) => {
         if (err) {
           reject(err);
         } else {

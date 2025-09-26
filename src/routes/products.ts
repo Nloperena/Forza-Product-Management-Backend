@@ -1,5 +1,6 @@
 import express from 'express';
 import { ProductController } from '../controllers/productController';
+import { seedDatabase } from '../scripts/seedDatabase';
 
 const router = express.Router();
 
@@ -30,5 +31,24 @@ router.delete('/:id', (req, res) => getProductController().deleteProduct(req, re
 
 // GET /api/products/statistics - Get product statistics
 router.get('/statistics', (req, res) => getProductController().getStatistics(req, res));
+
+// POST /api/products/seed - Seed the database with Forza products
+router.post('/seed', async (req, res) => {
+  try {
+    console.log('🌱 Starting database seeding via API...');
+    await seedDatabase();
+    res.json({ 
+      success: true, 
+      message: 'Database seeded successfully with Forza products' 
+    });
+  } catch (error) {
+    console.error('❌ Error seeding database:', error);
+    res.status(500).json({ 
+      success: false, 
+      message: 'Failed to seed database',
+      error: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+});
 
 export default router;

@@ -28,6 +28,7 @@
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
     "sqlite3": "^5.1.6",
+    "pg": "^8.11.3",
     "bcryptjs": "^2.4.3",
     "jsonwebtoken": "^9.0.2",
     "express-rate-limit": "^7.1.5",
@@ -43,6 +44,7 @@
     "@types/bcryptjs": "^2.4.6",
     "@types/jsonwebtoken": "^9.0.5",
     "@types/compression": "^1.7.5",
+    "@types/pg": "^8.10.9",
     "@types/node": "^20.10.5",
     "@typescript-eslint/eslint-plugin": "^6.15.0",
     "@typescript-eslint/parser": "^6.15.0",
@@ -55,4 +57,6 @@
     "typescript": "^5.3.3"
   }
 }
+
+
 
