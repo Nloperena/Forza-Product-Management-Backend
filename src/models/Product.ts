@@ -169,18 +169,17 @@ export class ProductModel {
     if (this.isPostgres) {
       const client = await databaseService.getClient();
       try {
-        const id = product.product_id;
         const sql = `
           INSERT INTO products (
-            id, product_id, name, full_name, description, brand, industry,
+            product_id, name, full_name, description, brand, industry,
             chemistry, url, image, benefits, applications, technical, sizing,
             published, benefits_count, last_edited
-          ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17)
+          ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)
           RETURNING *
         `;
         
         const params = [
-          id, product.product_id, product.name, product.full_name, product.description,
+          product.product_id, product.name, product.full_name, product.description,
           product.brand, product.industry, product.chemistry, product.url, product.image,
           JSON.stringify(product.benefits), JSON.stringify(product.applications),
           JSON.stringify(product.technical), JSON.stringify(product.sizing),
