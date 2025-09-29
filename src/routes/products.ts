@@ -61,6 +61,37 @@ router.get('/debug', async (req, res) => {
 // GET /api/products/statistics - Get product statistics
 router.get('/statistics', (req, res) => getProductController().getStatistics(req, res));
 
+// POST /api/products/migrate-real-data - Migrate real Forza product data
+router.post('/migrate-real-data', async (req, res) => {
+  try {
+    console.log('🌱 Starting real data migration via API...');
+    
+    const { RealDataMigrator } = require('../scripts/migrateRealData');
+    const migrator = new RealDataMigrator();
+    
+    // Run migration in background
+    migrator.migrate()
+      .then(() => {
+        console.log('✅ Real data migration completed successfully');
+      })
+      .catch((error: any) => {
+        console.error('❌ Real data migration failed:', error);
+      });
+
+    res.json({ 
+      success: true, 
+      message: 'Real data migration started! This may take a few minutes. Check logs for progress.' 
+    });
+  } catch (error) {
+    console.error('❌ Error starting migration:', error);
+    res.status(500).json({ 
+      success: false, 
+      message: 'Failed to start migration',
+      error: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+});
+
 // POST /api/products/seed - Seed the database with Forza products
 router.post('/seed', async (req, res) => {
   try {
