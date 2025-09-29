@@ -148,11 +148,10 @@ class RealDataMigrator {
     // Generate description from first few benefits
     const description = product.benefits.slice(0, 3).join('. ') + '.';
     
-    // Handle image path for Heroku deployment
-    // Since Heroku has ephemeral filesystem, we'll use placeholder images
+    // Handle image path for frontend assets
+    // Use simple filename that frontend can serve from /public/product-images/
     const imageFileName = path.basename(product.image);
-    const productName = encodeURIComponent(product.name.substring(0, 30)); // Truncate for URL
-    const image = `/api/images/placeholder/${productName}?width=300&height=200`;
+    const image = imageFileName; // Just the filename, no path
     
     const sql = `
       INSERT INTO products (
