@@ -33,6 +33,7 @@ const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:3001',
   'http://localhost:5173',
+  'https://product-mangement-system-template-semj-cl4t5pgar.vercel.app', // Vercel domain
   process.env['FRONTEND_URL'] || 'http://localhost:3000'
 ];
 
