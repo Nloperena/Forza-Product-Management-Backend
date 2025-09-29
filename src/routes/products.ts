@@ -26,6 +26,38 @@ router.get('/test', (req, res) => {
   });
 });
 
+// GET /api/products/debug - Debug endpoint to check raw data
+router.get('/debug', async (req, res) => {
+  try {
+    const { databaseService } = require('../services/database');
+    
+    if (databaseService.isPostgres()) {
+      const client = await databaseService.getClient();
+      try {
+        const result = await client.query('SELECT product_id, name, benefits FROM products LIMIT 2');
+        res.json({
+          success: true,
+          raw_data: result.rows,
+          message: 'Raw database data retrieved'
+        });
+      } finally {
+        client.release();
+      }
+    } else {
+      res.json({
+        success: false,
+        message: 'Debug endpoint only works with PostgreSQL'
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Error in debug endpoint',
+      error: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+});
+
 // GET /api/products/statistics - Get product statistics
 router.get('/statistics', (req, res) => getProductController().getStatistics(req, res));
 
