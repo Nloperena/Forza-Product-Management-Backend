@@ -149,12 +149,10 @@ class RealDataMigrator {
     const description = product.benefits.slice(0, 3).join('. ') + '.';
     
     // Handle image path for Heroku deployment
-    // Since Heroku has ephemeral filesystem, we'll use a CDN or external hosting
-    // For now, we'll use the original image path and handle it in the frontend
-    const image = product.image.startsWith('/') ? product.image : `/${product.image}`;
-    
-    // Alternative: Use a CDN URL if you have one
-    // const image = `https://your-cdn.com/product-images/${path.basename(product.image)}`;
+    // Since Heroku has ephemeral filesystem, we'll use placeholder images
+    const imageFileName = path.basename(product.image);
+    const productName = encodeURIComponent(product.name.substring(0, 30)); // Truncate for URL
+    const image = `/api/images/placeholder/${productName}?width=300&height=200`;
     
     const sql = `
       INSERT INTO products (

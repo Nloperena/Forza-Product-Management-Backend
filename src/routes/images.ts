@@ -140,4 +140,33 @@ router.delete('/:filename', (req, res) => {
   }
 });
 
+// GET /api/images/placeholder/:text - Generate placeholder image
+router.get('/placeholder/:text', (req, res) => {
+  try {
+    const text = decodeURIComponent(req.params.text);
+    const width = parseInt(req.query.width as string) || 300;
+    const height = parseInt(req.query.height as string) || 200;
+    
+    // Create a simple SVG placeholder
+    const svg = `
+      <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100%" height="100%" fill="#f0f0f0"/>
+        <text x="50%" y="50%" text-anchor="middle" dy=".3em" font-family="Arial, sans-serif" font-size="14" fill="#666">
+          ${text}
+        </text>
+      </svg>
+    `;
+    
+    res.setHeader('Content-Type', 'image/svg+xml');
+    res.setHeader('Cache-Control', 'public, max-age=3600'); // 1 hour cache
+    res.send(svg);
+  } catch (error) {
+    console.error('Error generating placeholder:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to generate placeholder image'
+    });
+  }
+});
+
 export default router;
