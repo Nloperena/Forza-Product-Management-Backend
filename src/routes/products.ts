@@ -236,6 +236,36 @@ router.post('/update-published-status', async (req, res) => {
   }
 });
 
+// POST /api/products/update-structure - Update product structure to match JSON exactly
+router.post('/update-structure', async (req, res) => {
+  try {
+    console.log('🔄 Starting product structure update via API...');
+
+    const { ProductStructureUpdater } = require('../scripts/updateProductStructure');
+    const updater = new ProductStructureUpdater();
+
+    updater.updateProductStructure()
+      .then(() => {
+        console.log('✅ Product structure update completed successfully');
+      })
+      .catch((error: any) => {
+        console.error('❌ Product structure update failed:', error);
+      });
+
+    res.json({
+      success: true,
+      message: 'Product structure update started! This will update all products to match the JSON structure exactly. Check logs for progress.'
+    });
+  } catch (error) {
+    console.error('❌ Error starting product structure update:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to start product structure update',
+      error: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+});
+
 // POST /api/products - Create new product
 router.post('/', (req, res) => getProductController().createProduct(req, res));
 
