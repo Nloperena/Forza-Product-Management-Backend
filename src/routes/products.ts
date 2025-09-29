@@ -206,6 +206,36 @@ router.post('/seed', async (req, res) => {
   }
 });
 
+// POST /api/products/update-published-status - Update published status for testing
+router.post('/update-published-status', async (req, res) => {
+  try {
+    console.log('🔄 Starting published status update via API...');
+
+    const { PublishedStatusUpdater } = require('../scripts/updatePublishedStatus');
+    const updater = new PublishedStatusUpdater();
+
+    updater.updatePublishedStatus()
+      .then(() => {
+        console.log('✅ Published status update completed successfully');
+      })
+      .catch((error: any) => {
+        console.error('❌ Published status update failed:', error);
+      });
+
+    res.json({
+      success: true,
+      message: 'Published status update started! Check logs for progress.'
+    });
+  } catch (error) {
+    console.error('❌ Error starting published status update:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to start published status update',
+      error: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+});
+
 // POST /api/products - Create new product
 router.post('/', (req, res) => getProductController().createProduct(req, res));
 
