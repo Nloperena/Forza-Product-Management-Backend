@@ -15,9 +15,11 @@ export class ProductController {
     }
   }
 
-  async getAllProducts(_req: Request, res: Response): Promise<void> {
+  async getAllProducts(req: Request, res: Response): Promise<void> {
     try {
-      const products = await this.productModel.getAllProducts();
+      const { published } = req.query;
+      const publishedFilter = published as string | undefined;
+      const products = await this.productModel.getAllProducts(publishedFilter);
       res.json(products);
     } catch (error) {
       console.error('Error fetching products:', error);

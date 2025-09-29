@@ -101,11 +101,23 @@ export class ProductModel {
     }
   }
 
-  async getAllProducts(): Promise<Product[]> {
+  async getAllProducts(published?: string): Promise<Product[]> {
+    let sql = 'SELECT * FROM products';
+    const params: any[] = [];
+    
+    // Add published filter if specified
+    if (published !== undefined) {
+      const publishedValue = published === 'true';
+      sql += ' WHERE published = $1';
+      params.push(publishedValue);
+    }
+    
+    sql += ' ORDER BY created_at DESC';
+
     if (this.isPostgres) {
       const client = await databaseService.getClient();
       try {
-        const result = await client.query('SELECT * FROM products ORDER BY created_at DESC');
+        const result = await client.query(sql, params);
         return result.rows.map(row => this.parseProduct(row));
       } finally {
         client.release();
@@ -118,9 +130,11 @@ export class ProductModel {
         return;
       }
       
-      const sql = 'SELECT * FROM products ORDER BY created_at DESC';
+      // Convert PostgreSQL params to SQLite format
+      const sqliteParams = params.map((_, index) => '?');
+      const sqliteSql = sql.replace(/\$\d+/g, () => sqliteParams.shift() || '?');
       
-      this.db!.all(sql, [], (err, rows: any[]) => {
+      this.db!.all(sqliteSql, params, (err, rows: any[]) => {
         if (err) {
           reject(err);
         } else {
