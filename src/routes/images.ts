@@ -2,6 +2,7 @@ import express from 'express';
 import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
+import { put } from '@vercel/blob';
 
 const router = express.Router();
 
@@ -77,8 +78,8 @@ router.get('/', (_req, res) => {
   }
 });
 
-// POST /api/images/upload - Upload new image
-router.post('/upload', upload.single('image'), (req, res) => {
+// POST /api/images/upload - Upload new image to Vercel Blob
+router.post('/upload', upload.single('image'), async (req, res) => {
   try {
     if (!req.file) {
       res.status(400).json({
@@ -88,20 +89,42 @@ router.post('/upload', upload.single('image'), (req, res) => {
       return;
     }
 
+    // Check if Vercel Blob token is configured
+    if (!process.env.BLOB_READ_WRITE_TOKEN) {
+      res.status(500).json({
+        success: false,
+        message: 'Vercel Blob not configured. Please set BLOB_READ_WRITE_TOKEN environment variable.'
+      });
+      return;
+    }
+
+    // Generate unique filename
+    const fileExtension = path.extname(req.file.originalname);
+    const uniqueFilename = `product-${Date.now()}-${Math.round(Math.random() * 1E9)}${fileExtension}`;
+
+    // Upload to Vercel Blob
+    const blob = await put(uniqueFilename, req.file.buffer, {
+      access: 'public',
+      contentType: req.file.mimetype,
+    });
+
+    // Clean up local file
+    fs.unlinkSync(req.file.path);
+
     const imageData = {
-      filename: req.file.filename,
-      path: `/product-images/${req.file.filename}`,
+      filename: uniqueFilename,
+      url: blob.url,
       size: req.file.size,
       originalname: req.file.originalname
     };
 
     res.json({
       success: true,
-      message: 'Image uploaded successfully',
+      message: 'Image uploaded successfully to Vercel Blob',
       ...imageData
     });
   } catch (error) {
-    console.error('Error uploading image:', error);
+    console.error('Error uploading image to Vercel Blob:', error);
     res.status(500).json({
       success: false,
       message: 'Failed to upload image',

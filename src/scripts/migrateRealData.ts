@@ -148,10 +148,10 @@ class RealDataMigrator {
     // Generate description from first few benefits
     const description = product.benefits.slice(0, 3).join('. ') + '.';
     
-    // Handle image path for frontend assets
-    // Use simple filename that frontend can serve from /public/product-images/
+    // Handle image path - use frontend assets for existing images
+    // For new uploads, use Vercel Blob URLs
     const imageFileName = path.basename(product.image);
-    const image = imageFileName; // Just the filename, no path
+    const image = imageFileName; // Just the filename for frontend assets
     
     const sql = `
       INSERT INTO products (
