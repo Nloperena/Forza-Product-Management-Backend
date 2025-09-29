@@ -455,26 +455,46 @@ export class ProductModel {
   }
 
   private parseProduct(row: any): Product {
-    return {
-      id: row.id,
-      product_id: row.product_id,
-      name: row.name,
-      full_name: row.full_name,
-      description: row.description,
-      brand: row.brand,
-      industry: row.industry,
-      chemistry: row.chemistry,
-      url: row.url,
-      image: row.image,
-      benefits: JSON.parse(row.benefits || '[]'),
-      applications: JSON.parse(row.applications || '[]'),
-      technical: JSON.parse(row.technical || '[]'),
-      sizing: row.sizing ? JSON.parse(row.sizing) : undefined,
-      published: Boolean(row.published),
-      benefits_count: row.benefits_count || 0,
-      created_at: row.created_at,
-      updated_at: row.updated_at,
-      last_edited: row.last_edited
-    };
+    try {
+      return {
+        id: row.id,
+        product_id: row.product_id,
+        name: row.name,
+        full_name: row.full_name,
+        description: row.description,
+        brand: row.brand,
+        industry: row.industry,
+        chemistry: row.chemistry,
+        url: row.url,
+        image: row.image,
+        benefits: this.parseJsonField(row.benefits, 'benefits'),
+        applications: this.parseJsonField(row.applications, 'applications'),
+        technical: this.parseJsonField(row.technical, 'technical'),
+        sizing: row.sizing ? this.parseJsonField(row.sizing, 'sizing') : undefined,
+        published: Boolean(row.published),
+        benefits_count: row.benefits_count || 0,
+        created_at: row.created_at,
+        updated_at: row.updated_at,
+        last_edited: row.last_edited
+      };
+    } catch (error) {
+      console.error('Error parsing product:', error);
+      console.error('Problematic row:', row);
+      throw error;
+    }
+  }
+
+  private parseJsonField(field: any, fieldName: string): any {
+    try {
+      if (!field) return [];
+      if (typeof field === 'string') {
+        return JSON.parse(field);
+      }
+      return field;
+    } catch (error) {
+      console.error(`Error parsing ${fieldName} field:`, field);
+      console.error('Error:', error);
+      throw new Error(`Invalid JSON in ${fieldName} field: ${field}`);
+    }
   }
 }
