@@ -34,7 +34,7 @@ router.get('/debug', async (req, res) => {
     if (databaseService.isPostgres()) {
       const client = await databaseService.getClient();
       try {
-        const result = await client.query('SELECT product_id, name, benefits FROM products LIMIT 2');
+        const result = await client.query('SELECT product_id, name, benefits FROM products ORDER BY created_at DESC');
         res.json({
           success: true,
           raw_data: result.rows,
