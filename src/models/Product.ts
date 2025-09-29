@@ -149,7 +149,21 @@ export class ProductModel {
     if (this.isPostgres) {
       const client = await databaseService.getClient();
       try {
-        const result = await client.query('SELECT * FROM products WHERE id = $1 OR product_id = $1', [id]);
+        // Check if id is numeric - if so, search by both id and product_id
+        // If not numeric, only search by product_id
+        const isNumeric = !isNaN(Number(id));
+        let query: string;
+        let params: any[];
+        
+        if (isNumeric) {
+          query = 'SELECT * FROM products WHERE id = $1 OR product_id = $2';
+          params = [Number(id), id];
+        } else {
+          query = 'SELECT * FROM products WHERE product_id = $1';
+          params = [id];
+        }
+        
+        const result = await client.query(query, params);
         if (result.rows.length > 0) {
           return this.parseProduct(result.rows[0]);
         }
