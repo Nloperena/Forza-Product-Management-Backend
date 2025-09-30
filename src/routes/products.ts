@@ -342,6 +342,36 @@ router.post('/remigrate-correct-images', async (req, res) => {
   }
 });
 
+// POST /api/products/upload-images-to-vercel - Upload all images to Vercel Blob storage
+router.post('/upload-images-to-vercel', async (req, res) => {
+  try {
+    console.log('☁️ Starting image upload to Vercel Blob via API...');
+
+    const { ImageUploaderToVercelBlob } = require('../scripts/uploadImagesToVercelBlob');
+    const uploader = new ImageUploaderToVercelBlob();
+
+    uploader.uploadAllImages()
+      .then(() => {
+        console.log('✅ Image upload to Vercel Blob completed successfully');
+      })
+      .catch((error: any) => {
+        console.error('❌ Image upload to Vercel Blob failed:', error);
+      });
+
+    res.json({
+      success: true,
+      message: 'Image upload to Vercel Blob started! This will upload all local images to Vercel Blob storage and update the database. Check logs for progress.'
+    });
+  } catch (error) {
+    console.error('❌ Error starting image upload to Vercel Blob:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to start image upload to Vercel Blob',
+      error: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+});
+
 // POST /api/products - Create new product
 router.post('/', (req, res) => getProductController().createProduct(req, res));
 
