@@ -47,7 +47,7 @@ interface ForzaProductsData {
   };
 }
 
-class RealDataMigrator {
+class RemigratorWithCorrectImages {
   private pool: Pool;
   private productsData: ForzaProductsData;
 
@@ -63,24 +63,32 @@ class RealDataMigrator {
     this.productsData = JSON.parse(rawData);
   }
 
-  async migrate(): Promise<void> {
+  async remigrate(): Promise<void> {
     try {
-      console.log('🚀 Starting real data migration to Heroku...');
+      console.log('🚀 Starting complete re-migration with correct image paths...');
       
       // Clear existing data
       await this.clearExistingData();
       
-      // Process and insert all products
+      // Process and insert all products with correct image paths
       const allProducts = this.extractAllProducts();
       console.log(`📦 Found ${allProducts.length} products to migrate`);
       
       let successCount = 0;
       let errorCount = 0;
+      let imageIssues = 0;
 
       for (const product of allProducts) {
         try {
-          await this.insertProduct(product);
+          // Fix image path before inserting
+          const fixedProduct = this.fixImagePath(product);
+          if (fixedProduct.image !== product.image) {
+            imageIssues++;
+          }
+          
+          await this.insertProduct(fixedProduct);
           successCount++;
+          
           if (successCount % 20 === 0) {
             console.log(`✅ Migrated ${successCount}/${allProducts.length} products...`);
           }
@@ -90,19 +98,36 @@ class RealDataMigrator {
         }
       }
 
-      console.log(`🎉 Migration completed!`);
+      console.log(`🎉 Re-migration completed!`);
       console.log(`✅ Successfully migrated: ${successCount} products`);
       console.log(`❌ Errors: ${errorCount} products`);
+      console.log(`🔧 Image paths fixed: ${imageIssues} products`);
       
       // Verify migration
       await this.verifyMigration();
       
     } catch (error) {
-      console.error('❌ Migration failed:', error);
+      console.error('❌ Re-migration failed:', error);
       throw error;
     } finally {
       await this.pool.end();
     }
+  }
+
+  private fixImagePath(product: ForzaProduct): ForzaProduct {
+    let fixedImage = product.image;
+    
+    // Remove leading /product-images/ or product-images/ prefix
+    if (fixedImage.startsWith('/product-images/')) {
+      fixedImage = fixedImage.substring('/product-images/'.length);
+    } else if (fixedImage.startsWith('product-images/')) {
+      fixedImage = fixedImage.substring('product-images/'.length);
+    }
+    
+    return {
+      ...product,
+      image: fixedImage
+    };
   }
 
   private async clearExistingData(): Promise<void> {
@@ -148,15 +173,6 @@ class RealDataMigrator {
     // Generate description from first few benefits
     const description = product.benefits.slice(0, 3).join('. ') + '.';
     
-    // Handle image path - remove leading /product-images/ since server serves from /product-images route
-    let image = product.image;
-    if (image.startsWith('/product-images/')) {
-      image = image.substring('/product-images/'.length); // Remove the prefix
-    } else if (image.startsWith('product-images/')) {
-      image = image.substring('product-images/'.length); // Remove the prefix
-    }
-    // Just use the filename for frontend assets
-    
     const sql = `
       INSERT INTO products (
         product_id, name, full_name, description, brand, industry,
@@ -174,7 +190,7 @@ class RealDataMigrator {
       product.industry,
       product.chemistry || '',
       product.url || '',
-      image,
+      product.image,
       JSON.stringify(product.benefits),
       JSON.stringify(product.applications),
       JSON.stringify(product.technical),
@@ -202,40 +218,54 @@ class RealDataMigrator {
   }
 
   private async verifyMigration(): Promise<void> {
-    console.log('🔍 Verifying migration...');
+    console.log('🔍 Verifying re-migration...');
     
     const result = await this.pool.query('SELECT COUNT(*) as count FROM products');
     const count = parseInt(result.rows[0].count);
     
     console.log(`📊 Total products in database: ${count}`);
     
+    // Check for any remaining incorrect image paths
+    const incorrectPathsResult = await this.pool.query(`
+      SELECT COUNT(*) as count 
+      FROM products 
+      WHERE image LIKE '/product-images/%' OR image LIKE 'product-images/%'
+    `);
+    const incorrectCount = parseInt(incorrectPathsResult.rows[0].count);
+    
+    if (incorrectCount === 0) {
+      console.log('✅ All image paths are correct!');
+    } else {
+      console.log(`⚠️  ${incorrectCount} products still have incorrect image paths`);
+    }
+    
     // Get some sample products
     const sampleResult = await this.pool.query(`
-      SELECT product_id, name, brand, industry, benefits_count 
+      SELECT product_id, name, brand, industry, image, benefits_count 
       FROM products 
       ORDER BY created_at DESC 
       LIMIT 5
     `);
     
-    console.log('📋 Sample products:');
+    console.log('📋 Sample products with image paths:');
     sampleResult.rows.forEach((row, index) => {
-      console.log(`  ${index + 1}. ${row.name} (${row.brand}/${row.industry}) - ${row.benefits_count} benefits`);
+      console.log(`  ${index + 1}. ${row.name} (${row.brand}/${row.industry}) - Image: ${row.image} - ${row.benefits_count} benefits`);
     });
   }
 }
 
-// Run migration if this script is executed directly
+// Run re-migration if this script is executed directly
 if (require.main === module) {
-  const migrator = new RealDataMigrator();
-  migrator.migrate()
+  const remigrator = new RemigratorWithCorrectImages();
+  remigrator.remigrate()
     .then(() => {
-      console.log('✅ Migration script completed successfully');
+      console.log('✅ Re-migration script completed successfully');
       process.exit(0);
     })
     .catch((error) => {
-      console.error('❌ Migration script failed:', error);
+      console.error('❌ Re-migration script failed:', error);
       process.exit(1);
     });
 }
 
-export { RealDataMigrator };
+export { RemigratorWithCorrectImages };

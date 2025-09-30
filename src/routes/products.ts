@@ -266,6 +266,82 @@ router.post('/update-structure', async (req, res) => {
   }
 });
 
+// POST /api/products/fix-image-paths - Fix image paths to work with current server setup
+router.post('/fix-image-paths', async (req, res) => {
+  try {
+    console.log('🔧 Starting image path fix via API...');
+
+    // Check if using PostgreSQL or SQLite
+    const { databaseService } = require('../services/database');
+    
+    if (databaseService.isPostgres()) {
+      const { ImagePathFixer } = require('../scripts/fixImagePaths');
+      const fixer = new ImagePathFixer();
+      
+      fixer.fixImagePaths()
+        .then(() => {
+          console.log('✅ Image path fix completed successfully');
+        })
+        .catch((error: any) => {
+          console.error('❌ Image path fix failed:', error);
+        });
+    } else {
+      const { ImagePathFixerSQLite } = require('../scripts/fixImagePathsSQLite');
+      const fixer = new ImagePathFixerSQLite();
+      
+      fixer.fixImagePaths()
+        .then(() => {
+          console.log('✅ Image path fix completed successfully');
+        })
+        .catch((error: any) => {
+          console.error('❌ Image path fix failed:', error);
+        });
+    }
+
+    res.json({
+      success: true,
+      message: 'Image path fix started! This will fix all product image paths to work with the current server setup. Check logs for progress.'
+    });
+  } catch (error) {
+    console.error('❌ Error starting image path fix:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to start image path fix',
+      error: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+});
+
+// POST /api/products/remigrate-correct-images - Complete re-migration with correct image paths
+router.post('/remigrate-correct-images', async (req, res) => {
+  try {
+    console.log('🚀 Starting complete re-migration with correct image paths via API...');
+
+    const { RemigratorWithCorrectImages } = require('../scripts/remigrateWithCorrectImages');
+    const remigrator = new RemigratorWithCorrectImages();
+
+    remigrator.remigrate()
+      .then(() => {
+        console.log('✅ Complete re-migration with correct images completed successfully');
+      })
+      .catch((error: any) => {
+        console.error('❌ Complete re-migration with correct images failed:', error);
+      });
+
+    res.json({
+      success: true,
+      message: 'Complete re-migration with correct image paths started! This will clear all data and re-import everything with correct image paths. Check logs for progress.'
+    });
+  } catch (error) {
+    console.error('❌ Error starting complete re-migration with correct images:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to start complete re-migration with correct images',
+      error: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+});
+
 // POST /api/products - Create new product
 router.post('/', (req, res) => getProductController().createProduct(req, res));
 
