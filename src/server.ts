@@ -28,22 +28,28 @@ const PORT = process.env['PORT'] || 5000;
 // Security middleware
 app.use(helmet({ crossOriginResourcePolicy: { policy: "cross-origin" } }));
 
-// CORS configuration - simplified and clean
+// CORS configuration - allow all Vercel domains and localhost
 const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:3001',
   'http://localhost:5173',
-  'https://product-mangement-system-template-semj-cl4t5pgar.vercel.app', // Vercel domain
+  'https://product-mangement-system-template-s.vercel.app', // Current Vercel domain
   process.env['FRONTEND_URL'] || 'http://localhost:3000'
 ];
 
-// Add production frontend URL if it exists
-if (process.env['NODE_ENV'] === 'production' && process.env['FRONTEND_URL']) {
-  allowedOrigins.push(process.env['FRONTEND_URL']);
-}
-
-app.use(cors({
-  origin: allowedOrigins,
+// Allow all Vercel preview deployments (*.vercel.app)
+const corsOptions = {
+  origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
+    // Allow requests with no origin (mobile apps, curl, etc.)
+    if (!origin) return callback(null, true);
+    
+    // Allow all Vercel domains
+    if (origin.endsWith('.vercel.app') || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'HEAD'],
   allowedHeaders: [
@@ -53,7 +59,9 @@ app.use(cors({
     'Accept', 
     'Authorization'
   ]
-}));
+};
+
+app.use(cors(corsOptions));
 
 // Rate limiting
 const limiter = rateLimit({
