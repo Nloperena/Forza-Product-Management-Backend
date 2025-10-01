@@ -62,15 +62,21 @@ const ImageSkeleton: React.FC<ImageSkeletonProps> = ({
 
       {/* Actual Image */}
       {shouldShowImage ? (
-        <img
-          src={src}
-          alt={alt}
-          className={`${className} ${isLoading ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300 ${
-            objectFit === 'contain' ? 'object-contain' : 'object-cover'
-          }`}
-          onLoad={handleLoad}
-          onError={handleError}
-        />
+        <>
+          <img
+            src={src}
+            alt={alt}
+            className={`${className} ${isLoading ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300 ${
+              objectFit === 'contain' ? 'object-contain' : 'object-cover'
+            }`}
+            onLoad={handleLoad}
+            onError={handleError}
+          />
+          {/* Blue overlay for video aspect ratio */}
+          {aspectRatio === 'video' && (
+            <div className="absolute inset-0 bg-blue-900 bg-opacity-20 pointer-events-none rounded-lg"></div>
+          )}
+        </>
       ) : (
         // Fallback when no image or error
         <div className="absolute inset-0 bg-gray-100 rounded-lg flex items-center justify-center">
