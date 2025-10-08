@@ -48,6 +48,8 @@ const ProductEditPage: React.FC = () => {
     technical: [],
     sizing: {},
     packaging: [],
+    tds_pdf: '',
+    sds_pdf: '',
   });
 
   const [saving, setSaving] = useState(false);
@@ -97,6 +99,8 @@ const ProductEditPage: React.FC = () => {
         technical: [...product.technical],
         sizing: product.sizing ? { ...product.sizing } : {},
         packaging: product.packaging ? [...product.packaging] : [],
+        tds_pdf: product.tds_pdf || '',
+        sds_pdf: product.sds_pdf || '',
       });
     }
   }, [product, isNewProduct, id]);
@@ -751,6 +755,44 @@ const ProductEditPage: React.FC = () => {
                   ))}
                 </div>
               )}
+            </CardContent>
+          </Card>
+
+          {/* Product Documents */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Product Documents</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Technical Data Sheet (TDS) URL
+                </label>
+                <Input
+                  value={formData.tds_pdf || ''}
+                  onChange={(e) => handleInputChange('tds_pdf', e.target.value)}
+                  placeholder="https://example.com/documents/product-tds.pdf"
+                  type="url"
+                />
+                <p className="text-xs text-gray-500 mt-1">
+                  Enter the URL to the Technical Data Sheet PDF
+                </p>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Safety Data Sheet (SDS) URL
+                </label>
+                <Input
+                  value={formData.sds_pdf || ''}
+                  onChange={(e) => handleInputChange('sds_pdf', e.target.value)}
+                  placeholder="https://example.com/documents/product-sds.pdf"
+                  type="url"
+                />
+                <p className="text-xs text-gray-500 mt-1">
+                  Enter the URL to the Safety Data Sheet PDF
+                </p>
+              </div>
             </CardContent>
           </Card>
         </div>

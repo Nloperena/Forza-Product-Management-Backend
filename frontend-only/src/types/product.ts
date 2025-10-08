@@ -20,6 +20,8 @@ export interface Product {
   technical: TechnicalProperty[];
   sizing?: Record<string, any>;
   packaging?: string[];
+  tds_pdf?: string; // Technical Data Sheet PDF URL or path
+  sds_pdf?: string; // Safety Data Sheet PDF URL or path
   published: boolean;
   benefits_count: number;
   last_edited?: string;
@@ -67,4 +69,6 @@ export interface ProductFormData {
   technical: TechnicalProperty[];
   sizing?: Record<string, any>;
   packaging?: string[];
+  tds_pdf?: string;
+  sds_pdf?: string;
 }

@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import ImageSkeleton from '@/components/ui/ImageSkeleton';
+import PDFViewer from '@/components/ui/PDFViewer';
 import { formatBrandName, formatIndustryName, getImageUrl, getProductImageUrl, getBrandTextColor } from '@/utils/formatting';
 import { 
   ArrowLeft, 
@@ -307,6 +308,33 @@ const ProductViewPage: React.FC = () => {
                     </li>
                   ))}
                 </ul>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Product Documents */}
+          {(product.tds_pdf || product.sds_pdf) && (
+            <Card>
+              <CardHeader>
+                <CardTitle>Product Documents</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                {product.tds_pdf && (
+                  <PDFViewer
+                    pdfUrl={product.tds_pdf}
+                    title={product.full_name || product.name}
+                    type="TDS"
+                    compact
+                  />
+                )}
+                {product.sds_pdf && (
+                  <PDFViewer
+                    pdfUrl={product.sds_pdf}
+                    title={product.full_name || product.name}
+                    type="SDS"
+                    compact
+                  />
+                )}
               </CardContent>
             </Card>
           )}
