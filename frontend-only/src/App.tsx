@@ -11,9 +11,6 @@ import ProductEditPage from '@/pages/ProductEditPage';
 import { BarChart3 } from 'lucide-react';
 
 const App: React.FC = () => {
-  // Console log for developers
-  console.log("-- Hey you're not suppose to be here! Unless you're a developer! Hope you enjoy my application! -Nico Loperena");
-  
   return (
     <ApiProvider>
       <ToastProvider>

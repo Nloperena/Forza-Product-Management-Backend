@@ -77,9 +77,7 @@ export const getImageUrl = (imagePath?: string, apiBaseUrl?: string, useRelative
   }
   
   // Use provided API base URL or fallback to default
-  const API_BASE_URL = apiBaseUrl || (import.meta.env.PROD 
-    ? 'https://forza-product-managementsystem-b7c3ff8d3d2d.herokuapp.com'
-    : 'http://localhost:5000');
+  const API_BASE_URL = apiBaseUrl || 'https://forza-product-managementsystem-b7c3ff8d3d2d.herokuapp.com';
   return `${API_BASE_URL}${normalizedPath}`;
 };
 
@@ -93,9 +91,7 @@ export const getProductImageUrl = (product: { image?: string }, apiBaseUrl?: str
   }
   
   // For backend images, construct the full URL using the API base URL
-  const API_BASE_URL = apiBaseUrl || (import.meta.env.PROD 
-    ? 'https://forza-product-managementsystem-b7c3ff8d3d2d.herokuapp.com'
-    : 'http://localhost:5000');
+  const API_BASE_URL = apiBaseUrl || 'https://forza-product-managementsystem-b7c3ff8d3d2d.herokuapp.com';
   const imageUrl = `${API_BASE_URL}/product-images/${product.image}`;
   return imageUrl;
 };

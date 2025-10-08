@@ -12,8 +12,6 @@ export const useProducts = (filters?: ProductFilters) => {
       setLoading(true);
       setError(null);
       const data = await productApi.getProducts();
-      console.log('🔍 useProducts: Fetched products:', data.length);
-      console.log('🔍 useProducts: Sample product IDs:', data.slice(0, 5).map(p => ({ id: p.id, product_id: p.product_id, name: p.name })));
       setProducts(data);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to fetch products');
@@ -80,20 +78,15 @@ export const useProduct = (id: string) => {
       try {
         setLoading(true);
         setError(null);
-        console.log('🔍 useProduct: Fetching product with ID:', id);
         
         // First try the direct API call
         try {
           const data = await productApi.getProduct(id);
-          console.log('✅ useProduct: Product fetched successfully via API:', data);
           setProduct(data);
           return;
         } catch (apiError) {
-          console.warn('⚠️ useProduct: API call failed, trying fallback method:', apiError);
-          
           // Fallback: Get all products and find the one with matching ID
           const allProducts = await productApi.getProducts();
-          console.log('🔍 useProduct: Fetched all products for fallback:', allProducts.length);
           
           // Try to find by different ID fields
           const foundProduct = allProducts.find(p => 
@@ -104,15 +97,13 @@ export const useProduct = (id: string) => {
           );
           
           if (foundProduct) {
-            console.log('✅ useProduct: Product found via fallback:', foundProduct);
             setProduct(foundProduct);
           } else {
-            console.error('❌ useProduct: Product not found in fallback search');
             throw new Error(`Product with ID "${id}" not found`);
           }
         }
       } catch (err) {
-        console.error('❌ useProduct: Error fetching product:', err);
+        console.error('Error fetching product:', err);
         setError(err instanceof Error ? err.message : 'Failed to fetch product');
       } finally {
         setLoading(false);
