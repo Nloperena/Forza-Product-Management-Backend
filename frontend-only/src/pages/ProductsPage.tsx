@@ -180,7 +180,7 @@ const ProductsPage: React.FC = () => {
 
         {/* Filters Panel */}
         {showFilters && (
-          <div className="bg-gray-50 rounded-lg p-4 space-y-4">
+          <div className="bg-gradient-to-r from-gray-50 to-white rounded-lg p-4 space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {/* Brand Filter */}
               <div>
