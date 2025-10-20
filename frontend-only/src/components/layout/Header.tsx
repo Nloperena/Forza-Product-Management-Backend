@@ -63,7 +63,7 @@ const Header: React.FC = () => {
       </div>
 
       {/* Mobile Navigation */}
-      <div className="md:hidden border-t border-gray-200 bg-white">
+      <div className="md:hidden border-t border-gray-200 bg-gradient-to-r from-gray-50 to-white">
         <nav className="flex">
           <Link to="/" className="flex-1">
             <Button
