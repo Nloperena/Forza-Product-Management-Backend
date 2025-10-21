@@ -49,7 +49,8 @@ const corsOptions = {
     if (origin.endsWith('.vercel.app') || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      callback(new Error('Not allowed by CORS'));
+      // Don't throw error - just reject with false to send 403 instead of 500
+      callback(null, false);
     }
   },
   credentials: true,
