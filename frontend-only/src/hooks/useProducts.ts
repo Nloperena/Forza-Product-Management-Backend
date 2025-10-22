@@ -33,6 +33,10 @@ export const useProducts = (filters?: ProductFilters) => {
       return false;
     }
     
+    if (filters?.chemistry && product.chemistry !== filters.chemistry) {
+      return false;
+    }
+    
     if (filters?.search) {
       const searchTerm = filters.search.toLowerCase();
       const searchableText = [

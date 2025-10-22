@@ -22,6 +22,7 @@ const ProductsPage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedBrand, setSelectedBrand] = useState<string>('');
   const [selectedIndustry, setSelectedIndustry] = useState<string>('');
+  const [selectedChemistry, setSelectedChemistry] = useState<string>('');
   const [showDrafts, setShowDrafts] = useState<boolean>(false);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [showFilters, setShowFilters] = useState(false);
@@ -30,8 +31,9 @@ const ProductsPage: React.FC = () => {
     search: searchTerm || undefined,
     brand: selectedBrand || undefined,
     industry: selectedIndustry || undefined,
+    chemistry: selectedChemistry || undefined,
     published: showDrafts ? undefined : true, // Show published by default, all if drafts enabled
-  }), [searchTerm, selectedBrand, selectedIndustry, showDrafts]);
+  }), [searchTerm, selectedBrand, selectedIndustry, selectedChemistry, showDrafts]);
 
   const { products, allProducts, loading, error } = useProducts(filters);
 
@@ -46,6 +48,11 @@ const ProductsPage: React.FC = () => {
     return uniqueIndustries.sort();
   }, [allProducts]);
 
+  const chemistries = useMemo(() => {
+    const uniqueChemistries = Array.from(new Set(allProducts.map(p => p.chemistry).filter(Boolean)));
+    return uniqueChemistries.sort();
+  }, [allProducts]);
+
   const handleProductView = (product: Product) => {
     navigate(`/products/${product.product_id || product.id}`);
   };
@@ -58,6 +65,7 @@ const ProductsPage: React.FC = () => {
     setSearchTerm('');
     setSelectedBrand('');
     setSelectedIndustry('');
+    setSelectedChemistry('');
     setShowDrafts(false);
   };
 
@@ -65,6 +73,7 @@ const ProductsPage: React.FC = () => {
     searchTerm,
     selectedBrand,
     selectedIndustry,
+    selectedChemistry,
     showDrafts ? 'drafts' : null
   ].filter(Boolean).length;
 
@@ -215,6 +224,25 @@ const ProductsPage: React.FC = () => {
                   {industries.map((industry) => (
                     <option key={industry} value={industry}>
                       {formatIndustryName(industry)}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Chemistry Filter */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Chemistry
+                </label>
+                <select
+                  value={selectedChemistry}
+                  onChange={(e) => setSelectedChemistry(e.target.value)}
+                  className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                >
+                  <option value="">All Chemistry</option>
+                  {chemistries.map((chemistry) => (
+                    <option key={chemistry} value={chemistry}>
+                      {chemistry}
                     </option>
                   ))}
                 </select>

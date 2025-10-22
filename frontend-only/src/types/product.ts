@@ -50,6 +50,7 @@ export interface ApiResponse<T> {
 export interface ProductFilters {
   brand?: string;
   industry?: string;
+  chemistry?: string;
   search?: string;
   published?: boolean;
 }
