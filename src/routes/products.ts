@@ -372,6 +372,79 @@ router.post('/upload-images-to-vercel', async (req, res) => {
   }
 });
 
+// POST /api/products/fix-image-urls - Fix image URLs to use Vercel Blob URLs
+router.post('/fix-image-urls', async (req, res) => {
+  try {
+    console.log('🔧 Starting image URL fix via API...');
+    
+    const { databaseService } = require('../services/database');
+    
+    if (databaseService.isPostgres()) {
+      const client = await databaseService.getClient();
+      try {
+        // Vercel Blob base URL
+        const VERCEL_BLOB_BASE_URL = 'https://rifer2chtzhht7fs.public.blob.vercel-storage.com';
+        
+        // Get all products with image filenames (not full URLs)
+        const result = await client.query(`
+          SELECT id, name, image 
+          FROM products 
+          WHERE image IS NOT NULL 
+          AND image != 'placeholder-product.svg'
+          AND image NOT LIKE 'https://%'
+          AND image NOT LIKE 'http://%'
+        `);
+
+        console.log(`Found ${result.rows.length} products with filename-based images`);
+
+        let updatedCount = 0;
+
+        for (const product of result.rows) {
+          try {
+            // Construct the Vercel Blob URL
+            const blobUrl = `${VERCEL_BLOB_BASE_URL}/${product.image}`;
+            
+            // Update the product with the full Vercel Blob URL
+            await client.query(
+              'UPDATE products SET image = $1 WHERE id = $2',
+              [blobUrl, product.id]
+            );
+            
+            updatedCount++;
+            console.log(`✅ Updated: ${product.name} -> ${blobUrl}`);
+            
+          } catch (error) {
+            console.error(`❌ Error updating product ${product.name}:`, error);
+          }
+        }
+
+        console.log(`🎉 Image URL fix completed!`);
+        console.log(`✅ Products updated: ${updatedCount}`);
+
+        res.json({
+          success: true,
+          message: `Image URL fix completed! Updated ${updatedCount} products with Vercel Blob URLs.`
+        });
+
+      } finally {
+        client.release();
+      }
+    } else {
+      res.status(500).json({
+        success: false,
+        message: 'Image URL fix only works with PostgreSQL database'
+      });
+    }
+  } catch (error) {
+    console.error('❌ Error fixing image URLs:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to fix image URLs',
+      error: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+});
+
 // POST /api/products - Create new product
 router.post('/', (req, res) => getProductController().createProduct(req, res));
 
