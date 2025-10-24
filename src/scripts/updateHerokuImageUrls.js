@@ -8,7 +8,7 @@ class HerokuImageUrlUpdater {
       
       // Connect to database
       await databaseService.connect();
-      const productModel = new ProductModel(databaseService.getDatabase());
+      const productModel = new ProductModel(databaseService.getPool());
       
       // Get all products with Vercel Blob URLs that have incorrect filenames
       const products = await productModel.getAllProducts();
