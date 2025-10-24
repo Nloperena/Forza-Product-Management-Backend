@@ -84,7 +84,7 @@ class VercelBlobImageScraper {
       
       // Connect to database
       await databaseService.connect();
-      const productModel = new ProductModel(databaseService.getPool());
+      const productModel = new ProductModel(databaseService.getDatabase());
       
       // Get all products
       const products = await productModel.getAllProducts();
