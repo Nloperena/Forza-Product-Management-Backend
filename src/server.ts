@@ -119,6 +119,20 @@ app.use('/product-images', express.static(path.join(__dirname, '../public/upload
   }
 }));
 
+// Serve scraped images from /scraped-images URL
+app.use('/scraped-images', express.static(path.join(__dirname, '../public/scraped-images'), {
+  setHeaders: (res, filePath) => {
+    // Apply CORS headers to all static assets
+    res.setHeader('Access-Control-Allow-Origin', '*'); 
+    res.setHeader('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS');
+
+    // Apply stronger caching to images
+    if (filePath.match(/\.(jpg|jpeg|png|gif|svg)$/)) {
+      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable'); // 1 year
+    }
+  }
+}));
+
 
 // Health check endpoint
 app.get('/health', (_req, res) => {

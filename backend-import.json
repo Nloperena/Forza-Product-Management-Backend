@@ -1,0 +1,368 @@
+[
+  {
+    "product_id": "C150",
+    "name": "C150 – CA COMPLIANT CONTACT ADHESIVE",
+    "full_name": "C150 – CA COMPLIANT CONTACT ADHESIVE",
+    "description": "ForzaBOND™ C150 is a quick tack, sprayable adhesive formulated for bonding polystyrene foam to itself and various other substrates.",
+    "brand": "forza_bond",
+    "industry": "industrial_industry",
+    "chemistry": null,
+    "image": "https://forzabuilt.com/wp-content/uploads/2023/12/C150-CA-COMPLIANT-HIGH-SOLIDS-CONTACT-ADHESIVE.png",
+    "applications": [
+      "Bonds polystyrene foam to itself and many other substrates",
+      "Used in refrigerator and freezer applications to bond foam on interior, non-load bearing sandwich panels",
+      "Used to bond precut foam to cardboard in fabrication of insulated shipping cartons",
+      "Used for preformed pipe insulation and the bonding of foam on prefabricated pump houses, animal shelters and farm waterers"
+    ],
+    "benefits": [
+      "Quick tack",
+      "Prevents attack of polystyrene foam, yet still creates a strong contact-like bond to many substrates",
+      "Excellent water and moisture resistance"
+    ],
+    "sizing": [
+      "1 Gallon Pail",
+      "5 Gallon Pail",
+      "55 Gallon Drum"
+    ],
+    "technical": [],
+    "published": false,
+    "created_at": "2025-10-24T17:07:54.364Z",
+    "updated_at": "2025-10-24T17:07:54.365Z"
+  },
+  {
+    "product_id": "FRP",
+    "name": "FRP – HYBRID POLYMER ROLLABLE FRP ADHESIVE",
+    "full_name": "FRP – HYBRID POLYMER ROLLABLE FRP ADHESIVE",
+    "description": "ForzaBOND™ FRP Modified Silane Rollable Flooring Adhesive",
+    "brand": "forza_bond",
+    "industry": "construction_industry",
+    "chemistry": "MS",
+    "image": "https://forzabuilt.com/wp-content/uploads/2023/12/FRP-Rollable-Adhesive-v2.png",
+    "applications": [
+      "The FRP modified silane rollable flooring adhesive is a high-performance adhesive that is specifically designed to bond a variety of substrates, including metal flooring, plywood, and vinyls.",
+      "This adhesive is ideal for use in refrigerated and walk-in coolers, as it is able to withstand the extreme temperatures and conditions found in these environments."
+    ],
+    "benefits": [
+      "Excellent bonding properties to a variety of substrates, including metal flooring, plywood, and vinyls",
+      "Can be used in refrigerated and walk-in coolers",
+      "Can withstand extreme temperatures and conditions",
+      "High solids content for excellent coverage and reduced shrinkage",
+      "Easy to apply and rollable",
+      "Tack-free time of 2-4 hours",
+      "Short cure time of 24-48 hours",
+      "High shear and peel strength for maximum durability"
+    ],
+    "sizing": [
+      "28 oz",
+      "20 oz",
+      "5 Gallon",
+      "55 Gallon"
+    ],
+    "technical": [],
+    "published": false,
+    "created_at": "2025-10-24T17:07:54.369Z",
+    "updated_at": "2025-10-24T17:07:54.369Z"
+  },
+  {
+    "product_id": "I1000",
+    "name": "I1000 – LOW-MEDIUM VISCOSITY LAMINATING ADHESIVE",
+    "full_name": "I1000 – LOW-MEDIUM VISCOSITY LAMINATING ADHESIVE",
+    "description": "ForzaBOND™ I1000 is a low/medium viscosity resin adhesive formulated to bond insulation and fibrous substrates.",
+    "brand": "forza_bond",
+    "industry": "insulation_industry",
+    "chemistry": null,
+    "image": "https://forzabuilt.com/wp-content/uploads/2023/12/I1000_Tote.png",
+    "applications": [
+      "For use in operations such as faced insulation manufacturing.",
+      "Quick tack laminating."
+    ],
+    "benefits": [
+      "Fast drying.",
+      "Excellent fiber-tearing bonds.",
+      "Excellent coverage – 600 sq ft per gallon.",
+      "Strong and durable bond.",
+      "UL723 Certification"
+    ],
+    "sizing": [
+      "5 Gallon Pail",
+      "52 Gallon Drum",
+      "Tote"
+    ],
+    "technical": [],
+    "published": false,
+    "created_at": "2025-10-24T17:07:54.369Z",
+    "updated_at": "2025-10-24T17:07:54.369Z"
+  },
+  {
+    "product_id": "R529",
+    "name": "R529 – STRUCTURAL ANCHORING EPOXY",
+    "full_name": "R529 – STRUCTURAL ANCHORING EPOXY",
+    "description": "ForzaBOND™ R529 anchor system is a pure epoxy mortar with ETA-option 1 approval, for use in cracked and untracked concrete and is approved to the highest international standards.",
+    "brand": "forza_bond",
+    "industry": "construction_industry",
+    "chemistry": "Epoxy",
+    "image": "https://forzabuilt.com/wp-content/uploads/2023/12/R529-Structural-Adhesive-.png",
+    "applications": [
+      "R529 is a two-component high-strength epoxy adhesive anchoring system designed for bonding steel elements or post-installing reinforcement bars to cracked and untracked concrete.",
+      "Ideal for installation in dry, wet and water filled holes",
+      "Approved for overhead applications",
+      "Approved for diamond drilled holes for C20 to C60 concrete"
+    ],
+    "benefits": [
+      "Fast Curing Times.",
+      "Long Shelf Life – 24 month shelf life for longevity.",
+      "Extensive Range – Wide range of steel element diameter and embedment depths.",
+      "Easy to Use – Simple installation with low odour formula and long working times.",
+      "ETA Option 1 approved"
+    ],
+    "sizing": [
+      "Cartridge",
+      "2 Component",
+      "More upon request"
+    ],
+    "technical": [],
+    "published": false,
+    "created_at": "2025-10-24T17:07:54.382Z",
+    "updated_at": "2025-10-24T17:07:54.382Z"
+  },
+  {
+    "product_id": "S228",
+    "name": "S228 – TAPE PRIMER AND ADHESION PROMOTER",
+    "full_name": "S228 – TAPE PRIMER AND ADHESION PROMOTER",
+    "description": "ForzaBOND™ S228 is a primer to increase adhesive performance.",
+    "brand": "forza_bond",
+    "industry": "transportation_industry",
+    "chemistry": null,
+    "image": "https://forzabuilt.com/wp-content/uploads/2023/12/S228-paintcan-mockup.png",
+    "applications": [
+      "Increases adhesion with high bond tapes and other adhesives.",
+      "Improves adhesion on polyethylene, polypropylene, glass, metal and painted surfaces."
+    ],
+    "benefits": [
+      "Increases adhesive performance on polyethylene, polypropylene and TPR",
+      "Also useful on other plastics, rubber & metals",
+      "Removes grease and oils to promote adhesion"
+    ],
+    "sizing": [
+      "1 Quart",
+      "1 Gallon",
+      "5 Gallon"
+    ],
+    "technical": [],
+    "published": false,
+    "created_at": "2025-10-24T17:07:54.383Z",
+    "updated_at": "2025-10-24T17:07:54.383Z"
+  },
+  {
+    "product_id": "T350",
+    "name": "T350 – THERMAL BREAK TAPE",
+    "full_name": "T350 – THERMAL BREAK TAPE",
+    "description": "ForzaTAPE™ T350 is a polyethylene foam tape coated with high-tack rubber adhesive.",
+    "brand": "forza_tape",
+    "industry": "insulation_industry",
+    "chemistry": null,
+    "image": "https://forzabuilt.com/wp-content/uploads/2023/06/T600-Foam-Bonding-Tape.png",
+    "applications": [
+      "Excellent adhesion",
+      "High impact resistance and noise reduction, reducing vibration."
+    ],
+    "benefits": [
+      "The polyethylene foam tape is coated with a high tack rubber adhesive, ensuring a strong and immediate bond upon application.",
+      "This adhesive offers exceptional gripping power, making it perfect for applications where secure adhesion is crucial.",
+      "The polyethylene foam provides excellent cushioning and impact resistance, protecting surfaces from damage and reducing noise and vibration.",
+      "The foam tape is designed for easy and hassle-free application.",
+      "The combination of polyethylene foam and high tack rubber adhesive results in a durable and reliable tape. It can withstand various environmental conditions, including temperature changes, moisture, and UV exposure, without losing its adhesive properties or degrading over time."
+    ],
+    "sizing": [
+      ".18 x 3 x 1000",
+      ".125 x 3 x 100",
+      ".25 x 3 x 100",
+      ".125 x 2 x 100",
+      ".25 x 3 x 50"
+    ],
+    "technical": [],
+    "published": false,
+    "created_at": "2025-10-24T17:07:54.388Z",
+    "updated_at": "2025-10-24T17:07:54.388Z"
+  },
+  {
+    "product_id": "T461",
+    "name": "T461 – HOT-MELT TRANSFER TAPE",
+    "full_name": "T461 – HOT-MELT TRANSFER TAPE",
+    "description": "ForzaTAPE™ T461 is an extremely aggressive synthetic rubber transfer tape.",
+    "brand": "forza_tape",
+    "industry": "insulation_industry",
+    "chemistry": "Hotmelt",
+    "image": "https://forzabuilt.com/wp-content/uploads/2023/06/T461-Hot-Melt-Transfer-Tape.png",
+    "applications": [
+      "Used for mounting trim and insulation panels",
+      "Used for fixing edging, signs, decorative edging and panels"
+    ],
+    "benefits": [
+      "Synthetic rubber transfer tape offers excellent adhesion to a wide range of surfaces, including plastics, metals, glass, and more.",
+      "Effectively bond different materials together, making it a versatile option for various applications.",
+      "The synthetic rubber used in transfer tape provides a strong and reliable bond, ensuring that the joined surfaces stay securely in place. This is particularly beneficial for applications that require long-lasting adhesion.",
+      "Synthetic rubber transfer tape is designed to withstand both high and low temperatures."
+    ],
+    "sizing": [
+      ".75″ x 100′",
+      "1″ x 100′"
+    ],
+    "technical": [],
+    "published": false,
+    "created_at": "2025-10-24T17:07:54.388Z",
+    "updated_at": "2025-10-24T17:07:54.388Z"
+  },
+  {
+    "product_id": "T600",
+    "name": "T600 – FOAM GASKETING TAPE",
+    "full_name": "T600 – FOAM GASKETING TAPE",
+    "description": "ForzaTAPE™ T600 is a low-density foam reverse-wound thermal break tape.",
+    "brand": "forza_tape",
+    "industry": "construction_industry",
+    "chemistry": null,
+    "image": "https://forzabuilt.com/wp-content/uploads/2023/06/T600-Foam-Bonding-Tape.png",
+    "applications": [
+      "Used in applications requiring a seal for tight radius curves"
+    ],
+    "benefits": [
+      "3/16″ Thick Foam",
+      "Low density foam",
+      "Remains pliable at temperatures of -20°C to 82°C",
+      "Excellent fungi, oxidization and weather resistance"
+    ],
+    "sizing": [
+      "2″ x 100′",
+      "2″ x 75″"
+    ],
+    "technical": [],
+    "published": false,
+    "created_at": "2025-10-24T17:07:54.389Z",
+    "updated_at": "2025-10-24T17:07:54.389Z"
+  },
+  {
+    "product_id": "T715",
+    "name": "T715 – COLD TEMP DOUBLE COATED TAPE",
+    "full_name": "T715 – COLD TEMP DOUBLE COATED TAPE",
+    "description": "ForzaTAPE™® T715 is a double-coated hybrid rubber based tape that bonds exceptionally well in cold, and wet conditions.",
+    "brand": "forza_tape",
+    "industry": "insulation_industry",
+    "chemistry": null,
+    "image": "https://forzabuilt.com/wp-content/uploads/2023/06/T715-High-Performance-Double-Coated-Tape-mockup.png",
+    "applications": [
+      "Bonds paper and corrugate materials, including wax coated corrugate",
+      "Bonds many foams including XLPE, EPDM, EVA and polyurethane foams",
+      "Bonds LSE materials, plastics and metals",
+      "Packaging, freezer, insulation & sound dampening, laminating, and general purpose"
+    ],
+    "benefits": [
+      "Works exceptionally well in cold weather",
+      "Provides strong bond to cold or damp surfaces",
+      "Performs well on LSE materials",
+      "Good cohesive strength",
+      "High initial tack",
+      "Excellent peel and shear",
+      "Bonds a wide variety of substrates"
+    ],
+    "sizing": [
+      ".75 x 180",
+      "1.5 x 180",
+      "1.5 x 1800",
+      "5.9 x 60 x 180",
+      "5.9 x 60 x 400"
+    ],
+    "technical": [],
+    "published": false,
+    "created_at": "2025-10-24T17:07:54.389Z",
+    "updated_at": "2025-10-24T17:07:54.389Z"
+  },
+  {
+    "product_id": "T900",
+    "name": "T900 – BUTYL TAPE",
+    "full_name": "T900 – BUTYL TAPE",
+    "description": "ForzaTAPE™ T900 is compounded to meet pre-engineered metal building specifications. The material is soft, resilient and easily worked by hand, yet adheres instantly to most uncleaned surfaces.",
+    "brand": "forza_tape",
+    "industry": "composites_industry",
+    "chemistry": "Rubber Based",
+    "image": "https://forzabuilt.com/wp-content/uploads/2023/06/T900-Butyl-Adhesive-Tape.png",
+    "applications": [
+      "T900 has outstanding webbing and elongation properties along with excellent adhesion to glass, plastic (but not plasticized PVC), polyethylene, galvanized aluminum, galvalume, siliconized polyester, polyurethane and polyvinyl fluoride painted substrates.",
+      "Preformed butyl tapes allow the erector precise control of volume and sealant placement on roof laps, end laps and side laps of metal buildings."
+    ],
+    "benefits": [
+      "soft, resilient and easily worked by hand, yet adheres instantly to most uncleaned surfaces.",
+      "has excellent weathering characteristics while retaining adhesion and elasticity in both hot and cold environments.",
+      "is chemically inert and is non-corrosive to paint, metal, aluminum, copper, plastic and will not swell rubber."
+    ],
+    "sizing": [
+      "Sizing available upon request."
+    ],
+    "technical": [],
+    "published": false,
+    "created_at": "2025-10-24T17:07:54.389Z",
+    "updated_at": "2025-10-24T17:07:54.389Z"
+  },
+  {
+    "product_id": "T950",
+    "name": "T950 – FSK BONDING TAPE",
+    "full_name": "T950 – FSK BONDING TAPE",
+    "description": "ForzaTAPE™ T950 is a foil/scrim/kraft (FSK) lamination coated with a cold weather solvent acrylic pressure sensitive adhesive. This tape is a FSK 2.5” disc version of 1525CW.",
+    "brand": "forza_tape",
+    "industry": "insulation_industry",
+    "chemistry": null,
+    "image": "https://forzabuilt.com/wp-content/uploads/2023/06/T464-Transfer-Tape.png",
+    "applications": [
+      "Sealing applications for fibrous ductboard, FSK-faced duct wrap and sheet metal ducts.",
+      "Vapor seal for reinforced aluminum faced fiberglass or mineral wool thermal insulation."
+    ],
+    "benefits": [
+      "Cold weather adhesive performs well over a wide temperature range",
+      "Excellent performance in demanding heat and humidity conditions",
+      "Conforms well to irregular surfaces"
+    ],
+    "sizing": [
+      "Sizing available upon request"
+    ],
+    "technical": [],
+    "published": false,
+    "created_at": "2025-10-24T17:07:54.389Z",
+    "updated_at": "2025-10-24T17:07:54.389Z"
+  },
+  {
+    "product_id": "T970",
+    "name": "T970 – FOIL BONDING TAPE",
+    "full_name": "T970 – FOIL BONDING TAPE",
+    "description": "ForzaTAPE™ T970 combines a 3 mil nominal dead soft aluminum foil backing with a transparent acrylic adhesive.",
+    "brand": "forza_tape",
+    "industry": "insulation_industry",
+    "chemistry": null,
+    "image": "https://forzabuilt.com/wp-content/uploads/2023/06/T461-Hot-Melt-Transfer-Tape.png",
+    "applications": [
+      "Aircraft paint stripping maskant.",
+      "Moisture barrier in “white goods” appliances.",
+      "General purpose heat reflector and heat dissipater.",
+      "Mechanically hold wires and cooling coils in “white goods” appliances.",
+      "Repair tears on truck trailers and aircraft.",
+      "Splicing of thin gauge foils.",
+      "General purpose holding, patching, sealing applications – indoors and out."
+    ],
+    "benefits": [
+      "Flame resistant. Meets U.L. 746C (File E 122798) and 723, Class “L” low flammability rating (File R 7311).",
+      "Forza aluminum foil tape 425 can be certified to meet L-T-80C.",
+      "Meets requirements of FAR 25.853(a).",
+      "The very low moisture vapor transmission rate makes these tapes a good sealant.",
+      "The acrylic adhesive, combined with the durable aluminum backing, offers ideal properties for long serviceable life in and outdoors.",
+      "Good candidate as a maskant in electroplating of aluminum because it will not contaminate the bath.",
+      "Aluminum backing provides excellent reflection of both heat and light.",
+      "Best results obtained when applied to a clean, dry surface above 32°F (0°C)."
+    ],
+    "sizing": [
+      "3.5″",
+      "Custom Sizing Available"
+    ],
+    "technical": [],
+    "published": false,
+    "created_at": "2025-10-24T17:07:54.389Z",
+    "updated_at": "2025-10-24T17:07:54.389Z"
+  }
+]

@@ -493,7 +493,7 @@ router.post('/update-chemistry', async (req, res) => {
         `);
 
         console.log('📊 Chemistry Statistics:');
-        chemistryStats.rows.forEach(row => {
+        chemistryStats.rows.forEach((row: any) => {
           console.log(`  ${row.chemistry}: ${row.count} products`);
         });
 

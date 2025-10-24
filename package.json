@@ -10,7 +10,11 @@
     "seed": "ts-node src/scripts/seedDatabase.ts",
     "test": "jest",
     "lint": "eslint src/**/*.ts",
-    "lint:fix": "eslint src/**/*.ts --fix"
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "download-images": "ts-node src/scripts/downloadImportImages.ts",
+    "upload-to-vercel": "ts-node src/scripts/uploadToVercelBlob.ts",
+    "setup-vercel": "ts-node src/scripts/setupVercelBlob.ts",
+    "organize-images": "ts-node src/scripts/organizeScrapedImages.ts"
   },
   "keywords": [
     "forza",
