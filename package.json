@@ -18,7 +18,8 @@
     "fix-filenames": "ts-node src/scripts/fixImageFilenames.ts",
     "fix-vercel-filenames": "ts-node src/scripts/fixVercelBlobFilenames.ts",
     "check-urls": "ts-node src/scripts/checkImageUrls.ts",
-    "check-product": "ts-node src/scripts/checkSpecificProduct.ts"
+    "check-product": "ts-node src/scripts/checkSpecificProduct.ts",
+    "update-heroku-urls": "ts-node src/scripts/updateHerokuImageUrls.ts"
   },
   "keywords": [
     "forza",
