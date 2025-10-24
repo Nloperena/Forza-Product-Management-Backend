@@ -14,7 +14,11 @@
     "download-images": "ts-node src/scripts/downloadImportImages.ts",
     "upload-to-vercel": "ts-node src/scripts/uploadToVercelBlob.ts",
     "setup-vercel": "ts-node src/scripts/setupVercelBlob.ts",
-    "organize-images": "ts-node src/scripts/organizeScrapedImages.ts"
+    "organize-images": "ts-node src/scripts/organizeScrapedImages.ts",
+    "fix-filenames": "ts-node src/scripts/fixImageFilenames.ts",
+    "fix-vercel-filenames": "ts-node src/scripts/fixVercelBlobFilenames.ts",
+    "check-urls": "ts-node src/scripts/checkImageUrls.ts",
+    "check-product": "ts-node src/scripts/checkSpecificProduct.ts"
   },
   "keywords": [
     "forza",
