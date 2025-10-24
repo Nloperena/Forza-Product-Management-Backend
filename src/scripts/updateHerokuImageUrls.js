@@ -1,5 +1,5 @@
-const { databaseService } = require('../services/database');
-const { ProductModel } = require('../models/Product');
+const { databaseService } = require('../../dist/services/database');
+const { ProductModel } = require('../../dist/models/Product');
 
 class HerokuImageUrlUpdater {
   async updateHerokuImageUrls() {
