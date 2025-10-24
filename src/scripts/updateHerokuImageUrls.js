@@ -10,57 +10,42 @@ class HerokuImageUrlUpdater {
       await databaseService.connect();
       const productModel = new ProductModel(databaseService.getPool());
       
-      // Get all products with Vercel Blob URLs that have incorrect filenames
+      // Get all products to update to new Vercel Blob storage
       const products = await productModel.getAllProducts();
-      const productsWithVercelImages = products.filter(p => 
-        p.image && p.image.includes('vercel-storage.com')
-      );
       
-      console.log(`📊 Found ${productsWithVercelImages.length} products with Vercel Blob images`);
+      console.log(`📊 Found ${products.length} products to update to new Vercel Blob storage`);
       
       let updatedCount = 0;
       const results = [];
       
-      for (const product of productsWithVercelImages) {
+      for (const product of products) {
         if (!product.image) continue;
         
         console.log(`\n🔍 Processing ${product.product_id}: ${product.name}`);
         
         try {
-          // Extract current filename from Vercel Blob URL
-          const currentFilename = product.image.split('/').pop() || '';
+          // Generate new Vercel Blob URL for the product
+          const newImageUrl = `https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/${product.product_id.toLowerCase()}.png`;
           
-          // Generate correct filename based on product ID
-          const correctFilename = `${product.product_id}.png`;
+          console.log(`   Current: ${product.image}`);
+          console.log(`   New: ${newImageUrl}`);
           
-          console.log(`   Current: ${currentFilename}`);
-          console.log(`   Correct: ${correctFilename}`);
+          // Update database with new Vercel Blob URL
+          console.log(`   🔄 Updating database: ${newImageUrl}`);
           
-          // Check if filename needs updating
-          if (currentFilename !== correctFilename) {
-            // Update the Vercel Blob URL with correct filename
-            const baseUrl = product.image.substring(0, product.image.lastIndexOf('/') + 1);
-            const newImageUrl = `${baseUrl}${correctFilename}`;
-            
-            console.log(`   🔄 Updating database: ${newImageUrl}`);
-            
-            // Update database
-            await productModel.updateProduct(product.id, {
-              image: newImageUrl
-            });
-            
-            console.log(`   ✅ Successfully updated`);
-            
-            results.push({
-              productId: product.product_id,
-              oldUrl: product.image,
-              newUrl: newImageUrl
-            });
-            
-            updatedCount++;
-          } else {
-            console.log(`   ✅ Filename already correct`);
-          }
+          await productModel.updateProduct(product.id, {
+            image: newImageUrl
+          });
+          
+          console.log(`   ✅ Successfully updated`);
+          
+          results.push({
+            productId: product.product_id,
+            oldUrl: product.image,
+            newUrl: newImageUrl
+          });
+          
+          updatedCount++;
           
         } catch (error) {
           console.log(`   ❌ Error processing ${product.product_id}:`, error);
