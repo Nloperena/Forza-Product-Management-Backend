@@ -52,8 +52,13 @@ export const getImageUrl = (imagePath?: string, apiBaseUrl?: string, useRelative
   // Handle different image path formats from the backend
   let normalizedPath = imagePath;
   
+  // Handle Product-Mockups paths (new format)
+  if (imagePath.startsWith('/images/Product-Mockups/')) {
+    // Use as-is - these are served directly from frontend public folder
+    normalizedPath = imagePath;
+  }
   // Transform /api/images/placeholder/ paths to /product-images/ paths
-  if (imagePath.startsWith('/api/images/placeholder/')) {
+  else if (imagePath.startsWith('/api/images/placeholder/')) {
     // Extract the filename from the placeholder path
     const filename = imagePath.replace('/api/images/placeholder/', '');
     normalizedPath = `/product-images/${filename}`;
@@ -76,6 +81,11 @@ export const getImageUrl = (imagePath?: string, apiBaseUrl?: string, useRelative
     return normalizedPath;
   }
   
+  // For Product-Mockups paths, return as relative path (served from frontend)
+  if (normalizedPath.startsWith('/images/Product-Mockups/')) {
+    return normalizedPath;
+  }
+  
   // Use provided API base URL or fallback to default
   const API_BASE_URL = apiBaseUrl || 'https://forza-product-managementsystem-b7c3ff8d3d2d.herokuapp.com';
   return `${API_BASE_URL}${normalizedPath}`;
@@ -90,9 +100,27 @@ export const getProductImageUrl = (product: { image?: string }, apiBaseUrl?: str
     return product.image;
   }
   
+  // Handle Product-Mockups paths (new format) - served directly from frontend
+  if (product.image.startsWith('/images/Product-Mockups/')) {
+    return product.image;
+  }
+  
+  // Handle different image path formats
+  let imagePath = product.image;
+  
+  // If the path already starts with /product-images/, use it as-is
+  if (imagePath.startsWith('/product-images/')) {
+    imagePath = imagePath.substring('/product-images/'.length); // Remove the prefix for backend
+  }
+  // If the path starts with product-images/, remove the prefix
+  else if (imagePath.startsWith('product-images/')) {
+    imagePath = imagePath.substring('product-images/'.length);
+  }
+  // If it's just a filename (like "os24.png"), use it as-is
+  
   // For backend images, construct the full URL using the API base URL
   const API_BASE_URL = apiBaseUrl || 'https://forza-product-managementsystem-b7c3ff8d3d2d.herokuapp.com';
-  const imageUrl = `${API_BASE_URL}/product-images/${product.image}`;
+  const imageUrl = `${API_BASE_URL}/product-images/${imagePath}`;
   return imageUrl;
 };
 

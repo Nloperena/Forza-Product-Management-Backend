@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { ProductModel, Product } from '../models/Product';
 import { databaseService } from '../services/database';
 import * as XLSX from 'xlsx';
+import { isProductAllowed, ALLOWED_PRODUCT_IDS } from '../config/allowedProducts';
 
 export class ProductController {
   private productModel: ProductModel;
@@ -21,7 +22,17 @@ export class ProductController {
       const { published } = req.query;
       const publishedFilter = published as string | undefined;
       const products = await this.productModel.getAllProducts(publishedFilter);
-      res.json(products);
+      
+      // Filter by whitelist (enabled by default, set ENABLE_PRODUCT_WHITELIST=false to disable)
+      const enableWhitelist = process.env.ENABLE_PRODUCT_WHITELIST !== 'false';
+      let filteredProducts = products;
+      
+      if (enableWhitelist) {
+        filteredProducts = products.filter(product => isProductAllowed(product.product_id));
+        console.log(`📋 Product whitelist enabled: Showing ${filteredProducts.length} of ${products.length} products`);
+      }
+      
+      res.json(filteredProducts);
     } catch (error) {
       console.error('Error fetching products:', error);
       res.status(500).json({ 
@@ -234,7 +245,13 @@ export class ProductController {
     try {
       const { published } = req.query;
       const publishedFilter = published as string | undefined;
-      const products = await this.productModel.getAllProducts(publishedFilter);
+      let products = await this.productModel.getAllProducts(publishedFilter);
+      
+      // Filter by whitelist (enabled by default, set ENABLE_PRODUCT_WHITELIST=false to disable)
+      const enableWhitelist = process.env.ENABLE_PRODUCT_WHITELIST !== 'false';
+      if (enableWhitelist) {
+        products = products.filter(product => isProductAllowed(product.product_id));
+      }
 
       // Convert products to Excel-friendly format
       const excelData = products.map((product) => {
