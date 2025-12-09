@@ -1,17 +1,26 @@
 import { Request, Response } from 'express';
 import { ProductModel, Product } from '../models/Product';
 import { databaseService } from '../services/database';
+import * as XLSX from 'xlsx';
 
 export class ProductController {
   private productModel: ProductModel;
 
   constructor() {
-    this.productModel = new ProductModel(databaseService.getDatabase());
+    // For PostgreSQL, don't pass database instance - ProductModel will handle it internally
+    // For SQLite, pass the database instance
+    if (databaseService.isPostgres()) {
+      this.productModel = new ProductModel();
+    } else {
+      this.productModel = new ProductModel(databaseService.getDatabase());
+    }
   }
 
-  async getAllProducts(_req: Request, res: Response): Promise<void> {
+  async getAllProducts(req: Request, res: Response): Promise<void> {
     try {
-      const products = await this.productModel.getAllProducts();
+      const { published } = req.query;
+      const publishedFilter = published as string | undefined;
+      const products = await this.productModel.getAllProducts(publishedFilter);
       res.json(products);
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -216,6 +225,113 @@ export class ProductController {
       res.status(500).json({
         success: false,
         message: 'Failed to fetch statistics',
+        error: error instanceof Error ? error.message : 'Unknown error'
+      });
+    }
+  }
+
+  async exportToExcel(req: Request, res: Response): Promise<void> {
+    try {
+      const { published } = req.query;
+      const publishedFilter = published as string | undefined;
+      const products = await this.productModel.getAllProducts(publishedFilter);
+
+      // Convert products to Excel-friendly format
+      const excelData = products.map((product) => {
+        // Convert arrays to comma-separated strings for Excel
+        const benefits = Array.isArray(product.benefits) 
+          ? product.benefits.join('; ') 
+          : '';
+        const applications = Array.isArray(product.applications) 
+          ? product.applications.join('; ') 
+          : '';
+        const sizing = Array.isArray(product.sizing) 
+          ? product.sizing.join('; ') 
+          : '';
+        
+        // Convert technical properties array to formatted string
+        let technical = '';
+        if (Array.isArray(product.technical) && product.technical.length > 0) {
+          technical = product.technical
+            .map((t: any) => {
+              if (typeof t === 'object' && t.property && t.value) {
+                return `${t.property}: ${t.value}${t.unit ? ` ${t.unit}` : ''}`;
+              }
+              return String(t);
+            })
+            .join('; ');
+        }
+
+        return {
+          'Product ID': product.product_id,
+          'Name': product.name,
+          'Full Name': product.full_name,
+          'Description': product.description || '',
+          'Brand': product.brand,
+          'Industry': product.industry,
+          'Chemistry': product.chemistry || '',
+          'URL': product.url || '',
+          'Image': product.image || '',
+          'Benefits': benefits,
+          'Applications': applications,
+          'Technical Properties': technical,
+          'Sizing': sizing,
+          'Published': product.published ? 'Yes' : 'No',
+          'Benefits Count': product.benefits_count,
+          'Created At': product.created_at,
+          'Updated At': product.updated_at,
+          'Last Edited': product.last_edited || ''
+        };
+      });
+
+      // Create workbook and worksheet
+      const workbook = XLSX.utils.book_new();
+      const worksheet = XLSX.utils.json_to_sheet(excelData);
+
+      // Set column widths for better readability
+      const columnWidths = [
+        { wch: 15 }, // Product ID
+        { wch: 20 }, // Name
+        { wch: 30 }, // Full Name
+        { wch: 50 }, // Description
+        { wch: 20 }, // Brand
+        { wch: 20 }, // Industry
+        { wch: 20 }, // Chemistry
+        { wch: 40 }, // URL
+        { wch: 40 }, // Image
+        { wch: 50 }, // Benefits
+        { wch: 50 }, // Applications
+        { wch: 50 }, // Technical Properties
+        { wch: 30 }, // Sizing
+        { wch: 10 }, // Published
+        { wch: 15 }, // Benefits Count
+        { wch: 20 }, // Created At
+        { wch: 20 }, // Updated At
+        { wch: 20 }  // Last Edited
+      ];
+      worksheet['!cols'] = columnWidths;
+
+      // Add worksheet to workbook
+      XLSX.utils.book_append_sheet(workbook, worksheet, 'Products');
+
+      // Generate Excel file buffer
+      const excelBuffer = XLSX.write(workbook, { 
+        type: 'buffer', 
+        bookType: 'xlsx' 
+      });
+
+      // Set response headers for file download
+      const filename = `products_export_${new Date().toISOString().split('T')[0]}.xlsx`;
+      res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+      res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+
+      // Send the file
+      res.send(excelBuffer);
+    } catch (error) {
+      console.error('Error exporting products to Excel:', error);
+      res.status(500).json({
+        success: false,
+        message: 'Failed to export products to Excel',
         error: error instanceof Error ? error.message : 'Unknown error'
       });
     }
