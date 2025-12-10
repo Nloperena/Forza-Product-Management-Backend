@@ -294,11 +294,22 @@ export class ProductModel {
 
         const sql = `UPDATE products SET ${fields.join(', ')} WHERE id = $${idParam1} OR product_id = $${idParam2} RETURNING *`;
 
-        const result = await client.query(sql, values);
-        if (result.rows.length > 0) {
-          return this.parseProduct(result.rows[0]);
+        console.log('Update SQL:', sql);
+        console.log('Update values:', values);
+        console.log('Update paramIndex:', paramIndex, 'idParam1:', idParam1, 'idParam2:', idParam2);
+
+        try {
+          const result = await client.query(sql, values);
+          if (result.rows.length > 0) {
+            return this.parseProduct(result.rows[0]);
+          }
+          return null;
+        } catch (queryError: any) {
+          console.error('SQL Query Error:', queryError);
+          console.error('SQL:', sql);
+          console.error('Values:', values);
+          throw queryError;
         }
-        return null;
       } finally {
         client.release();
       }
