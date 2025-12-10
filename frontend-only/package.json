@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Modern Forza Products Management Frontend",
   "type": "module",
+  "engines": {
+    "node": "24.x",
+    "npm": "10.x"
+  },
   "scripts": {
     "dev": "vite",
     "build": "npx vite build",
