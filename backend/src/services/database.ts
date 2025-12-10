@@ -162,11 +162,40 @@ class DatabaseService {
           sizing JSONB DEFAULT '[]',
           published BOOLEAN DEFAULT false,
           benefits_count INTEGER DEFAULT 0,
-          last_edited TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+          last_edited TEXT,
           created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
           updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
       `);
+
+      // Migrate existing last_edited column from TIMESTAMP to TEXT if needed
+      try {
+        // Check current column type
+        const columnInfo = await client.query(`
+          SELECT data_type 
+          FROM information_schema.columns 
+          WHERE table_name = 'products' 
+          AND column_name = 'last_edited'
+        `);
+        
+        if (columnInfo.rows.length > 0 && columnInfo.rows[0].data_type === 'timestamp without time zone') {
+          // Convert TIMESTAMP to TEXT, preserving existing timestamp values as ISO strings
+          await client.query(`
+            ALTER TABLE products 
+            ALTER COLUMN last_edited TYPE TEXT 
+            USING CASE 
+              WHEN last_edited IS NULL THEN NULL 
+              ELSE last_edited::TEXT 
+            END
+          `);
+          console.log('Migrated last_edited column from TIMESTAMP to TEXT type');
+        } else if (columnInfo.rows.length > 0) {
+          console.log('last_edited column is already TEXT or different type:', columnInfo.rows[0].data_type);
+        }
+      } catch (migrationError: any) {
+        // Log error but don't fail initialization - column might not exist or migration already done
+        console.warn('[Migration] Note (may be expected):', migrationError.message);
+      }
 
       console.log('PostgreSQL database initialized successfully');
     } finally {
