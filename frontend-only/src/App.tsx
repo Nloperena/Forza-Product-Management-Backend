@@ -1,50 +1,91 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { ApiProvider, useApi } from '@/contexts/ApiContext';
 import { ToastProvider } from '@/components/ui/ToastContainer';
-import { ApiProvider } from '@/contexts/ApiContext';
-import { Button } from '@/components/ui/Button';
-import Layout from '@/components/layout/Layout';
-import Dashboard from '@/pages/Dashboard';
-import ProductsPage from '@/pages/ProductsPage';
-import ProductViewPage from '@/pages/ProductViewPage';
-import ProductEditPage from '@/pages/ProductEditPage';
-import { BarChart3 } from 'lucide-react';
+import ProductList from '@/components/ProductList';
+import ProductDetail from '@/components/ProductDetail';
+import { CheckCircle, AlertCircle } from 'lucide-react';
+import type { Product } from '@/types/product';
+
+const ApiIndicator: React.FC = () => {
+  const { environment, apiBaseUrl } = useApi();
+  const isProduction = environment === 'heroku';
+  
+  return (
+    <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-100">
+      {isProduction ? (
+        <>
+          <CheckCircle className="h-4 w-4 text-green-600" />
+          <span className="text-sm font-medium text-gray-700">Production (Heroku)</span>
+        </>
+      ) : (
+        <>
+          <AlertCircle className="h-4 w-4 text-yellow-600" />
+          <span className="text-sm font-medium text-gray-700">Local</span>
+        </>
+      )}
+    </div>
+  );
+};
 
 const App: React.FC = () => {
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [refreshKey, setRefreshKey] = useState(0);
+
+  const handleProductUpdated = (updatedProduct: Product) => {
+    setSelectedProduct(updatedProduct);
+    // Trigger refresh of product list
+    setRefreshKey(prev => prev + 1);
+  };
+
   return (
     <ApiProvider>
       <ToastProvider>
-        <Router>
-          <Layout>
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/products" element={<ProductsPage />} />
-              <Route path="/products/new" element={<ProductEditPage />} />
-              <Route path="/products/:id" element={<ProductViewPage />} />
-              <Route path="/products/:id/edit" element={<ProductEditPage />} />
-              <Route path="*" element={
-                <div className="flex flex-col items-center justify-center py-20">
-                  <div className="text-center max-w-md">
-                    <div className="inline-flex items-center justify-center w-16 h-16 mb-6 bg-gray-100 rounded-full">
-                      <span className="text-4xl">🔍</span>
-                    </div>
-                    <h1 className="text-4xl font-bold text-gray-900 mb-4">404</h1>
-                    <h2 className="text-xl font-semibold text-gray-700 mb-3">Page Not Found</h2>
-                    <p className="text-gray-600 mb-8">
-                      The page you're looking for doesn't exist or has been moved.
+        <div className="h-screen flex flex-col bg-gray-50">
+          {/* Simple Header */}
+          <header className="bg-white border-b border-gray-200 px-6 py-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900">Forza Product Management</h1>
+                <p className="text-sm text-gray-600 mt-1">Edit and manage products</p>
+              </div>
+              <ApiIndicator />
+            </div>
+          </header>
+
+          {/* Main Content - Split View */}
+          <div className="flex-1 flex overflow-hidden">
+            {/* Left Sidebar - Product List */}
+            <aside className="w-80 bg-white border-r border-gray-200 flex flex-col">
+              <ProductList 
+                key={refreshKey}
+                onSelectProduct={setSelectedProduct}
+                selectedProduct={selectedProduct}
+              />
+            </aside>
+
+            {/* Right Panel - Product Details */}
+            <main className="flex-1 overflow-y-auto bg-white">
+              {selectedProduct ? (
+                <ProductDetail 
+                  product={selectedProduct} 
+                  onProductUpdated={handleProductUpdated}
+                />
+              ) : (
+                <div className="h-full flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="text-6xl mb-4">📦</div>
+                    <h2 className="text-2xl font-semibold text-gray-700 mb-2">
+                      Select a Product
+                    </h2>
+                    <p className="text-gray-500 text-lg">
+                      Click on a product from the list to view and edit its details
                     </p>
-                    <Link to="/">
-                      <Button className="gap-2">
-                        <BarChart3 className="h-4 w-4" />
-                        Back to Dashboard
-                      </Button>
-                    </Link>
                   </div>
                 </div>
-              } />
-            </Routes>
-          </Layout>
-        </Router>
+              )}
+            </main>
+          </div>
+        </div>
       </ToastProvider>
     </ApiProvider>
   );

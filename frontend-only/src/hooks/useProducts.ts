@@ -13,8 +13,17 @@ export const useProducts = (filters?: ProductFilters) => {
       setError(null);
       const data = await productApi.getProducts();
       setProducts(data);
+      // Clear error on successful fetch
+      setError(null);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to fetch products');
+      // Only set error if we don't have cached products
+      // This prevents showing error after products have loaded successfully
+      if (products.length === 0) {
+        setError(err instanceof Error ? err.message : 'Failed to fetch products');
+      } else {
+        // If we have cached products, just log the error but don't show it
+        console.warn('Failed to refresh products, using cached data:', err);
+      }
     } finally {
       setLoading(false);
     }
@@ -22,6 +31,7 @@ export const useProducts = (filters?: ProductFilters) => {
 
   useEffect(() => {
     fetchProducts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const filteredProducts = products.filter((product) => {

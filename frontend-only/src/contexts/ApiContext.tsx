@@ -23,7 +23,7 @@ export const ApiProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     if (saved) {
       return saved as ApiEnvironment;
     }
-    // Default to 'heroku' (API) for both production and development
+    // Default to 'heroku' (production) - always use production database
     return 'heroku';
   });
 

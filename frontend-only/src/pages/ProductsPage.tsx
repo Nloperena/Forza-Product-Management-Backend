@@ -24,6 +24,7 @@ const ProductsPage: React.FC = () => {
   const [selectedIndustry, setSelectedIndustry] = useState<string>('');
   const [selectedChemistry, setSelectedChemistry] = useState<string>('');
   const [showDrafts, setShowDrafts] = useState<boolean>(false);
+  const [hideProductsWithoutImages, setHideProductsWithoutImages] = useState<boolean>(true);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [showFilters, setShowFilters] = useState(false);
 
@@ -35,7 +36,22 @@ const ProductsPage: React.FC = () => {
     published: showDrafts ? undefined : true, // Show published by default, all if drafts enabled
   }), [searchTerm, selectedBrand, selectedIndustry, selectedChemistry, showDrafts]);
 
-  const { products, allProducts, loading, error } = useProducts(filters);
+  const { products: allProductsFromAPI, allProducts, loading, error } = useProducts(filters);
+  
+  // Filter products without images if the option is enabled
+  const products = useMemo(() => {
+    if (!hideProductsWithoutImages) return allProductsFromAPI;
+    
+    return allProductsFromAPI.filter(product => {
+      // Check if product has a valid image (not placeholder)
+      if (!product.image) return false;
+      
+      // Check if image is a placeholder
+      if (product.image.includes('placeholder-product.svg')) return false;
+      
+      return true;
+    });
+  }, [allProductsFromAPI, hideProductsWithoutImages]);
 
   // Get unique brands and industries for filters
   const brands = useMemo(() => {
@@ -267,6 +283,25 @@ const ProductsPage: React.FC = () => {
                 </div>
                 <p className="text-xs text-gray-500 mt-1">
                   {showDrafts ? 'Showing all products (published + drafts)' : 'Showing published products only'}
+                </p>
+              </div>
+
+              {/* Hide Products Without Images Toggle */}
+              <div>
+                <div className="flex items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    id="hideProductsWithoutImages"
+                    checked={hideProductsWithoutImages}
+                    onChange={(e) => setHideProductsWithoutImages(e.target.checked)}
+                    className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+                  />
+                  <label htmlFor="hideProductsWithoutImages" className="text-sm text-gray-700">
+                    Hide products without images
+                  </label>
+                </div>
+                <p className="text-xs text-gray-400 mt-1 italic">
+                  {hideProductsWithoutImages ? 'Only showing products with images' : 'Showing all products including those without images'}
                 </p>
               </div>
             </div>

@@ -16,13 +16,15 @@ const Toast: React.FC<ToastProps> = ({
   type, 
   title, 
   message, 
-  duration = 5000, 
+  duration = 4500, 
   onClose 
 }) => {
   const [isVisible, setIsVisible] = useState(false);
+  const [progress, setProgress] = useState(100);
 
   useEffect(() => {
     setIsVisible(true);
+    setProgress(100);
     
     if (duration > 0) {
       const timer = setTimeout(() => {
@@ -30,7 +32,18 @@ const Toast: React.FC<ToastProps> = ({
         setTimeout(() => onClose(id), 300); // Wait for fade out animation
       }, duration);
 
-      return () => clearTimeout(timer);
+      // Update progress bar
+      const progressInterval = setInterval(() => {
+        setProgress((prev) => {
+          const newProgress = prev - (100 / (duration / 100));
+          return newProgress <= 0 ? 0 : newProgress;
+        });
+      }, 100);
+
+      return () => {
+        clearTimeout(timer);
+        clearInterval(progressInterval);
+      };
     }
   }, [id, duration, onClose]);
 
@@ -55,6 +68,13 @@ const Toast: React.FC<ToastProps> = ({
     info: 'text-blue-500',
   };
 
+  const progressColors = {
+    success: 'bg-green-500',
+    error: 'bg-red-500',
+    warning: 'bg-yellow-500',
+    info: 'bg-blue-500',
+  };
+
   const Icon = icons[type];
 
   return (
@@ -62,7 +82,7 @@ const Toast: React.FC<ToastProps> = ({
       className={`
         transform transition-all duration-300 ease-in-out
         ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}
-        max-w-sm w-full border rounded-lg p-4 shadow-lg
+        max-w-sm w-full border rounded-lg p-4 shadow-lg overflow-hidden
         ${colors[type]}
       `}
     >
@@ -85,6 +105,14 @@ const Toast: React.FC<ToastProps> = ({
         >
           <X className="h-4 w-4" />
         </Button>
+      </div>
+      
+      {/* Progress Bar - Doubled thickness */}
+      <div className="mt-3 h-1 bg-black/10 rounded-full overflow-hidden">
+        <div
+          className={`h-full ${progressColors[type]} transition-all duration-100`}
+          style={{ width: `${progress}%` }}
+        />
       </div>
     </div>
   );

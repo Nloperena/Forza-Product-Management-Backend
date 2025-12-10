@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
+import ApiToggle from '@/components/ui/ApiToggle';
 import { Package, Plus, BarChart3, Settings } from 'lucide-react';
 
 const Header: React.FC = () => {
@@ -52,6 +53,7 @@ const Header: React.FC = () => {
 
           {/* Actions */}
           <div className="flex items-center space-x-2">
+            <ApiToggle />
             <Badge variant="outline" className="text-blue-600 border-blue-200">
               Read-Only
             </Badge>

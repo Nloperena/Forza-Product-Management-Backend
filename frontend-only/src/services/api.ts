@@ -11,6 +11,7 @@ export const setApiBaseUrl = (baseUrl: string) => {
   currentApiBase = baseUrl;
   // Update the axios instance base URL
   api.defaults.baseURL = `${baseUrl}/api`;
+  console.log('API Base URL updated to:', api.defaults.baseURL);
 };
 
 export const getApiBaseUrl = () => {
@@ -24,7 +25,7 @@ const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  withCredentials: true, // Important for CORS with credentials
+  withCredentials: false, // Changed to false - credentials can cause CORS issues
   timeout: 30000, // 30 second timeout for Heroku cold starts
 });
 
@@ -34,9 +35,32 @@ api.interceptors.response.use(
   (error) => {
     console.error('API Error:', error);
     
+    // Enhanced error logging
+    if (error.response) {
+      // Server responded with error status
+      console.error('Response Error:', {
+        status: error.response.status,
+        statusText: error.response.statusText,
+        data: error.response.data,
+        url: error.config?.url
+      });
+    } else if (error.request) {
+      // Request made but no response received
+      console.error('Network Error:', {
+        message: error.message,
+        code: error.code,
+        url: error.config?.url
+      });
+    }
+    
     // If it's a timeout error, suggest the user to wait
     if (error.code === 'ECONNABORTED') {
       console.log('⏰ Request timed out - Heroku app might be starting up. Please wait and try again.');
+    }
+    
+    // If it's a network error, provide helpful message
+    if (error.message === 'Network Error' || error.code === 'ERR_NETWORK') {
+      console.error('🌐 Network Error - Check your connection and ensure the API server is running');
     }
     
     throw error;
@@ -85,8 +109,53 @@ export const productApi = {
 
   // Update product
   async updateProduct(id: string, productData: Partial<ProductFormData>): Promise<{ success: boolean; message: string }> {
-    const response = await api.put(`/products/${id}`, productData);
-    return response.data;
+    try {
+      const fullUrl = `${api.defaults.baseURL}/products/${id}`;
+      console.log('API Update Request:', {
+        url: `/products/${id}`,
+        fullUrl: fullUrl,
+        method: 'PUT',
+        data: productData,
+        baseURL: api.defaults.baseURL,
+        headers: api.defaults.headers
+      });
+      
+      // Make the request with explicit error handling
+      const response = await api.put(`/products/${id}`, productData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        timeout: 30000,
+      });
+      
+      console.log('API Update Response:', {
+        status: response.status,
+        statusText: response.statusText,
+        data: response.data
+      });
+      
+      return response.data;
+    } catch (error: any) {
+      console.error('API Update Error Details:', {
+        message: error.message,
+        code: error.code,
+        name: error.name,
+        response: error.response ? {
+          status: error.response.status,
+          statusText: error.response.statusText,
+          data: error.response.data,
+          headers: error.response.headers
+        } : 'No response',
+        request: error.request ? 'Request made but no response' : 'No request made',
+        config: {
+          url: error.config?.url,
+          method: error.config?.method,
+          baseURL: error.config?.baseURL,
+          headers: error.config?.headers
+        }
+      });
+      throw error;
+    }
   },
 
   // Delete product

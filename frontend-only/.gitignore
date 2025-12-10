@@ -49,3 +49,7 @@ coverage/
 
 # Vercel
 .vercel
+
+# Product brochures (stored on Vercel Blob, not in git)
+public/product-brochures/
+public/product-images/
