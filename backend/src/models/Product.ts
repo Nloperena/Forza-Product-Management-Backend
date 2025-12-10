@@ -263,21 +263,21 @@ export class ProductModel {
         const values = [];
         let paramIndex = 1;
 
-        if (updates.name) { fields.push(`name = $${paramIndex++}`); values.push(updates.name); }
-        if (updates.full_name) { fields.push(`full_name = $${paramIndex++}`); values.push(updates.full_name); }
-        if (updates.description) { fields.push(`description = $${paramIndex++}`); values.push(updates.description); }
-        if (updates.brand) { fields.push(`brand = $${paramIndex++}`); values.push(updates.brand); }
-        if (updates.industry) { fields.push(`industry = $${paramIndex++}`); values.push(updates.industry); }
-        if (updates.chemistry) { fields.push(`chemistry = $${paramIndex++}`); values.push(updates.chemistry); }
-        if (updates.url) { fields.push(`url = $${paramIndex++}`); values.push(updates.url); }
-        if (updates.image) { fields.push(`image = $${paramIndex++}`); values.push(updates.image); }
-        if (updates.benefits) { fields.push(`benefits = $${paramIndex++}`); values.push(JSON.stringify(updates.benefits)); }
-        if (updates.applications) { fields.push(`applications = $${paramIndex++}`); values.push(JSON.stringify(updates.applications)); }
-        if (updates.technical) { fields.push(`technical = $${paramIndex++}`); values.push(JSON.stringify(updates.technical)); }
-        if (updates.sizing) { fields.push(`sizing = $${paramIndex++}`); values.push(JSON.stringify(updates.sizing)); }
-        if (updates.published !== undefined) { fields.push(`published = $${paramIndex++}`); values.push(updates.published); }
+        if (updates.name !== undefined) { fields.push(`name = $${paramIndex++}`); values.push(updates.name); }
+        if (updates.full_name !== undefined) { fields.push(`full_name = $${paramIndex++}`); values.push(updates.full_name); }
+        if (updates.description !== undefined) { fields.push(`description = $${paramIndex++}`); values.push(updates.description); }
+        if (updates.brand !== undefined) { fields.push(`brand = $${paramIndex++}`); values.push(updates.brand); }
+        if (updates.industry !== undefined) { fields.push(`industry = $${paramIndex++}`); values.push(updates.industry); }
+        if (updates.chemistry !== undefined) { fields.push(`chemistry = $${paramIndex++}`); values.push(updates.chemistry); }
+        if (updates.url !== undefined) { fields.push(`url = $${paramIndex++}`); values.push(updates.url); }
+        if (updates.image !== undefined) { fields.push(`image = $${paramIndex++}`); values.push(updates.image); }
+        if (updates.benefits !== undefined) { fields.push(`benefits = $${paramIndex++}`); values.push(JSON.stringify(updates.benefits)); }
+        if (updates.applications !== undefined) { fields.push(`applications = $${paramIndex++}`); values.push(JSON.stringify(updates.applications)); }
+        if (updates.technical !== undefined) { fields.push(`technical = $${paramIndex++}`); values.push(JSON.stringify(updates.technical)); }
+        if (updates.sizing !== undefined) { fields.push(`sizing = $${paramIndex++}`); values.push(JSON.stringify(updates.sizing)); }
+        if (updates.published !== undefined) { fields.push(`published = $${paramIndex++}`); values.push(Boolean(updates.published)); }
         if (updates.benefits_count !== undefined) { fields.push(`benefits_count = $${paramIndex++}`); values.push(updates.benefits_count); }
-        if (updates.last_edited) { fields.push(`last_edited = $${paramIndex++}`); values.push(updates.last_edited); }
+        if (updates.last_edited !== undefined) { fields.push(`last_edited = $${paramIndex++}`); values.push(updates.last_edited); }
 
         if (fields.length === 0) {
           throw new Error('No fields to update');
@@ -286,45 +286,46 @@ export class ProductModel {
         fields.push(`updated_at = $${paramIndex++}`);
         values.push(new Date().toISOString());
         
-        // Handle WHERE clause - try to match by product_id first (more reliable for string IDs)
-        // If id is numeric, use it; otherwise rely on product_id
-        const isNumericId = !isNaN(Number(id)) && id.toString().trim() !== '';
+        // Handle WHERE clause - match by product_id (more reliable for string IDs like "FRP")
+        // PostgreSQL id is SERIAL (integer), product_id is VARCHAR
+        const isNumericId = !isNaN(Number(id)) && id.toString().trim() !== '' && Number(id) > 0;
         let whereClause: string;
         
         if (isNumericId) {
-          // If id is numeric, match by both id and product_id
+          // If id is numeric, try matching by both id and product_id
           const idParam1 = paramIndex++;
           const idParam2 = paramIndex++;
           values.push(Number(id));
           values.push(id);
           whereClause = `WHERE id = $${idParam1} OR product_id = $${idParam2}`;
-          console.log('Update SQL (numeric ID):', whereClause);
         } else {
-          // If id is not numeric (like "T-R785"), match by product_id (case-insensitive)
+          // For string IDs like "FRP", match by product_id (case-insensitive for safety)
           const idParam = paramIndex++;
           values.push(id);
-          // Use UPPER() for case-insensitive matching
-          whereClause = `WHERE UPPER(product_id) = UPPER($${idParam})`;
-          console.log('Update SQL (string ID):', whereClause, 'id:', id);
+          whereClause = `WHERE product_id = $${idParam}`;
         }
 
         const sql = `UPDATE products SET ${fields.join(', ')} ${whereClause} RETURNING *`;
 
-        console.log('Update SQL:', sql);
-        console.log('Update values:', values);
-        console.log('Update paramIndex:', paramIndex);
+        console.log('[UpdateProduct] SQL:', sql);
+        console.log('[UpdateProduct] Values count:', values.length, 'Parameter count in SQL:', (sql.match(/\$\d+/g) || []).length);
+        console.log('[UpdateProduct] Product ID:', id, 'Is numeric:', isNumericId);
 
         try {
           const result = await client.query(sql, values);
           if (result.rows.length > 0) {
             return this.parseProduct(result.rows[0]);
           }
+          console.warn(`[UpdateProduct] No product found with ID: ${id}`);
           return null;
         } catch (queryError: any) {
-          console.error('SQL Query Error:', queryError);
-          console.error('SQL:', sql);
-          console.error('Values:', values);
-          throw queryError;
+          console.error('[UpdateProduct] SQL Query Error:', queryError.message);
+          console.error('[UpdateProduct] SQL:', sql);
+          console.error('[UpdateProduct] Values:', JSON.stringify(values, null, 2));
+          console.error('[UpdateProduct] Error code:', queryError.code);
+          console.error('[UpdateProduct] Error detail:', queryError.detail);
+          console.error('[UpdateProduct] Error hint:', queryError.hint);
+          throw new Error(`Database update failed: ${queryError.message}`);
         }
       } finally {
         client.release();

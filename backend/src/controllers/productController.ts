@@ -163,36 +163,45 @@ export class ProductController {
       delete updates.updated_at;
 
       // Recalculate benefits_count if benefits are being updated
-      if (updates.benefits && Array.isArray(updates.benefits)) {
+      if (updates.benefits !== undefined && Array.isArray(updates.benefits)) {
         updates.benefits_count = updates.benefits.length;
       }
+
+      console.log(`[UpdateProduct Controller] Updating product with ID: ${id}`);
+      console.log(`[UpdateProduct Controller] Update fields:`, Object.keys(updates));
 
       const updatedProduct = await this.productModel.updateProduct(id, updates);
 
       if (!updatedProduct) {
         res.status(404).json({
           success: false,
-          message: 'Product not found'
+          message: `Product with ID "${id}" not found`
         });
         return;
       }
 
       res.json({
         success: true,
-        message: 'Product updated successfully'
+        message: 'Product updated successfully',
+        product: updatedProduct
       });
     } catch (error) {
-      console.error('Error updating product:', error);
-      console.error('Product ID:', req.params.id);
-      console.error('Update data:', req.body);
+      console.error('[UpdateProduct Controller] Error updating product:', error);
+      console.error('[UpdateProduct Controller] Product ID:', req.params.id);
+      console.error('[UpdateProduct Controller] Update data:', JSON.stringify(req.body, null, 2));
       if (error instanceof Error) {
-        console.error('Error stack:', error.stack);
-        console.error('Error message:', error.message);
+        console.error('[UpdateProduct Controller] Error stack:', error.stack);
+        console.error('[UpdateProduct Controller] Error message:', error.message);
       }
-      res.status(500).json({
+      
+      // Provide more detailed error message
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      const statusCode = errorMessage.includes('not found') || errorMessage.includes('No product found') ? 404 : 500;
+      
+      res.status(statusCode).json({
         success: false,
         message: 'Failed to update product',
-        error: error instanceof Error ? error.message : 'Unknown error',
+        error: errorMessage,
         productId: req.params.id
       });
     }
