@@ -95,3 +95,6 @@ class HerokuNewBlobUpdater {
 // Run the updater
 const updater = new HerokuNewBlobUpdater();
 updater.updateHerokuImageUrls();
+
+
+

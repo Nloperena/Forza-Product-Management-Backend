@@ -285,10 +285,14 @@ export class ProductModel {
 
         fields.push(`updated_at = $${paramIndex++}`);
         values.push(new Date().toISOString());
+        
+        // Add id values for WHERE clause
+        const idParam1 = paramIndex++;
+        const idParam2 = paramIndex++;
         values.push(id);
         values.push(id);
 
-        const sql = `UPDATE products SET ${fields.join(', ')} WHERE id = $${paramIndex++} OR product_id = $${paramIndex++} RETURNING *`;
+        const sql = `UPDATE products SET ${fields.join(', ')} WHERE id = $${idParam1} OR product_id = $${idParam2} RETURNING *`;
 
         const result = await client.query(sql, values);
         if (result.rows.length > 0) {

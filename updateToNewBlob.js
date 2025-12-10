@@ -70,3 +70,6 @@ class NewBlobUpdater {
 // Run the updater
 const updater = new NewBlobUpdater();
 updater.updateToNewBlob();
+
+
+

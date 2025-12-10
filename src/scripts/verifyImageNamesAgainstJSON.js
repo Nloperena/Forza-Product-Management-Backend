@@ -220,3 +220,6 @@ class ImageNameVerifier {
 // Run the verification
 const verifier = new ImageNameVerifier();
 verifier.verifyImageNames();
+
+
+

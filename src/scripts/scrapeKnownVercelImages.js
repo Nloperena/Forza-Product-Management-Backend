@@ -308,3 +308,6 @@ class KnownVercelImageScraper {
 // Run the scraper
 const scraper = new KnownVercelImageScraper();
 scraper.scrapeAllImages();
+
+
+

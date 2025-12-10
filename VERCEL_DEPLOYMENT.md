@@ -117,3 +117,6 @@ npm run upload-to-vercel
    - Deploy your application
 
 Your product images are now properly configured for both development and production environments! 🎉
+
+
+

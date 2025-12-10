@@ -61,6 +61,9 @@ router.get('/debug', async (req, res) => {
 // GET /api/products/statistics - Get product statistics
 router.get('/statistics', (req, res) => getProductController().getStatistics(req, res));
 
+// GET /api/products/export/excel - Export all products to Excel
+router.get('/export/excel', (req, res) => getProductController().exportToExcel(req, res));
+
 // POST /api/products/migrate-real-data - Migrate real Forza product data
 router.post('/migrate-real-data', async (req, res) => {
   try {
