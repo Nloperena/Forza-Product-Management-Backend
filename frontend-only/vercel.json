@@ -5,6 +5,11 @@
   "devCommand": "npm run dev",
   "framework": "vite",
   "cleanUrls": true,
+  "functions": {
+    "app/**": {
+      "runtime": "nodejs24.x"
+    }
+  },
   "rewrites": [
     {
       "source": "/((?!assets/).*)",
