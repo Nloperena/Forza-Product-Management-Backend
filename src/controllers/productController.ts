@@ -183,10 +183,17 @@ export class ProductController {
       });
     } catch (error) {
       console.error('Error updating product:', error);
+      console.error('Product ID:', req.params.id);
+      console.error('Update data:', req.body);
+      if (error instanceof Error) {
+        console.error('Error stack:', error.stack);
+        console.error('Error message:', error.message);
+      }
       res.status(500).json({
         success: false,
         message: 'Failed to update product',
-        error: error instanceof Error ? error.message : 'Unknown error'
+        error: error instanceof Error ? error.message : 'Unknown error',
+        productId: req.params.id
       });
     }
   }

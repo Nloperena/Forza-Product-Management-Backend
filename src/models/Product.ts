@@ -300,10 +300,11 @@ export class ProductModel {
           whereClause = `WHERE id = $${idParam1} OR product_id = $${idParam2}`;
           console.log('Update SQL (numeric ID):', whereClause);
         } else {
-          // If id is not numeric (like "FRP"), only match by product_id
+          // If id is not numeric (like "T-R785"), match by product_id (case-insensitive)
           const idParam = paramIndex++;
           values.push(id);
-          whereClause = `WHERE product_id = $${idParam}`;
+          // Use UPPER() for case-insensitive matching
+          whereClause = `WHERE UPPER(product_id) = UPPER($${idParam})`;
           console.log('Update SQL (string ID):', whereClause, 'id:', id);
         }
 
