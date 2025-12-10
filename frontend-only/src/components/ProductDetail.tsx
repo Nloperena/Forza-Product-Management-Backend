@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { formatBrandName, formatIndustryName, getProductImageUrl } from '@/utils/formatting';
 import { useApi } from '@/contexts/ApiContext';
+import { useUser } from '@/contexts/UserContext';
 import { useToast } from '@/components/ui/ToastContainer';
 import { productApi } from '@/services/api';
 import ImageSkeleton from '@/components/ui/ImageSkeleton';
@@ -14,6 +15,7 @@ interface ProductDetailProps {
 
 const ProductDetail: React.FC<ProductDetailProps> = ({ product, onProductUpdated }) => {
   const { apiBaseUrl } = useApi();
+  const { user } = useUser();
   const { showSuccess, showError } = useToast();
   
   // Log API base URL for debugging
@@ -121,6 +123,11 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onProductUpdated
       
       // Remove product_id from updates (backend doesn't allow updating it)
       const { product_id, ...updateData } = formData;
+      
+      // Add user tracking - who made this change
+      if (user) {
+        updateData.last_edited = `${user.name} - ${new Date().toLocaleString()}`;
+      }
       
       // Try using product_id first (more reliable), fallback to id
       const updateId = product.product_id || product.id;
@@ -238,6 +245,11 @@ Check the browser console (F12) for more details.`;
                   </>
                 ) : (
                   <>
+                    {product.last_edited && (
+                      <span className="inline-flex items-center px-3 py-1 rounded-lg bg-gray-100 text-gray-600 text-sm">
+                        Last edited: {product.last_edited}
+                      </span>
+                    )}
                     <span className="inline-flex items-center px-4 py-2 rounded-lg bg-blue-100 text-blue-800 text-lg font-medium">
                       {formatBrandName(product.brand)}
                     </span>

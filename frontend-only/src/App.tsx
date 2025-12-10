@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { ApiProvider, useApi } from '@/contexts/ApiContext';
+import { UserProvider, useUser } from '@/contexts/UserContext';
 import { ToastProvider } from '@/components/ui/ToastContainer';
 import ProductList from '@/components/ProductList';
 import ProductDetail from '@/components/ProductDetail';
-import { CheckCircle, AlertCircle } from 'lucide-react';
+import Login from '@/components/Login';
+import { CheckCircle, AlertCircle, LogOut, User } from 'lucide-react';
 import type { Product } from '@/types/product';
 
 const ApiIndicator: React.FC = () => {
@@ -27,7 +29,29 @@ const ApiIndicator: React.FC = () => {
   );
 };
 
-const App: React.FC = () => {
+const UserInfo: React.FC = () => {
+  const { user, logout } = useUser();
+  
+  return (
+    <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-50 border border-blue-200">
+        <User className="h-4 w-4 text-blue-600" />
+        <span className="text-sm font-medium text-blue-900">{user?.name}</span>
+      </div>
+      <button
+        onClick={logout}
+        className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-medium transition-colors"
+        title="Logout"
+      >
+        <LogOut className="h-4 w-4" />
+        <span>Logout</span>
+      </button>
+    </div>
+  );
+};
+
+const AppContent: React.FC = () => {
+  const { isAuthenticated } = useUser();
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [refreshKey, setRefreshKey] = useState(0);
 
@@ -37,20 +61,25 @@ const App: React.FC = () => {
     setRefreshKey(prev => prev + 1);
   };
 
+  if (!isAuthenticated) {
+    return <Login />;
+  }
+
   return (
-    <ApiProvider>
-      <ToastProvider>
-        <div className="h-screen flex flex-col bg-gray-50">
-          {/* Simple Header */}
-          <header className="bg-white border-b border-gray-200 px-6 py-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <h1 className="text-2xl font-bold text-gray-900">Forza Product Management</h1>
-                <p className="text-sm text-gray-600 mt-1">Edit and manage products</p>
-              </div>
-              <ApiIndicator />
-            </div>
-          </header>
+    <div className="h-screen flex flex-col bg-gray-50">
+      {/* Simple Header */}
+      <header className="bg-white border-b border-gray-200 px-6 py-4">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">Forza Product Management</h1>
+            <p className="text-sm text-gray-600 mt-1">Edit and manage products</p>
+          </div>
+          <div className="flex items-center gap-4">
+            <ApiIndicator />
+            <UserInfo />
+          </div>
+        </div>
+      </header>
 
           {/* Main Content - Split View */}
           <div className="flex-1 flex overflow-hidden">
@@ -85,9 +114,19 @@ const App: React.FC = () => {
               )}
             </main>
           </div>
-        </div>
-      </ToastProvider>
-    </ApiProvider>
+    </div>
+  );
+};
+
+const App: React.FC = () => {
+  return (
+    <UserProvider>
+      <ApiProvider>
+        <ToastProvider>
+          <AppContent />
+        </ToastProvider>
+      </ApiProvider>
+    </UserProvider>
   );
 };
 
