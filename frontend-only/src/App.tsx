@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ApiProvider, useApi } from '@/contexts/ApiContext';
 import { UserProvider, useUser } from '@/contexts/UserContext';
 import { ToastProvider } from '@/components/ui/ToastContainer';
 import ProductList from '@/components/ProductList';
 import ProductDetail from '@/components/ProductDetail';
 import Login from '@/components/Login';
-import { CheckCircle, AlertCircle, LogOut, User } from 'lucide-react';
+import { CheckCircle, AlertCircle, LogOut, User, GripVertical } from 'lucide-react';
 import type { Product } from '@/types/product';
 
 const ApiIndicator: React.FC = () => {
@@ -54,6 +54,51 @@ const AppContent: React.FC = () => {
   const { isAuthenticated } = useUser();
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [refreshKey, setRefreshKey] = useState(0);
+  
+  // Resizable sidebar state
+  const [sidebarWidth, setSidebarWidth] = useState(() => {
+    const saved = localStorage.getItem('sidebarWidth');
+    return saved ? parseInt(saved, 10) : 320; // Default 320px (w-80)
+  });
+  const [isResizing, setIsResizing] = useState(false);
+  const sidebarRef = useRef<HTMLDivElement>(null);
+  const MIN_WIDTH = 200;
+  const MAX_WIDTH = 800;
+
+  // Save sidebar width to localStorage
+  useEffect(() => {
+    localStorage.setItem('sidebarWidth', sidebarWidth.toString());
+  }, [sidebarWidth]);
+
+  // Handle mouse drag for resizing
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!isResizing) return;
+      
+      const newWidth = e.clientX;
+      if (newWidth >= MIN_WIDTH && newWidth <= MAX_WIDTH) {
+        setSidebarWidth(newWidth);
+      }
+    };
+
+    const handleMouseUp = () => {
+      setIsResizing(false);
+    };
+
+    if (isResizing) {
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', handleMouseUp);
+      document.body.style.cursor = 'col-resize';
+      document.body.style.userSelect = 'none';
+    }
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+      document.body.style.cursor = '';
+      document.body.style.userSelect = '';
+    };
+  }, [isResizing]);
 
   const handleProductUpdated = (updatedProduct: Product) => {
     setSelectedProduct(updatedProduct);
@@ -84,12 +129,35 @@ const AppContent: React.FC = () => {
           {/* Main Content - Split View */}
           <div className="flex-1 flex overflow-hidden">
             {/* Left Sidebar - Product List */}
-            <aside className="w-80 bg-white border-r border-gray-200 flex flex-col">
+            <aside 
+              ref={sidebarRef}
+              className="bg-white border-r border-gray-200 flex flex-col relative"
+              style={{ width: `${sidebarWidth}px`, minWidth: `${MIN_WIDTH}px`, maxWidth: `${MAX_WIDTH}px` }}
+            >
               <ProductList 
                 key={refreshKey}
                 onSelectProduct={setSelectedProduct}
                 selectedProduct={selectedProduct}
               />
+              
+              {/* Resize Handle */}
+              <div
+                onMouseDown={(e) => {
+                  e.preventDefault();
+                  setIsResizing(true);
+                }}
+                className={`
+                  absolute right-0 top-0 bottom-0 w-1 cursor-col-resize
+                  hover:bg-blue-500 transition-colors
+                  ${isResizing ? 'bg-blue-500' : 'bg-transparent'}
+                  group
+                `}
+                style={{ touchAction: 'none' }}
+              >
+                <div className="absolute right-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-6 h-12 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="w-1 h-full bg-blue-500 rounded-full"></div>
+                </div>
+              </div>
             </aside>
 
             {/* Right Panel - Product Details */}
