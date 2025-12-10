@@ -286,17 +286,32 @@ export class ProductModel {
         fields.push(`updated_at = $${paramIndex++}`);
         values.push(new Date().toISOString());
         
-        // Add id values for WHERE clause
-        const idParam1 = paramIndex++;
-        const idParam2 = paramIndex++;
-        values.push(id);
-        values.push(id);
+        // Handle WHERE clause - try to match by product_id first (more reliable for string IDs)
+        // If id is numeric, use it; otherwise rely on product_id
+        const isNumericId = !isNaN(Number(id)) && id.toString().trim() !== '';
+        let whereClause: string;
+        
+        if (isNumericId) {
+          // If id is numeric, match by both id and product_id
+          const idParam1 = paramIndex++;
+          const idParam2 = paramIndex++;
+          values.push(Number(id));
+          values.push(id);
+          whereClause = `WHERE id = $${idParam1} OR product_id = $${idParam2}`;
+          console.log('Update SQL (numeric ID):', whereClause);
+        } else {
+          // If id is not numeric (like "FRP"), only match by product_id
+          const idParam = paramIndex++;
+          values.push(id);
+          whereClause = `WHERE product_id = $${idParam}`;
+          console.log('Update SQL (string ID):', whereClause, 'id:', id);
+        }
 
-        const sql = `UPDATE products SET ${fields.join(', ')} WHERE id = $${idParam1} OR product_id = $${idParam2} RETURNING *`;
+        const sql = `UPDATE products SET ${fields.join(', ')} ${whereClause} RETURNING *`;
 
         console.log('Update SQL:', sql);
         console.log('Update values:', values);
-        console.log('Update paramIndex:', paramIndex, 'idParam1:', idParam1, 'idParam2:', idParam2);
+        console.log('Update paramIndex:', paramIndex);
 
         try {
           const result = await client.query(sql, values);
