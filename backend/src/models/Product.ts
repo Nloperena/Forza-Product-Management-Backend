@@ -1,4 +1,5 @@
 import { Database } from 'sqlite3';
+import { Pool, PoolClient } from 'pg';
 import { databaseService } from '../services/database';
 
 export interface TechnicalProperty {
@@ -44,14 +45,27 @@ export interface BrandIndustryCounts {
 }
 
 export class ProductModel {
-  private db: Database;
+  private db: Database | null = null;
+  private pool: Pool | null = null;
+  private isPostgres: boolean;
 
-  constructor(database: Database) {
-    this.db = database;
+  constructor(database?: Database) {
+    this.isPostgres = databaseService.isPostgres();
+    if (database) {
+      this.db = database;
+    } else if (this.isPostgres) {
+      this.pool = databaseService.getPool();
+    }
     this.createTable();
   }
 
   private createTable(): void {
+    if (this.isPostgres) {
+      // PostgreSQL table creation is handled by databaseService.initializeDatabase()
+      console.log('PostgreSQL table creation handled by database service');
+      return;
+    }
+
     const sql = `
       CREATE TABLE IF NOT EXISTS products (
         id TEXT PRIMARY KEY,
@@ -76,20 +90,51 @@ export class ProductModel {
       )
     `;
 
-    this.db.run(sql, (err) => {
-      if (err) {
-        console.error('Error creating products table:', err);
-      } else {
-        console.log('Products table created successfully');
-      }
-    });
+    if (this.db) {
+      this.db.run(sql, (err) => {
+        if (err) {
+          console.error('Error creating products table:', err);
+        } else {
+          console.log('Products table created successfully');
+        }
+      });
+    }
   }
 
-  async getAllProducts(): Promise<Product[]> {
+  async getAllProducts(published?: string): Promise<Product[]> {
+    let sql = 'SELECT * FROM products';
+    const params: any[] = [];
+    
+    // Add published filter if specified
+    if (published !== undefined) {
+      const publishedValue = published === 'true';
+      sql += ' WHERE published = $1';
+      params.push(publishedValue);
+    }
+    
+    sql += ' ORDER BY created_at DESC';
+
+    if (this.isPostgres) {
+      const client = await databaseService.getClient();
+      try {
+        const result = await client.query(sql, params);
+        return result.rows.map(row => this.parseProduct(row));
+      } finally {
+        client.release();
+      }
+    }
+
     return new Promise((resolve, reject) => {
-      const sql = 'SELECT * FROM products ORDER BY created_at DESC';
+      if (!this.db) {
+        reject(new Error('Database not connected'));
+        return;
+      }
       
-      this.db.all(sql, [], (err, rows: any[]) => {
+      // Convert PostgreSQL params to SQLite format
+      const sqliteParams = params.map((_, index) => '?');
+      const sqliteSql = sql.replace(/\$\d+/g, () => sqliteParams.shift() || '?');
+      
+      this.db!.all(sqliteSql, params, (err, rows: any[]) => {
         if (err) {
           reject(err);
         } else {
@@ -101,10 +146,42 @@ export class ProductModel {
   }
 
   async getProductById(id: string): Promise<Product | null> {
+    if (this.isPostgres) {
+      const client = await databaseService.getClient();
+      try {
+        // Check if id is numeric - if so, search by both id and product_id
+        // If not numeric, only search by product_id
+        const isNumeric = !isNaN(Number(id));
+        let query: string;
+        let params: any[];
+        
+        if (isNumeric) {
+          query = 'SELECT * FROM products WHERE id = $1 OR product_id = $2';
+          params = [Number(id), id];
+        } else {
+          query = 'SELECT * FROM products WHERE product_id = $1';
+          params = [id];
+        }
+        
+        const result = await client.query(query, params);
+        if (result.rows.length > 0) {
+          return this.parseProduct(result.rows[0]);
+        }
+        return null;
+      } finally {
+        client.release();
+      }
+    }
+
     return new Promise((resolve, reject) => {
+      if (!this.db) {
+        reject(new Error('Database not connected'));
+        return;
+      }
+      
       const sql = 'SELECT * FROM products WHERE id = ? OR product_id = ?';
       
-      this.db.get(sql, [id, id], (err, row: any) => {
+      this.db!.get(sql, [id, id], (err, row: any) => {
         if (err) {
           reject(err);
         } else if (row) {
@@ -117,6 +194,33 @@ export class ProductModel {
   }
 
   async createProduct(product: Omit<Product, 'id' | 'created_at' | 'updated_at'>): Promise<Product> {
+    if (this.isPostgres) {
+      const client = await databaseService.getClient();
+      try {
+        const sql = `
+          INSERT INTO products (
+            product_id, name, full_name, description, brand, industry,
+            chemistry, url, image, benefits, applications, technical, sizing,
+            published, benefits_count, last_edited
+          ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)
+          RETURNING *
+        `;
+        
+        const params = [
+          product.product_id, product.name, product.full_name, product.description,
+          product.brand, product.industry, product.chemistry, product.url, product.image,
+          JSON.stringify(product.benefits), JSON.stringify(product.applications),
+          JSON.stringify(product.technical), JSON.stringify(product.sizing),
+          product.published, product.benefits_count, product.last_edited
+        ];
+
+        const result = await client.query(sql, params);
+        return this.parseProduct(result.rows[0]);
+      } finally {
+        client.release();
+      }
+    }
+
     return new Promise((resolve, reject) => {
       const id = product.product_id;
       const sql = `
@@ -135,7 +239,7 @@ export class ProductModel {
         product.published ? 1 : 0, product.benefits_count, product.last_edited
       ];
 
-      this.db.run(sql, params, function(err) {
+      this.db!.run(sql, params, function(err) {
         if (err) {
           reject(err);
         } else {
@@ -152,6 +256,54 @@ export class ProductModel {
   }
 
   async updateProduct(id: string, updates: Partial<Product>): Promise<Product | null> {
+    if (this.isPostgres) {
+      const client = await databaseService.getClient();
+      try {
+        const fields = [];
+        const values = [];
+        let paramIndex = 1;
+
+        if (updates.name) { fields.push(`name = $${paramIndex++}`); values.push(updates.name); }
+        if (updates.full_name) { fields.push(`full_name = $${paramIndex++}`); values.push(updates.full_name); }
+        if (updates.description) { fields.push(`description = $${paramIndex++}`); values.push(updates.description); }
+        if (updates.brand) { fields.push(`brand = $${paramIndex++}`); values.push(updates.brand); }
+        if (updates.industry) { fields.push(`industry = $${paramIndex++}`); values.push(updates.industry); }
+        if (updates.chemistry) { fields.push(`chemistry = $${paramIndex++}`); values.push(updates.chemistry); }
+        if (updates.url) { fields.push(`url = $${paramIndex++}`); values.push(updates.url); }
+        if (updates.image) { fields.push(`image = $${paramIndex++}`); values.push(updates.image); }
+        if (updates.benefits) { fields.push(`benefits = $${paramIndex++}`); values.push(JSON.stringify(updates.benefits)); }
+        if (updates.applications) { fields.push(`applications = $${paramIndex++}`); values.push(JSON.stringify(updates.applications)); }
+        if (updates.technical) { fields.push(`technical = $${paramIndex++}`); values.push(JSON.stringify(updates.technical)); }
+        if (updates.sizing) { fields.push(`sizing = $${paramIndex++}`); values.push(JSON.stringify(updates.sizing)); }
+        if (updates.published !== undefined) { fields.push(`published = $${paramIndex++}`); values.push(updates.published); }
+        if (updates.benefits_count !== undefined) { fields.push(`benefits_count = $${paramIndex++}`); values.push(updates.benefits_count); }
+        if (updates.last_edited) { fields.push(`last_edited = $${paramIndex++}`); values.push(updates.last_edited); }
+
+        if (fields.length === 0) {
+          throw new Error('No fields to update');
+        }
+
+        fields.push(`updated_at = $${paramIndex++}`);
+        values.push(new Date().toISOString());
+        
+        // Add id values for WHERE clause
+        const idParam1 = paramIndex++;
+        const idParam2 = paramIndex++;
+        values.push(id);
+        values.push(id);
+
+        const sql = `UPDATE products SET ${fields.join(', ')} WHERE id = $${idParam1} OR product_id = $${idParam2} RETURNING *`;
+
+        const result = await client.query(sql, values);
+        if (result.rows.length > 0) {
+          return this.parseProduct(result.rows[0]);
+        }
+        return null;
+      } finally {
+        client.release();
+      }
+    }
+
     return new Promise((resolve, reject) => {
       const fields = [];
       const values = [];
@@ -184,20 +336,19 @@ export class ProductModel {
       const sql = `UPDATE products SET ${fields.join(', ')} WHERE id = ? OR product_id = ?`;
       values.push(id); // Add id again for the second WHERE condition
 
-      this.db.run(sql, values, (err: any) => {
+      this.db!.run(sql, values, (err: any) => {
         if (err) {
           reject(err);
         } else {
           // Check if any rows were affected
-          this.db.get('SELECT changes() as changes', [], (err2: any, row: any) => {
+          this.db!.get('SELECT changes() as changes', [], (err2: any, row: any) => {
             if (err2) {
               reject(err2);
             } else if (row.changes === 0) {
               resolve(null);
             } else {
-              // Fetch the updated product
-              const productModel = new ProductModel(databaseService.getDatabase());
-              productModel.getProductById(id).then(resolve).catch(reject);
+              // Fetch the updated product using this instance
+              this.getProductById(id).then(resolve).catch(reject);
             }
           });
         }
@@ -206,14 +357,25 @@ export class ProductModel {
   }
 
   async deleteProduct(id: string): Promise<boolean> {
+    if (this.isPostgres) {
+      const client = await databaseService.getClient();
+      try {
+        const sql = 'DELETE FROM products WHERE id = $1 OR product_id = $1';
+        const result = await client.query(sql, [id]);
+        return (result.rowCount || 0) > 0;
+      } finally {
+        client.release();
+      }
+    }
+
     return new Promise((resolve, reject) => {
       const sql = 'DELETE FROM products WHERE id = ? OR product_id = ?';
       
-      this.db.run(sql, [id, id], (err: any) => {
+      this.db!.run(sql, [id, id], (err: any) => {
         if (err) {
           reject(err);
         } else {
-          this.db.get('SELECT changes() as changes', [], (err2: any, row: any) => {
+          this.db!.get('SELECT changes() as changes', [], (err2: any, row: any) => {
             if (err2) {
               reject(err2);
             } else {
@@ -226,6 +388,32 @@ export class ProductModel {
   }
 
   async getStatistics(): Promise<ProductStats> {
+    if (this.isPostgres) {
+      const client = await databaseService.getClient();
+      try {
+        const sql = `
+          SELECT 
+            COUNT(*) as total_products,
+            SUM(benefits_count) as total_benefits
+          FROM products
+        `;
+        
+        const result = await client.query(sql);
+        const row = result.rows[0];
+        
+        const stats: ProductStats = {
+          total_products: parseInt(row.total_products) || 0,
+          total_benefits: parseInt(row.total_benefits) || 0,
+          organized_date: new Date().toISOString().split('T')[0] || new Date().toISOString(),
+          hierarchy: "Brand → Industry → Products",
+          notes: "Forza Products Management System Database"
+        };
+        return stats;
+      } finally {
+        client.release();
+      }
+    }
+
     return new Promise((resolve, reject) => {
       const sql = `
         SELECT 
@@ -234,7 +422,7 @@ export class ProductModel {
         FROM products
       `;
       
-      this.db.get(sql, [], (err, row: any) => {
+      this.db!.get(sql, [], (err, row: any) => {
         if (err) {
           reject(err);
         } else {
@@ -252,10 +440,31 @@ export class ProductModel {
   }
 
   async getBrandIndustryCounts(): Promise<BrandIndustryCounts> {
+    if (this.isPostgres) {
+      const client = await databaseService.getClient();
+      try {
+        const sql = 'SELECT brand, industry, COUNT(*) as count FROM products GROUP BY brand, industry';
+        const result = await client.query(sql);
+        
+        const counts: BrandIndustryCounts = {};
+        
+        result.rows.forEach(row => {
+          if (!counts[row.brand]) {
+            counts[row.brand] = {};
+          }
+          counts[row.brand][row.industry] = parseInt(row.count);
+        });
+        
+        return counts;
+      } finally {
+        client.release();
+      }
+    }
+
     return new Promise((resolve, reject) => {
       const sql = 'SELECT brand, industry, COUNT(*) as count FROM products GROUP BY brand, industry';
       
-      this.db.all(sql, [], (err, rows: any[]) => {
+      this.db!.all(sql, [], (err, rows: any[]) => {
         if (err) {
           reject(err);
         } else {
@@ -278,26 +487,46 @@ export class ProductModel {
   }
 
   private parseProduct(row: any): Product {
-    return {
-      id: row.id,
-      product_id: row.product_id,
-      name: row.name,
-      full_name: row.full_name,
-      description: row.description,
-      brand: row.brand,
-      industry: row.industry,
-      chemistry: row.chemistry,
-      url: row.url,
-      image: row.image,
-      benefits: JSON.parse(row.benefits || '[]'),
-      applications: JSON.parse(row.applications || '[]'),
-      technical: JSON.parse(row.technical || '[]'),
-      sizing: row.sizing ? JSON.parse(row.sizing) : undefined,
-      published: Boolean(row.published),
-      benefits_count: row.benefits_count || 0,
-      created_at: row.created_at,
-      updated_at: row.updated_at,
-      last_edited: row.last_edited
-    };
+    try {
+      return {
+        id: row.id,
+        product_id: row.product_id,
+        name: row.name,
+        full_name: row.full_name,
+        description: row.description,
+        brand: row.brand,
+        industry: row.industry,
+        chemistry: row.chemistry,
+        url: row.url,
+        image: row.image,
+        benefits: this.parseJsonField(row.benefits, 'benefits'),
+        applications: this.parseJsonField(row.applications, 'applications'),
+        technical: this.parseJsonField(row.technical, 'technical'),
+        sizing: row.sizing ? this.parseJsonField(row.sizing, 'sizing') : undefined,
+        published: Boolean(row.published),
+        benefits_count: row.benefits_count || 0,
+        created_at: row.created_at,
+        updated_at: row.updated_at,
+        last_edited: row.last_edited
+      };
+    } catch (error) {
+      console.error('Error parsing product:', error);
+      console.error('Problematic row:', row);
+      throw error;
+    }
+  }
+
+  private parseJsonField(field: any, fieldName: string): any {
+    try {
+      if (!field) return [];
+      if (typeof field === 'string') {
+        return JSON.parse(field);
+      }
+      return field;
+    } catch (error) {
+      console.error(`Error parsing ${fieldName} field:`, field);
+      console.error('Error:', error);
+      throw new Error(`Invalid JSON in ${fieldName} field: ${field}`);
+    }
   }
 }
