@@ -1,7 +1,9 @@
 import React, { useState, useMemo } from 'react';
 import { useProducts } from '@/hooks/useProducts';
+import { useApi } from '@/contexts/ApiContext';
 import { Search, Package, Loader2, X } from 'lucide-react';
-import { formatBrandName, formatIndustryName } from '@/utils/formatting';
+import { formatBrandName, formatIndustryName, getProductImageUrl } from '@/utils/formatting';
+import ImageSkeleton from '@/components/ui/ImageSkeleton';
 import type { Product } from '@/types/product';
 
 interface ProductListProps {
@@ -14,6 +16,7 @@ const ProductList: React.FC<ProductListProps> = ({ onSelectProduct, selectedProd
   const [selectedBrand, setSelectedBrand] = useState<string>('');
   const [selectedIndustry, setSelectedIndustry] = useState<string>('');
   const { products: allProducts, loading, error } = useProducts({ published: true });
+  const { apiBaseUrl } = useApi();
 
   // Get unique brands and industries for filters
   const brands = useMemo(() => {
@@ -207,11 +210,16 @@ const ProductList: React.FC<ProductListProps> = ({ onSelectProduct, selectedProd
                   `}
                 >
                   <div className="flex items-start gap-3">
-                    <div className={`
-                      flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center
-                      ${isSelected ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-600'}
-                    `}>
-                      <Package className="h-6 w-6" />
+                    <div className="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden bg-gray-100 border border-gray-200">
+                      <ImageSkeleton
+                        src={getProductImageUrl(product, apiBaseUrl)}
+                        alt={product.full_name || product.name}
+                        className="w-full h-full object-cover"
+                        aspectRatio="square"
+                        objectFit="cover"
+                        fallbackIcon={<Package className="h-6 w-6 text-gray-400" />}
+                        fallbackText=""
+                      />
                     </div>
                     <div className="flex-1 min-w-0">
                       <h3 className={`
