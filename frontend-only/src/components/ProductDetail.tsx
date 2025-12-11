@@ -422,12 +422,24 @@ Check the browser console (F12) for more details.`;
           <section className="mb-8 bg-white p-6 rounded-lg shadow-sm">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Chemistry</h2>
             {isEditing ? (
-              <input
-                type="text"
+              <select
                 value={formData.chemistry}
                 onChange={(e) => handleInputChange('chemistry', e.target.value)}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
-              />
+              >
+                <option value="">Select Chemistry</option>
+                <option value="Acrylic">Acrylic</option>
+                <option value="Epoxy">Epoxy</option>
+                <option value="Modified Epoxy">Modified Epoxy</option>
+                <option value="Cyanoacrylates">Cyanoacrylates</option>
+                <option value="Hot Melt">Hot Melt</option>
+                <option value="Methacrylate">Methacrylate</option>
+                <option value="MS">MS</option>
+                <option value="Polyurethane">Polyurethane</option>
+                <option value="Silicone">Silicone</option>
+                <option value="Solvent Based">Solvent Based</option>
+                <option value="Water Based">Water Based</option>
+              </select>
             ) : (
               <p className="text-lg text-gray-700">{product.chemistry}</p>
             )}

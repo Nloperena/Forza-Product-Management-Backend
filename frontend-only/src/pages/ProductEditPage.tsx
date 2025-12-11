@@ -492,11 +492,24 @@ const ProductEditPage: React.FC = () => {
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Chemistry
                   </label>
-                  <Input
+                  <select
                     value={formData.chemistry}
                     onChange={(e) => handleInputChange('chemistry', e.target.value)}
-                    placeholder="e.g., Polyurethane"
-                  />
+                    className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                  >
+                    <option value="">Select Chemistry</option>
+                    <option value="Acrylic">Acrylic</option>
+                    <option value="Epoxy">Epoxy</option>
+                    <option value="Modified Epoxy">Modified Epoxy</option>
+                    <option value="Cyanoacrylates">Cyanoacrylates</option>
+                    <option value="Hot Melt">Hot Melt</option>
+                    <option value="Methacrylate">Methacrylate</option>
+                    <option value="MS">MS</option>
+                    <option value="Polyurethane">Polyurethane</option>
+                    <option value="Silicone">Silicone</option>
+                    <option value="Solvent Based">Solvent Based</option>
+                    <option value="Water Based">Water Based</option>
+                  </select>
                 </div>
               </div>
 
