@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { useProducts } from '@/hooks/useProducts';
 import { useApi } from '@/contexts/ApiContext';
-import { Search, Package, Loader2, X } from 'lucide-react';
+import { Search, Package, Loader2, X, Plus } from 'lucide-react';
 import { formatBrandName, formatIndustryName, getProductImageUrl } from '@/utils/formatting';
 import ImageSkeleton from '@/components/ui/ImageSkeleton';
 import type { Product } from '@/types/product';
@@ -9,9 +9,10 @@ import type { Product } from '@/types/product';
 interface ProductListProps {
   onSelectProduct: (product: Product) => void;
   selectedProduct: Product | null;
+  onNewProduct?: () => void;
 }
 
-const ProductList: React.FC<ProductListProps> = ({ onSelectProduct, selectedProduct }) => {
+const ProductList: React.FC<ProductListProps> = ({ onSelectProduct, selectedProduct, onNewProduct }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedBrand, setSelectedBrand] = useState<string>('');
   const [selectedIndustry, setSelectedIndustry] = useState<string>('');
@@ -175,6 +176,21 @@ const ProductList: React.FC<ProductListProps> = ({ onSelectProduct, selectedProd
             Clear Filters
           </button>
         )}
+
+        {/* Add New Product Button */}
+        <button
+          onClick={() => {
+            if (onNewProduct) {
+              onNewProduct();
+            } else {
+              window.location.href = '/products/new';
+            }
+          }}
+          className="mt-3 w-full flex items-center justify-center gap-2 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+        >
+          <Plus className="h-4 w-4" />
+          Add New Product
+        </button>
 
         <p className="text-sm text-gray-500 mt-3">
           {filteredProducts.length} product{filteredProducts.length !== 1 ? 's' : ''} found

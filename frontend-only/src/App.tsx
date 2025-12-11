@@ -4,6 +4,7 @@ import { UserProvider, useUser } from '@/contexts/UserContext';
 import { ToastProvider } from '@/components/ui/ToastContainer';
 import ProductList from '@/components/ProductList';
 import ProductDetail from '@/components/ProductDetail';
+import NewProductForm from '@/components/NewProductForm';
 import Login from '@/components/Login';
 import { CheckCircle, AlertCircle, LogOut, User, GripVertical } from 'lucide-react';
 import type { Product } from '@/types/product';
@@ -53,6 +54,7 @@ const UserInfo: React.FC = () => {
 const AppContent: React.FC = () => {
   const { isAuthenticated } = useUser();
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [isCreatingNew, setIsCreatingNew] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
   
   // Resizable sidebar state
@@ -102,7 +104,24 @@ const AppContent: React.FC = () => {
 
   const handleProductUpdated = (updatedProduct: Product) => {
     setSelectedProduct(updatedProduct);
+    setIsCreatingNew(false);
     // Trigger refresh of product list
+    setRefreshKey(prev => prev + 1);
+  };
+
+  const handleNewProduct = () => {
+    setIsCreatingNew(true);
+    setSelectedProduct(null);
+  };
+
+  const handleCancelCreate = () => {
+    setIsCreatingNew(false);
+    setSelectedProduct(null);
+  };
+
+  const handleProductCreated = (newProduct: Product) => {
+    setSelectedProduct(newProduct);
+    setIsCreatingNew(false);
     setRefreshKey(prev => prev + 1);
   };
 
@@ -136,8 +155,12 @@ const AppContent: React.FC = () => {
             >
               <ProductList 
                 key={refreshKey}
-                onSelectProduct={setSelectedProduct}
+                onSelectProduct={(product) => {
+                  setSelectedProduct(product);
+                  setIsCreatingNew(false);
+                }}
                 selectedProduct={selectedProduct}
+                onNewProduct={handleNewProduct}
               />
               
               {/* Resize Handle */}
@@ -162,7 +185,12 @@ const AppContent: React.FC = () => {
 
             {/* Right Panel - Product Details */}
             <main className="flex-1 overflow-y-auto bg-white">
-              {selectedProduct ? (
+              {isCreatingNew ? (
+                <NewProductForm
+                  onProductCreated={handleProductCreated}
+                  onCancel={handleCancelCreate}
+                />
+              ) : selectedProduct ? (
                 <ProductDetail 
                   product={selectedProduct} 
                   onProductUpdated={handleProductUpdated}
