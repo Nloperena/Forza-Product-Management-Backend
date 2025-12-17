@@ -24,6 +24,22 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onProductUpdated
   }, [apiBaseUrl]);
   const [isEditing, setIsEditing] = useState(false);
   const [saving, setSaving] = useState(false);
+  // Helper function to ensure technical is always an array
+  const normalizeTechnical = (technical: any): any[] => {
+    if (!technical) return [];
+    if (Array.isArray(technical)) return technical;
+    // If it's an object, try to convert it to an array
+    if (typeof technical === 'object') {
+      // If it looks like a single technical property object
+      if (technical.property || technical.value) {
+        return [technical];
+      }
+      // Otherwise return empty array
+      return [];
+    }
+    return [];
+  };
+
   const [formData, setFormData] = useState<ProductFormData>({
     product_id: product.product_id,
     full_name: product.full_name || product.name,
@@ -34,10 +50,10 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onProductUpdated
     chemistry: product.chemistry || '',
     image: product.image || '',
     published: product.published,
-    benefits: product.benefits || [],
-    applications: product.applications || [],
-    technical: product.technical || [],
-    sizing: product.sizing || {},
+    benefits: Array.isArray(product.benefits) ? product.benefits : [],
+    applications: Array.isArray(product.applications) ? product.applications : [],
+    technical: normalizeTechnical(product.technical),
+    sizing: product.sizing && typeof product.sizing === 'object' ? product.sizing : {},
     packaging: [],
     tds_pdf: '',
     sds_pdf: '',
@@ -57,10 +73,10 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onProductUpdated
       chemistry: product.chemistry || '',
       image: product.image || '',
       published: product.published,
-      benefits: product.benefits || [],
-      applications: product.applications || [],
-      technical: product.technical || [],
-      sizing: product.sizing || {},
+      benefits: Array.isArray(product.benefits) ? product.benefits : [],
+      applications: Array.isArray(product.applications) ? product.applications : [],
+      technical: normalizeTechnical(product.technical),
+      sizing: product.sizing && typeof product.sizing === 'object' ? product.sizing : {},
       packaging: [],
       tds_pdf: '',
       sds_pdf: '',
@@ -301,10 +317,10 @@ Check the browser console (F12) for more details.`;
                         chemistry: product.chemistry || '',
                         image: product.image || '',
                         published: product.published,
-                        benefits: product.benefits || [],
-                        applications: product.applications || [],
-                        technical: product.technical || [],
-                        sizing: product.sizing || {},
+                        benefits: Array.isArray(product.benefits) ? product.benefits : [],
+                        applications: Array.isArray(product.applications) ? product.applications : [],
+                        technical: normalizeTechnical(product.technical),
+                        sizing: product.sizing && typeof product.sizing === 'object' ? product.sizing : {},
                         packaging: [],
                         tds_pdf: '',
                         sds_pdf: '',
@@ -541,7 +557,7 @@ Check the browser console (F12) for more details.`;
         </section>
 
         {/* Technical Properties */}
-        {isEditing || (product.technical && product.technical.length > 0) ? (
+        {isEditing || (Array.isArray(product.technical) && product.technical.length > 0) ? (
           <section className="mb-8 bg-white p-6 rounded-lg shadow-sm">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Technical Properties</h2>
             {isEditing ? (
@@ -596,7 +612,7 @@ Check the browser console (F12) for more details.`;
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200">
-                    {product.technical?.map((tech, index) => (
+                    {(Array.isArray(product.technical) ? product.technical : []).map((tech, index) => (
                       <tr key={index} className="hover:bg-gray-50">
                         <td className="py-4 px-6 text-lg font-medium text-gray-700">{tech.property}</td>
                         <td className="py-4 px-6 text-lg text-gray-600">
