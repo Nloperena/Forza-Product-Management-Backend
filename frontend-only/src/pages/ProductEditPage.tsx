@@ -279,8 +279,16 @@ const ProductEditPage: React.FC = () => {
     try {
       setSaving(true);
       
+      // Filter out empty items before saving
+      const cleanedFormData = {
+        ...formData,
+        benefits: formData.benefits.filter(b => b.trim() !== ''),
+        applications: formData.applications.filter(a => a.trim() !== ''),
+        technical: formData.technical.filter(t => t.property.trim() !== '' && t.value.trim() !== ''),
+      };
+      
       if (isNewProduct) {
-        const result = await productApi.createProduct(formData);
+        const result = await productApi.createProduct(cleanedFormData);
         if (result.success && result.product_id) {
           showSuccess('Product Created', `"${formData.full_name}" has been created successfully!`);
           navigate(`/products/${result.product_id}`);
@@ -290,7 +298,7 @@ const ProductEditPage: React.FC = () => {
         if (!productId) {
           throw new Error('Product ID is required for updates');
         }
-        await productApi.updateProduct(productId, formData);
+        await productApi.updateProduct(productId, cleanedFormData);
         showSuccess('Product Updated', `"${formData.full_name}" has been updated successfully!`);
         navigate(`/products/${productId}`);
       }

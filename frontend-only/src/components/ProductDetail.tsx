@@ -88,11 +88,10 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onProductUpdated
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleArrayItemAdd = (field: 'benefits' | 'applications', value: string) => {
-    if (!value.trim()) return;
+  const handleArrayItemAdd = (field: 'benefits' | 'applications') => {
     setFormData(prev => ({
       ...prev,
-      [field]: [...prev[field], value.trim()]
+      [field]: [...prev[field], '']
     }));
   };
 
@@ -103,11 +102,10 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onProductUpdated
     }));
   };
 
-  const handleTechnicalAdd = (property: string, value: string) => {
-    if (!property.trim() || !value.trim()) return;
+  const handleTechnicalAdd = () => {
     setFormData(prev => ({
       ...prev,
-      technical: [...prev.technical, { property: property.trim(), value: value.trim() }]
+      technical: [...prev.technical, { property: '', value: '', unit: '' }]
     }));
   };
 
@@ -137,8 +135,16 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onProductUpdated
         console.warn('API connection test failed, but continuing with save:', testError);
       }
       
+      // Filter out empty items before saving
+      const cleanedFormData = {
+        ...formData,
+        benefits: formData.benefits.filter(b => b.trim() !== ''),
+        applications: formData.applications.filter(a => a.trim() !== ''),
+        technical: formData.technical.filter(t => t.property.trim() !== '' && t.value.trim() !== ''),
+      };
+      
       // Remove product_id from updates (backend doesn't allow updating it)
-      const { product_id, ...updateData } = formData;
+      const { product_id, ...updateData } = cleanedFormData;
       
       // Add user tracking - who made this change
       if (user) {
@@ -492,7 +498,7 @@ Check the browser console (F12) for more details.`;
                 </div>
               ))}
               <button
-                onClick={() => handleArrayItemAdd('benefits', '')}
+                onClick={() => handleArrayItemAdd('benefits')}
                 className="flex items-center gap-2 px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-lg"
               >
                 <Plus className="h-5 w-5" />
@@ -537,7 +543,7 @@ Check the browser console (F12) for more details.`;
                 </div>
               ))}
               <button
-                onClick={() => handleArrayItemAdd('applications', '')}
+                onClick={() => handleArrayItemAdd('applications')}
                 className="flex items-center gap-2 px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-lg"
               >
                 <Plus className="h-5 w-5" />
@@ -586,6 +592,17 @@ Check the browser console (F12) for more details.`;
                       }}
                       className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
                     />
+                    <input
+                      type="text"
+                      placeholder="Unit (optional)"
+                      value={tech.unit || ''}
+                      onChange={(e) => {
+                        const newTechnical = [...formData.technical];
+                        newTechnical[index] = { ...tech, unit: e.target.value };
+                        handleInputChange('technical', newTechnical);
+                      }}
+                      className="w-32 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
+                    />
                     <button
                       onClick={() => handleTechnicalRemove(index)}
                       className="p-2 text-red-600 hover:bg-red-50 rounded-lg"
@@ -595,7 +612,7 @@ Check the browser console (F12) for more details.`;
                   </div>
                 ))}
                 <button
-                  onClick={() => handleTechnicalAdd('', '')}
+                  onClick={handleTechnicalAdd}
                   className="flex items-center gap-2 px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-lg"
                 >
                   <Plus className="h-5 w-5" />

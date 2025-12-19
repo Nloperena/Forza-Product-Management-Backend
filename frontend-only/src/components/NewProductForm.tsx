@@ -136,10 +136,18 @@ const NewProductForm: React.FC<NewProductFormProps> = ({ onProductCreated, onCan
     try {
       setSaving(true);
 
+      // Filter out empty items before saving
+      const cleanedFormData = {
+        ...formData,
+        benefits: formData.benefits.filter(b => b.trim() !== ''),
+        applications: formData.applications.filter(a => a.trim() !== ''),
+        technical: formData.technical.filter(t => t.property.trim() !== '' && t.value.trim() !== ''),
+      };
+
       // Prepare product data for creation (backend expects 'name' field)
       const productData = {
-        ...formData,
-        name: formData.full_name || formData.product_id, // Use full_name as name
+        ...cleanedFormData,
+        name: cleanedFormData.full_name || cleanedFormData.product_id, // Use full_name as name
         last_edited: user ? `${user.name} - ${new Date().toLocaleString()}` : undefined,
       };
 
