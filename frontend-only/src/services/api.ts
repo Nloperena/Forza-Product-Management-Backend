@@ -103,8 +103,19 @@ export const productApi = {
 
   // Create new product
   async createProduct(productData: ProductFormData): Promise<{ success: boolean; message: string; product_id?: string }> {
-    const response = await api.post('/products', productData);
-    return response.data;
+    try {
+      console.log('Creating product with data:', productData);
+      const response = await retryRequest(() => api.post('/products', productData));
+      console.log('Product creation response:', response.data);
+      return response.data;
+    } catch (error: any) {
+      console.error('Product creation error:', {
+        message: error.message,
+        response: error.response?.data,
+        status: error.response?.status,
+      });
+      throw error;
+    }
   },
 
   // Update product

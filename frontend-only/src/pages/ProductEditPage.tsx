@@ -4,6 +4,7 @@ import { useProduct } from '@/hooks/useProducts';
 import { productApi } from '@/services/api';
 import { useToast } from '@/components/ui/ToastContainer';
 import { useApi } from '@/contexts/ApiContext';
+import { useUser } from '@/contexts/UserContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
@@ -30,6 +31,7 @@ const ProductEditPage: React.FC = () => {
   const navigate = useNavigate();
   const { showSuccess, showError } = useToast();
   const { apiBaseUrl } = useApi();
+  const { user } = useUser();
   const isNewProduct = id === 'new';
   const { product, loading, error } = useProduct(isNewProduct ? '' : id || '');
   
@@ -288,10 +290,19 @@ const ProductEditPage: React.FC = () => {
       };
       
       if (isNewProduct) {
-        const result = await productApi.createProduct(cleanedFormData);
+        // Prepare product data for creation (backend expects 'name' field)
+        const productData = {
+          ...cleanedFormData,
+          name: cleanedFormData.full_name || cleanedFormData.product_id, // Use full_name as name
+          last_edited: user ? `${user.name} - ${new Date().toLocaleString()}` : undefined,
+        };
+        
+        const result = await productApi.createProduct(productData);
         if (result.success && result.product_id) {
           showSuccess('Product Created', `"${formData.full_name}" has been created successfully!`);
           navigate(`/products/${result.product_id}`);
+        } else {
+          throw new Error(result.message || 'Product creation failed - no product_id returned');
         }
       } else {
         const productId = formData.product_id || id;
@@ -302,9 +313,25 @@ const ProductEditPage: React.FC = () => {
         showSuccess('Product Updated', `"${formData.full_name}" has been updated successfully!`);
         navigate(`/products/${productId}`);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Failed to save product:', error);
-      showError('Save Failed', 'Failed to save product. Please try again.');
+      
+      let errorMessage = 'Failed to save product. Please try again.';
+      let errorTitle = 'Save Failed';
+      
+      if (error?.response?.data?.message) {
+        errorMessage = error.response.data.message;
+      } else if (error?.message) {
+        errorMessage = error.message;
+      } else if (error?.response?.status === 400) {
+        errorTitle = 'Validation Error';
+        errorMessage = 'The product data is invalid. Please check all required fields.';
+      } else if (error?.response?.status === 500) {
+        errorTitle = 'Server Error';
+        errorMessage = 'The server encountered an error. Please try again later.';
+      }
+      
+      showError(errorTitle, errorMessage);
     } finally {
       setSaving(false);
     }

@@ -159,10 +159,28 @@ const NewProductForm: React.FC<NewProductFormProps> = ({ onProductCreated, onCan
         // Fetch the created product and pass it back
         const newProduct = await productApi.getProduct(result.product_id || formData.product_id);
         onProductCreated(newProduct);
+      } else {
+        throw new Error(result.message || 'Product creation failed - no product_id returned');
       }
     } catch (error: any) {
       console.error('Failed to create product:', error);
-      showError('Create Failed', error.response?.data?.message || 'Failed to create product. Please try again.');
+      
+      let errorMessage = 'Failed to create product. Please try again.';
+      let errorTitle = 'Create Failed';
+      
+      if (error?.response?.data?.message) {
+        errorMessage = error.response.data.message;
+      } else if (error?.message) {
+        errorMessage = error.message;
+      } else if (error?.response?.status === 400) {
+        errorTitle = 'Validation Error';
+        errorMessage = 'The product data is invalid. Please check all required fields.';
+      } else if (error?.response?.status === 500) {
+        errorTitle = 'Server Error';
+        errorMessage = 'The server encountered an error. Please try again later.';
+      }
+      
+      showError(errorTitle, errorMessage);
     } finally {
       setSaving(false);
     }
