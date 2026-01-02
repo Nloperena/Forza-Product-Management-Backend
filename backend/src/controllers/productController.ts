@@ -247,7 +247,12 @@ export class ProductController {
       const brandIndustryCounts = await this.productModel.getBrandIndustryCounts();
 
       res.json({
-        metadata: stats,
+        metadata: {
+          total_products: stats.total_products,
+          organized_date: stats.organized_date,
+          hierarchy: stats.hierarchy,
+          notes: stats.notes
+        },
         brand_industry_counts: brandIndustryCounts
       });
     } catch (error) {
