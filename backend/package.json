@@ -38,7 +38,9 @@
     "migrate-latest-csv:live": "ts-node src/scripts/migrateLatestCSV.ts --live",
     "optimize-migrate": "ts-node src/scripts/optimizeAndMigrateV2.ts",
     "optimize-migrate:live": "ts-node src/scripts/optimizeAndMigrateV2.ts --live",
-    "fix-product-names": "ts-node src/scripts/fixProductNames.ts"
+    "fix-product-names": "ts-node src/scripts/fixProductNames.ts",
+    "restore-vercel-images": "ts-node src/scripts/restoreVercelBlobImageUrls.ts",
+    "sync-images-to-json": "ts-node src/scripts/syncImageUrlsToJson.ts"
   },
   "keywords": [
     "forza",

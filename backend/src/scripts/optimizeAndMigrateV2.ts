@@ -175,6 +175,13 @@ class OptimizedMigrator {
       // Preserve existing data from JSON
       const existing = this.findExistingProduct(currentJson, productId);
 
+      // Preserve Vercel blob URLs if they exist, otherwise use existing image or default
+      let imageUrl = existing?.image || '';
+      if (!imageUrl || (!imageUrl.startsWith('http') && !imageUrl.startsWith('/product-images'))) {
+        // If no existing image or it's not a valid path, use default
+        imageUrl = `/product-images/${productId}.png`;
+      }
+
       const product: Product = {
         id: productId,
         product_id: productId,
@@ -185,7 +192,7 @@ class OptimizedMigrator {
         industry: industry,
         chemistry: row['Chemistry'] === '???' ? (existing?.chemistry || '') : row['Chemistry'],
         url: existing?.url || '',
-        image: existing?.image || `/product-images/${productId}.png`,
+        image: imageUrl,
         benefits: benefits.length > 0 ? benefits : (existing?.benefits || []),
         applications: applications.length > 0 ? applications : (existing?.applications || []),
         technical: existing?.technical || [],

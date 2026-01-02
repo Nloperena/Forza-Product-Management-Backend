@@ -21,7 +21,7 @@
               "industry": "industrial_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/81-0389/",
-              "image": "/product-images/81-0389.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/81-0389.png",
               "benefits": [
                 "Excellent coverage",
                 "High temperature resistance",
@@ -99,7 +99,7 @@
               "industry": "industrial_industry",
               "chemistry": "Water Based",
               "url": "",
-              "image": "/product-images/A1000.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/A1000.png",
               "benefits": [
                 "Fast drying",
                 "Excellent fiber",
@@ -330,7 +330,7 @@
               "industry": "industrial_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/c130/",
-              "image": "/product-images/c130.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/c130.png",
               "benefits": [],
               "applications": [
                 "High Temperature Resistent Neoprene Contact Adhesive:",
@@ -385,7 +385,7 @@
               "industry": "industrial_industry",
               "chemistry": "",
               "url": "",
-              "image": "/product-images/C150.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/C150.png",
               "benefits": [
                 "Quick tack",
                 "Prevents attack of polystyrene foam, yet still creates a strong contact",
@@ -419,7 +419,7 @@
               "industry": "industrial_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/c331/",
-              "image": "/product-images/c331.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/c331.png",
               "benefits": [],
               "applications": [
                 "Bonds veneers, fabrics, upholstery, and foam",
@@ -627,7 +627,7 @@
               "industry": "industrial_industry",
               "chemistry": "Cyanoacrylates",
               "url": "https://forzabuilt.com/product/ca1000/",
-              "image": "/product-images/ca1000.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/ca1000.png",
               "benefits": [],
               "applications": [
                 "Designed for bonding instantly a variety of dissimilar materials",
@@ -671,7 +671,7 @@
               "industry": "industrial_industry",
               "chemistry": "Cyanoacrylates",
               "url": "https://forzabuilt.com/product/ca1500/",
-              "image": "/product-images/ca1500.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/ca1500.png",
               "benefits": [
                 "Instant Bond",
                 "High Impact Resistance",
@@ -719,7 +719,7 @@
               "industry": "industrial_industry",
               "chemistry": "Cyanoacrylates",
               "url": "https://forzabuilt.com/product/ca2400/",
-              "image": "/product-images/ca2400.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/ca2400.png",
               "benefits": [
                 "Instant Bond",
                 "High Impact Resistance",
@@ -762,7 +762,7 @@
               "industry": "industrial_industry",
               "chemistry": "",
               "url": "",
-              "image": "/product-images/FRP.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/FRP.png",
               "benefits": [
                 "Excellent bonding properties to a variety of substrates, including metal flooring, plywood, and vinyls",
                 "Can be used in refrigerated and walk",
@@ -1149,7 +1149,7 @@
               "industry": "industrial_industry",
               "chemistry": "",
               "url": "",
-              "image": "/product-images/I1000.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/I1000.png",
               "benefits": [
                 "Fast drying.",
                 "Excellent fiber",
@@ -1183,7 +1183,7 @@
               "industry": "industrial_industry",
               "chemistry": "",
               "url": "",
-              "image": "/product-images/IC2400.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/IC2400.png",
               "benefits": [
                 "???"
               ],
@@ -1208,7 +1208,7 @@
               "industry": "industrial_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/ic932/",
-              "image": "/product-images/ic932.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/ic932.png",
               "benefits": [],
               "applications": [
                 "Permanently bonds to:",
@@ -1278,7 +1278,7 @@
               "industry": "industrial_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/ic933/",
-              "image": "/product-images/ic933.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/ic933.png",
               "benefits": [],
               "applications": [
                 "Permanently bonds to:",
@@ -1348,7 +1348,7 @@
               "industry": "industrial_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/ic934/",
-              "image": "/product-images/ic934.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/ic934.png",
               "benefits": [],
               "applications": [
                 "Pressure sensitive adhesive that permanently bonds to:",
@@ -1449,7 +1449,7 @@
               "industry": "industrial_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/ic946/",
-              "image": "/product-images/ic946.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/ic946.png",
               "benefits": [],
               "applications": [
                 "Designed to bond numerous substrates including these:",
@@ -1517,7 +1517,7 @@
               "industry": "industrial_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/ic947/",
-              "image": "/product-images/ic947.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/ic947.png",
               "benefits": [],
               "applications": [
                 "Web spray adhesive designed for applications using:",
@@ -1691,7 +1691,7 @@
               "industry": "industrial_industry",
               "chemistry": "Modified Silane",
               "url": "https://forzabuilt.com/product/oa12/",
-              "image": "/product-images/oa12.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/oa12.png",
               "benefits": [],
               "applications": [
                 "Ideal for use in a wide range of applications where high strength and",
@@ -1783,7 +1783,7 @@
               "industry": "industrial_industry",
               "chemistry": "Modified Silane",
               "url": "https://forzabuilt.com/product/oa13/",
-              "image": "/product-images/oa13.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/oa13.png",
               "benefits": [],
               "applications": [
                 "Ideal for use in a wide range of applications where high strength and",
@@ -1889,7 +1889,7 @@
               "industry": "industrial_industry",
               "chemistry": "Modified Silane",
               "url": "https://forzabuilt.com/product/oa23/",
-              "image": "/product-images/oa23.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/oa23.png",
               "benefits": [],
               "applications": [
                 "Ideal for use in a wide range of applications where high strength and",
@@ -1977,7 +1977,7 @@
               "industry": "industrial_industry",
               "chemistry": "Modified Silane",
               "url": "https://forzabuilt.com/product/oa4/",
-              "image": "/product-images/oa4.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/oa4.png",
               "benefits": [],
               "applications": [
                 "Ideally suited where permanently flexible and/or structural bonding is required. It bonds a large variety of materials including:",
@@ -2080,7 +2080,7 @@
               "industry": "industrial_industry",
               "chemistry": "",
               "url": "",
-              "image": "/product-images/OA99.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OA99.png",
               "benefits": [
                 "???"
               ],
@@ -2105,7 +2105,7 @@
               "industry": "industrial_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/osa/",
-              "image": "/product-images/osa.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/osa.png",
               "benefits": [
                 "Low odor",
                 "Fast drying",
@@ -2164,7 +2164,7 @@
               "industry": "industrial_industry",
               "chemistry": "Epoxy",
               "url": "https://forzabuilt.com/product/r160/",
-              "image": "/product-images/r160.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/r160.png",
               "benefits": [
                 "1:1 ratio, easy mixing or dispensing",
                 "3 minute work life, 8 minute handling strength",
@@ -2235,7 +2235,7 @@
               "industry": "industrial_industry",
               "chemistry": "Epoxy",
               "url": "https://forzabuilt.com/product/r190/",
-              "image": "/product-images/r190.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/r190.png",
               "benefits": [
                 "Excellent resistance to Dynamic loads (vibrations and impacts).",
                 "Good Mechanical properties.",
@@ -2306,7 +2306,7 @@
               "industry": "industrial_industry",
               "chemistry": "Modified Epoxy",
               "url": "https://forzabuilt.com/product/r221/",
-              "image": "/product-images/r221.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/r221.png",
               "benefits": [
                 "1:1 ratio, easy mixing/ dispensing",
                 "Minimal surface preparation required",
@@ -2384,7 +2384,7 @@
               "industry": "industrial_industry",
               "chemistry": "Methacrylate/MMA",
               "url": "https://forzabuilt.com/product/r519/",
-              "image": "/product-images/r519.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/r519.png",
               "benefits": [
                 "Excellent bonding to a wide variety of substrates",
                 "1:1 ratio   easy mixing or dispensing",
@@ -2462,7 +2462,7 @@
               "industry": "industrial_industry",
               "chemistry": "",
               "url": "",
-              "image": "/product-images/R529.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/R529.png",
               "benefits": [
                 "???"
               ],
@@ -2487,7 +2487,7 @@
               "industry": "industrial_industry",
               "chemistry": "Solvent Based",
               "url": "",
-              "image": "/product-images/S228.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/S228.png",
               "benefits": [
                 "Increases adhesive performance on polyethylene, polypropylene and TPR",
                 "Also useful on other plastics, rubber & metals",
@@ -2517,7 +2517,7 @@
               "industry": "industrial_industry",
               "chemistry": "Water Based",
               "url": "https://forzabuilt.com/product/w700/",
-              "image": "/product-images/w700.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/w700.png",
               "benefits": [
                 "Excellent coverage",
                 "Extended closed assembly time for press preparation",
@@ -2596,7 +2596,7 @@
               "industry": "insulation_industry",
               "chemistry": "Solvent Based",
               "url": "",
-              "image": "/product-images/R-OSA.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Insulation/R-OSA.png",
               "benefits": [
                 "Low Odor",
                 "Fast drying",
@@ -2625,7 +2625,7 @@
               "industry": "insulation_industry",
               "chemistry": "Water Based",
               "url": "https://forzabuilt.com/product/r-a2000/",
-              "image": "/product-images/r-a2000.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Insulation/r-a2000.png",
               "benefits": [],
               "applications": [
                 "Engineered for bonding facing materials to fiberglass and mineral wood in roll coating insulation applications. It features high initial green",
@@ -2651,7 +2651,7 @@
               "industry": "insulation_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/r-c661/",
-              "image": "/product-images/r-c661.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Insulation/r-c661.png",
               "benefits": [],
               "applications": [
                 "Formulated as an economical, high",
@@ -2677,7 +2677,7 @@
               "industry": "insulation_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/rc826/",
-              "image": "/product-images/rc826.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Insulation/rc826.png",
               "benefits": [],
               "applications": [
                 "Specifically designed as an economical & aggressive pressure sensitive adhesive. Ideal for quick stick applications including fixturing and wrapping of porous materials. This also bonds to:",
@@ -2706,7 +2706,7 @@
               "industry": "insulation_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/rc862/",
-              "image": "/product-images/rc862.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Insulation/rc862.png",
               "benefits": [],
               "applications": [
                 "Specifically designed for universal applications in the insulation industry, including bonding facing materials to polyiso, mineral wood, and other insulating substrates. Its fast tack and wide temperature range make it ideal for use in all environments."
@@ -2730,7 +2730,7 @@
               "industry": "insulation_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/rc863/",
-              "image": "/product-images/rc863.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Insulation/rc863.png",
               "benefits": [],
               "applications": [
                 "Specifically designed to permanently bond both porous and non",
@@ -2759,7 +2759,7 @@
               "industry": "insulation_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/rc864/",
-              "image": "/product-images/rc864.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Insulation/rc864.png",
               "benefits": [],
               "applications": [
                 "A pressure sensitive adhesive designed for a wide range of applications, including bonding polystyrene foam, insulation materials, acoustic materials, and foam. It s aggressive tack and quick",
@@ -2786,7 +2786,7 @@
               "industry": "insulation_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/rc886/",
-              "image": "/product-images/rc886.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Insulation/rc886.png",
               "benefits": [],
               "applications": [
                 "Specifically designed as an economical and aggressive pressure sensitive adhesive. Ideal for quick stick applications including fixturing and wrapping of porous materials.",
@@ -2816,7 +2816,7 @@
               "industry": "insulation_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/rc887/",
-              "image": "/product-images/rc887.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Insulation/rc887.png",
               "benefits": [],
               "applications": [
                 "Specifically designed as an aggressive tack, quick",
@@ -2841,7 +2841,7 @@
               "industry": "insulation_industry",
               "chemistry": "Epoxy",
               "url": "https://forzabuilt.com/product/r-r820/",
-              "image": "/product-images/r-r820.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Insulation/r-r820.png",
               "benefits": [],
               "applications": [
                 "Specifically designed as a fast",
@@ -2873,7 +2873,7 @@
               "industry": "marine_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/m-c280/",
-              "image": "/product-images/m-c280.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/m-c280.png",
               "benefits": [],
               "applications": [
                 "Specifically designed for laminating and general bonding to substrates in the Marine industry. Laminates and bonds a wide variety of materials.",
@@ -2932,7 +2932,7 @@
               "industry": "marine_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/m-c283/",
-              "image": "/product-images/m-c280.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/m-c280.png",
               "benefits": [
                 "Non",
                 "Flammable",
@@ -2975,7 +2975,7 @@
               "industry": "marine_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/m-c285/",
-              "image": "/product-images/m-c285.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/m-c285.png",
               "benefits": [],
               "applications": [
                 "Specifically designed for marine applications, bonding materials without the need for fasterners, including:",
@@ -3047,7 +3047,7 @@
               "industry": "marine_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/mc722/",
-              "image": "/product-images/mc722.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/mc722.png",
               "benefits": [],
               "applications": [
                 "Specifically designed to bond:",
@@ -3113,7 +3113,7 @@
               "industry": "marine_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/mc723/",
-              "image": "/product-images/mc723.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/mc723.png",
               "benefits": [],
               "applications": [
                 "Specifically designed to bond:",
@@ -3181,7 +3181,7 @@
               "industry": "marine_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/mc724/",
-              "image": "/product-images/mc724.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/mc724.png",
               "benefits": [],
               "applications": [
                 "Pressure sensitive adhesive designed for use in applications using:",
@@ -3295,7 +3295,7 @@
               "industry": "marine_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/mc737/",
-              "image": "/product-images/mc737.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/mc737.png",
               "benefits": [],
               "applications": [
                 "Web spray adhesive designed for applications using:",
@@ -3366,7 +3366,7 @@
               "industry": "marine_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/mc739/",
-              "image": "/product-images/mc739.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/mc739.png",
               "benefits": [
                 "High Tack Formulation",
                 "Designed to not interfere with curing process of vinyl ester, polyester, and styrene resins",
@@ -3441,7 +3441,7 @@
               "industry": "marine_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/mc741/",
-              "image": "/product-images/mc741.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/mc741.png",
               "benefits": [],
               "applications": [
                 "Permanently bonds to:",
@@ -3509,7 +3509,7 @@
               "industry": "marine_industry",
               "chemistry": "Modified Silane",
               "url": "https://forzabuilt.com/product/m-oa755/",
-              "image": "/product-images/m-oa755.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/m-oa755.png",
               "benefits": [],
               "applications": [
                 "Specifically designed for permanent, flexible, and structural bonding in marine applications. It is formulated to bond a wide variety of materials, including aluminum, brass, steel, wood, plastics, and fiberglass composites without the need for fasteners.",
@@ -3595,7 +3595,7 @@
               "industry": "marine_industry",
               "chemistry": "Modified Silane",
               "url": "https://forzabuilt.com/product/m-os764/",
-              "image": "/product-images/m-os764.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/m-os764.png",
               "benefits": [],
               "applications": [
                 "Specifically designed to bond a large variety of materials including metals, granite, painted steel, glass, wood, most plastics, fiberglass, rubber, and polystyrene foam. Provides a permanent structural bond with internal and external applications above the waterline:",
@@ -3674,7 +3674,7 @@
               "industry": "marine_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/m-osa783/",
-              "image": "/product-images/m-osa783.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/m-osa783.png",
               "benefits": [],
               "applications": [
                 "Used to promote adhesion in marine applications that include: painted surfaces, bare metals, plastics, and composites"
@@ -3723,7 +3723,7 @@
               "industry": "marine_industry",
               "chemistry": "Epoxy",
               "url": "https://forzabuilt.com/product/m-r420/",
-              "image": "/product-images/m-r420.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/m-r420.png",
               "benefits": [],
               "applications": [
                 "Designed for use in Marine Appliations that require bonding to wood, concrete, fiberglass, and most thermoset plastics, metals and composite materials."
@@ -3786,7 +3786,7 @@
               "industry": "marine_industry",
               "chemistry": "Modified Epoxy",
               "url": "https://forzabuilt.com/product/m-r445/",
-              "image": "/product-images/m-r445.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/m-r445.png",
               "benefits": [],
               "applications": [
                 "Specifically designed for Marine Applications that benefit from the elimination of exothermic reaction issues common with composite materials. It bonds similar materials while generating no heat during curing, resulting in no gel coat 'witness marks'."
@@ -3854,7 +3854,7 @@
               "industry": "marine_industry",
               "chemistry": "Modified Epoxy",
               "url": "https://forzabuilt.com/product/m-r478/",
-              "image": "/product-images/m-r420.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/m-r420.png",
               "benefits": [
                 "Excellent bond strength",
                 "Impact and weather resistant",
@@ -3892,7 +3892,7 @@
               "industry": "marine_industry",
               "chemistry": "Solvent Based",
               "url": "",
-              "image": "/product-images/M-S750.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/M-S750.png",
               "benefits": [
                 "Works with cyanoacrylate adhesives",
                 "Increases adhesion with high bond tapes and other adhesives",
@@ -3927,7 +3927,7 @@
               "industry": "composites_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/tac-734g/",
-              "image": "/product-images/tac-734g.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Composites/tac-734g.png",
               "benefits": [
                 "React New Site Already"
               ],
@@ -3960,7 +3960,7 @@
               "industry": "composites_industry",
               "chemistry": "Solvent Based",
               "url": "",
-              "image": "/product-images/TAC-735R.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Composites/TAC-735R.png",
               "benefits": [
                 "No HAPS",
                 "High Tack Formulation",
@@ -4002,7 +4002,7 @@
               "industry": "composites_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/tac-738r/",
-              "image": "/product-images/tac-738r.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Composites/tac-738r.png",
               "benefits": [
                 "React New Site Already"
               ],
@@ -4034,7 +4034,7 @@
               "industry": "composites_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/tac-739r/",
-              "image": "/product-images/tac-739r.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Composites/tac-739r.png",
               "benefits": [
                 "React New Site Already"
               ],
@@ -4069,7 +4069,7 @@
               "industry": "composites_industry",
               "chemistry": "Solvent Based",
               "url": "",
-              "image": "/product-images/TAC-745.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Composites/TAC-745.png",
               "benefits": [
                 "California compliant",
                 "Epoxy resin compatible",
@@ -4106,7 +4106,7 @@
               "industry": "composites_industry",
               "chemistry": "Solvent Based",
               "url": "",
-              "image": "/product-images/TAC-850GR.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Composites/TAC-850GR.png",
               "benefits": [
                 "React New Site Already"
               ],
@@ -4133,7 +4133,7 @@
               "industry": "composites_industry",
               "chemistry": "Modified Silane",
               "url": "",
-              "image": "/product-images/TAC-OS74.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Composites/TAC-OS74.png",
               "benefits": [
                 "Retains strong bond through impact, peel, flex, and changing temperatures",
                 "Contains no solvents or isocyanate",
@@ -4172,7 +4172,7 @@
               "industry": "composites_industry",
               "chemistry": "Methacrylate/MMA",
               "url": "",
-              "image": "/product-images/TAC-R750.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Composites/TAC-R750.png",
               "benefits": [
                 "Excellent bonding to a wide variety of substrates",
                 "1:1 ratio",
@@ -4210,7 +4210,7 @@
               "industry": "composites_industry",
               "chemistry": "Epoxy",
               "url": "",
-              "image": "/product-images/TAC-R760.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Composites/TAC-R760.png",
               "benefits": [
                 "1:1 ratio, easy mixing or dispensing",
                 "3 minute work life, 10 minute handling strength",
@@ -4251,7 +4251,7 @@
               "industry": "composites_industry",
               "chemistry": "Modified Epoxy",
               "url": "",
-              "image": "/product-images/TAC-R777.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Composites/TAC-R777.png",
               "benefits": [
                 "1:1 ratio, easy mixing/dispensing",
                 "Minimal surface preparation required",
@@ -4304,7 +4304,7 @@
               "industry": "transportation_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/t-c222/",
-              "image": "/product-images/t-c222.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Transportation/t-c222.png",
               "benefits": [],
               "applications": [
                 "Specifically designed to laminate and bond laminates, unbacked vinyl, carpeting, and headliners to metals, composites, and treated lumber in transportation applications.",
@@ -4362,7 +4362,7 @@
               "industry": "transportation_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/t-c225/",
-              "image": "/product-images/t-c225.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Transportation/t-c225.png",
               "benefits": [],
               "applications": [
                 "Specifically designed for bonding foams, backed vinyl, laminates, and carpeting in transportation applications where a bulk non",
@@ -4417,7 +4417,7 @@
               "industry": "transportation_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/tc452/",
-              "image": "/product-images/tc452.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Transportation/tc452.png",
               "benefits": [],
               "applications": [
                 "Specifically designed to permanently bond plastics, metals, treated wood, foams of all types, insulation materials, fabric, carpet, backed vinyl, and FRP materials in the transportation industry.",
@@ -4486,7 +4486,7 @@
               "industry": "transportation_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/tc453/",
-              "image": "/product-images/tc453.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Transportation/tc453.png",
               "benefits": [],
               "applications": [
                 "Specifically designed to permanently bond plastic laminates, metals, treated wood, foams, insulation materials, fabrics, carpet backed vinyl, and FRP materials in Transportation Applications.",
@@ -4554,7 +4554,7 @@
               "industry": "transportation_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/tc454/",
-              "image": "/product-images/tc454.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Transportation/tc454.png",
               "benefits": [],
               "applications": [
                 "Specifically designed to permanently bond foams, cork, backed vinyls, polystyrene, porous insulation materials, and virgin rubber. This adhesive is ideal for various transportation applications that require a strong, lasting bond.",
@@ -4621,7 +4621,7 @@
               "industry": "transportation_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/tc456/",
-              "image": "/product-images/tc456.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Transportation/tc456.png",
               "benefits": [],
               "applications": [
                 "A multi",
@@ -4679,7 +4679,7 @@
               "industry": "transportation_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/tc466/",
-              "image": "/product-images/tc466.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Transportation/tc466.png",
               "benefits": [],
               "applications": [
                 "Specifically designed to permanently bond foams, cork, backed vinyls, porous insulation materials, and virgin rubber in various transportation applications. This adhesive is ideal for transportation applications requiring strong, durable bonds.",
@@ -4746,7 +4746,7 @@
               "industry": "transportation_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/tc467/",
-              "image": "/product-images/tc467.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Transportation/tc467.png",
               "benefits": [],
               "applications": [
                 "Specifically designed to permanently bond foams, cork, backed vinyl, polystyrene, porous insulation materials, and virgin rubber, especially in transportation applications where higher temperature resistance is needed.",
@@ -4851,7 +4851,7 @@
               "industry": "transportation_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/t-c485/",
-              "image": "/product-images/t-c485.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Transportation/t-c485.png",
               "benefits": [],
               "applications": [
                 "Specifically designed to bond unbacked vinyl, carpeting, laminates, headliners to metals, composites, and treated lumber in transportation applications with extreme temperature requirements.",
@@ -4920,7 +4920,7 @@
               "industry": "transportation_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/t-osa155/",
-              "image": "/product-images/t-osa155.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Transportation/t-osa155.png",
               "benefits": [],
               "applications": [
                 "Used to promote adhesion in transportation applications that include: painted surfaces, bare metals, and plastics"
@@ -4969,7 +4969,7 @@
               "industry": "transportation_industry",
               "chemistry": "Modified Epoxy",
               "url": "https://forzabuilt.com/product/t-r679/",
-              "image": "/product-images/t-r679.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Transportation/t-r679.png",
               "benefits": [],
               "applications": [
                 "Specifically designed for structural bonding and sealing applications in transportation, offering high strength under flex and vibration.",
@@ -5002,7 +5002,7 @@
               "industry": "transportation_industry",
               "chemistry": "",
               "url": "",
-              "image": "/product-images/T-R682.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Transportation/T-R682.png",
               "benefits": [
                 "???"
               ],
@@ -5027,7 +5027,7 @@
               "industry": "transportation_industry",
               "chemistry": "Methacrylate/MMA",
               "url": "https://forzabuilt.com/product/t-r785/",
-              "image": "/product-images/t-r785.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Transportation/t-r785.png",
               "benefits": [],
               "applications": [
                 "Specifically designed for structural bonding applications in transportation where high",
@@ -5102,7 +5102,7 @@
               "industry": "transportation_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/t-s596/",
-              "image": "/product-images/t-s596.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Transportation/t-s596.png",
               "benefits": [],
               "applications": [
                 "Specifically designed to increase adhesive performance with ultra high bond structural tapes and other adhesives in transportation applications. It increases adhesive performance on polyethylene, polypropylene, ABS, PET/PBT, metal, and painted surfaces."
@@ -5155,7 +5155,7 @@
               "industry": "construction_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/cc501/",
-              "image": "/product-images/cc501.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/cc501.png",
               "benefits": [],
               "applications": [
                 "A CA",
@@ -5188,7 +5188,7 @@
               "industry": "construction_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/cc503/",
-              "image": "/product-images/cc503-aa.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/cc503-aa.png",
               "benefits": [],
               "applications": [
                 "A low",
@@ -5223,7 +5223,7 @@
               "industry": "construction_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/cc507/",
-              "image": "/product-images/cc507.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/cc507.png",
               "benefits": [],
               "applications": [
                 "A high",
@@ -5298,7 +5298,7 @@
               "industry": "construction_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/cc513/",
-              "image": "/product-images/cc513.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/cc513.png",
               "benefits": [],
               "applications": [
                 "A non",
@@ -5329,7 +5329,7 @@
               "industry": "construction_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/cc515/",
-              "image": "/product-images/cc515.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/cc515.png",
               "benefits": [],
               "applications": [
                 "An aggressive, fast",
@@ -5360,7 +5360,7 @@
               "industry": "construction_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/cc519/",
-              "image": "/product-images/cc519.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/cc519.png",
               "benefits": [],
               "applications": [
                 "A California",
@@ -5433,7 +5433,7 @@
               "industry": "construction_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/c-c360/",
-              "image": "/product-images/c-c360.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/c-c360.png",
               "benefits": [
                 "Excellent Weather Resistance",
                 "Excellent Coverage",
@@ -5476,7 +5476,7 @@
               "industry": "construction_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/c-c551/",
-              "image": "/product-images/c-c551.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/c-c551.png",
               "benefits": [
                 "Non",
                 "Flammable",
@@ -5543,7 +5543,7 @@
               "industry": "construction_industry",
               "chemistry": "Modified Silane",
               "url": "https://forzabuilt.com/product/c-oa5/",
-              "image": "/product-images/c-oa5.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/c-oa5.png",
               "benefits": [],
               "applications": [
                 "Specially designed for adhering and sealing roofing membranes and flashing materials, including:",
@@ -5620,7 +5620,7 @@
               "industry": "construction_industry",
               "chemistry": "Modified Silane",
               "url": "https://forzabuilt.com/product/c-oa52/",
-              "image": "/product-images/c-oa52.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/c-oa52.png",
               "benefits": [],
               "applications": [
                 "A performance polymer adhesive with high initial strength, designed specifically for construction applications, including:",
@@ -5686,7 +5686,7 @@
               "industry": "construction_industry",
               "chemistry": "Modified Silane",
               "url": "",
-              "image": "/product-images/C-OA77.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/C-OA77.png",
               "benefits": [
                 "Universal compatibility",
                 "High bond strength",
@@ -5719,7 +5719,7 @@
               "industry": "construction_industry",
               "chemistry": "Modified Silane",
               "url": "https://forzabuilt.com/product/c-oa98/",
-              "image": "/product-images/c-oa98.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/c-oa98.png",
               "benefits": [],
               "applications": [
                 "A permanent structural bond for interior and exterior construction applications. This product bonds a large variety of construction",
@@ -5798,7 +5798,7 @@
               "industry": "construction_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/c-osa/",
-              "image": "/product-images/c-osa.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/c-osa.png",
               "benefits": [],
               "applications": [
                 "Used to promote adhesion in construction applications to painted surfaces, bare metals, plastics."
@@ -5854,7 +5854,7 @@
               "industry": "construction_industry",
               "chemistry": "Methacrylate/MMA",
               "url": "https://forzabuilt.com/product/c-r329/",
-              "image": "/product-images/c-r329.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/c-r329.png",
               "benefits": [],
               "applications": [
                 "Used in bonding engineered thermoplastics, thermosets, composites, and metal structural elements in any combination across numerous construction applications. It bonds a wide variety of rubber materials and a vast range of metals without the need for surface preparation, primers, or chemical wipes. Additionally, it effectively bonds composites and other substrates."
@@ -5926,7 +5926,7 @@
               "industry": "construction_industry",
               "chemistry": "Modified Epoxy",
               "url": "https://forzabuilt.com/product/c-r552/",
-              "image": "/product-images/c-r552.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/c-r552.png",
               "benefits": [],
               "applications": [
                 "Specially designed as a high",
@@ -5997,7 +5997,7 @@
               "industry": "construction_industry",
               "chemistry": "Epoxy",
               "url": "https://forzabuilt.com/product/c-r560/",
-              "image": "/product-images/c-r560.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/c-r560.png",
               "benefits": [],
               "applications": [
                 "Provides a tenacious bond to wood, concrete, fiberglass, and most thermoset plastics for many construction applications, including:",
@@ -6052,7 +6052,7 @@
               "industry": "construction_industry",
               "chemistry": "Solvent Based",
               "url": "",
-              "image": "/product-images/C-S538.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/C-S538.png",
               "benefits": [
                 "Works with cyanoacrylate adhesives",
                 "Increases adhesion with high bond tapes and other adhesives",
@@ -6082,7 +6082,7 @@
               "industry": "construction_industry",
               "chemistry": "Water Based",
               "url": "https://forzabuilt.com/product/c-w6106/",
-              "image": "/product-images/c-w6106.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/c-w6106.png",
               "benefits": [],
               "applications": [
                 "Specifically used for wood joinery, millwork, and trim assembly in the manufacturing of countertops."
@@ -6108,7 +6108,7 @@
               "industry": "construction_industry",
               "chemistry": "Solvent Based",
               "url": "",
-              "image": "/product-images/TU603.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/TU603.png",
               "benefits": [
                 "Excellent adhesion to a wide variety of porous and non",
                 "porous substrates.",
@@ -6150,7 +6150,7 @@
               "industry": "construction_industry",
               "chemistry": "Solvent Based",
               "url": "",
-              "image": "/product-images/TU615.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/TU615.png",
               "benefits": [
                 "Aggressive tack for fast, secure bonding",
                 "Excellent adhesion to porous and non",
@@ -6188,7 +6188,7 @@
               "industry": "construction_industry",
               "chemistry": "Modified Silane",
               "url": "",
-              "image": "/product-images/TU-OS50.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/TU-OS50.png",
               "benefits": [
                 "Flows smoothly into joints for flat, even coverage with less labor",
                 "Stands up to weather and UV, flexible, durable, and crack",
@@ -6339,7 +6339,7 @@
               "industry": "industrial_industry",
               "chemistry": "",
               "url": "",
-              "image": "/product-images/OA75.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OA75.png",
               "benefits": [
                 "Easy application",
                 "Ultra",
@@ -6370,7 +6370,7 @@
               "industry": "industrial_industry",
               "chemistry": "Modified Silane",
               "url": "https://forzabuilt.com/product/os10/",
-              "image": "/product-images/os10.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/os10.png",
               "benefits": [],
               "applications": [
                 "Seals a large variety of materials including:",
@@ -6479,7 +6479,7 @@
               "industry": "industrial_industry",
               "chemistry": "Modified Silane",
               "url": "https://forzabuilt.com/product/os2/",
-              "image": "/product-images/os2.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/os2.png",
               "benefits": [],
               "applications": [
                 "Seals a large variety of materials including:",
@@ -6589,7 +6589,7 @@
               "industry": "industrial_industry",
               "chemistry": "Modified Silane",
               "url": "",
-              "image": "/product-images/OS2 WT.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OS2 WT.png",
               "benefits": [
                 "Retains strong bond through impact, peel, flex and changing temperature",
                 "Easily apply by extrusion or trowel",
@@ -6636,7 +6636,7 @@
               "industry": "industrial_industry",
               "chemistry": "Modified Silane",
               "url": "https://forzabuilt.com/product/os20/",
-              "image": "/product-images/os20.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/os20.png",
               "benefits": [],
               "applications": [
                 "Seals a large variety of materials including:",
@@ -6745,7 +6745,7 @@
               "industry": "industrial_industry",
               "chemistry": "Modified Silane",
               "url": "https://forzabuilt.com/product/os24/",
-              "image": "/product-images/os24.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/os24.png",
               "benefits": [],
               "applications": [
                 "Ideal for interior and exterior applications requiring permanent structural bonding. Bonds a large variety of materials including:",
@@ -6855,7 +6855,7 @@
               "industry": "industrial_industry",
               "chemistry": "Modified Silane",
               "url": "https://forzabuilt.com/product/os25/",
-              "image": "/product-images/os25.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/os25.png",
               "benefits": [],
               "applications": [
                 "Designed to seal a wide variety of substrate materials and joints in applications where extreme flexibility is needed."
@@ -6926,7 +6926,7 @@
               "industry": "industrial_industry",
               "chemistry": "Modified Silane",
               "url": "",
-              "image": "/product-images/OS31.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OS31.png",
               "benefits": [
                 "???"
               ],
@@ -6951,7 +6951,7 @@
               "industry": "industrial_industry",
               "chemistry": "Silicone",
               "url": "https://forzabuilt.com/product/os35/",
-              "image": "/product-images/os35.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/os35.png",
               "benefits": [
                 "High weather resistant",
                 "Multi",
@@ -7034,7 +7034,7 @@
               "industry": "industrial_industry",
               "chemistry": "Silicone",
               "url": "https://forzabuilt.com/product/os37/",
-              "image": "/product-images/os37.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/os37.png",
               "benefits": [
                 "Ceramic Tile",
                 "Glass",
@@ -7113,7 +7113,7 @@
               "industry": "industrial_industry",
               "chemistry": "Silicone",
               "url": "",
-              "image": "/product-images/OS45.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OS45.png",
               "benefits": [
                 "Anti",
                 "fungal",
@@ -7142,7 +7142,7 @@
               "industry": "industrial_industry",
               "chemistry": "Silicone",
               "url": "https://forzabuilt.com/product/os55/",
-              "image": "/product-images/os55.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/os55.png",
               "benefits": [
                 "Excellent UV resistance, Does not crack, collapse in direct sunlight",
                 "Multi",
@@ -7184,7 +7184,7 @@
               "industry": "industrial_industry",
               "chemistry": "Modified Silane",
               "url": "https://forzabuilt.com/product/os61/",
-              "image": "/product-images/os61.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/os61.png",
               "benefits": [
                 "Self",
                 "leveling",
@@ -7272,7 +7272,7 @@
               "industry": "insulation_industry",
               "chemistry": "Modified Silane",
               "url": "https://forzabuilt.com/product/r-os8/",
-              "image": "/product-images/r-os8.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Insulation/r-os8.png",
               "benefits": [],
               "applications": [
                 "A premium performance adhesive utilizing hybrid polymer technology, specifically designed for high velocity air conditioning, refrigeration, ventilation, and air distribution units. It is ideal for both indoor and outdoor applications"
@@ -7300,7 +7300,7 @@
               "industry": "insulation_industry",
               "chemistry": "Silicone",
               "url": "https://forzabuilt.com/product/r-os84/",
-              "image": "/product-images/r-os84.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Insulation/r-os84.png",
               "benefits": [],
               "applications": [
                 "Specifically designed as a high",
@@ -7332,7 +7332,7 @@
               "industry": "marine_industry",
               "chemistry": "Modified Silane",
               "url": "https://forzabuilt.com/product/m-os789/",
-              "image": "/product-images/m-os789.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/m-os789.png",
               "benefits": [],
               "applications": [
                 "Designed to seal a large variety of materials in boat manufacturing:",
@@ -7406,7 +7406,7 @@
               "industry": "marine_industry",
               "chemistry": "Modified Silane",
               "url": "https://forzabuilt.com/product/m-os796/",
-              "image": "/product-images/m-os796.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/m-os796.png",
               "benefits": [
                 "Retains strong bond through impact, peel, flex and changing temperature",
                 "Easily apply by extrusion, spray or trowel",
@@ -7508,7 +7508,7 @@
               "industry": "composites_industry",
               "chemistry": "Modified Silane",
               "url": "",
-              "image": "/product-images/TAC-OS7.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Composites/TAC-OS7.png",
               "benefits": [
                 "Retains strong seal through impact, peel, flex, and changing temperature",
                 "Non",
@@ -7553,7 +7553,7 @@
               "industry": "composites_industry",
               "chemistry": "Silicone",
               "url": "https://forzabuilt.com/product/tac-os75/",
-              "image": "/product-images/tac-os75.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Composites/tac-os75.png",
               "benefits": [
                 "React New Site Already"
               ],
@@ -7594,7 +7594,7 @@
               "industry": "transportation_industry",
               "chemistry": "Modified Silane",
               "url": "https://forzabuilt.com/product/t-oa152/",
-              "image": "/product-images/t-oa152.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Transportation/t-oa152.png",
               "benefits": [
                 "Retains strong bond through impact, peel, flex, and changing temperatures",
                 "Contains no solvents or iscyanates",
@@ -7682,7 +7682,7 @@
               "industry": "transportation_industry",
               "chemistry": "Modified Silane",
               "url": "https://forzabuilt.com/product/t-oa156/",
-              "image": "/product-images/t-oa156.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Transportation/t-oa156.png",
               "benefits": [],
               "applications": [
                 "Specifically designed for mounting and bonding metals, plastics, FRP materials, and treated wood where structural strength is required, making it ideal for various transportation applications.",
@@ -7757,7 +7757,7 @@
               "industry": "transportation_industry",
               "chemistry": "Modified Silane",
               "url": "https://forzabuilt.com/product/t-oa177/",
-              "image": "/product-images/t-oa177.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Transportation/t-oa177.png",
               "benefits": [],
               "applications": [
                 "Specifically designed for mounting and bonding of metals, plastics, FRP materials, and treated wood, in various transportation applications without the need of fasteners.",
@@ -7834,7 +7834,7 @@
               "industry": "transportation_industry",
               "chemistry": "Modified Silane",
               "url": "",
-              "image": "/product-images/T-OS150.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Transportation/T-OS150.png",
               "benefits": [
                 "Retains strong seal through impact, peel, flex, and changing temperatures",
                 "Easy apply by extrusion, spray, or trowel",
@@ -7888,7 +7888,7 @@
               "industry": "transportation_industry",
               "chemistry": "Modified Silane",
               "url": "https://forzabuilt.com/product/t-os151/",
-              "image": "/product-images/t-os151.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Transportation/t-os151.png",
               "benefits": [],
               "applications": [
                 "Specifically designed for versatile sealing across both interior and exterior applications in transportation.",
@@ -7967,7 +7967,7 @@
               "industry": "transportation_industry",
               "chemistry": "Silicone",
               "url": "https://forzabuilt.com/product/t-os164/",
-              "image": "/product-images/t-os164.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Transportation/t-os164.png",
               "benefits": [],
               "applications": [
                 "A food",
@@ -8044,7 +8044,7 @@
               "industry": "construction_industry",
               "chemistry": "Modified Silane",
               "url": "",
-              "image": "/product-images/C-OA52W.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/C-OA52W.png",
               "benefits": [
                 "Can be used on a variety of substrates",
                 "Excellent adhesion to both porous and non",
@@ -8081,7 +8081,7 @@
               "industry": "construction_industry",
               "chemistry": "Silicone",
               "url": "https://forzabuilt.com/product/c-os55/",
-              "image": "/product-images/c-os55.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/c-os55.png",
               "benefits": [],
               "applications": [
                 "A general",
@@ -8152,7 +8152,7 @@
               "industry": "construction_industry",
               "chemistry": "Modified Silane",
               "url": "https://forzabuilt.com/product/c-os9/",
-              "image": "/product-images/c-os9.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/c-os9.png",
               "benefits": [],
               "applications": [
                 "Designed for universal sealing applications in the construction industry, including:",
@@ -8235,7 +8235,7 @@
               "industry": "construction_industry",
               "chemistry": "Modified Silane",
               "url": "",
-              "image": "/product-images/TU-OA40.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/TU-OA40.png",
               "benefits": [
                 "High initial green strength reduces material slippage or shifting.",
                 "Removes from concrete without defacing the concrete",
@@ -8274,7 +8274,7 @@
               "industry": "construction_industry",
               "chemistry": "Modified Silane",
               "url": "",
-              "image": "/product-images/TU-OS45.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/TU-OS45.png",
               "benefits": [
                 "Flexible, high movement accommodation (low modulus)",
                 "Excellent UV and weather resistance long exterior life",
@@ -8323,7 +8323,7 @@
               "industry": "industrial_industry",
               "chemistry": "",
               "url": "",
-              "image": "/product-images/T103.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/T103.png",
               "benefits": [
                 "???"
               ],
@@ -8392,7 +8392,7 @@
               "industry": "industrial_industry",
               "chemistry": "Acrylic Foam",
               "url": "https://forzabuilt.com/product/t215/",
-              "image": "/product-images/t215.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/t215.png",
               "benefits": [
                 ".045? Thick Foam",
                 "Can withstand a wide range of weathering and temperature conditions without losing adhesion",
@@ -8435,7 +8435,7 @@
               "industry": "industrial_industry",
               "chemistry": "Acrylic Foam",
               "url": "https://forzabuilt.com/product/t220/",
-              "image": "/product-images/t220.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/t220.png",
               "benefits": [
                 "Can withstand a wide range of weathering and temperature conditions without losing adhesion",
                 "Replaces screw, riveting and welding",
@@ -8478,7 +8478,7 @@
               "industry": "industrial_industry",
               "chemistry": "Acrylic Foam",
               "url": "",
-              "image": "/product-images/T226.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/T226.png",
               "benefits": [
                 "Can withstand a wide range of weathering and temperature conditions without losing adhesion",
                 "Reduces weight & replaces screw, riveting and welding",
@@ -8514,7 +8514,7 @@
               "industry": "industrial_industry",
               "chemistry": "Acrylic Foam",
               "url": "https://forzabuilt.com/product/t305/",
-              "image": "/product-images/t305.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/t305.png",
               "benefits": [
                 "High",
                 "quality design assures long",
@@ -8607,7 +8607,7 @@
               "industry": "industrial_industry",
               "chemistry": "Thermal",
               "url": "",
-              "image": "/product-images/T350.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/T350.png",
               "benefits": [
                 "The polyethylene foam tape is coated with a high tack rubber adhesive, ensuring a strong and immediate bond upon application.",
                 "This adhesive offers exceptional gripping power, making it perfect for applications where secure adhesion is crucial.",
@@ -8642,7 +8642,7 @@
               "industry": "industrial_industry",
               "chemistry": "",
               "url": "",
-              "image": "/product-images/T446.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/T446.png",
               "benefits": [
                 "???"
               ],
@@ -8708,7 +8708,7 @@
               "industry": "industrial_industry",
               "chemistry": "Rubber Based",
               "url": "",
-              "image": "/product-images/T454.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/T454.png",
               "benefits": [
                 "Excellent Sheer Properties",
                 "Aggressive Adhesion"
@@ -8734,7 +8734,7 @@
               "industry": "industrial_industry",
               "chemistry": "Rubber Based",
               "url": "",
-              "image": "/product-images/T461.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/T461.png",
               "benefits": [
                 "Offers excellent adhesion to a wide range of surfaces, including plastics, metals, glass, and more.",
                 "Provides a strong and reliable bond",
@@ -8766,7 +8766,7 @@
               "industry": "industrial_industry",
               "chemistry": "",
               "url": "",
-              "image": "/product-images/T462.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/T462.png",
               "benefits": [
                 "???"
               ],
@@ -8791,7 +8791,7 @@
               "industry": "industrial_industry",
               "chemistry": "Transfer",
               "url": "https://forzabuilt.com/product/t464/",
-              "image": "/product-images/t464.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/t464.png",
               "benefits": [
                 "Works exceptionally well in cold weather",
                 "Provides strong bond to cold or damp surfaces",
@@ -8888,7 +8888,7 @@
               "industry": "industrial_industry",
               "chemistry": "",
               "url": "",
-              "image": "/product-images/T515.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/T515.png",
               "benefits": [
                 "???"
               ],
@@ -8951,7 +8951,7 @@
               "industry": "industrial_industry",
               "chemistry": "",
               "url": "",
-              "image": "/product-images/T600.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/T600.png",
               "benefits": [
                 "3/16? Thick Foam",
                 "Low density foam",
@@ -9014,7 +9014,7 @@
               "industry": "industrial_industry",
               "chemistry": "Double Coated",
               "url": "",
-              "image": "/product-images/T715.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/T715.png",
               "benefits": [
                 "Works exceptionally well in cold weather",
                 "Provides strong bond to cold or damp surfaces",
@@ -9052,7 +9052,7 @@
               "industry": "industrial_industry",
               "chemistry": "",
               "url": "",
-              "image": "/product-images/T900.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/T900.png",
               "benefits": [
                 "Soft, resilient and easily worked by hand, yet adheres instantly to most uncleaned surfaces.",
                 "Has excellent weathering characteristics while retaining adhesion and elasticity in both hot and cold environments.",
@@ -9081,7 +9081,7 @@
               "industry": "industrial_industry",
               "chemistry": "",
               "url": "",
-              "image": "/product-images/T950.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/T950.png",
               "benefits": [
                 "Cold weather adhesive performs well over a wide temperature range",
                 "Excellent performance in demanding heat and humidity conditions",
@@ -9110,7 +9110,7 @@
               "industry": "industrial_industry",
               "chemistry": "",
               "url": "",
-              "image": "/product-images/T970.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/T970.png",
               "benefits": [
                 "Flame resistant. Meets U.L. 746C (File E 122798) and 723, Class L low flammability rating (File R 7311)",
                 "Forza aluminum foil tape 425 can be certified to meet L",
@@ -9157,7 +9157,7 @@
               "industry": "insulation_industry",
               "chemistry": "Acrylic Foam",
               "url": "https://forzabuilt.com/product/r-t600/",
-              "image": "/product-images/r-t600.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Insulation/r-t600.png",
               "benefits": [],
               "applications": [
                 "Specifically engineered for insulation applications, preventing thermal transfer between metals. It is ideal for use in metal building insulation, providing effective thermal protection in a wide range of environments"
@@ -9182,7 +9182,7 @@
               "industry": "insulation_industry",
               "chemistry": "Acrylic Foam",
               "url": "https://forzabuilt.com/product/r-t620/",
-              "image": "/product-images/r-t620.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Insulation/r-t620.png",
               "benefits": [],
               "applications": [
                 "Specifically designed as a thermal break tape for insulation applications that require enhanced rugged performance. It effectively prevents thermal transfer between metals and ideally suited for metal building insulation applications, providing reliable thermal protection in demanding environments."
@@ -9207,7 +9207,7 @@
               "industry": "insulation_industry",
               "chemistry": "Double Coated",
               "url": "https://forzabuilt.com/product/r-t860/",
-              "image": "/product-images/r-t860.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Insulation/r-t860.png",
               "benefits": [],
               "applications": [
                 "Specifically designed and engineered for cold weather applications where excellent initial tack and extreme temperature requirements are necessary. Ideally suited for:",
@@ -9243,7 +9243,7 @@
               "industry": "marine_industry",
               "chemistry": "Acrylic Foam",
               "url": "https://forzabuilt.com/product/m-t815/",
-              "image": "/product-images/m-t815.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/m-t815.png",
               "benefits": [],
               "applications": [
                 "Bonds plastics, metals, woods, papers, and silicones used in marine applications.",
@@ -9315,7 +9315,7 @@
               "industry": "marine_industry",
               "chemistry": "Acrylic Foam",
               "url": "https://forzabuilt.com/product/m-t820/",
-              "image": "/product-images/m-t820.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/m-t820.png",
               "benefits": [],
               "applications": [
                 "Bonds plastics, metals, woods, papers, and silicones used in marine applications.",
@@ -9392,7 +9392,7 @@
               "industry": "composites_industry",
               "chemistry": "Acrylic Foam",
               "url": "",
-              "image": "/product-images/TAC-T700.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Composites/TAC-T700.png",
               "benefits": [
                 "High quality design assures long",
                 "lasting performance.",
@@ -9432,7 +9432,7 @@
               "industry": "transportation_industry",
               "chemistry": "Acrylic Foam",
               "url": "",
-              "image": "/product-images/T-T1420 (ext seal).png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Transportation/T-T1420 (ext seal).png",
               "benefits": [
                 "Extremely high sealing and bonding performance for hard to stick surfaces",
                 "Immediate seal with no oozing (typical of liquid sealants)",
@@ -9478,7 +9478,7 @@
               "industry": "transportation_industry",
               "chemistry": "Acrylic Foam",
               "url": "",
-              "image": "/product-images/T-T246.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Transportation/T-T246.png",
               "benefits": [
                 "Can withstand a wide range of weathering and temperature conditions without losing adhesion",
                 "Reduces weight & replaces screw, riveting and welding",
@@ -9514,7 +9514,7 @@
               "industry": "transportation_industry",
               "chemistry": "Acrylic Foam",
               "url": "https://forzabuilt.com/product/t-t415/",
-              "image": "/product-images/t-t415.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Transportation/t-t415.png",
               "benefits": [],
               "applications": [
                 "Specially designed for bonding and mounting to a wide range of substrates in transportation applications, including aluminum, stainless steel, composites, plastics, acrylics, and ABS plastic in the commercial vehicle market.",
@@ -9592,7 +9592,7 @@
               "industry": "transportation_industry",
               "chemistry": "Acrylic Foam",
               "url": "https://forzabuilt.com/product/t-t420/",
-              "image": "/product-images/t-t420.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Transportation/t-t420.png",
               "benefits": [],
               "applications": [
                 "Specially designed for bonding and mounting to a wide range of substrates, including aluminum, stainless steel, composites, plastics, acrylics, and ABS plastic in the commercial vehicle market.",
@@ -9670,7 +9670,7 @@
               "industry": "transportation_industry",
               "chemistry": "Acrylic Foam",
               "url": "https://forzabuilt.com/product/t-t430/",
-              "image": "/product-images/t-t430.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Transportation/t-t430.png",
               "benefits": [],
               "applications": [
                 "Provides excellent adhesion and sealing to a wide range of surfaces and conditions in transportation applications including: porous, low energy, cold, and damp surfaces.",
@@ -9731,7 +9731,7 @@
               "industry": "transportation_industry",
               "chemistry": "Acrylic Foam",
               "url": "",
-              "image": "/product-images/T-T1200.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Transportation/T-T1200.png",
               "benefits": [
                 "Low density foam",
                 "Remains pliable at temperatures of",
@@ -9766,7 +9766,7 @@
               "industry": "construction_industry",
               "chemistry": "Acrylic Foam",
               "url": "https://forzabuilt.com/product/c-t500/",
-              "image": "/product-images/c-t500.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/c-t500.png",
               "benefits": [],
               "applications": [
                 "Used for gap filling and sealing in construction applications, including:",
@@ -9833,7 +9833,7 @@
               "industry": "construction_industry",
               "chemistry": "Double Coated",
               "url": "https://forzabuilt.com/product/c-t5100/",
-              "image": "/product-images/c-t5100.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/c-t5100.png",
               "benefits": [],
               "applications": [
                 "Used for bonding and mounting applications in construction, including:",
@@ -9914,7 +9914,7 @@
               "industry": "construction_industry",
               "chemistry": "Acrylic Foam",
               "url": "https://forzabuilt.com/product/c-t550/",
-              "image": "/product-images/c-t550.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/c-t550.png",
               "benefits": [],
               "applications": [
                 "Specially designed for bonding and mounting to a broad range of substrates in various construction applications, including:",
@@ -9993,7 +9993,7 @@
               "industry": "construction_industry",
               "chemistry": "Acrylic Foam",
               "url": "https://forzabuilt.com/product/c-t553/",
-              "image": "/product-images/c-t553.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/c-t553.png",
               "benefits": [],
               "applications": [
                 "Specially designed for bonding and mounting to a broad range of substrates across various construction applications, including:",
@@ -10072,7 +10072,7 @@
               "industry": "construction_industry",
               "chemistry": "Acrylic Foam",
               "url": "https://forzabuilt.com/product/c-t557/",
-              "image": "/product-images/c-t557.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/c-t557.png",
               "benefits": [],
               "applications": [
                 "Specially designed for bonding and mounting to a broad range of substrates across various construction applications, including:",
@@ -10150,7 +10150,7 @@
               "industry": "construction_industry",
               "chemistry": "Acrylic Foam",
               "url": "https://forzabuilt.com/product/c-t564/",
-              "image": "/product-images/c-t564.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/c-t564.png",
               "benefits": [],
               "applications": [
                 "Used in various mounting applications in construction, including:",
@@ -10199,7 +10199,7 @@
               "industry": "construction_industry",
               "chemistry": "Acrylic Foam",
               "url": "https://forzabuilt.com/product/c-t731/",
-              "image": "/product-images/c-t731.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/c-t731.png",
               "benefits": [],
               "applications": [
                 "Used for bonding and mounting applications across various construction projects, including:",
@@ -10244,7 +10244,7 @@
               "industry": "construction_industry",
               "chemistry": "Acrylic",
               "url": "",
-              "image": "/product-images/TU-800.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/TU-800.png",
               "benefits": [
                 "Superior bond strength for air and vapor barrier continuity.",
                 "Easy to apply by hand; requires only firm pressure for adhesion.",
