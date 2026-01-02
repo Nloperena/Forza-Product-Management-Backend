@@ -43,7 +43,8 @@
     "sync-images-to-json": "ts-node src/scripts/syncImageUrlsToJson.ts",
     "list-vercel-media": "ts-node src/scripts/listVercelBlobMedia.ts",
     "list-all-media": "ts-node src/scripts/listAllMediaFromDatabase.ts",
-    "update-transportation-images": "ts-node src/scripts/updateTransportationImageNames.ts"
+    "update-transportation-images": "ts-node src/scripts/updateTransportationImageNames.ts",
+    "update-construction-images": "ts-node src/scripts/updateConstructionImageNames.ts"
   },
   "keywords": [
     "forza",
