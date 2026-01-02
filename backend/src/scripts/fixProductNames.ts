@@ -28,6 +28,10 @@ function cleanProductName(name: string, productId: string): string {
   cleaned = cleaned.replace(new RegExp(`^${productId}\\s*[-–—]?\\s*`, 'i'), '');
   cleaned = cleaned.trim();
   
+  // Remove any leading dashes or spaces that might remain
+  cleaned = cleaned.replace(/^[-–—\s]+/, '');
+  cleaned = cleaned.trim();
+  
   // Format as "ProductID - Product Name" (using regular hyphen)
   if (cleaned && cleaned !== productId) {
     return `${productId} - ${cleaned}`;
@@ -51,8 +55,22 @@ async function fixProductNames() {
       const oldName = row.name;
       const oldFullName = row.full_name;
       
-      const newName = cleanProductName(oldName, productId);
-      const newFullName = cleanProductName(oldFullName, productId);
+      // Check if name already has correct format but with double dashes
+      let newName = oldName;
+      let newFullName = oldFullName;
+      
+      // Fix double dash patterns like " - –" or " – -"
+      if (oldName.includes(' - –') || oldName.includes(' – -') || oldName.includes(' – –')) {
+        newName = oldName.replace(/\s*[-–—]\s*[-–—]\s*/g, ' - ').replace(/\s+/g, ' ').trim();
+      } else {
+        newName = cleanProductName(oldName, productId);
+      }
+      
+      if (oldFullName.includes(' - –') || oldFullName.includes(' – -') || oldFullName.includes(' – –')) {
+        newFullName = oldFullName.replace(/\s*[-–—]\s*[-–—]\s*/g, ' - ').replace(/\s+/g, ' ').trim();
+      } else {
+        newFullName = cleanProductName(oldFullName, productId);
+      }
       
       if (newName !== oldName || newFullName !== oldFullName) {
         await client.query(
