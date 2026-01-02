@@ -127,15 +127,17 @@ class ProductImageNameUpdater {
     
     // Always update to ensure it matches the exact filename
     const oldImageUrl = product.image || '(no image)';
+    
+    // Force update - always set to the correct URL
     product.image = newImageUrl;
+    this.updatedCount++;
     
     if (oldImageUrl !== newImageUrl) {
-      console.log(`✅ Updating ${productId}:`);
+      console.log(`✅ Updating ${productId} in JSON:`);
       console.log(`   Old: ${oldImageUrl}`);
       console.log(`   New: ${newImageUrl}`);
-      this.updatedCount++;
     } else {
-      console.log(`✓ ${productId} already has correct image URL`);
+      console.log(`✓ ${productId} - JSON already correct, ensuring consistency`);
     }
   }
 
@@ -179,6 +181,10 @@ class ProductImageNameUpdater {
       // Connect to database if needed
       if (updateDatabase) {
         console.log('🔌 Connecting to database...');
+        const isHeroku = !!process.env.DATABASE_URL && process.env.DATABASE_URL.includes('amazonaws.com');
+        if (isHeroku) {
+          console.log('🌐 Detected Heroku/Production database');
+        }
         await databaseService.connect();
         await databaseService.initializeDatabase();
         this.productModel = databaseService.isPostgres()
