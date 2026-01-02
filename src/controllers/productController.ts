@@ -103,6 +103,7 @@ export class ProductController {
       }
 
       const productData: Omit<Product, 'created_at' | 'updated_at'> = {
+        id: product_id, // Add id for compatibility
         product_id,
         name,
         full_name: name, // Set for compatibility

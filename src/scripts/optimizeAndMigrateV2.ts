@@ -176,8 +176,10 @@ class OptimizedMigrator {
       const existing = this.findExistingProduct(currentJson, productId);
 
       const product: Product = {
+        id: productId,
         product_id: productId,
         name: formattedName,
+        full_name: formattedName,
         description: existing?.description || (row['Applications'] || '').split('\n')[0].replace(/^|^\*|^-/, '').trim(),
         brand: brand,
         industry: industry,
@@ -192,6 +194,7 @@ class OptimizedMigrator {
         cleanup: row['Cleanup'] || existing?.cleanup || '',
         recommended_equipment: row['Recommended Equipment'] || existing?.recommended_equipment || '',
         published: existing ? existing.published : true,
+        benefits_count: benefits.length,
         last_edited: existing?.last_edited || new Date().toISOString()
       };
 
