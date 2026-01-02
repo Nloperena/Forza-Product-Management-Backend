@@ -40,7 +40,10 @@
     "optimize-migrate:live": "ts-node src/scripts/optimizeAndMigrateV2.ts --live",
     "fix-product-names": "ts-node src/scripts/fixProductNames.ts",
     "restore-vercel-images": "ts-node src/scripts/restoreVercelBlobImageUrls.ts",
-    "sync-images-to-json": "ts-node src/scripts/syncImageUrlsToJson.ts"
+    "sync-images-to-json": "ts-node src/scripts/syncImageUrlsToJson.ts",
+    "list-vercel-media": "ts-node src/scripts/listVercelBlobMedia.ts",
+    "list-all-media": "ts-node src/scripts/listAllMediaFromDatabase.ts",
+    "update-transportation-images": "ts-node src/scripts/updateTransportationImageNames.ts"
   },
   "keywords": [
     "forza",
