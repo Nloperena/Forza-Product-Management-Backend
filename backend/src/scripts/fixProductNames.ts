@@ -24,10 +24,11 @@ function cleanProductName(name: string, productId: string): string {
   cleaned = cleaned.replace(/^ForzaCLEAN\s*/i, '');
   
   // Remove product ID if it's at the start (to avoid duplication)
-  cleaned = cleaned.replace(new RegExp(`^${productId}\\s*-?\\s*`, 'i'), '');
+  // Also remove any dashes or spaces after the product ID
+  cleaned = cleaned.replace(new RegExp(`^${productId}\\s*[-–—]?\\s*`, 'i'), '');
   cleaned = cleaned.trim();
   
-  // Format as "ProductID - Product Name"
+  // Format as "ProductID - Product Name" (using regular hyphen)
   if (cleaned && cleaned !== productId) {
     return `${productId} - ${cleaned}`;
   }
