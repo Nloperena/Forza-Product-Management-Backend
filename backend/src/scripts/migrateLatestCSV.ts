@@ -158,11 +158,14 @@ class LatestCSVMigrator {
       const applications = this.parseList(row['Applications'] || row['Applications ']);
       const sizing = this.parseList(row['Size'] || row['Size ']);
 
+      // Clean and format product name consistently
+      const formattedName = this.cleanProductName(row['Product Name'] || '', productId);
+
       const product: Product = {
         id: productId, 
         product_id: productId,
-        name: row['Product Name'] || '',
-        full_name: `${productId} ${row['Product Name'] || ''}`.trim(),
+        name: formattedName,
+        full_name: formattedName,
         description: (row['Applications'] || '').split('\n')[0].replace(/^|^\*|^-/, '').trim(),
         brand: family,
         industry: industry,
@@ -215,6 +218,32 @@ class LatestCSVMigrator {
       .filter(item => item.length > 0 && item !== '"' && item !== '•' && item !== '*');
   }
 
+  private cleanProductName(productName: string, productId: string): string {
+    if (!productName) return '';
+    
+    let cleaned = productName.trim();
+    
+    // Remove brand prefixes
+    cleaned = cleaned.replace(/^ForzaBOND®\s*/i, '');
+    cleaned = cleaned.replace(/^ForzaTAPE®\s*/i, '');
+    cleaned = cleaned.replace(/^ForzaSEAL®\s*/i, '');
+    cleaned = cleaned.replace(/^ForzaCLEAN®\s*/i, '');
+    cleaned = cleaned.replace(/^ForzaBOND\s*/i, '');
+    cleaned = cleaned.replace(/^ForzaTAPE\s*/i, '');
+    cleaned = cleaned.replace(/^ForzaSEAL\s*/i, '');
+    cleaned = cleaned.replace(/^ForzaCLEAN\s*/i, '');
+    
+    // Remove product ID if it's at the start (to avoid duplication)
+    cleaned = cleaned.replace(new RegExp(`^${productId}\\s*-?\\s*`, 'i'), '');
+    cleaned = cleaned.trim();
+    
+    // Format as "ProductID - Product Name"
+    if (cleaned) {
+      return `${productId} - ${cleaned}`;
+    }
+    return productId;
+  }
+
   private updateJSON() {
     if (this.dryRun) {
       console.log('⏭️  Skipping JSON update (dry run)');
@@ -257,6 +286,8 @@ class LatestCSVMigrator {
         if (existingProduct.technical && existingProduct.technical.length > 0) {
           product.technical = existingProduct.technical;
         }
+        // Don't preserve old name if it has brand prefix - use our cleaned name instead
+        // (product.name is already set correctly above)
       }
 
       organized[brand].products[industry].products.push(product);
