@@ -60,3 +60,9 @@ async function listProductIds() {
 
 listProductIds();
 
+
+
+
+
+
+

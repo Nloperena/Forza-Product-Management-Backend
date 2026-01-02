@@ -76,7 +76,6 @@ export class ProductController {
       const {
         product_id,
         name,
-        full_name,
         description,
         brand,
         industry,
@@ -87,26 +86,27 @@ export class ProductController {
         applications,
         technical,
         sizing,
+        color,
+        cleanup,
+        recommended_equipment,
         published = true,
         last_edited
       } = req.body;
 
       // Validate required fields
-      if (!product_id || !name || !full_name || !brand || !industry) {
+      if (!product_id || !name || !brand || !industry) {
         res.status(400).json({
           success: false,
-          message: 'Missing required fields: product_id, name, full_name, brand, industry'
+          message: 'Missing required fields: product_id, name, brand, industry'
         });
         return;
       }
 
-      // Calculate benefits count
-      const benefits_count = Array.isArray(benefits) ? benefits.length : 0;
-
-      const productData: Omit<Product, 'id' | 'created_at' | 'updated_at'> = {
+      const productData: Omit<Product, 'created_at' | 'updated_at'> = {
+        id: product_id, // Add id for compatibility
         product_id,
         name,
-        full_name,
+        full_name: name, // Set for compatibility
         description: description || '',
         brand,
         industry,
@@ -117,8 +117,11 @@ export class ProductController {
         applications: Array.isArray(applications) ? applications : [],
         technical: Array.isArray(technical) ? technical : [],
         sizing: Array.isArray(sizing) ? sizing : [],
+        color: color || '',
+        cleanup: cleanup || '',
+        recommended_equipment: recommended_equipment || '',
         published: Boolean(published),
-        benefits_count,
+        benefits_count: Array.isArray(benefits) ? benefits.length : 0, // Set for compatibility
         last_edited: last_edited || new Date().toISOString()
       };
 
@@ -127,7 +130,7 @@ export class ProductController {
       res.status(201).json({
         success: true,
         message: 'Product created successfully',
-        product_id: newProduct.id
+        product_id: newProduct.product_id
       });
     } catch (error) {
       console.error('Error creating product:', error);
@@ -298,7 +301,6 @@ export class ProductController {
         return {
           'Product ID': product.product_id,
           'Name': product.name,
-          'Full Name': product.full_name,
           'Description': product.description || '',
           'Brand': product.brand,
           'Industry': product.industry,
@@ -309,8 +311,10 @@ export class ProductController {
           'Applications': applications,
           'Technical Properties': technical,
           'Sizing': sizing,
+          'Color': product.color || '',
+          'Cleanup': product.cleanup || '',
+          'Equipment': product.recommended_equipment || '',
           'Published': product.published ? 'Yes' : 'No',
-          'Benefits Count': product.benefits_count,
           'Created At': product.created_at,
           'Updated At': product.updated_at,
           'Last Edited': product.last_edited || ''
@@ -325,7 +329,6 @@ export class ProductController {
       const columnWidths = [
         { wch: 15 }, // Product ID
         { wch: 20 }, // Name
-        { wch: 30 }, // Full Name
         { wch: 50 }, // Description
         { wch: 20 }, // Brand
         { wch: 20 }, // Industry
@@ -336,8 +339,10 @@ export class ProductController {
         { wch: 50 }, // Applications
         { wch: 50 }, // Technical Properties
         { wch: 30 }, // Sizing
+        { wch: 15 }, // Color
+        { wch: 20 }, // Cleanup
+        { wch: 20 }, // Equipment
         { wch: 10 }, // Published
-        { wch: 15 }, // Benefits Count
         { wch: 20 }, // Created At
         { wch: 20 }, // Updated At
         { wch: 20 }  // Last Edited

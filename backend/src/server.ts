@@ -33,7 +33,9 @@ const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:3001',
   'http://localhost:5173',
+  'http://localhost:8080', // Local development on 8080
   'https://product-mangement-system-template-s.vercel.app', // Current Vercel domain
+  'https://forza-built-com.vercel.app', // Forza Built app
   process.env['FRONTEND_URL'] || 'http://localhost:3000'
 ];
 
@@ -43,22 +45,34 @@ const corsOptions = {
     // Allow requests with no origin (mobile apps, curl, etc.)
     if (!origin) return callback(null, true);
     
+    // In development, be more permissive
+    if (process.env.NODE_ENV !== 'production') {
+      // Allow localhost on any port for development
+      if (origin.startsWith('http://localhost:') || origin.startsWith('http://127.0.0.1:')) {
+        return callback(null, true);
+      }
+    }
+    
     // Allow all Vercel domains
     if (origin.endsWith('.vercel.app') || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      callback(new Error('Not allowed by CORS'));
+      console.warn(`CORS: Rejected origin: ${origin}`);
+      // Don't throw error - just reject with false to send 403 instead of 500
+      callback(null, false);
     }
   },
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'HEAD'],
+  credentials: false, // Changed to false to match frontend
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'HEAD', 'PATCH'],
   allowedHeaders: [
     'Origin', 
     'X-Requested-With', 
     'Content-Type', 
     'Accept', 
-    'Authorization'
-  ]
+    'Authorization',
+    'Access-Control-Allow-Origin'
+  ],
+  exposedHeaders: ['Content-Length', 'Content-Type']
 };
 
 app.use(cors(corsOptions));
@@ -104,6 +118,20 @@ app.options('*', (req, res) => {
 
 // Serve product images directly from /product-images URL
 app.use('/product-images', express.static(path.join(__dirname, '../public/uploads/product-images'), {
+  setHeaders: (res, filePath) => {
+    // Apply CORS headers to all static assets
+    res.setHeader('Access-Control-Allow-Origin', '*'); 
+    res.setHeader('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS');
+
+    // Apply stronger caching to images
+    if (filePath.match(/\.(jpg|jpeg|png|gif|svg)$/)) {
+      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable'); // 1 year
+    }
+  }
+}));
+
+// Serve scraped images from /scraped-images URL
+app.use('/scraped-images', express.static(path.join(__dirname, '../public/scraped-images'), {
   setHeaders: (res, filePath) => {
     // Apply CORS headers to all static assets
     res.setHeader('Access-Control-Allow-Origin', '*'); 

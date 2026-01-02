@@ -134,9 +134,12 @@ const ProductsPage: React.FC = () => {
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <Badge variant="outline" className="text-blue-600 border-blue-200">
-            Read-Only Access
-          </Badge>
+          <Link to="/products/new">
+            <Button className="gap-2">
+              <Plus className="h-4 w-4" />
+              Add New Product
+            </Button>
+          </Link>
         </div>
       </div>
 
@@ -181,6 +184,14 @@ const ProductsPage: React.FC = () => {
           )}
 
           <div className="flex-1" />
+
+          {/* Add Product Button */}
+          <Link to="/products/new">
+            <Button className="gap-2">
+              <Plus className="h-4 w-4" />
+              Add New Product
+            </Button>
+          </Link>
 
           {/* View Mode Toggle */}
           <div className="flex items-center gap-1 border border-gray-200 rounded-lg p-1">
@@ -307,6 +318,16 @@ const ProductsPage: React.FC = () => {
             </div>
           </div>
         )}
+
+        {/* Add Product Button under Filters */}
+        <div className="flex justify-end">
+          <Link to="/products/new">
+            <Button className="gap-2">
+              <Plus className="h-4 w-4" />
+              Add New Product
+            </Button>
+          </Link>
+        </div>
       </div>
 
       {/* Products Grid/List */}

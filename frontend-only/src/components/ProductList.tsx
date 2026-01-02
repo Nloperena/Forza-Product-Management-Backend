@@ -50,7 +50,6 @@ const ProductList: React.FC<ProductListProps> = ({ onSelectProduct, selectedProd
       filtered = filtered.filter(product => {
         const searchableText = [
           product.name,
-          product.full_name,
           product.product_id,
           product.description,
           ...product.benefits,
@@ -215,10 +214,10 @@ const ProductList: React.FC<ProductListProps> = ({ onSelectProduct, selectedProd
         ) : (
           <div className="divide-y divide-gray-100">
             {filteredProducts.map((product) => {
-              const isSelected = selectedProduct?.id === product.id;
+              const isSelected = selectedProduct?.product_id === product.product_id;
               return (
                 <button
-                  key={product.id}
+                  key={product.product_id}
                   onClick={() => onSelectProduct(product)}
                   className={`
                     w-full text-left p-4 hover:bg-blue-50 transition-colors
@@ -229,7 +228,7 @@ const ProductList: React.FC<ProductListProps> = ({ onSelectProduct, selectedProd
                     <div className="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden bg-gray-100 border border-gray-200">
                       <ImageSkeleton
                         src={getProductImageUrl(product, apiBaseUrl)}
-                        alt={product.full_name || product.name}
+                        alt={product.name}
                         className="w-full h-full object-cover"
                         aspectRatio="square"
                         objectFit="cover"
@@ -242,7 +241,7 @@ const ProductList: React.FC<ProductListProps> = ({ onSelectProduct, selectedProd
                         font-semibold text-lg mb-1 truncate
                         ${isSelected ? 'text-blue-900' : 'text-gray-900'}
                       `}>
-                        {product.full_name || product.name}
+                        {product.name}
                       </h3>
                       <p className="text-sm text-gray-600 truncate">
                         ID: {product.product_id}

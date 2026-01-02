@@ -8,8 +8,8 @@ export interface Product {
   id: string;
   product_id: string;
   name: string;
-  full_name?: string;
-  description?: string;
+  full_name: string;
+  description: string;
   brand: string;
   industry: string;
   chemistry?: string;
@@ -18,10 +18,10 @@ export interface Product {
   benefits: string[];
   applications: string[];
   technical: TechnicalProperty[];
-  sizing?: Record<string, any>;
-  packaging?: string[];
-  tds_pdf?: string; // Technical Data Sheet PDF URL or path
-  sds_pdf?: string; // Safety Data Sheet PDF URL or path
+  sizing: string[];
+  color?: string;
+  cleanup?: string;
+  recommended_equipment?: string;
   published: boolean;
   benefits_count: number;
   last_edited?: string;
@@ -29,7 +29,6 @@ export interface Product {
 
 export interface ProductStats {
   total_products: number;
-  total_benefits: number;
   organized_date: string;
   hierarchy: string;
   notes: string;
@@ -57,19 +56,19 @@ export interface ProductFilters {
 
 export interface ProductFormData {
   product_id: string;
-  full_name: string;
+  name: string;
   description: string;
-  url: string;
   brand: string;
   industry: string;
   chemistry: string;
+  url: string;
   image: string;
-  published: boolean;
   benefits: string[];
   applications: string[];
   technical: TechnicalProperty[];
-  sizing?: Record<string, any>;
-  packaging?: string[];
-  tds_pdf?: string;
-  sds_pdf?: string;
+  sizing: string[];
+  color: string;
+  cleanup: string;
+  recommended_equipment: string;
+  published: boolean;
 }

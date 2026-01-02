@@ -34,7 +34,9 @@ class DatabaseService {
 
     this.pool = new Pool({
       connectionString,
-      ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+      ssl: process.env.NODE_ENV === 'production' || connectionString.includes('amazonaws.com') || connectionString.includes('heroku') 
+        ? { rejectUnauthorized: false } 
+        : false,
     });
 
     console.log('Connected to PostgreSQL database');
@@ -160,11 +162,14 @@ class DatabaseService {
           applications JSONB DEFAULT '[]',
           technical JSONB DEFAULT '[]',
           sizing JSONB DEFAULT '[]',
+          color TEXT,
+          cleanup TEXT,
+          recommended_equipment TEXT,
           published BOOLEAN DEFAULT false,
           benefits_count INTEGER DEFAULT 0,
-          last_edited TEXT,
           created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-          updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+          updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+          last_edited TEXT
         )
       `);
 
@@ -198,6 +203,17 @@ class DatabaseService {
       }
 
       console.log('PostgreSQL database initialized successfully');
+
+      // Ensure new columns exist
+      try {
+        await client.query(`
+          ALTER TABLE products ADD COLUMN IF NOT EXISTS color TEXT,
+          ADD COLUMN IF NOT EXISTS cleanup TEXT,
+          ADD COLUMN IF NOT EXISTS recommended_equipment TEXT
+        `);
+      } catch (alterError) {
+        console.warn('Error adding new columns (may already exist):', alterError);
+      }
     } finally {
       client.release();
     }

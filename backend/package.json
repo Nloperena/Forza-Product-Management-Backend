@@ -33,7 +33,12 @@
     "update-product-names-heroku": "ts-node src/scripts/updateProductNamesHeroku.ts",
     "update-product-names-heroku:live": "ts-node src/scripts/updateProductNamesHeroku.ts --live",
     "update-product-names-api": "ts-node src/scripts/updateProductNamesViaAPI.ts",
-    "update-product-names-api:live": "ts-node src/scripts/updateProductNamesViaAPI.ts --live"
+    "update-product-names-api:live": "ts-node src/scripts/updateProductNamesViaAPI.ts --live",
+    "migrate-latest-csv": "ts-node src/scripts/migrateLatestCSV.ts",
+    "migrate-latest-csv:live": "ts-node src/scripts/migrateLatestCSV.ts --live",
+    "optimize-migrate": "ts-node src/scripts/optimizeAndMigrateV2.ts",
+    "optimize-migrate:live": "ts-node src/scripts/optimizeAndMigrateV2.ts --live",
+    "fix-product-names": "ts-node src/scripts/fixProductNames.ts"
   },
   "keywords": [
     "forza",

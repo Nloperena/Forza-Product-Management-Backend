@@ -25,7 +25,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onEdit, onView }) =>
         <div className="flex items-start justify-between">
           <div className="flex-1 min-w-0">
             <CardTitle className="text-sm font-semibold text-gray-900 line-clamp-2 leading-tight">
-              {product.full_name || product.name}
+              {product.name}
             </CardTitle>
             <div className="flex items-center gap-2 mt-2">
               <Badge variant="outline" className={`text-xs ${brandColor}`}>
@@ -69,7 +69,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onEdit, onView }) =>
 
         {/* Benefits Count */}
         <div className="flex items-center justify-between text-xs text-gray-500 mb-3">
-          <span>{product.benefits_count} benefits</span>
+          <span>{product.benefits.length} benefits</span>
           {product.url && (
             <a
               href={product.url}

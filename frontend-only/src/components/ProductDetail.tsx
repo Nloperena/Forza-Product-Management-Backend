@@ -42,7 +42,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onProductUpdated
 
   const [formData, setFormData] = useState<ProductFormData>({
     product_id: product.product_id,
-    full_name: product.full_name || product.name,
+    name: product.name,
     description: product.description || '',
     url: product.url || '',
     brand: product.brand,
@@ -53,10 +53,10 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onProductUpdated
     benefits: Array.isArray(product.benefits) ? product.benefits : [],
     applications: Array.isArray(product.applications) ? product.applications : [],
     technical: normalizeTechnical(product.technical),
-    sizing: product.sizing && typeof product.sizing === 'object' ? product.sizing : {},
-    packaging: [],
-    tds_pdf: '',
-    sds_pdf: '',
+    sizing: Array.isArray(product.sizing) ? product.sizing : [],
+    color: product.color || '',
+    cleanup: product.cleanup || '',
+    recommended_equipment: product.recommended_equipment || '',
   });
 
   const imageUrl = getProductImageUrl(product, apiBaseUrl);
@@ -65,7 +65,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onProductUpdated
   useEffect(() => {
     setFormData({
       product_id: product.product_id,
-      full_name: product.full_name || product.name,
+      name: product.name,
       description: product.description || '',
       url: product.url || '',
       brand: product.brand,
@@ -76,26 +76,26 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onProductUpdated
       benefits: Array.isArray(product.benefits) ? product.benefits : [],
       applications: Array.isArray(product.applications) ? product.applications : [],
       technical: normalizeTechnical(product.technical),
-      sizing: product.sizing && typeof product.sizing === 'object' ? product.sizing : {},
-      packaging: [],
-      tds_pdf: '',
-      sds_pdf: '',
+      sizing: Array.isArray(product.sizing) ? product.sizing : [],
+      color: product.color || '',
+      cleanup: product.cleanup || '',
+      recommended_equipment: product.recommended_equipment || '',
     });
     setIsEditing(false);
-  }, [product.id]);
+  }, [product.product_id]);
 
   const handleInputChange = (field: keyof ProductFormData, value: any) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleArrayItemAdd = (field: 'benefits' | 'applications') => {
+  const handleArrayItemAdd = (field: 'benefits' | 'applications' | 'sizing') => {
     setFormData(prev => ({
       ...prev,
       [field]: [...prev[field], '']
     }));
   };
 
-  const handleArrayItemRemove = (field: 'benefits' | 'applications', index: number) => {
+  const handleArrayItemRemove = (field: 'benefits' | 'applications' | 'sizing', index: number) => {
     setFormData(prev => ({
       ...prev,
       [field]: prev[field].filter((_, i) => i !== index)
@@ -159,7 +159,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onProductUpdated
       const result = await productApi.updateProduct(updateId, updateData);
       console.log('Save result:', result);
       
-      showSuccess('Product Updated', `"${formData.full_name}" has been saved successfully!`);
+      showSuccess('Product Updated', `"${formData.name}" has been saved successfully!`);
       setIsEditing(false);
       
       // Refresh product data
@@ -234,13 +234,13 @@ Check the browser console (F12) for more details.`;
               {isEditing ? (
                 <input
                   type="text"
-                  value={formData.full_name}
-                  onChange={(e) => handleInputChange('full_name', e.target.value)}
+                  value={formData.name}
+                  onChange={(e) => handleInputChange('name', e.target.value)}
                   className="w-full text-4xl font-bold text-gray-900 mb-4 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               ) : (
                 <h1 className="text-4xl font-bold text-gray-900 mb-4">
-                  {product.full_name || product.name}
+                  {product.name}
                 </h1>
               )}
               <div className="flex flex-wrap items-center gap-3">
@@ -315,7 +315,7 @@ Check the browser console (F12) for more details.`;
                       // Reset form data to original product data
                       setFormData({
                         product_id: product.product_id,
-                        full_name: product.full_name || product.name,
+                        name: product.name,
                         description: product.description || '',
                         url: product.url || '',
                         brand: product.brand,
@@ -326,10 +326,10 @@ Check the browser console (F12) for more details.`;
                         benefits: Array.isArray(product.benefits) ? product.benefits : [],
                         applications: Array.isArray(product.applications) ? product.applications : [],
                         technical: normalizeTechnical(product.technical),
-                        sizing: product.sizing && typeof product.sizing === 'object' ? product.sizing : {},
-                        packaging: [],
-                        tds_pdf: '',
-                        sds_pdf: '',
+                        sizing: Array.isArray(product.sizing) ? product.sizing : [],
+                        color: product.color || '',
+                        cleanup: product.cleanup || '',
+                        recommended_equipment: product.recommended_equipment || '',
                       });
                     }}
                     disabled={saving}
@@ -467,6 +467,96 @@ Check the browser console (F12) for more details.`;
             )}
           </section>
         ) : null}
+
+        {/* Color, Cleanup, Recommended Equipment */}
+        <section className="mb-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="bg-white p-6 rounded-lg shadow-sm">
+            <h2 className="text-xl font-bold text-gray-900 mb-4">Color</h2>
+            {isEditing ? (
+              <input
+                type="text"
+                value={formData.color}
+                onChange={(e) => handleInputChange('color', e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
+                placeholder="e.g. Amber, Clear"
+              />
+            ) : (
+              <p className="text-lg text-gray-700">{product.color || 'Not specified'}</p>
+            )}
+          </div>
+          <div className="bg-white p-6 rounded-lg shadow-sm">
+            <h2 className="text-xl font-bold text-gray-900 mb-4">Cleanup</h2>
+            {isEditing ? (
+              <input
+                type="text"
+                value={formData.cleanup}
+                onChange={(e) => handleInputChange('cleanup', e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
+                placeholder="Cleanup details"
+              />
+            ) : (
+              <p className="text-lg text-gray-700">{product.cleanup || 'Not specified'}</p>
+            )}
+          </div>
+          <div className="bg-white p-6 rounded-lg shadow-sm">
+            <h2 className="text-xl font-bold text-gray-900 mb-4">Equipment</h2>
+            {isEditing ? (
+              <input
+                type="text"
+                value={formData.recommended_equipment}
+                onChange={(e) => handleInputChange('recommended_equipment', e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
+                placeholder="Recommended equipment"
+              />
+            ) : (
+              <p className="text-lg text-gray-700">{product.recommended_equipment || 'Not specified'}</p>
+            )}
+          </div>
+        </section>
+
+        {/* Sizing */}
+        <section className="mb-8 bg-white p-6 rounded-lg shadow-sm">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Sizing</h2>
+          {isEditing ? (
+            <div className="space-y-3">
+              {formData.sizing.map((size, index) => (
+                <div key={index} className="flex items-start gap-3">
+                  <input
+                    type="text"
+                    value={size}
+                    onChange={(e) => {
+                      const newSizing = [...formData.sizing];
+                      newSizing[index] = e.target.value;
+                      handleInputChange('sizing', newSizing);
+                    }}
+                    className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
+                  />
+                  <button
+                    onClick={() => handleArrayItemRemove('sizing', index)}
+                    className="p-2 text-red-600 hover:bg-red-50 rounded-lg"
+                  >
+                    <Trash2 className="h-5 w-5" />
+                  </button>
+                </div>
+              ))}
+              <button
+                onClick={() => handleArrayItemAdd('sizing')}
+                className="flex items-center gap-2 px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-lg"
+              >
+                <Plus className="h-5 w-5" />
+                Add Size
+              </button>
+            </div>
+          ) : (
+            <div className="flex flex-wrap gap-2">
+              {product.sizing?.map((size, index) => (
+                <span key={index} className="px-4 py-2 bg-gray-100 text-gray-800 rounded-lg text-lg">
+                  {size}
+                </span>
+              )) || <p className="text-lg text-gray-500 italic">No sizing information</p>}
+            </div>
+          )}
+        </section>
 
         {/* Benefits */}
         <section className="mb-8 bg-white p-6 rounded-lg shadow-sm">

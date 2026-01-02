@@ -210,3 +210,17 @@ curl http://localhost:5000/api/statistics
 - Production: Configure proper logging service
 - Database errors: Check SQLite file permissions
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

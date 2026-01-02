@@ -48,8 +48,8 @@ async function seedDatabase(): Promise<void> {
     await databaseService.connect();
     await databaseService.initializeDatabase();
     
-    const db = databaseService.getDatabase();
-    const productModel = new ProductModel(db);
+    // Initialize ProductModel - it will work with both SQLite and Postgres
+    const productModel = new ProductModel();
     
     // Load Forza products data
     const forzaDataPath = path.join(__dirname, '../../data/forza_products_organized.json');
@@ -86,13 +86,24 @@ async function seedDatabase(): Promise<void> {
     
     // Clear existing products (optional - remove this line if you want to keep existing data)
     console.log('🗑️  Clearing existing products...');
-    db.run('DELETE FROM products', (err) => {
-      if (err) {
-        console.error('Error clearing products:', err);
-      } else {
+    if (databaseService.isPostgres()) {
+      const client = await databaseService.getClient();
+      try {
+        await client.query('DELETE FROM products');
         console.log('✅ Existing products cleared');
+      } finally {
+        client.release();
       }
-    });
+    } else {
+      const db = databaseService.getDatabase();
+      db.run('DELETE FROM products', (err) => {
+        if (err) {
+          console.error('Error clearing products:', err);
+        } else {
+          console.log('✅ Existing products cleared');
+        }
+      });
+    }
     
     // Insert products in batches
     const batchSize = 50;
@@ -105,7 +116,8 @@ async function seedDatabase(): Promise<void> {
       
       for (const forzaProduct of batch) {
         try {
-          const productData: Omit<Product, 'id' | 'created_at' | 'updated_at'> = {
+          const productData: Omit<Product, 'created_at' | 'updated_at'> = {
+            id: forzaProduct.product_id,
             product_id: forzaProduct.product_id,
             name: forzaProduct.name,
             full_name: forzaProduct.full_name,
