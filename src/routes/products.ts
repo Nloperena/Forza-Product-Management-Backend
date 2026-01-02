@@ -526,6 +526,30 @@ router.post('/update-chemistry', async (req, res) => {
 });
 
 // POST /api/products - Create new product
+// POST /api/products/update-industrial-images - Update industrial product image URLs
+router.post('/update-industrial-images', async (req, res) => {
+  try {
+    console.log('🔧 Updating industrial product image URLs via API...');
+    
+    const { ProductionImageUpdater } = require('../scripts/updateProductionImageUrls');
+    const updater = new ProductionImageUpdater();
+    
+    await updater.updateProduction();
+    
+    res.json({
+      success: true,
+      message: 'Industrial product image URLs updated successfully'
+    });
+  } catch (error) {
+    console.error('❌ Error updating industrial images:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to update industrial product image URLs',
+      error: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+});
+
 router.post('/', (req, res) => getProductController().createProduct(req, res));
 
 // GET /api/products/:id - Get product by ID
