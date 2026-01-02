@@ -9,10 +9,10 @@ export interface TechnicalProperty {
 }
 
 export interface Product {
-  id?: string; // Kept for compatibility with old scripts
+  id: string; // Required for compatibility with existing scripts
   product_id: string; // Used as the primary identifier
   name: string;
-  full_name?: string; // Kept for compatibility with old scripts
+  full_name: string; // Required for compatibility
   description: string;
   brand: string;
   industry: string;
@@ -27,7 +27,7 @@ export interface Product {
   cleanup?: string;
   recommended_equipment?: string;
   published: boolean;
-  benefits_count?: number; // Kept for compatibility with old scripts
+  benefits_count: number; // Required for compatibility
   created_at?: string;
   updated_at?: string;
   last_edited?: string;
@@ -241,6 +241,7 @@ export class ProductModel {
         } else {
           const newProduct: Product = {
             ...product,
+            id: product.product_id, // Fallback for return object
             created_at: new Date().toISOString(),
             updated_at: new Date().toISOString()
           };
@@ -478,9 +479,10 @@ export class ProductModel {
 
   private parseProduct(row: any): Product {
     try {
+      const productId = row.product_id;
       return {
-        id: row.id?.toString(),
-        product_id: row.product_id,
+        id: row.id?.toString() || productId,
+        product_id: productId,
         name: row.name,
         full_name: row.full_name || row.name,
         description: row.description || '',
