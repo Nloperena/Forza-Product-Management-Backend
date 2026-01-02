@@ -1,5 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import { databaseService } from '../services/database';
+import { ProductModel } from '../models/Product';
 
 // Mapping of product_id to new image filename
 const PRODUCT_IMAGE_MAPPING: Record<string, string> = {
@@ -79,6 +81,8 @@ interface Product {
 class ProductImageNameUpdater {
   private jsonFilePath: string;
   private updatedCount: number = 0;
+  private dbUpdatedCount: number = 0;
+  private productModel: ProductModel | null = null;
 
   constructor() {
     this.jsonFilePath = path.join(__dirname, '../../data/forza_products_organized.json');
@@ -136,19 +140,98 @@ class ProductImageNameUpdater {
   }
 
   /**
+   * Update database with new image URLs
+   */
+  private async updateDatabaseImage(productId: string, newImageUrl: string): Promise<void> {
+    if (!this.productModel) return;
+
+    try {
+      const product = await this.productModel.getProductById(productId);
+      if (product) {
+        const oldUrl = product.image || '(no image)';
+        if (product.image !== newImageUrl) {
+          await this.productModel.updateProduct(product.id, {
+            image: newImageUrl
+          });
+          this.dbUpdatedCount++;
+          console.log(`   💾 Database: ${productId}`);
+          console.log(`      Old: ${oldUrl}`);
+          console.log(`      New: ${newImageUrl}`);
+        } else {
+          console.log(`   ✓ Database: ${productId} already has correct URL`);
+        }
+      } else {
+        console.log(`   ⚠️  Product ${productId} not found in database`);
+      }
+    } catch (error) {
+      console.error(`   ❌ Error updating database for ${productId}:`, error);
+    }
+  }
+
+  /**
    * Main update function
    */
-  async updateImageNames(): Promise<void> {
+  async updateImageNames(updateDatabase: boolean = true): Promise<void> {
     try {
       console.log('🖼️  Starting product image name update...');
       console.log(`📁 Reading JSON file: ${this.jsonFilePath}`);
+      
+      // Connect to database if needed
+      if (updateDatabase) {
+        console.log('🔌 Connecting to database...');
+        await databaseService.connect();
+        await databaseService.initializeDatabase();
+        this.productModel = databaseService.isPostgres()
+          ? new ProductModel()
+          : new ProductModel(databaseService.getDatabase());
+        console.log('✅ Database connected');
+      }
       
       // Read JSON file
       const jsonContent = fs.readFileSync(this.jsonFilePath, 'utf-8');
       const data = JSON.parse(jsonContent);
       
-      // Update all products
+      // Collect all products that need updating (always update products in mapping)
+      const productsToUpdate: Array<{productId: string, newUrl: string, industry: string}> = [];
+      
+      // First pass: collect all products in the mapping
+      const collectProducts = (obj: any): void => {
+        if (Array.isArray(obj)) {
+          obj.forEach(item => collectProducts(item));
+        } else if (obj && typeof obj === 'object') {
+          if (obj.product_id) {
+            const productId = obj.product_id;
+            const newFilename = PRODUCT_IMAGE_MAPPING[productId];
+            
+            if (newFilename) {
+              const industry = obj.industry || '';
+              const industryFolder = INDUSTRY_FOLDER_MAP[industry] || 'Industrial';
+              const newImageUrl = `${VERCEL_BLOB_BASE_URL}/product-images/${industryFolder}/${newFilename}`;
+              
+              productsToUpdate.push({ productId, newUrl: newImageUrl, industry });
+            }
+          }
+          
+          Object.keys(obj).forEach(key => {
+            collectProducts(obj[key]);
+          });
+        }
+      };
+      
+      collectProducts(data);
+      
+      console.log(`\n📊 Found ${productsToUpdate.length} products in mapping to update`);
+      
+      // Update JSON file
       this.updateProductsInObject(data);
+      
+      // Update database - always update all products in mapping
+      if (updateDatabase && productsToUpdate.length > 0) {
+        console.log('\n💾 Updating database...');
+        for (const { productId, newUrl } of productsToUpdate) {
+          await this.updateDatabaseImage(productId, newUrl);
+        }
+      }
       
       // Write updated JSON back to file
       console.log(`\n💾 Writing updated JSON to file...`);
@@ -159,11 +242,19 @@ class ProductImageNameUpdater {
       );
       
       console.log(`\n✅ Update completed!`);
-      console.log(`📊 Updated ${this.updatedCount} product image URLs`);
+      console.log(`📊 Updated ${this.updatedCount} product image URLs in JSON`);
+      if (updateDatabase) {
+        console.log(`📊 Updated ${this.dbUpdatedCount} product image URLs in database`);
+      }
       
     } catch (error) {
       console.error('❌ Error updating product image names:', error);
       throw error;
+    } finally {
+      if (updateDatabase && databaseService.isPostgres()) {
+        const pool = (databaseService as any).pool;
+        if (pool) await pool.end();
+      }
     }
   }
 }
