@@ -58,7 +58,8 @@ async function restoreOS61() {
     }
 
     // Create product data
-    const productData: Omit<Product, 'id' | 'created_at' | 'updated_at'> = {
+    const productData: Omit<Product, 'created_at' | 'updated_at'> = {
+      id: os61Product.product_id,
       product_id: os61Product.product_id,
       name: os61Product.name,
       full_name: os61Product.full_name,

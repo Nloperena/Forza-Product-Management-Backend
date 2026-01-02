@@ -116,7 +116,8 @@ async function seedDatabase(): Promise<void> {
       
       for (const forzaProduct of batch) {
         try {
-          const productData: Omit<Product, 'id' | 'created_at' | 'updated_at'> = {
+          const productData: Omit<Product, 'created_at' | 'updated_at'> = {
+            id: forzaProduct.product_id,
             product_id: forzaProduct.product_id,
             name: forzaProduct.name,
             full_name: forzaProduct.full_name,

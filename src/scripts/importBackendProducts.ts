@@ -73,7 +73,8 @@ async function importBackendProducts(): Promise<void> {
     
     for (const importProduct of newProducts) {
       try {
-        const productData: Omit<Product, 'id' | 'created_at' | 'updated_at'> = {
+        const productData: Omit<Product, 'created_at' | 'updated_at'> = {
+          id: importProduct.product_id,
           product_id: importProduct.product_id,
           name: importProduct.name,
           full_name: importProduct.full_name,

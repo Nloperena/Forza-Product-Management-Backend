@@ -20,6 +20,7 @@ async function addCT5530() {
 
     // Create minimal product data
     const newProduct = {
+      id: 'C-T5530',
       product_id: 'C-T5530',
       name: 'C-T5530',
       full_name: 'C-T5530',
