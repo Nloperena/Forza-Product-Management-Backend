@@ -50,7 +50,8 @@
     "update-product-image-names": "ts-node src/scripts/updateProductImageNames.ts",
     "verify-image-urls": "ts-node src/scripts/verifyImageUrls.ts",
     "sync-images-json-to-db": "ts-node src/scripts/syncImageUrlsFromJsonToDb.ts",
-    "force-update-industrial-images": "ts-node src/scripts/forceUpdateIndustrialImages.ts"
+    "force-update-industrial-images": "ts-node src/scripts/forceUpdateIndustrialImages.ts",
+    "update-production-images": "ts-node src/scripts/updateProductionImageUrls.ts"
   },
   "keywords": [
     "forza",
