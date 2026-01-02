@@ -76,7 +76,6 @@ export class ProductController {
       const {
         product_id,
         name,
-        full_name,
         description,
         brand,
         industry,
@@ -87,26 +86,25 @@ export class ProductController {
         applications,
         technical,
         sizing,
+        color,
+        cleanup,
+        recommended_equipment,
         published = true,
         last_edited
       } = req.body;
 
       // Validate required fields
-      if (!product_id || !name || !full_name || !brand || !industry) {
+      if (!product_id || !name || !brand || !industry) {
         res.status(400).json({
           success: false,
-          message: 'Missing required fields: product_id, name, full_name, brand, industry'
+          message: 'Missing required fields: product_id, name, brand, industry'
         });
         return;
       }
 
-      // Calculate benefits count
-      const benefits_count = Array.isArray(benefits) ? benefits.length : 0;
-
-      const productData: Omit<Product, 'id' | 'created_at' | 'updated_at'> = {
+      const productData: Omit<Product, 'created_at' | 'updated_at'> = {
         product_id,
         name,
-        full_name,
         description: description || '',
         brand,
         industry,
@@ -117,8 +115,10 @@ export class ProductController {
         applications: Array.isArray(applications) ? applications : [],
         technical: Array.isArray(technical) ? technical : [],
         sizing: Array.isArray(sizing) ? sizing : [],
+        color: color || '',
+        cleanup: cleanup || '',
+        recommended_equipment: recommended_equipment || '',
         published: Boolean(published),
-        benefits_count,
         last_edited: last_edited || new Date().toISOString()
       };
 
@@ -127,7 +127,7 @@ export class ProductController {
       res.status(201).json({
         success: true,
         message: 'Product created successfully',
-        product_id: newProduct.id
+        product_id: newProduct.product_id
       });
     } catch (error) {
       console.error('Error creating product:', error);
@@ -163,36 +163,45 @@ export class ProductController {
       delete updates.updated_at;
 
       // Recalculate benefits_count if benefits are being updated
-      if (updates.benefits && Array.isArray(updates.benefits)) {
+      if (updates.benefits !== undefined && Array.isArray(updates.benefits)) {
         updates.benefits_count = updates.benefits.length;
       }
+
+      console.log(`[UpdateProduct Controller] Updating product with ID: ${id}`);
+      console.log(`[UpdateProduct Controller] Update fields:`, Object.keys(updates));
 
       const updatedProduct = await this.productModel.updateProduct(id, updates);
 
       if (!updatedProduct) {
         res.status(404).json({
           success: false,
-          message: 'Product not found'
+          message: `Product with ID "${id}" not found`
         });
         return;
       }
 
       res.json({
         success: true,
-        message: 'Product updated successfully'
+        message: 'Product updated successfully',
+        product: updatedProduct
       });
     } catch (error) {
-      console.error('Error updating product:', error);
-      console.error('Product ID:', req.params.id);
-      console.error('Update data:', req.body);
+      console.error('[UpdateProduct Controller] Error updating product:', error);
+      console.error('[UpdateProduct Controller] Product ID:', req.params.id);
+      console.error('[UpdateProduct Controller] Update data:', JSON.stringify(req.body, null, 2));
       if (error instanceof Error) {
-        console.error('Error stack:', error.stack);
-        console.error('Error message:', error.message);
+        console.error('[UpdateProduct Controller] Error stack:', error.stack);
+        console.error('[UpdateProduct Controller] Error message:', error.message);
       }
-      res.status(500).json({
+      
+      // Provide more detailed error message
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      const statusCode = errorMessage.includes('not found') || errorMessage.includes('No product found') ? 404 : 500;
+      
+      res.status(statusCode).json({
         success: false,
         message: 'Failed to update product',
-        error: error instanceof Error ? error.message : 'Unknown error',
+        error: errorMessage,
         productId: req.params.id
       });
     }
@@ -289,7 +298,6 @@ export class ProductController {
         return {
           'Product ID': product.product_id,
           'Name': product.name,
-          'Full Name': product.full_name,
           'Description': product.description || '',
           'Brand': product.brand,
           'Industry': product.industry,
@@ -300,8 +308,10 @@ export class ProductController {
           'Applications': applications,
           'Technical Properties': technical,
           'Sizing': sizing,
+          'Color': product.color || '',
+          'Cleanup': product.cleanup || '',
+          'Equipment': product.recommended_equipment || '',
           'Published': product.published ? 'Yes' : 'No',
-          'Benefits Count': product.benefits_count,
           'Created At': product.created_at,
           'Updated At': product.updated_at,
           'Last Edited': product.last_edited || ''
@@ -316,7 +326,6 @@ export class ProductController {
       const columnWidths = [
         { wch: 15 }, // Product ID
         { wch: 20 }, // Name
-        { wch: 30 }, // Full Name
         { wch: 50 }, // Description
         { wch: 20 }, // Brand
         { wch: 20 }, // Industry
@@ -327,8 +336,10 @@ export class ProductController {
         { wch: 50 }, // Applications
         { wch: 50 }, // Technical Properties
         { wch: 30 }, // Sizing
+        { wch: 15 }, // Color
+        { wch: 20 }, // Cleanup
+        { wch: 20 }, // Equipment
         { wch: 10 }, // Published
-        { wch: 15 }, // Benefits Count
         { wch: 20 }, // Created At
         { wch: 20 }, // Updated At
         { wch: 20 }  // Last Edited

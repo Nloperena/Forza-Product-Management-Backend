@@ -9,10 +9,8 @@ export interface TechnicalProperty {
 }
 
 export interface Product {
-  id: string;
-  product_id: string;
+  product_id: string; // Used as the primary identifier
   name: string;
-  full_name: string;
   description: string;
   brand: string;
   industry: string;
@@ -22,11 +20,13 @@ export interface Product {
   benefits: string[];
   applications: string[];
   technical: TechnicalProperty[];
-  sizing?: string[];
+  sizing: string[];
+  color?: string;
+  cleanup?: string;
+  recommended_equipment?: string;
   published: boolean;
-  benefits_count: number;
-  created_at: string;
-  updated_at: string;
+  created_at?: string;
+  updated_at?: string;
   last_edited?: string;
 }
 
@@ -68,10 +68,8 @@ export class ProductModel {
 
     const sql = `
       CREATE TABLE IF NOT EXISTS products (
-        id TEXT PRIMARY KEY,
-        product_id TEXT UNIQUE NOT NULL,
+        product_id TEXT PRIMARY KEY,
         name TEXT NOT NULL,
-        full_name TEXT NOT NULL,
         description TEXT,
         brand TEXT NOT NULL,
         industry TEXT NOT NULL,
@@ -81,9 +79,11 @@ export class ProductModel {
         benefits TEXT NOT NULL,
         applications TEXT NOT NULL,
         technical TEXT NOT NULL,
-        sizing TEXT,
+        sizing TEXT NOT NULL,
+        color TEXT,
+        cleanup TEXT,
+        recommended_equipment TEXT,
         published BOOLEAN DEFAULT 1,
-        benefits_count INTEGER DEFAULT 0,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         last_edited DATETIME
@@ -149,19 +149,8 @@ export class ProductModel {
     if (this.isPostgres) {
       const client = await databaseService.getClient();
       try {
-        // Check if id is numeric - if so, search by both id and product_id
-        // If not numeric, only search by product_id
-        const isNumeric = !isNaN(Number(id));
-        let query: string;
-        let params: any[];
-        
-        if (isNumeric) {
-          query = 'SELECT * FROM products WHERE id = $1 OR product_id = $2';
-          params = [Number(id), id];
-        } else {
-          query = 'SELECT * FROM products WHERE product_id = $1';
-          params = [id];
-        }
+        const query = 'SELECT * FROM products WHERE product_id = $1';
+        const params = [id];
         
         const result = await client.query(query, params);
         if (result.rows.length > 0) {
@@ -179,9 +168,9 @@ export class ProductModel {
         return;
       }
       
-      const sql = 'SELECT * FROM products WHERE id = ? OR product_id = ?';
+      const sql = 'SELECT * FROM products WHERE product_id = ?';
       
-      this.db!.get(sql, [id, id], (err, row: any) => {
+      this.db!.get(sql, [id], (err, row: any) => {
         if (err) {
           reject(err);
         } else if (row) {
@@ -193,25 +182,26 @@ export class ProductModel {
     });
   }
 
-  async createProduct(product: Omit<Product, 'id' | 'created_at' | 'updated_at'>): Promise<Product> {
+  async createProduct(product: Omit<Product, 'created_at' | 'updated_at'>): Promise<Product> {
     if (this.isPostgres) {
       const client = await databaseService.getClient();
       try {
         const sql = `
           INSERT INTO products (
-            product_id, name, full_name, description, brand, industry,
+            product_id, name, description, brand, industry,
             chemistry, url, image, benefits, applications, technical, sizing,
-            published, benefits_count, last_edited
-          ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)
+            color, cleanup, recommended_equipment, published, last_edited
+          ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17)
           RETURNING *
         `;
         
         const params = [
-          product.product_id, product.name, product.full_name, product.description,
+          product.product_id, product.name, product.description,
           product.brand, product.industry, product.chemistry, product.url, product.image,
           JSON.stringify(product.benefits), JSON.stringify(product.applications),
           JSON.stringify(product.technical), JSON.stringify(product.sizing),
-          product.published, product.benefits_count, product.last_edited
+          product.color, product.cleanup, product.recommended_equipment,
+          product.published, product.last_edited
         ];
 
         const result = await client.query(sql, params);
@@ -222,21 +212,21 @@ export class ProductModel {
     }
 
     return new Promise((resolve, reject) => {
-      const id = product.product_id;
       const sql = `
         INSERT INTO products (
-          id, product_id, name, full_name, description, brand, industry,
+          product_id, name, description, brand, industry,
           chemistry, url, image, benefits, applications, technical, sizing,
-          published, benefits_count, last_edited
+          color, cleanup, recommended_equipment, published, last_edited
         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       `;
       
       const params = [
-        id, product.product_id, product.name, product.full_name, product.description,
+        product.product_id, product.name, product.description,
         product.brand, product.industry, product.chemistry, product.url, product.image,
         JSON.stringify(product.benefits), JSON.stringify(product.applications),
         JSON.stringify(product.technical), JSON.stringify(product.sizing),
-        product.published ? 1 : 0, product.benefits_count, product.last_edited
+        product.color, product.cleanup, product.recommended_equipment,
+        product.published ? 1 : 0, product.last_edited
       ];
 
       this.db!.run(sql, params, function(err) {
@@ -245,7 +235,6 @@ export class ProductModel {
         } else {
           const newProduct: Product = {
             ...product,
-            id,
             created_at: new Date().toISOString(),
             updated_at: new Date().toISOString()
           };
@@ -263,21 +252,22 @@ export class ProductModel {
         const values = [];
         let paramIndex = 1;
 
-        if (updates.name) { fields.push(`name = $${paramIndex++}`); values.push(updates.name); }
-        if (updates.full_name) { fields.push(`full_name = $${paramIndex++}`); values.push(updates.full_name); }
-        if (updates.description) { fields.push(`description = $${paramIndex++}`); values.push(updates.description); }
-        if (updates.brand) { fields.push(`brand = $${paramIndex++}`); values.push(updates.brand); }
-        if (updates.industry) { fields.push(`industry = $${paramIndex++}`); values.push(updates.industry); }
-        if (updates.chemistry) { fields.push(`chemistry = $${paramIndex++}`); values.push(updates.chemistry); }
-        if (updates.url) { fields.push(`url = $${paramIndex++}`); values.push(updates.url); }
-        if (updates.image) { fields.push(`image = $${paramIndex++}`); values.push(updates.image); }
-        if (updates.benefits) { fields.push(`benefits = $${paramIndex++}`); values.push(JSON.stringify(updates.benefits)); }
-        if (updates.applications) { fields.push(`applications = $${paramIndex++}`); values.push(JSON.stringify(updates.applications)); }
-        if (updates.technical) { fields.push(`technical = $${paramIndex++}`); values.push(JSON.stringify(updates.technical)); }
-        if (updates.sizing) { fields.push(`sizing = $${paramIndex++}`); values.push(JSON.stringify(updates.sizing)); }
-        if (updates.published !== undefined) { fields.push(`published = $${paramIndex++}`); values.push(updates.published); }
-        if (updates.benefits_count !== undefined) { fields.push(`benefits_count = $${paramIndex++}`); values.push(updates.benefits_count); }
-        if (updates.last_edited) { fields.push(`last_edited = $${paramIndex++}`); values.push(updates.last_edited); }
+        if (updates.name !== undefined) { fields.push(`name = $${paramIndex++}`); values.push(updates.name); }
+        if (updates.description !== undefined) { fields.push(`description = $${paramIndex++}`); values.push(updates.description); }
+        if (updates.brand !== undefined) { fields.push(`brand = $${paramIndex++}`); values.push(updates.brand); }
+        if (updates.industry !== undefined) { fields.push(`industry = $${paramIndex++}`); values.push(updates.industry); }
+        if (updates.chemistry !== undefined) { fields.push(`chemistry = $${paramIndex++}`); values.push(updates.chemistry); }
+        if (updates.url !== undefined) { fields.push(`url = $${paramIndex++}`); values.push(updates.url); }
+        if (updates.image !== undefined) { fields.push(`image = $${paramIndex++}`); values.push(updates.image); }
+        if (updates.benefits !== undefined) { fields.push(`benefits = $${paramIndex++}`); values.push(JSON.stringify(updates.benefits)); }
+        if (updates.applications !== undefined) { fields.push(`applications = $${paramIndex++}`); values.push(JSON.stringify(updates.applications)); }
+        if (updates.technical !== undefined) { fields.push(`technical = $${paramIndex++}`); values.push(JSON.stringify(updates.technical)); }
+        if (updates.sizing !== undefined) { fields.push(`sizing = $${paramIndex++}`); values.push(JSON.stringify(updates.sizing)); }
+        if (updates.color !== undefined) { fields.push(`color = $${paramIndex++}`); values.push(updates.color); }
+        if (updates.cleanup !== undefined) { fields.push(`cleanup = $${paramIndex++}`); values.push(updates.cleanup); }
+        if (updates.recommended_equipment !== undefined) { fields.push(`recommended_equipment = $${paramIndex++}`); values.push(updates.recommended_equipment); }
+        if (updates.published !== undefined) { fields.push(`published = $${paramIndex++}`); values.push(Boolean(updates.published)); }
+        if (updates.last_edited !== undefined) { fields.push(`last_edited = $${paramIndex++}`); values.push(updates.last_edited); }
 
         if (fields.length === 0) {
           throw new Error('No fields to update');
@@ -286,46 +276,16 @@ export class ProductModel {
         fields.push(`updated_at = $${paramIndex++}`);
         values.push(new Date().toISOString());
         
-        // Handle WHERE clause - try to match by product_id first (more reliable for string IDs)
-        // If id is numeric, use it; otherwise rely on product_id
-        const isNumericId = !isNaN(Number(id)) && id.toString().trim() !== '';
-        let whereClause: string;
-        
-        if (isNumericId) {
-          // If id is numeric, match by both id and product_id
-          const idParam1 = paramIndex++;
-          const idParam2 = paramIndex++;
-          values.push(Number(id));
-          values.push(id);
-          whereClause = `WHERE id = $${idParam1} OR product_id = $${idParam2}`;
-          console.log('Update SQL (numeric ID):', whereClause);
-        } else {
-          // If id is not numeric (like "T-R785"), match by product_id (case-insensitive)
-          const idParam = paramIndex++;
-          values.push(id);
-          // Use UPPER() for case-insensitive matching
-          whereClause = `WHERE UPPER(product_id) = UPPER($${idParam})`;
-          console.log('Update SQL (string ID):', whereClause, 'id:', id);
+        // Match by product_id
+        const idParam = paramIndex++;
+        values.push(id);
+        const sql = `UPDATE products SET ${fields.join(', ')} WHERE product_id = $${idParam} RETURNING *`;
+
+        const result = await client.query(sql, values);
+        if (result.rows.length > 0) {
+          return this.parseProduct(result.rows[0]);
         }
-
-        const sql = `UPDATE products SET ${fields.join(', ')} ${whereClause} RETURNING *`;
-
-        console.log('Update SQL:', sql);
-        console.log('Update values:', values);
-        console.log('Update paramIndex:', paramIndex);
-
-        try {
-          const result = await client.query(sql, values);
-          if (result.rows.length > 0) {
-            return this.parseProduct(result.rows[0]);
-          }
-          return null;
-        } catch (queryError: any) {
-          console.error('SQL Query Error:', queryError);
-          console.error('SQL:', sql);
-          console.error('Values:', values);
-          throw queryError;
-        }
+        return null;
       } finally {
         client.release();
       }
@@ -336,7 +296,6 @@ export class ProductModel {
       const values = [];
 
       if (updates.name) { fields.push('name = ?'); values.push(updates.name); }
-      if (updates.full_name) { fields.push('full_name = ?'); values.push(updates.full_name); }
       if (updates.description) { fields.push('description = ?'); values.push(updates.description); }
       if (updates.brand) { fields.push('brand = ?'); values.push(updates.brand); }
       if (updates.industry) { fields.push('industry = ?'); values.push(updates.industry); }
@@ -347,8 +306,10 @@ export class ProductModel {
       if (updates.applications) { fields.push('applications = ?'); values.push(JSON.stringify(updates.applications)); }
       if (updates.technical) { fields.push('technical = ?'); values.push(JSON.stringify(updates.technical)); }
       if (updates.sizing) { fields.push('sizing = ?'); values.push(JSON.stringify(updates.sizing)); }
+      if (updates.color) { fields.push('color = ?'); values.push(updates.color); }
+      if (updates.cleanup) { fields.push('cleanup = ?'); values.push(updates.cleanup); }
+      if (updates.recommended_equipment) { fields.push('recommended_equipment = ?'); values.push(updates.recommended_equipment); }
       if (updates.published !== undefined) { fields.push('published = ?'); values.push(updates.published ? 1 : 0); }
-      if (updates.benefits_count !== undefined) { fields.push('benefits_count = ?'); values.push(updates.benefits_count); }
       if (updates.last_edited) { fields.push('last_edited = ?'); values.push(updates.last_edited); }
 
       if (fields.length === 0) {
@@ -360,21 +321,18 @@ export class ProductModel {
       values.push(new Date().toISOString());
       values.push(id);
 
-      const sql = `UPDATE products SET ${fields.join(', ')} WHERE id = ? OR product_id = ?`;
-      values.push(id); // Add id again for the second WHERE condition
+      const sql = `UPDATE products SET ${fields.join(', ')} WHERE product_id = ?`;
 
       this.db!.run(sql, values, (err: any) => {
         if (err) {
           reject(err);
         } else {
-          // Check if any rows were affected
           this.db!.get('SELECT changes() as changes', [], (err2: any, row: any) => {
             if (err2) {
               reject(err2);
             } else if (row.changes === 0) {
               resolve(null);
             } else {
-              // Fetch the updated product using this instance
               this.getProductById(id).then(resolve).catch(reject);
             }
           });
@@ -387,7 +345,7 @@ export class ProductModel {
     if (this.isPostgres) {
       const client = await databaseService.getClient();
       try {
-        const sql = 'DELETE FROM products WHERE id = $1 OR product_id = $1';
+        const sql = 'DELETE FROM products WHERE product_id = $1';
         const result = await client.query(sql, [id]);
         return (result.rowCount || 0) > 0;
       } finally {
@@ -396,9 +354,9 @@ export class ProductModel {
     }
 
     return new Promise((resolve, reject) => {
-      const sql = 'DELETE FROM products WHERE id = ? OR product_id = ?';
+      const sql = 'DELETE FROM products WHERE product_id = ?';
       
-      this.db!.run(sql, [id, id], (err: any) => {
+      this.db!.run(sql, [id], (err: any) => {
         if (err) {
           reject(err);
         } else {
@@ -418,22 +376,17 @@ export class ProductModel {
     if (this.isPostgres) {
       const client = await databaseService.getClient();
       try {
-        const sql = `
-          SELECT 
-            COUNT(*) as total_products,
-            SUM(benefits_count) as total_benefits
-          FROM products
-        `;
+        const sql = 'SELECT COUNT(*) as total_products FROM products';
         
         const result = await client.query(sql);
         const row = result.rows[0];
         
         const stats: ProductStats = {
           total_products: parseInt(row.total_products) || 0,
-          total_benefits: parseInt(row.total_benefits) || 0,
+          total_benefits: 0,
           organized_date: new Date().toISOString().split('T')[0] || new Date().toISOString(),
           hierarchy: "Brand → Industry → Products",
-          notes: "Forza Products Management System Database"
+          notes: "Optimized Database"
         };
         return stats;
       } finally {
@@ -442,12 +395,7 @@ export class ProductModel {
     }
 
     return new Promise((resolve, reject) => {
-      const sql = `
-        SELECT 
-          COUNT(*) as total_products,
-          SUM(benefits_count) as total_benefits
-        FROM products
-      `;
+      const sql = 'SELECT COUNT(*) as total_products FROM products';
       
       this.db!.get(sql, [], (err, row: any) => {
         if (err) {
@@ -455,10 +403,10 @@ export class ProductModel {
         } else {
           const stats: ProductStats = {
             total_products: row.total_products || 0,
-            total_benefits: row.total_benefits || 0,
+            total_benefits: 0,
             organized_date: new Date().toISOString().split('T')[0] || new Date().toISOString(),
             hierarchy: "Brand → Industry → Products",
-            notes: "Forza Products Management System Database"
+            notes: "Optimized Database"
           };
           resolve(stats);
         }
@@ -501,9 +449,6 @@ export class ProductModel {
             if (!counts[row.brand]) {
               counts[row.brand] = {};
             }
-            if (!counts[row.brand]) {
-              counts[row.brand] = {};
-            }
             counts[row.brand][row.industry] = row.count;
           });
           
@@ -516,11 +461,9 @@ export class ProductModel {
   private parseProduct(row: any): Product {
     try {
       return {
-        id: row.id,
         product_id: row.product_id,
         name: row.name,
-        full_name: row.full_name,
-        description: row.description,
+        description: row.description || '',
         brand: row.brand,
         industry: row.industry,
         chemistry: row.chemistry,
@@ -529,16 +472,17 @@ export class ProductModel {
         benefits: this.parseJsonField(row.benefits, 'benefits'),
         applications: this.parseJsonField(row.applications, 'applications'),
         technical: this.parseJsonField(row.technical, 'technical'),
-        sizing: row.sizing ? this.parseJsonField(row.sizing, 'sizing') : undefined,
+        sizing: this.parseJsonField(row.sizing, 'sizing'),
+        color: row.color,
+        cleanup: row.cleanup,
+        recommended_equipment: row.recommended_equipment,
         published: Boolean(row.published),
-        benefits_count: row.benefits_count || 0,
         created_at: row.created_at,
         updated_at: row.updated_at,
         last_edited: row.last_edited
       };
     } catch (error) {
       console.error('Error parsing product:', error);
-      console.error('Problematic row:', row);
       throw error;
     }
   }

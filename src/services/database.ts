@@ -34,7 +34,9 @@ class DatabaseService {
 
     this.pool = new Pool({
       connectionString,
-      ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+      ssl: process.env.NODE_ENV === 'production' || connectionString.includes('amazonaws.com') || connectionString.includes('heroku') 
+        ? { rejectUnauthorized: false } 
+        : false,
     });
 
     console.log('Connected to PostgreSQL database');
@@ -149,7 +151,6 @@ class DatabaseService {
           id SERIAL PRIMARY KEY,
           product_id VARCHAR(255) UNIQUE NOT NULL,
           name VARCHAR(255) NOT NULL,
-          full_name VARCHAR(255),
           description TEXT,
           brand VARCHAR(100),
           industry VARCHAR(100),
@@ -160,15 +161,57 @@ class DatabaseService {
           applications JSONB DEFAULT '[]',
           technical JSONB DEFAULT '[]',
           sizing JSONB DEFAULT '[]',
+          color TEXT,
+          cleanup TEXT,
+          recommended_equipment TEXT,
           published BOOLEAN DEFAULT false,
-          benefits_count INTEGER DEFAULT 0,
-          last_edited TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
           created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-          updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+          updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+          last_edited TEXT
         )
       `);
 
+      // Migrate existing last_edited column from TIMESTAMP to TEXT if needed
+      try {
+        // Check current column type
+        const columnInfo = await client.query(`
+          SELECT data_type 
+          FROM information_schema.columns 
+          WHERE table_name = 'products' 
+          AND column_name = 'last_edited'
+        `);
+        
+        if (columnInfo.rows.length > 0 && columnInfo.rows[0].data_type === 'timestamp without time zone') {
+          // Convert TIMESTAMP to TEXT, preserving existing timestamp values as ISO strings
+          await client.query(`
+            ALTER TABLE products 
+            ALTER COLUMN last_edited TYPE TEXT 
+            USING CASE 
+              WHEN last_edited IS NULL THEN NULL 
+              ELSE last_edited::TEXT 
+            END
+          `);
+          console.log('Migrated last_edited column from TIMESTAMP to TEXT type');
+        } else if (columnInfo.rows.length > 0) {
+          console.log('last_edited column is already TEXT or different type:', columnInfo.rows[0].data_type);
+        }
+      } catch (migrationError: any) {
+        // Log error but don't fail initialization - column might not exist or migration already done
+        console.warn('[Migration] Note (may be expected):', migrationError.message);
+      }
+
       console.log('PostgreSQL database initialized successfully');
+
+      // Ensure new columns exist
+      try {
+        await client.query(`
+          ALTER TABLE products ADD COLUMN IF NOT EXISTS color TEXT,
+          ADD COLUMN IF NOT EXISTS cleanup TEXT,
+          ADD COLUMN IF NOT EXISTS recommended_equipment TEXT
+        `);
+      } catch (alterError) {
+        console.warn('Error adding new columns (may already exist):', alterError);
+      }
     } finally {
       client.release();
     }

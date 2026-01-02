@@ -1,10 +1,10 @@
 import { ProductModel } from '../models/Product';
 import { databaseService } from '../services/database';
 
-async function verifyImageUpdates() {
-  try {
-    console.log('🔍 Verifying image path updates...\n');
+const PRODUCTS_TO_CHECK = ['C-T553', 'C-T557', 'C-W6106', 'TAC850', 'TAC-734G', 'TC467'];
 
+async function verifyUpdates() {
+  try {
     await databaseService.connect();
     await databaseService.initializeDatabase();
 
@@ -12,50 +12,32 @@ async function verifyImageUpdates() {
       ? new ProductModel() 
       : new ProductModel(databaseService.getDatabase());
 
-    // Check a few specific products
-    const testProducts = ['FRP', 'C-T731', 'C-T564', 'IC932', 'RC826'];
-    
-    console.log('Checking specific products:');
-    for (const productId of testProducts) {
-      const product = await productModel.getProductById(productId);
+    const allProducts = await productModel.getAllProducts();
+
+    console.log('\n🔍 Verifying Product Image Updates\n');
+    console.log('='.repeat(80));
+
+    for (const productId of PRODUCTS_TO_CHECK) {
+      const product = allProducts.find(
+        p => p.product_id?.toUpperCase() === productId.toUpperCase() ||
+             p.product_id?.toUpperCase().replace(/-/g, '') === productId.toUpperCase().replace(/-/g, '')
+      );
+
       if (product) {
-        const status = product.image?.startsWith('/images/Product-Mockups/') ? '✅ NEW' : 
-                      product.image?.startsWith('http') ? '⚠️  OLD (Vercel)' : 
-                      '❓ OTHER';
-        console.log(`  ${productId}: ${status}`);
-        console.log(`    Image: ${product.image}`);
+        console.log(`\n📦 ${product.product_id} - ${product.full_name || product.name}`);
+        console.log(`   Image: ${product.image || 'N/A'}`);
+        console.log(`   Expected folder: ${product.industry}`);
       } else {
-        console.log(`  ${productId}: ❌ Not found`);
+        console.log(`\n❌ ${productId} - NOT FOUND`);
       }
     }
 
-    // Count products with new vs old paths
-    const allProducts = await productModel.getAllProducts();
-    const newPathCount = allProducts.filter(p => p.image?.startsWith('/images/Product-Mockups/')).length;
-    const oldPathCount = allProducts.filter(p => p.image?.startsWith('http')).length;
-    const otherPathCount = allProducts.filter(p => p.image && !p.image.startsWith('/images/Product-Mockups/') && !p.image.startsWith('http')).length;
-
-    console.log('\n📊 Summary:');
-    console.log(`  Total products: ${allProducts.length}`);
-    console.log(`  ✅ New paths (/images/Product-Mockups/): ${newPathCount}`);
-    console.log(`  ⚠️  Old paths (Vercel Blob URLs): ${oldPathCount}`);
-    console.log(`  ❓ Other paths: ${otherPathCount}`);
-
-    // Show database type
-    console.log(`\n💾 Database type: ${databaseService.isPostgres() ? 'PostgreSQL' : 'SQLite'}`);
-    if (databaseService.isPostgres()) {
-      console.log(`   DATABASE_URL: ${process.env.DATABASE_URL ? 'Set' : 'Not set'}`);
-    } else {
-      console.log(`   DB Path: ${process.env.DB_PATH || './data/products.db'}`);
-    }
-
-    process.exit(0);
+    console.log('\n' + '='.repeat(80));
   } catch (error) {
-    console.error('❌ Error:', error);
-    process.exit(1);
+    console.error('Error verifying updates:', error);
+  } finally {
+    process.exit(0);
   }
 }
 
-verifyImageUpdates();
-
-
+verifyUpdates();
