@@ -531,10 +531,8 @@ router.post('/update-industrial-images', async (req, res) => {
   try {
     console.log('🔧 Updating industrial product image URLs via API...');
     
-    const { ProductionImageUpdater } = require('../scripts/updateProductionImageUrls');
-    const updater = new ProductionImageUpdater();
-    
-    await updater.updateProduction();
+    const { updateProductionImages } = require('../scripts/directUpdateProductionImages');
+    await updateProductionImages();
     
     res.json({
       success: true,
