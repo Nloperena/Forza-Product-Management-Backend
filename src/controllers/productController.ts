@@ -105,6 +105,7 @@ export class ProductController {
       const productData: Omit<Product, 'created_at' | 'updated_at'> = {
         product_id,
         name,
+        full_name: name, // Set for compatibility
         description: description || '',
         brand,
         industry,
@@ -119,6 +120,7 @@ export class ProductController {
         cleanup: cleanup || '',
         recommended_equipment: recommended_equipment || '',
         published: Boolean(published),
+        benefits_count: Array.isArray(benefits) ? benefits.length : 0, // Set for compatibility
         last_edited: last_edited || new Date().toISOString()
       };
 

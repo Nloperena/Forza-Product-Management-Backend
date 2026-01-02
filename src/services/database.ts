@@ -151,6 +151,7 @@ class DatabaseService {
           id SERIAL PRIMARY KEY,
           product_id VARCHAR(255) UNIQUE NOT NULL,
           name VARCHAR(255) NOT NULL,
+          full_name VARCHAR(255),
           description TEXT,
           brand VARCHAR(100),
           industry VARCHAR(100),
@@ -165,6 +166,7 @@ class DatabaseService {
           cleanup TEXT,
           recommended_equipment TEXT,
           published BOOLEAN DEFAULT false,
+          benefits_count INTEGER DEFAULT 0,
           created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
           updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
           last_edited TEXT

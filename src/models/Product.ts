@@ -9,8 +9,10 @@ export interface TechnicalProperty {
 }
 
 export interface Product {
+  id?: string; // Kept for compatibility with old scripts
   product_id: string; // Used as the primary identifier
   name: string;
+  full_name?: string; // Kept for compatibility with old scripts
   description: string;
   brand: string;
   industry: string;
@@ -25,6 +27,7 @@ export interface Product {
   cleanup?: string;
   recommended_equipment?: string;
   published: boolean;
+  benefits_count?: number; // Kept for compatibility with old scripts
   created_at?: string;
   updated_at?: string;
   last_edited?: string;
@@ -68,8 +71,10 @@ export class ProductModel {
 
     const sql = `
       CREATE TABLE IF NOT EXISTS products (
-        product_id TEXT PRIMARY KEY,
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        product_id TEXT UNIQUE NOT NULL,
         name TEXT NOT NULL,
+        full_name TEXT,
         description TEXT,
         brand TEXT NOT NULL,
         industry TEXT NOT NULL,
@@ -84,9 +89,10 @@ export class ProductModel {
         cleanup TEXT,
         recommended_equipment TEXT,
         published BOOLEAN DEFAULT 1,
+        benefits_count INTEGER DEFAULT 0,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-        last_edited DATETIME
+        last_edited TEXT
       )
     `;
 
@@ -188,20 +194,20 @@ export class ProductModel {
       try {
         const sql = `
           INSERT INTO products (
-            product_id, name, description, brand, industry,
+            product_id, name, full_name, description, brand, industry,
             chemistry, url, image, benefits, applications, technical, sizing,
-            color, cleanup, recommended_equipment, published, last_edited
-          ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17)
+            color, cleanup, recommended_equipment, published, benefits_count, last_edited
+          ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19)
           RETURNING *
         `;
         
         const params = [
-          product.product_id, product.name, product.description,
+          product.product_id, product.name, product.full_name || product.name, product.description,
           product.brand, product.industry, product.chemistry, product.url, product.image,
           JSON.stringify(product.benefits), JSON.stringify(product.applications),
           JSON.stringify(product.technical), JSON.stringify(product.sizing),
           product.color, product.cleanup, product.recommended_equipment,
-          product.published, product.last_edited
+          product.published, product.benefits_count || 0, product.last_edited
         ];
 
         const result = await client.query(sql, params);
@@ -214,19 +220,19 @@ export class ProductModel {
     return new Promise((resolve, reject) => {
       const sql = `
         INSERT INTO products (
-          product_id, name, description, brand, industry,
+          product_id, name, full_name, description, brand, industry,
           chemistry, url, image, benefits, applications, technical, sizing,
-          color, cleanup, recommended_equipment, published, last_edited
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+          color, cleanup, recommended_equipment, published, benefits_count, last_edited
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       `;
       
       const params = [
-        product.product_id, product.name, product.description,
+        product.product_id, product.name, product.full_name || product.name, product.description,
         product.brand, product.industry, product.chemistry, product.url, product.image,
         JSON.stringify(product.benefits), JSON.stringify(product.applications),
         JSON.stringify(product.technical), JSON.stringify(product.sizing),
         product.color, product.cleanup, product.recommended_equipment,
-        product.published ? 1 : 0, product.last_edited
+        product.published ? 1 : 0, product.benefits_count || 0, product.last_edited
       ];
 
       this.db!.run(sql, params, function(err) {
@@ -253,13 +259,19 @@ export class ProductModel {
         let paramIndex = 1;
 
         if (updates.name !== undefined) { fields.push(`name = $${paramIndex++}`); values.push(updates.name); }
+        if (updates.full_name !== undefined) { fields.push(`full_name = $${paramIndex++}`); values.push(updates.full_name); }
         if (updates.description !== undefined) { fields.push(`description = $${paramIndex++}`); values.push(updates.description); }
         if (updates.brand !== undefined) { fields.push(`brand = $${paramIndex++}`); values.push(updates.brand); }
         if (updates.industry !== undefined) { fields.push(`industry = $${paramIndex++}`); values.push(updates.industry); }
         if (updates.chemistry !== undefined) { fields.push(`chemistry = $${paramIndex++}`); values.push(updates.chemistry); }
         if (updates.url !== undefined) { fields.push(`url = $${paramIndex++}`); values.push(updates.url); }
         if (updates.image !== undefined) { fields.push(`image = $${paramIndex++}`); values.push(updates.image); }
-        if (updates.benefits !== undefined) { fields.push(`benefits = $${paramIndex++}`); values.push(JSON.stringify(updates.benefits)); }
+        if (updates.benefits !== undefined) { 
+          fields.push(`benefits = $${paramIndex++}`); 
+          values.push(JSON.stringify(updates.benefits));
+          fields.push(`benefits_count = $${paramIndex++}`);
+          values.push(updates.benefits.length);
+        }
         if (updates.applications !== undefined) { fields.push(`applications = $${paramIndex++}`); values.push(JSON.stringify(updates.applications)); }
         if (updates.technical !== undefined) { fields.push(`technical = $${paramIndex++}`); values.push(JSON.stringify(updates.technical)); }
         if (updates.sizing !== undefined) { fields.push(`sizing = $${paramIndex++}`); values.push(JSON.stringify(updates.sizing)); }
@@ -296,13 +308,19 @@ export class ProductModel {
       const values = [];
 
       if (updates.name) { fields.push('name = ?'); values.push(updates.name); }
+      if (updates.full_name) { fields.push('full_name = ?'); values.push(updates.full_name); }
       if (updates.description) { fields.push('description = ?'); values.push(updates.description); }
       if (updates.brand) { fields.push('brand = ?'); values.push(updates.brand); }
       if (updates.industry) { fields.push('industry = ?'); values.push(updates.industry); }
       if (updates.chemistry) { fields.push('chemistry = ?'); values.push(updates.chemistry); }
       if (updates.url) { fields.push('url = ?'); values.push(updates.url); }
       if (updates.image) { fields.push('image = ?'); values.push(updates.image); }
-      if (updates.benefits) { fields.push('benefits = ?'); values.push(JSON.stringify(updates.benefits)); }
+      if (updates.benefits) { 
+        fields.push('benefits = ?'); 
+        values.push(JSON.stringify(updates.benefits));
+        fields.push('benefits_count = ?');
+        values.push(updates.benefits.length);
+      }
       if (updates.applications) { fields.push('applications = ?'); values.push(JSON.stringify(updates.applications)); }
       if (updates.technical) { fields.push('technical = ?'); values.push(JSON.stringify(updates.technical)); }
       if (updates.sizing) { fields.push('sizing = ?'); values.push(JSON.stringify(updates.sizing)); }
@@ -461,8 +479,10 @@ export class ProductModel {
   private parseProduct(row: any): Product {
     try {
       return {
+        id: row.id?.toString(),
         product_id: row.product_id,
         name: row.name,
+        full_name: row.full_name || row.name,
         description: row.description || '',
         brand: row.brand,
         industry: row.industry,
@@ -477,6 +497,7 @@ export class ProductModel {
         cleanup: row.cleanup,
         recommended_equipment: row.recommended_equipment,
         published: Boolean(row.published),
+        benefits_count: row.benefits_count || 0,
         created_at: row.created_at,
         updated_at: row.updated_at,
         last_edited: row.last_edited
