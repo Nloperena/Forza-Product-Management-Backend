@@ -596,6 +596,33 @@ router.all('/update-marine-products', async (req, res) => {
   }
 });
 
+// GET/POST /api/products/update-insulation-products - Update insulation product images in production
+router.all('/update-insulation-products', async (req, res) => {
+  try {
+    console.log('🔧 Updating Insulation product images via API...');
+    
+    // 1. Update JSON file with new image names
+    const { updateJsonInsulationImages } = require('../scripts/updateInsulationImageNames');
+    await updateJsonInsulationImages();
+
+    // 2. Force update all Insulation images using the direct SQL script
+    const { updateProductionInsulationImages } = require('../scripts/directUpdateInsulationImages');
+    await updateProductionInsulationImages();
+    
+    res.json({
+      success: true,
+      message: 'Insulation product images FORCED update successfully'
+    });
+  } catch (error) {
+    console.error('❌ Error updating Insulation products:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to update Insulation product images',
+      error: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+});
+
 router.post('/', (req, res) => getProductController().createProduct(req, res));
 
 // GET /api/products/:id - Get product by ID
