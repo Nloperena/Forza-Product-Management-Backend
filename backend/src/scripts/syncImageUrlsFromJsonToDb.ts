@@ -79,12 +79,8 @@ class ImageUrlSyncer {
     } catch (error) {
       console.error('❌ Error syncing image URLs:', error);
       throw error;
-    } finally {
-      if (databaseService.isPostgres()) {
-        const pool = (databaseService as any).pool;
-        if (pool) await pool.end();
-      }
     }
+    // Note: Don't close the pool here - let the database service manage it
   }
 }
 

@@ -89,11 +89,8 @@ async function updateProductionMarineImages() {
     if (client) client.release();
   } catch (error) {
     console.error('❌ Error during direct update:', error);
-  } finally {
-    if (databaseService.isPostgres()) {
-      await (databaseService as any).pool.end();
-    }
   }
+  // Note: Don't close the pool here - let the database service manage it
 }
 
 if (require.main === module) {
