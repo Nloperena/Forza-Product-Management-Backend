@@ -526,6 +526,48 @@ router.post('/update-chemistry', async (req, res) => {
 });
 
 // POST /api/products - Create new product
+// GET /api/products/verify-json - Verify JSON file usage and sync status
+router.get('/verify-json', async (req, res) => {
+  try {
+    const { verifyJsonUsage } = require('../scripts/verifyJsonUsage');
+    await verifyJsonUsage();
+    res.json({
+      success: true,
+      message: 'JSON verification completed. Check server logs for details.'
+    });
+  } catch (error) {
+    console.error('❌ Error verifying JSON:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to verify JSON usage',
+      error: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+});
+
+// GET/POST /api/products/sync-from-json - Sync all image URLs from JSON to database
+router.all('/sync-from-json', async (req, res) => {
+  try {
+    console.log('🔄 Syncing all image URLs from JSON to database...');
+    
+    const { ImageUrlSyncer } = require('../scripts/syncImageUrlsFromJsonToDb');
+    const syncer = new ImageUrlSyncer();
+    await syncer.sync();
+    
+    res.json({
+      success: true,
+      message: 'Image URLs synced from JSON to database successfully'
+    });
+  } catch (error) {
+    console.error('❌ Error syncing from JSON:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to sync from JSON',
+      error: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+});
+
 // GET/POST /api/products/update-marine-products - Update marine product information in production
 router.all('/update-marine-products', async (req, res) => {
   try {
