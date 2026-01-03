@@ -30,8 +30,27 @@ class ImageUrlSyncer {
   async sync(): Promise<void> {
     try {
       console.log('🔄 Syncing image URLs from JSON to database...\n');
+      
+      // Load JSON
+      if (!fs.existsSync(JSON_FILE_PATH)) {
+        console.error(`❌ JSON not found at ${JSON_FILE_PATH}`);
+        return;
+      }
       const jsonContent = fs.readFileSync(JSON_FILE_PATH, 'utf-8');
       const jsonData = JSON.parse(jsonContent);
+
+      // Force DB path if needed for local run
+      if (!process.env.DATABASE_URL && !process.env.POSTGRES_URL) {
+        const rootDbPath = path.resolve(__dirname, '../../../data/products.db');
+        console.log(`🔎 Checking for local data/products.db at: ${rootDbPath}`);
+        if (fs.existsSync(rootDbPath)) {
+          console.log(`🔌 Forcing local DB path to: ${rootDbPath}`);
+          (databaseService as any).dbPath = rootDbPath;
+        } else {
+          console.log(`⚠️ Database not found. Current directory: ${process.cwd()}`);
+        }
+      }
+
       await databaseService.connect();
       await databaseService.initializeDatabase();
       this.productModel = databaseService.isPostgres()
