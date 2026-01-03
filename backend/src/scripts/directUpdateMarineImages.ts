@@ -61,7 +61,7 @@ async function updateProductionMarineImages() {
           'UPDATE products SET image = $1 WHERE product_id = $2 OR image LIKE $3 RETURNING product_id',
           [newUrl, pid, `%/${pid.toLowerCase()}.png`]
         );
-        if (result.rowCount > 0) {
+        if (result.rowCount && result.rowCount > 0) {
           console.log(`✅ Updated ${pid} in Postgres (${result.rowCount} rows)`);
           totalUpdated += result.rowCount;
         }
