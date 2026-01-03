@@ -531,18 +531,18 @@ router.all('/update-marine-products', async (req, res) => {
   try {
     console.log('🔧 Updating Marine and Composite product information via API...');
     
-    // Sync information from JSON to DB
+    // 1. Sync information (Name, Chemistry, etc.) from JSON to DB
     const { syncMarineProducts } = require('../scripts/syncMarineProductsToDb');
     await syncMarineProducts();
 
-    // Also sync images specifically to ensure they match the latest mapping
-    const { ImageUrlSyncer } = require('../scripts/syncImageUrlsFromJsonToDb');
-    const syncer = new ImageUrlSyncer();
-    await syncer.sync();
+    // 2. Force update all Marine/Composite images using the direct SQL script
+    // This ensures filenames with suffixes like "5 gal Pail" are applied even if the comparison fails
+    const { updateProductionMarineImages } = require('../scripts/directUpdateMarineImages');
+    await updateProductionMarineImages();
     
     res.json({
       success: true,
-      message: 'Marine and Composite product information and images updated successfully in production database'
+      message: 'Marine and Composite product information and images FORCED update successfully'
     });
   } catch (error) {
     console.error('❌ Error updating Marine products:', error);
