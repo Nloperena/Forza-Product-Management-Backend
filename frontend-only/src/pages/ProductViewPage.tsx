@@ -260,38 +260,71 @@ const ProductViewPage: React.FC = () => {
           )}
 
           {/* Sizing Information */}
-          {product.sizing && Object.keys(product.sizing).length > 0 && (
-            <Card>
-              <CardHeader>
-                <CardTitle>Sizing Information</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="overflow-x-auto">
-                  <table className="w-full">
-                    <thead>
-                      <tr className="border-b border-gray-200">
-                        <th className="text-left py-3 px-4 font-medium text-gray-900">Sizings</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {Object.entries(product.sizing).map(([key, value], index) => (
-                        <tr key={index} className="border-b border-gray-100">
-                          <td className="py-3 px-4">
-                            <div className="font-medium text-gray-900 capitalize">
-                              {key.replace(/_/g, ' ')}
-                            </div>
-                            <div className="text-gray-600 mt-1">
-                              {typeof value === 'object' ? JSON.stringify(value) : String(value)}
-                            </div>
-                          </td>
+          {(() => {
+            // Handle both array and object formats for sizing
+            let hasSizing = false;
+            let sizingEntries: Array<[string, any]> = [];
+            
+            if (product.sizing) {
+              if (Array.isArray(product.sizing)) {
+                // Convert array to entries format
+                sizingEntries = product.sizing
+                  .filter(item => item != null)
+                  .map((item, index) => {
+                    // If item is an object, convert it to a string representation
+                    if (typeof item === 'object') {
+                      return [`Item ${index + 1}`, JSON.stringify(item)];
+                    }
+                    return [`Item ${index + 1}`, String(item)];
+                  });
+                hasSizing = sizingEntries.length > 0;
+              } else if (typeof product.sizing === 'object') {
+                sizingEntries = Object.entries(product.sizing)
+                  .filter(([key, value]) => value != null)
+                  .map(([key, value]) => {
+                    // Ensure value is always a string, never an object
+                    if (typeof value === 'object') {
+                      return [key, JSON.stringify(value)];
+                    }
+                    return [key, String(value)];
+                  });
+                hasSizing = sizingEntries.length > 0;
+              }
+            }
+            
+            return hasSizing ? (
+              <Card>
+                <CardHeader>
+                  <CardTitle>Sizing Information</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="overflow-x-auto">
+                    <table className="w-full">
+                      <thead>
+                        <tr className="border-b border-gray-200">
+                          <th className="text-left py-3 px-4 font-medium text-gray-900">Sizings</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </CardContent>
-            </Card>
-          )}
+                      </thead>
+                      <tbody>
+                        {sizingEntries.map(([key, value], index) => (
+                          <tr key={index} className="border-b border-gray-100">
+                            <td className="py-3 px-4">
+                              <div className="font-medium text-gray-900 capitalize">
+                                {key.replace(/_/g, ' ')}
+                              </div>
+                              <div className="text-gray-600 mt-1">
+                                {String(value)}
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </CardContent>
+              </Card>
+            ) : null;
+          })()}
 
           {/* Packaging Information */}
           {product.packaging && product.packaging.length > 0 && (
