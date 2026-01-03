@@ -646,6 +646,29 @@ router.all('/sync-db-to-json', async (req, res) => {
   }
 });
 
+// GET/POST /api/products/sync-benefits-technical - Sync benefits and technical data from JSON to database
+router.all('/sync-benefits-technical', async (req, res) => {
+  try {
+    console.log('🔄 Syncing benefits and technical data from JSON to database...');
+    
+    const { BenefitsTechnicalSyncer } = require('../scripts/syncBenefitsAndTechnicalToDb');
+    const syncer = new BenefitsTechnicalSyncer();
+    await syncer.sync();
+    
+    res.json({
+      success: true,
+      message: 'Benefits and technical data synced from JSON to database successfully'
+    });
+  } catch (error) {
+    console.error('❌ Error syncing benefits and technical:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to sync benefits and technical data',
+      error: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+});
+
 router.post('/', (req, res) => getProductController().createProduct(req, res));
 
 // GET /api/products/:id - Get product by ID
