@@ -623,6 +623,29 @@ router.all('/update-insulation-products', async (req, res) => {
   }
 });
 
+// GET/POST /api/products/sync-db-to-json - Sync all product data from database to JSON file
+router.all('/sync-db-to-json', async (req, res) => {
+  try {
+    console.log('🔄 Syncing all product data from database to JSON...');
+    
+    const { DbToJsonSyncer } = require('../scripts/syncAllProductsFromDbToJson');
+    const syncer = new DbToJsonSyncer();
+    await syncer.sync();
+    
+    res.json({
+      success: true,
+      message: 'Product data synced from database to JSON successfully'
+    });
+  } catch (error) {
+    console.error('❌ Error syncing database to JSON:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to sync database to JSON',
+      error: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+});
+
 router.post('/', (req, res) => getProductController().createProduct(req, res));
 
 // GET /api/products/:id - Get product by ID
