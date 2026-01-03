@@ -43,6 +43,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onProductUpdated
   const [formData, setFormData] = useState<ProductFormData>({
     product_id: product.product_id,
     name: product.name,
+    full_name: product.full_name || product.name,
     description: product.description || '',
     url: product.url || '',
     brand: product.brand,
@@ -66,6 +67,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onProductUpdated
     setFormData({
       product_id: product.product_id,
       name: product.name,
+      full_name: product.full_name || product.name,
       description: product.description || '',
       url: product.url || '',
       brand: product.brand,
@@ -316,6 +318,7 @@ Check the browser console (F12) for more details.`;
                       setFormData({
                         product_id: product.product_id,
                         name: product.name,
+                        full_name: product.full_name || product.name,
                         description: product.description || '',
                         url: product.url || '',
                         brand: product.brand,
@@ -418,6 +421,25 @@ Check the browser console (F12) for more details.`;
             />
           ) : (
             <p className="text-2xl font-mono text-gray-900">{product.product_id}</p>
+          )}
+        </div>
+
+        {/* Full Name (for product cards) */}
+        <div className="mb-8 bg-white p-6 rounded-lg shadow-sm">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-sm font-medium text-gray-600">Full Name (for product cards)</span>
+          </div>
+          {isEditing ? (
+            <input
+              type="text"
+              value={formData.full_name}
+              onChange={(e) => handleInputChange('full_name', e.target.value)}
+              className="w-full text-xl text-gray-900 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Enter full product name (used on product cards)"
+              disabled={saving}
+            />
+          ) : (
+            <p className="text-xl text-gray-900">{product.full_name || product.name}</p>
           )}
         </div>
 
