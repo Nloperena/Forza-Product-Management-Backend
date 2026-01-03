@@ -259,6 +259,11 @@ export class ProductModel {
         const values = [];
         let paramIndex = 1;
 
+        // If name is updated but full_name is not, sync full_name to name
+        if (updates.name !== undefined && updates.full_name === undefined) {
+          updates.full_name = updates.name;
+        }
+        
         if (updates.name !== undefined) { fields.push(`name = $${paramIndex++}`); values.push(updates.name); }
         if (updates.full_name !== undefined) { fields.push(`full_name = $${paramIndex++}`); values.push(updates.full_name); }
         if (updates.description !== undefined) { fields.push(`description = $${paramIndex++}`); values.push(updates.description); }
@@ -307,6 +312,11 @@ export class ProductModel {
     return new Promise((resolve, reject) => {
       const fields = [];
       const values = [];
+
+      // If name is updated but full_name is not, sync full_name to name
+      if (updates.name && !updates.full_name) {
+        updates.full_name = updates.name;
+      }
 
       if (updates.name) { fields.push('name = ?'); values.push(updates.name); }
       if (updates.full_name) { fields.push('full_name = ?'); values.push(updates.full_name); }
