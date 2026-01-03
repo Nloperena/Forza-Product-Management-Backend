@@ -83,7 +83,8 @@ class BenefitsTechnicalSyncer {
 
         if (hasUpdates) {
           try {
-            await this.productModel.updateProduct(dbProduct.id, updates);
+            // Use product_id, not the numeric id
+            await this.productModel.updateProduct(dbProduct.product_id, updates);
             console.log(`✅ Updated ${dbProduct.product_id}: ${updates.benefits ? `benefits (${updates.benefits.length})` : ''} ${updates.technical ? `technical (${updates.technical.length})` : ''}`);
             this.updatedCount++;
           } catch (error) {
