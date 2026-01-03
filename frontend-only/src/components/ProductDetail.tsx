@@ -40,6 +40,20 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onProductUpdated
     return [];
   };
 
+  // Helper function to normalize sizing to always be an array
+  const normalizeSizing = (sizing: any): string[] => {
+    if (!sizing) return [];
+    if (Array.isArray(sizing)) {
+      // Ensure all items are strings
+      return sizing.filter(item => typeof item === 'string');
+    }
+    if (typeof sizing === 'object') {
+      // Convert object to array of string values
+      return Object.values(sizing).filter(v => typeof v === 'string') as string[];
+    }
+    return [];
+  };
+
   const [formData, setFormData] = useState<ProductFormData>({
     product_id: product.product_id,
     name: product.name,
@@ -54,7 +68,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onProductUpdated
     benefits: Array.isArray(product.benefits) ? product.benefits : [],
     applications: Array.isArray(product.applications) ? product.applications : [],
     technical: normalizeTechnical(product.technical),
-    sizing: Array.isArray(product.sizing) ? product.sizing : [],
+    sizing: normalizeSizing(product.sizing),
     color: product.color || '',
     cleanup: product.cleanup || '',
     recommended_equipment: product.recommended_equipment || '',
@@ -78,7 +92,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onProductUpdated
       benefits: Array.isArray(product.benefits) ? product.benefits : [],
       applications: Array.isArray(product.applications) ? product.applications : [],
       technical: normalizeTechnical(product.technical),
-      sizing: Array.isArray(product.sizing) ? product.sizing : [],
+      sizing: normalizeSizing(product.sizing),
       color: product.color || '',
       cleanup: product.cleanup || '',
       recommended_equipment: product.recommended_equipment || '',
@@ -329,7 +343,7 @@ Check the browser console (F12) for more details.`;
                         benefits: Array.isArray(product.benefits) ? product.benefits : [],
                         applications: Array.isArray(product.applications) ? product.applications : [],
                         technical: normalizeTechnical(product.technical),
-                        sizing: Array.isArray(product.sizing) ? product.sizing : [],
+                        sizing: normalizeSizing(product.sizing),
                         color: product.color || '',
                         cleanup: product.cleanup || '',
                         recommended_equipment: product.recommended_equipment || '',
@@ -571,11 +585,26 @@ Check the browser console (F12) for more details.`;
             </div>
           ) : (
             <div className="flex flex-wrap gap-2">
-              {product.sizing?.map((size, index) => (
-                <span key={index} className="px-4 py-2 bg-gray-100 text-gray-800 rounded-lg text-lg">
-                  {size}
-                </span>
-              )) || <p className="text-lg text-gray-500 italic">No sizing information</p>}
+              {(() => {
+                // Handle both array and object formats for sizing
+                let sizingArray: string[] = [];
+                if (Array.isArray(product.sizing)) {
+                  sizingArray = product.sizing;
+                } else if (product.sizing && typeof product.sizing === 'object') {
+                  // Convert object to array of string values
+                  sizingArray = Object.values(product.sizing).filter(v => typeof v === 'string') as string[];
+                }
+                
+                return sizingArray.length > 0 ? (
+                  sizingArray.map((size, index) => (
+                    <span key={index} className="px-4 py-2 bg-gray-100 text-gray-800 rounded-lg text-lg">
+                      {String(size)}
+                    </span>
+                  ))
+                ) : (
+                  <p className="text-lg text-gray-500 italic">No sizing information</p>
+                );
+              })()}
             </div>
           )}
         </section>
