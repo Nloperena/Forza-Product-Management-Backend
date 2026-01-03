@@ -2873,7 +2873,7 @@
               "industry": "marine_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/m-c280/",
-              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/m-c280.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/M-C280 5 gal Pail.png",
               "benefits": [],
               "applications": [
                 "Specifically designed for laminating and general bonding to substrates in the Marine industry. Laminates and bonds a wide variety of materials.",
@@ -2922,7 +2922,7 @@
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
-              "last_edited": "2026-01-02T20:38:18.656Z"
+              "last_edited": "2026-01-03T02:30:26.609Z"
             },
             {
               "product_id": "M-C283",
@@ -2934,16 +2934,14 @@
               "url": "https://forzabuilt.com/product/m-c283/",
               "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/m-c280.png",
               "benefits": [
-                "Non",
-                "Flammable",
+                "Non-Flammable",
                 "Excellent high coverage",
-                "Over 220 F (105 F) temperature resistant",
+                "Over 220�F (105�F) temperature resistant",
                 "80% of final strength achieved immediately; full strength achieved in 24 hours",
                 "Fast drying with long open time",
                 "No ODS (Ozone Depleting Substances)",
                 "VOC free",
-                "Qualifies for LEED",
-                "NC & CI EQ Credit 4.4: laminating adhesives shall contain no urea formaldehyde resin"
+                "Qualifies for LEED - NC & CI EQ Credit 4.4: laminating adhesives shall contain no urea formaldehyde resin"
               ],
               "applications": [
                 "Specifically designed for laminating and general bonding to substrates in marine applications including:",
@@ -2962,10 +2960,10 @@
                 "52 Gallon Drum"
               ],
               "color": "",
-              "cleanup": "  FC-CAR (citrus cleaner)\n  Organic Solvents",
+              "cleanup": "� FC-CAR (citrus cleaner)\n� Organic Solvents",
               "recommended_equipment": "",
               "published": true,
-              "last_edited": "2026-01-02T20:38:18.656Z"
+              "last_edited": "2026-01-03T02:30:26.610Z"
             },
             {
               "product_id": "M-C285",
@@ -2975,7 +2973,7 @@
               "industry": "marine_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/m-c285/",
-              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/m-c285.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/M-C285 5 gal Pail.png",
               "benefits": [],
               "applications": [
                 "Specifically designed for marine applications, bonding materials without the need for fasterners, including:",
@@ -3037,7 +3035,7 @@
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
-              "last_edited": "2026-01-02T20:38:18.656Z"
+              "last_edited": "2026-01-03T02:30:26.610Z"
             },
             {
               "product_id": "MC722",
@@ -3047,7 +3045,7 @@
               "industry": "marine_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/mc722/",
-              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/mc722.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/MC722 Canister.png",
               "benefits": [],
               "applications": [
                 "Specifically designed to bond:",
@@ -3103,7 +3101,7 @@
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
-              "last_edited": "2026-01-02T20:38:18.656Z"
+              "last_edited": "2026-01-03T02:30:26.610Z"
             },
             {
               "product_id": "MC723",
@@ -3113,7 +3111,7 @@
               "industry": "marine_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/mc723/",
-              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/mc723.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/MC723 Canister and Aerosol.png",
               "benefits": [],
               "applications": [
                 "Specifically designed to bond:",
@@ -3171,7 +3169,7 @@
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
-              "last_edited": "2026-01-02T20:38:18.656Z"
+              "last_edited": "2026-01-03T02:30:26.610Z"
             },
             {
               "product_id": "MC724",
@@ -3181,7 +3179,7 @@
               "industry": "marine_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/mc724/",
-              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/mc724.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/MC724 Canister and Aerosol.png",
               "benefits": [],
               "applications": [
                 "Pressure sensitive adhesive designed for use in applications using:",
@@ -3242,7 +3240,7 @@
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
-              "last_edited": "2026-01-02T20:38:18.656Z"
+              "last_edited": "2026-01-03T02:30:26.610Z"
             },
             {
               "product_id": "MC736",
@@ -3259,10 +3257,8 @@
                 "Pressure sensitive adhesive",
                 "Very fast drying",
                 "Long lasting high tack (pressure sensitive)",
-                "Aggressive",
-                "bonds to nearly any surface",
-                "High strength, long",
-                "term bond",
+                "Aggressive - bonds to nearly any surface",
+                "High strength, long-term bond",
                 "Low VOC & California Compliant (SCAQMD Rule 1168)",
                 "No ODS (ozone depleting substances"
               ],
@@ -3282,10 +3278,10 @@
                 "108L Disposable Canister"
               ],
               "color": "",
-              "cleanup": "  FC-CAR (citrus cleaner)\n  Organic Solvents",
-              "recommended_equipment": "  FK20 Gun\n  FK30 Hose\n  Use 6501B Spray Tip\n  FK300 Valve Splitter",
+              "cleanup": "� FC-CAR (citrus cleaner)\n� Organic Solvents",
+              "recommended_equipment": "� FK20 Gun\n� FK30 Hose\n� Use 6501B Spray Tip\n� FK300 Valve Splitter",
               "published": true,
-              "last_edited": "2026-01-02T20:38:18.656Z"
+              "last_edited": "2026-01-03T02:30:26.610Z"
             },
             {
               "product_id": "MC737",
@@ -3295,7 +3291,7 @@
               "industry": "marine_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/mc737/",
-              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/mc737.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/MC737 Canister.png",
               "benefits": [],
               "applications": [
                 "Web spray adhesive designed for applications using:",
@@ -3356,7 +3352,7 @@
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
-              "last_edited": "2026-01-02T20:38:18.656Z"
+              "last_edited": "2026-01-03T02:30:26.610Z"
             },
             {
               "product_id": "MC739",
@@ -3429,9 +3425,9 @@
               ],
               "color": "",
               "cleanup": "",
-              "recommended_equipment": "  FK20 Spray Gun\n  FK30 Hose\n  Use M201, 6501, or 9501 Spray Tip",
+              "recommended_equipment": "� FK20 Spray Gun\n� FK30 Hose\n� Use M201, 6501, or 9501 Spray Tip",
               "published": true,
-              "last_edited": "2026-01-02T20:38:18.656Z"
+              "last_edited": "2026-01-03T02:30:26.610Z"
             },
             {
               "product_id": "MC741",
@@ -3441,7 +3437,7 @@
               "industry": "marine_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/mc741/",
-              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/mc741.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/MC741 Canister.png",
               "benefits": [],
               "applications": [
                 "Permanently bonds to:",
@@ -3499,7 +3495,7 @@
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
-              "last_edited": "2026-01-02T20:38:18.656Z"
+              "last_edited": "2026-01-03T02:30:26.610Z"
             },
             {
               "product_id": "M-OA755",
@@ -3509,7 +3505,7 @@
               "industry": "marine_industry",
               "chemistry": "Modified Silane",
               "url": "https://forzabuilt.com/product/m-oa755/",
-              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/m-oa755.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/M-OA755 Cartridge.png",
               "benefits": [],
               "applications": [
                 "Specifically designed for permanent, flexible, and structural bonding in marine applications. It is formulated to bond a wide variety of materials, including aluminum, brass, steel, wood, plastics, and fiberglass composites without the need for fasteners.",
@@ -3585,7 +3581,7 @@
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
-              "last_edited": "2026-01-02T20:38:18.656Z"
+              "last_edited": "2026-01-03T02:30:26.610Z"
             },
             {
               "product_id": "M-OS764",
@@ -3595,13 +3591,12 @@
               "industry": "marine_industry",
               "chemistry": "Modified Silane",
               "url": "https://forzabuilt.com/product/m-os764/",
-              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/m-os764.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/M-OS764 Sausage.png",
               "benefits": [],
               "applications": [
                 "Specifically designed to bond a large variety of materials including metals, granite, painted steel, glass, wood, most plastics, fiberglass, rubber, and polystyrene foam. Provides a permanent structural bond with internal and external applications above the waterline:",
                 "Structural bonding composites",
-                "Metal applications",
-                "repairing welds not under load",
+                "Metal applications - repairing welds not under load",
                 "Windshield on watercraft"
               ],
               "technical": [
@@ -3664,7 +3659,7 @@
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
-              "last_edited": "2026-01-02T20:38:18.656Z"
+              "last_edited": "2026-01-03T02:30:26.610Z"
             },
             {
               "product_id": "M-OSA783",
@@ -3674,7 +3669,7 @@
               "industry": "marine_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/m-osa783/",
-              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/m-osa783.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/M-OSA783 Tin Can.png",
               "benefits": [],
               "applications": [
                 "Used to promote adhesion in marine applications that include: painted surfaces, bare metals, plastics, and composites"
@@ -3713,7 +3708,7 @@
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
-              "last_edited": "2026-01-02T20:38:18.656Z"
+              "last_edited": "2026-01-03T02:30:26.610Z"
             },
             {
               "product_id": "M-R420",
@@ -3723,7 +3718,7 @@
               "industry": "marine_industry",
               "chemistry": "Epoxy",
               "url": "https://forzabuilt.com/product/m-r420/",
-              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/m-r420.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/M-R420 2 Part.png",
               "benefits": [],
               "applications": [
                 "Designed for use in Marine Appliations that require bonding to wood, concrete, fiberglass, and most thermoset plastics, metals and composite materials."
@@ -3776,7 +3771,7 @@
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
-              "last_edited": "2026-01-02T20:38:18.656Z"
+              "last_edited": "2026-01-03T02:30:26.610Z"
             },
             {
               "product_id": "M-R445",
@@ -3786,7 +3781,7 @@
               "industry": "marine_industry",
               "chemistry": "Modified Epoxy",
               "url": "https://forzabuilt.com/product/m-r445/",
-              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/m-r445.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/M-R445 2 Part.png",
               "benefits": [],
               "applications": [
                 "Specifically designed for Marine Applications that benefit from the elimination of exothermic reaction issues common with composite materials. It bonds similar materials while generating no heat during curing, resulting in no gel coat 'witness marks'."
@@ -3844,7 +3839,7 @@
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
-              "last_edited": "2026-01-02T20:38:18.656Z"
+              "last_edited": "2026-01-03T02:30:26.610Z"
             },
             {
               "product_id": "M-R478",
@@ -3858,12 +3853,9 @@
               "benefits": [
                 "Excellent bond strength",
                 "Impact and weather resistant",
-                "1:1 ratio",
-                "easy mixing or dispensing",
+                "1:1 ratio - easy mixing or dispensing",
                 "Minimal surface preparation required",
-                "Forms tough, high",
-                "strength, high",
-                "impact resistant bonds",
+                "Forms tough, high-strength, high-impact resistant bonds",
                 "Resists most common industrial cleaners, fuels, lubricants, and environmental conditions",
                 "Retains bond in strength in boiling water, salt water, salt fog, kerosene, gasoline, diesel fuel, antifreeze, hydraulic fluid, and cutting oils"
               ],
@@ -3882,7 +3874,7 @@
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
-              "last_edited": "2026-01-02T20:38:18.656Z"
+              "last_edited": "2026-01-03T02:30:26.610Z"
             },
             {
               "product_id": "M-S750",
@@ -3892,7 +3884,7 @@
               "industry": "marine_industry",
               "chemistry": "Solvent Based",
               "url": "",
-              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/M-S750.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/M-S750 1 gal Pail.png",
               "benefits": [
                 "Works with cyanoacrylate adhesives",
                 "Increases adhesion with high bond tapes and other adhesives",
@@ -3900,7 +3892,7 @@
               ],
               "applications": [
                 "Primer specifically designed to increase adhesion with high bond tapes in many marine applications.",
-                "Improves adhesion on polyethylene, polypropylene, other plastics, glass, metals, rubber, and painted surfaces when used in conjunction with the Forza s high bond, double coated, foam tapes."
+                "Improves adhesion on polyethylene, polypropylene, other plastics, glass, metals, rubber, and painted surfaces when used in conjunction with the Forza�s high bond, double coated, foam tapes."
               ],
               "technical": [],
               "sizing": [
@@ -3912,7 +3904,7 @@
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
-              "last_edited": "2026-01-02T20:38:18.656Z"
+              "last_edited": "2026-01-03T02:30:26.610Z"
             }
           ]
         },
@@ -3927,7 +3919,7 @@
               "industry": "composites_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/tac-734g/",
-              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Composites/tac-734g.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Composites/TAC-734G Canister and Aerosol.png",
               "benefits": [
                 "React New Site Already"
               ],
@@ -3960,7 +3952,7 @@
               "industry": "composites_industry",
               "chemistry": "Solvent Based",
               "url": "",
-              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Composites/TAC-735R.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Composites/TAC-735R Canister and Aerosol.png",
               "benefits": [
                 "No HAPS",
                 "High Tack Formulation",
@@ -4002,7 +3994,7 @@
               "industry": "composites_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/tac-738r/",
-              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Composites/tac-738r.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Composites/TAC-738R Canister and Aerosol.png",
               "benefits": [
                 "React New Site Already"
               ],
@@ -4034,7 +4026,7 @@
               "industry": "composites_industry",
               "chemistry": "Solvent Based",
               "url": "https://forzabuilt.com/product/tac-739r/",
-              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Composites/tac-739r.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Composites/TAC-739R Canister and Aerosol.png",
               "benefits": [
                 "React New Site Already"
               ],
@@ -7332,7 +7324,7 @@
               "industry": "marine_industry",
               "chemistry": "Modified Silane",
               "url": "https://forzabuilt.com/product/m-os789/",
-              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/m-os789.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/M-OS789 Sausage.png",
               "benefits": [],
               "applications": [
                 "Designed to seal a large variety of materials in boat manufacturing:",
@@ -7396,7 +7388,7 @@
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
-              "last_edited": "2026-01-02T20:38:18.656Z"
+              "last_edited": "2026-01-03T02:30:26.610Z"
             },
             {
               "product_id": "M-OS796",
@@ -7406,17 +7398,15 @@
               "industry": "marine_industry",
               "chemistry": "Modified Silane",
               "url": "https://forzabuilt.com/product/m-os796/",
-              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/m-os796.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/M-OS796 Cartridge.png",
               "benefits": [
                 "Retains strong bond through impact, peel, flex and changing temperature",
                 "Easily apply by extrusion, spray or trowel",
-                "Non",
-                "yellowing",
+                "Non-yellowing",
                 "Does not form bubbles, shrink or crack",
                 "Highly weather resistant",
                 "Immediately paintable applications",
-                "Low temperature flexibility (properties retained to",
-                "75  F)",
+                "Low temperature flexibility (properties retained to -75� F)",
                 "Quick skin",
                 "Can be painted"
               ],
@@ -7493,7 +7483,7 @@
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
-              "last_edited": "2026-01-02T20:38:18.656Z"
+              "last_edited": "2026-01-03T02:30:26.610Z"
             }
           ]
         },
@@ -9243,7 +9233,7 @@
               "industry": "marine_industry",
               "chemistry": "Acrylic Foam",
               "url": "https://forzabuilt.com/product/m-t815/",
-              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/m-t815.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/M-T815 Tape.png",
               "benefits": [],
               "applications": [
                 "Bonds plastics, metals, woods, papers, and silicones used in marine applications.",
@@ -9298,14 +9288,14 @@
                 "1/4 in x 108ft",
                 "3/4 in x 108ft",
                 "1 in x 108ft",
-                "1  in x 108ft",
+                "1 �in x 108ft",
                 "3/8in x 108ft"
               ],
               "color": "",
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
-              "last_edited": "2026-01-02T20:38:18.656Z"
+              "last_edited": "2026-01-03T02:30:26.610Z"
             },
             {
               "product_id": "M-T820",
@@ -9315,7 +9305,7 @@
               "industry": "marine_industry",
               "chemistry": "Acrylic Foam",
               "url": "https://forzabuilt.com/product/m-t820/",
-              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/m-t820.png",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/M-T820 Tape.png",
               "benefits": [],
               "applications": [
                 "Bonds plastics, metals, woods, papers, and silicones used in marine applications.",
@@ -9370,14 +9360,14 @@
                 "1/4 in x 108ft",
                 "3/4 in x 108ft",
                 "1 in x 108ft",
-                "1  in x 108ft",
+                "1 �in x 108ft",
                 "3/8in x 108ft"
               ],
               "color": "",
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
-              "last_edited": "2026-01-02T20:38:18.656Z"
+              "last_edited": "2026-01-03T02:30:26.610Z"
             }
           ]
         },

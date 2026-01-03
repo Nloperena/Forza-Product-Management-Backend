@@ -526,6 +526,34 @@ router.post('/update-chemistry', async (req, res) => {
 });
 
 // POST /api/products - Create new product
+// GET/POST /api/products/update-marine-products - Update marine product information in production
+router.all('/update-marine-products', async (req, res) => {
+  try {
+    console.log('🔧 Updating Marine and Composite product information via API...');
+    
+    // Sync information from JSON to DB
+    const { syncMarineProducts } = require('../scripts/syncMarineProductsToDb');
+    await syncMarineProducts();
+
+    // Also sync images specifically to ensure they match the latest mapping
+    const { ImageUrlSyncer } = require('../scripts/syncImageUrlsFromJsonToDb');
+    const syncer = new ImageUrlSyncer();
+    await syncer.sync();
+    
+    res.json({
+      success: true,
+      message: 'Marine and Composite product information and images updated successfully in production database'
+    });
+  } catch (error) {
+    console.error('❌ Error updating Marine products:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to update Marine product information',
+      error: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+});
+
 router.post('/', (req, res) => getProductController().createProduct(req, res));
 
 // GET /api/products/:id - Get product by ID
