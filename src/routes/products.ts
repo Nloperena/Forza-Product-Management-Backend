@@ -526,8 +526,8 @@ router.post('/update-chemistry', async (req, res) => {
 });
 
 // POST /api/products - Create new product
-// POST /api/products/update-industrial-images - Update industrial product image URLs
-router.post('/update-industrial-images', async (req, res) => {
+// GET/POST /api/products/update-industrial-images - Update industrial product image URLs in production
+router.all('/update-industrial-images', async (req, res) => {
   try {
     console.log('🔧 Updating industrial product image URLs via API...');
     
@@ -536,7 +536,7 @@ router.post('/update-industrial-images', async (req, res) => {
     
     res.json({
       success: true,
-      message: 'Industrial product image URLs updated successfully'
+      message: 'Industrial product image URLs updated successfully in production database'
     });
   } catch (error) {
     console.error('❌ Error updating industrial images:', error);
