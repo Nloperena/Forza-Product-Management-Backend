@@ -45,8 +45,9 @@ async function updateProductionMarineImages() {
   
   try {
     await databaseService.connect();
+    await databaseService.initializeDatabase();
     const isPostgres = databaseService.isPostgres();
-    const client = isPostgres ? await (databaseService as any).pool.connect() : null;
+    const client = isPostgres ? await databaseService.getClient() : null;
     const db = !isPostgres ? databaseService.getDatabase() : null;
 
     let totalUpdated = 0;
