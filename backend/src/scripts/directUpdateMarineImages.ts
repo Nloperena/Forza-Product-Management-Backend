@@ -57,19 +57,21 @@ async function updateProductionMarineImages() {
       const newUrl = `${VERCEL_BASE}/${folder}/${fileName}`;
 
       if (isPostgres && client) {
+        // Update by exact product_id match (case-insensitive) or by image pattern
         const result = await client.query(
-          'UPDATE products SET image = $1 WHERE product_id = $2 OR image LIKE $3 RETURNING product_id',
-          [newUrl, pid, `%/${pid.toLowerCase()}.png`]
+          'UPDATE products SET image = $1 WHERE LOWER(product_id) = LOWER($2) OR image LIKE $3 OR image LIKE $4 OR image LIKE $5 RETURNING product_id',
+          [newUrl, pid, `%/${pid.toLowerCase()}.png`, `%/${pid}.png`, `%/${pid.toUpperCase()}.png`]
         );
         if (result.rowCount && result.rowCount > 0) {
           console.log(`✅ Updated ${pid} in Postgres (${result.rowCount} rows)`);
           totalUpdated += result.rowCount;
         }
       } else if (db) {
+        // SQLite: Use COLLATE NOCASE for case-insensitive comparison
         await new Promise((resolve, reject) => {
           db.run(
-            'UPDATE products SET image = ? WHERE product_id = ? OR image LIKE ?',
-            [newUrl, pid, `%/${pid.toLowerCase()}.png`],
+            'UPDATE products SET image = ? WHERE product_id COLLATE NOCASE = ? OR image LIKE ? OR image LIKE ? OR image LIKE ?',
+            [newUrl, pid, `%/${pid.toLowerCase()}.png`, `%/${pid}.png`, `%/${pid.toUpperCase()}.png`],
             function(err) {
               if (err) reject(err);
               else {
