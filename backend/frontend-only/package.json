@@ -1,0 +1,49 @@
+{
+  "name": "forza-products-new-frontend",
+  "version": "1.0.0",
+  "description": "Modern Forza Products Management Frontend",
+  "type": "module",
+  "engines": {
+    "node": "24.x",
+    "npm": "10.x"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "npx vite build",
+    "build:check": "tsc --noEmit && npx vite build",
+    "type-check": "tsc --noEmit",
+    "preview": "vite preview",
+    "postinstall": "echo 'Dependencies installed successfully'"
+  },
+  "keywords": [
+    "forza",
+    "products",
+    "management",
+    "react",
+    "typescript"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@headlessui/react": "^2.2.8",
+    "@heroicons/react": "^2.2.0",
+    "@vitejs/plugin-react": "^4.7.0",
+    "axios": "^1.12.2",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.544.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-router-dom": "^7.9.1",
+    "tailwind-merge": "^3.3.1",
+    "vite": "^6.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^24.5.2",
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.9.2"
+  }
+}
