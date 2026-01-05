@@ -14,85 +14,6 @@
           "description": "industrial products",
           "products": [
             {
-              "product_id": "81-0389",
-              "name": "81-0389 - High Performance Neoprene Contact Adhesive",
-              "description": "Ideal for bonding furniture and cabinets,",
-              "brand": "forza_bond",
-              "industry": "industrial_industry",
-              "chemistry": "Solvent Based",
-              "url": "https://forzabuilt.com/product/81-0389/",
-              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/81-0389 5 gal pail.webp",
-              "benefits": [
-                "Excellent coverage",
-                "Excellent green strength",
-                "High temperature resistance",
-                "Fast, high tack",
-                "80% of final strength achieved immediately, full strength achieved in approximately 24 hours",
-                "Fast drying",
-                "Sprayable",
-                "Ideal for aircraft applications"
-              ],
-              "applications": [
-                "Ideal for bonding furniture and cabinets,",
-                "Especially good for laminating flexible materials to panels.",
-                "Good for rapid bonding of light weight parts",
-                "Bonds leather, veneer, fabric, upholstery",
-                "Bonds foam, wood, rubber, plastic laminate, melamine",
-                "Bonds metal, cork, fiberglass, and many plastics."
-              ],
-              "technical": [
-                {
-                  "property": "Appearance",
-                  "value": "Clear / Neutral or Red"
-                },
-                {
-                  "property": "Shelf Life",
-                  "value": "6",
-                  "unit": "months"
-                },
-                {
-                  "property": "Solids",
-                  "value": "15-21",
-                  "unit": "%"
-                },
-                {
-                  "property": "Solvent",
-                  "value": "Flammable"
-                },
-                {
-                  "property": "Viscosity",
-                  "value": "100-150",
-                  "unit": "cps"
-                },
-                {
-                  "property": "COV",
-                  "value": "343",
-                  "unit": "g/L"
-                },
-                {
-                  "property": "Weight",
-                  "value": "7",
-                  "unit": "lbs/gal"
-                },
-                {
-                  "property": "Open Time",
-                  "value": "15-20",
-                  "unit": "minutes"
-                }
-              ],
-              "sizing": [
-                "1 Gallon",
-                "5 Gallon Pail",
-                "55 Gallon Drum"
-              ],
-              "color": "",
-              "cleanup": "",
-              "recommended_equipment": "",
-              "published": true,
-              "last_edited": "2026-01-02T20:38:18.652Z",
-              "full_name": "81-0389 - High Performance Neoprene Contact Adhesive"
-            },
-            {
               "product_id": "A1000",
               "name": "A1000 - Insulation Laminating Adhesive",
               "description": "Ideal for faced insulation manufacturing",
@@ -795,49 +716,6 @@
               "published": true,
               "last_edited": "2026-01-02T20:38:18.654Z",
               "full_name": "CA2400 - INSTANT ADHESIVE"
-            },
-            {
-              "product_id": "FRP",
-              "name": "FRP - Hybrid Polymer Rollable Adhesive",
-              "description": "*  FRP modified silane rollable flooring adhesive is a high-performance adhesive that is specifically designed to bond a variety of substrates, including metal flooring, plywood, and vinyls.",
-              "brand": "forza_bond",
-              "industry": "industrial_industry",
-              "chemistry": "",
-              "url": "",
-              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/FRP 3.5 gal pail.webp",
-              "benefits": [
-                "Excellent bonding properties to a variety of substrates, including metal flooring, plywood, and vinyls",
-                "Can be used in refrigerated and walk",
-                "in coolers",
-                "Can withstand extreme temperatures and conditions",
-                "High solids content for excellent coverage and reduced shrinkage",
-                "Easy to apply and rollable",
-                "Tack",
-                "free time of 2",
-                "4 hours",
-                "Short cure time of 24",
-                "48 hours",
-                "High shear and peel strength for maximum durability"
-              ],
-              "applications": [
-                "FRP modified silane rollable flooring adhesive is a high",
-                "performance adhesive that is specifically designed to bond a variety of substrates, including metal flooring, plywood, and vinyls.",
-                "FRP adhesive is ideal for use in refrigerated and walk",
-                "in coolers, as it is able to withstand the extreme temperatures and conditions found in these environments."
-              ],
-              "technical": [],
-              "sizing": [
-                "28 oz",
-                "20 oz",
-                "5 Gallon",
-                "55 Gallon"
-              ],
-              "color": "",
-              "cleanup": "",
-              "recommended_equipment": "",
-              "published": true,
-              "last_edited": "2026-01-02T20:38:18.654Z",
-              "full_name": "FRP - Rollable Adhesive"
             },
             {
               "product_id": "H103",
@@ -2234,142 +2112,6 @@
               "full_name": "OA99 - Contact Adhesive"
             },
             {
-              "product_id": "OSA",
-              "name": "OSA - Adhesive Primer and Promoter",
-              "description": "Used to promote adhesion in applications that include: painted surfaces, bare metals, and plastics",
-              "brand": "forza_bond",
-              "industry": "industrial_industry",
-              "chemistry": "Solvent Based",
-              "url": "https://forzabuilt.com/product/osa/",
-              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/OSA tin can.webp",
-              "benefits": [
-                "Low odor",
-                "Fast drying",
-                "Promotes adhesion to difficult substrates",
-                "Easy wipe on format",
-                "Reduces grease and oils"
-              ],
-              "applications": [
-                "Used to promote adhesion in applications that include: painted surfaces, bare metals, and plastics"
-              ],
-              "technical": [
-                {
-                  "property": "Appearance",
-                  "value": "Clear"
-                },
-                {
-                  "property": "Base",
-                  "value": "Titanium (IV) isopropoxide"
-                },
-                {
-                  "property": "Coverage",
-                  "value": "Up to 5000",
-                  "unit": "ft"
-                },
-                {
-                  "property": "Hazards",
-                  "value": "Flammable"
-                },
-                {
-                  "property": "Open Time",
-                  "value": "Up to 3",
-                  "unit": "hours"
-                },
-                {
-                  "property": "Solids",
-                  "value": "<1",
-                  "unit": "%"
-                }
-              ],
-              "sizing": [
-                "2 oz",
-                "1 Quart Can",
-                "Custom Sizes Available"
-              ],
-              "color": "",
-              "cleanup": "",
-              "recommended_equipment": "",
-              "published": true,
-              "last_edited": "2026-01-02T20:38:18.655Z",
-              "full_name": "OSA - Adhesive Primer and Promoter"
-            },
-            {
-              "product_id": "R160",
-              "name": "R160 - Two-Part 5-Minute Epoxy",
-              "description": "Used in applications that benifit from a tenacious bond with wood, concrete, fiberglass, and most thermoset plastics. This includes:",
-              "brand": "forza_bond",
-              "industry": "industrial_industry",
-              "chemistry": "Epoxy",
-              "url": "https://forzabuilt.com/product/r160/",
-              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/R160 2 part.webp",
-              "benefits": [
-                "1:1 ratio, easy mixing or dispensing",
-                "3 minute work life, 10 minute handling strength",
-                "-60° to 250°F service temperature",
-                "Resistant to water, salt, vehicle fuels and fluids",
-                "Resistant to many other substances",
-                "Very fast cure with wide range of uses",
-                "Tenacious bond to wood, concrete, fiberglass",
-                "Bonds most thermoset plastics"
-              ],
-              "applications": [
-                "Used in applications that benifit from a tenacious bond with wood, concrete, fiberglass, and most thermoset plastics. This includes:",
-                "Carpet tack strip to concrete, metal, wood, and various other floor surfaces. Carpet may be stretched as soon as 20 minutes after application.",
-                "Also bonds metal balusters in wood hand rails"
-              ],
-              "technical": [
-                {
-                  "property": "Appearance",
-                  "value": "Clear or Blue"
-                },
-                {
-                  "property": "Handling Time",
-                  "value": "10",
-                  "unit": "minutes"
-                },
-                {
-                  "property": "Mix Ratio",
-                  "value": "1:1",
-                  "unit": "by volume"
-                },
-                {
-                  "property": "Work Life",
-                  "value": "3",
-                  "unit": "minutes"
-                },
-                {
-                  "property": "Service Temperature",
-                  "value": "-60 to 250",
-                  "unit": "°F"
-                },
-                {
-                  "property": "VOC",
-                  "value": "569",
-                  "unit": "g/L"
-                },
-                {
-                  "property": "Cure Type",
-                  "value": "Very fast cure"
-                },
-                {
-                  "property": "Resistance",
-                  "value": "Water, salt, vehicle fuels and fluids"
-                }
-              ],
-              "sizing": [
-                "280 ml Cartridge",
-                "5 Gallon",
-                "55 Gallon Drum",
-                "50 ml Cartridge"
-              ],
-              "color": "",
-              "cleanup": "",
-              "recommended_equipment": "",
-              "published": true,
-              "last_edited": "2026-01-02T20:38:18.655Z",
-              "full_name": "R160 - Epoxy Quick-Set High Strength Tack Strength Adhesive"
-            },
-            {
               "product_id": "R190",
               "name": "R190 - Two-Part Epoxy Adhesive",
               "description": "Made for applications that require bonding to metal, wood, iron, porcelain, fiberglass, polystyrene",
@@ -2447,220 +2189,6 @@
               "full_name": "R190 - Epoxy Adhesive"
             },
             {
-              "product_id": "R221",
-              "name": "R221 - Two-Part 1:1 Modified Epoxy Adhesive",
-              "description": "* Ideal for applications requiring the structural bonding of metals and other various materials in panel assembly.",
-              "brand": "forza_bond",
-              "industry": "industrial_industry",
-              "chemistry": "Modified Epoxy",
-              "url": "https://forzabuilt.com/product/r221/",
-              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/R221 2 part.webp",
-              "benefits": [
-                "Industrial drum packaging for high-volume applications",
-                "Excellent chemical resistance",
-                "High strength structural bonding",
-                "Temperature cycling resistance",
-                "Long shelf life",
-                "Consistent performance in industrial environments",
-                "Easy dispensing from drum containers",
-                "Professional-grade reliability"
-              ],
-              "applications": [
-                "Ideal for applications requiring the structural bonding of metals and other various materials in panel assembly.",
-                "Also suitable for structural bonding where a flixible bond line is desired including these substrates:",
-                "Wood, Ceramics, Composites, Concrete, and FRP, and combinations of these materials"
-              ],
-              "technical": [
-                {
-                  "property": "Appearance",
-                  "value": "Two-part epoxy system",
-                  "unit": ""
-                },
-                {
-                  "property": "Mix Ratio",
-                  "value": "1:1",
-                  "unit": "by volume"
-                },
-                {
-                  "property": "Pot Life",
-                  "value": "45-60",
-                  "unit": "minutes"
-                },
-                {
-                  "property": "Cure Time",
-                  "value": "24",
-                  "unit": "hours"
-                },
-                {
-                  "property": "Temperature Range",
-                  "value": "-40 to 180",
-                  "unit": "°F"
-                },
-                {
-                  "property": "Tensile Strength",
-                  "value": "3200+",
-                  "unit": "psi"
-                },
-                {
-                  "property": "Shear Strength",
-                  "value": "2800+",
-                  "unit": "psi"
-                },
-                {
-                  "property": "Package Size",
-                  "value": "Industrial",
-                  "unit": "drum"
-                }
-              ],
-              "sizing": [
-                "400 ml Cartridge",
-                "5 Gallon Pail",
-                "52 Gallon Drum"
-              ],
-              "color": "",
-              "cleanup": "",
-              "recommended_equipment": "",
-              "published": true,
-              "last_edited": "2026-01-02T20:38:18.655Z",
-              "full_name": "R221 - Two-Part 1:1 Modified Epoxy Adhesive"
-            },
-            {
-              "product_id": "R519",
-              "name": "R519 - Two-Part Methacrylate Adhesive",
-              "description": "Ideal for applications requiring the bonding of engineered thermoplastics, thermosets, composites, and metal structural elements in any combination.",
-              "brand": "forza_bond",
-              "industry": "industrial_industry",
-              "chemistry": "Methacrylate/MMA",
-              "url": "https://forzabuilt.com/product/r519/",
-              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/R519 2 part.webp",
-              "benefits": [
-                "Modified epoxy chemistry for enhanced flexibility",
-                "Excellent chemical resistance",
-                "High strength structural bonding",
-                "Temperature cycling resistance",
-                "Improved impact resistance",
-                "Long working time for complex assemblies",
-                "Superior adhesion to difficult substrates",
-                "Professional-grade performance"
-              ],
-              "applications": [
-                "Ideal for applications requiring the bonding of engineered thermoplastics, thermosets, composites, and metal structural elements in any combination.",
-                "It is also ideally suited to bond a wide variety of rubber materials and a vast range of metals without the need for surface preparation, primers, or chemical wipes.",
-                "Additionally, it is highly effective in applications requiring bonding composites and bonding other substrates"
-              ],
-              "technical": [
-                {
-                  "property": "Appearance",
-                  "value": "Two-part modified epoxy system",
-                  "unit": ""
-                },
-                {
-                  "property": "Mix Ratio",
-                  "value": "1:1",
-                  "unit": "by volume"
-                },
-                {
-                  "property": "Pot Life",
-                  "value": "50-70",
-                  "unit": "minutes"
-                },
-                {
-                  "property": "Cure Time",
-                  "value": "24-48",
-                  "unit": "hours"
-                },
-                {
-                  "property": "Temperature Range",
-                  "value": "-40 to 160",
-                  "unit": "°F"
-                },
-                {
-                  "property": "Tensile Strength",
-                  "value": "3000+",
-                  "unit": "psi"
-                },
-                {
-                  "property": "Elongation",
-                  "value": "Enhanced",
-                  "unit": ""
-                },
-                {
-                  "property": "Package Size",
-                  "value": "Industrial",
-                  "unit": "drum"
-                }
-              ],
-              "sizing": [
-                "50 ml Cartridge",
-                "400 ml Cartridge",
-                "5 Gallon",
-                "52 Gallon Drum"
-              ],
-              "color": "",
-              "cleanup": "",
-              "recommended_equipment": "",
-              "published": true,
-              "last_edited": "2026-01-02T20:38:18.655Z",
-              "full_name": "R519 - Fast Acting Two-Part Methacrylate Adhesive"
-            },
-            {
-              "product_id": "R529",
-              "name": "R529 - Structural Anchoring Epoxy",
-              "description": "???",
-              "brand": "forza_bond",
-              "industry": "industrial_industry",
-              "chemistry": "",
-              "url": "",
-              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/R529.webp",
-              "benefits": [
-                "???"
-              ],
-              "applications": [
-                "???"
-              ],
-              "technical": [],
-              "sizing": [
-                "???"
-              ],
-              "color": "",
-              "cleanup": "",
-              "recommended_equipment": "",
-              "published": true,
-              "last_edited": "2026-01-02T20:38:18.655Z",
-              "full_name": "R529 - Structural Anchoring Epoxy"
-            },
-            {
-              "product_id": "S228",
-              "name": "S228 - Tape Adhesive Primer and Promoter",
-              "description": "Increases adhesion in applications with high bond tapes and other adhesives.",
-              "brand": "forza_bond",
-              "industry": "industrial_industry",
-              "chemistry": "Solvent Based",
-              "url": "",
-              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/S228 1 gal pail.webp",
-              "benefits": [
-                "Increases adhesive performance on polyethylene, polypropylene and TPR",
-                "Also useful on other plastics, rubber & metals",
-                "Removes grease and oils to promote adhesion"
-              ],
-              "applications": [
-                "Increases adhesion in applications with high bond tapes and other adhesives.",
-                "Improves adhesion in applications with these substrates: polyethylene, polypropylene, glass, metal, and painted surfaces."
-              ],
-              "technical": [],
-              "sizing": [
-                "1 Quart",
-                "1 Gallon",
-                "5 Gallon"
-              ],
-              "color": "",
-              "cleanup": "",
-              "recommended_equipment": "",
-              "published": true,
-              "last_edited": "2026-01-02T20:38:18.655Z",
-              "full_name": "S228 - Adhesive Primer and Promoter"
-            },
-            {
               "product_id": "W700",
               "name": "W700 - HPL Laminating Adhesive",
               "description": "Specifically formulated for cold press applications, edge bonding, veneer & HPL laminating, Panel to frame bonding, and general wood assembly.",
@@ -2736,6 +2264,219 @@
               "published": true,
               "last_edited": "2026-01-02T20:38:18.655Z",
               "full_name": "W700"
+            },
+            {
+              "product_id": "FRP",
+              "name": "FRP - Hybrid Polymer Rollable Adhesive",
+              "description": "*  FRP modified silane rollable flooring adhesive is a high-performance adhesive that is specifically designed to bond a variety of substrates, including metal flooring, plywood, and vinyls.",
+              "brand": "forza_bond",
+              "industry": "industrial_industry",
+              "chemistry": "",
+              "url": "",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/FRP 3.5 gal pail.webp",
+              "benefits": [
+                "Excellent bonding properties to a variety of substrates, including metal flooring, plywood, and vinyls",
+                "Can be used in refrigerated and walk",
+                "in coolers",
+                "Can withstand extreme temperatures and conditions",
+                "High solids content for excellent coverage and reduced shrinkage",
+                "Easy to apply and rollable",
+                "Tack",
+                "free time of 2",
+                "4 hours",
+                "Short cure time of 24",
+                "48 hours",
+                "High shear and peel strength for maximum durability"
+              ],
+              "applications": [
+                "FRP modified silane rollable flooring adhesive is a high",
+                "performance adhesive that is specifically designed to bond a variety of substrates, including metal flooring, plywood, and vinyls.",
+                "FRP adhesive is ideal for use in refrigerated and walk",
+                "in coolers, as it is able to withstand the extreme temperatures and conditions found in these environments."
+              ],
+              "technical": [],
+              "sizing": [
+                "28 oz",
+                "20 oz",
+                "5 Gallon",
+                "55 Gallon"
+              ],
+              "color": "",
+              "cleanup": "",
+              "recommended_equipment": "",
+              "published": true,
+              "last_edited": "2026-01-02T20:38:18.654Z",
+              "full_name": "FRP - Rollable Adhesive"
+            },
+            {
+              "product_id": "81-0389",
+              "name": "81-0389 - High Performance Neoprene Contact Adhesive",
+              "description": "Ideal for bonding furniture and cabinets,",
+              "brand": "forza_bond",
+              "industry": "industrial_industry",
+              "chemistry": "Solvent Based",
+              "url": "https://forzabuilt.com/product/81-0389/",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/81-0389 5 gal pail.webp",
+              "benefits": [
+                "Excellent coverage",
+                "Excellent green strength",
+                "High temperature resistance",
+                "Fast, high tack",
+                "80% of final strength achieved immediately, full strength achieved in approximately 24 hours",
+                "Fast drying",
+                "Sprayable",
+                "Ideal for aircraft applications"
+              ],
+              "applications": [
+                "Ideal for bonding furniture and cabinets,",
+                "Especially good for laminating flexible materials to panels.",
+                "Good for rapid bonding of light weight parts",
+                "Bonds leather, veneer, fabric, upholstery",
+                "Bonds foam, wood, rubber, plastic laminate, melamine",
+                "Bonds metal, cork, fiberglass, and many plastics."
+              ],
+              "technical": [
+                {
+                  "property": "Appearance",
+                  "value": "Clear / Neutral or Red"
+                },
+                {
+                  "property": "Shelf Life",
+                  "value": "6",
+                  "unit": "months"
+                },
+                {
+                  "property": "Solids",
+                  "value": "15-21",
+                  "unit": "%"
+                },
+                {
+                  "property": "Solvent",
+                  "value": "Flammable"
+                },
+                {
+                  "property": "Viscosity",
+                  "value": "100-150",
+                  "unit": "cps"
+                },
+                {
+                  "property": "COV",
+                  "value": "343",
+                  "unit": "g/L"
+                },
+                {
+                  "property": "Weight",
+                  "value": "7",
+                  "unit": "lbs/gal"
+                },
+                {
+                  "property": "Open Time",
+                  "value": "15-20",
+                  "unit": "minutes"
+                }
+              ],
+              "sizing": [
+                "1 Gallon",
+                "5 Gallon Pail",
+                "55 Gallon Drum"
+              ],
+              "color": "",
+              "cleanup": "",
+              "recommended_equipment": "",
+              "published": true,
+              "last_edited": "2026-01-02T20:38:18.652Z",
+              "full_name": "81-0389 - High Performance Neoprene Contact Adhesive"
+            },
+            {
+              "product_id": "S228",
+              "name": "S228 - Tape Adhesive Primer and Promoter",
+              "description": "Increases adhesion in applications with high bond tapes and other adhesives.",
+              "brand": "forza_bond",
+              "industry": "industrial_industry",
+              "chemistry": "Solvent Based",
+              "url": "",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/S228 1 gal pail.webp",
+              "benefits": [
+                "Increases adhesive performance on polyethylene, polypropylene and TPR",
+                "Also useful on other plastics, rubber & metals",
+                "Removes grease and oils to promote adhesion"
+              ],
+              "applications": [
+                "Increases adhesion in applications with high bond tapes and other adhesives.",
+                "Improves adhesion in applications with these substrates: polyethylene, polypropylene, glass, metal, and painted surfaces."
+              ],
+              "technical": [],
+              "sizing": [
+                "1 Quart",
+                "1 Gallon",
+                "5 Gallon"
+              ],
+              "color": "",
+              "cleanup": "",
+              "recommended_equipment": "",
+              "published": true,
+              "last_edited": "2026-01-02T20:38:18.655Z",
+              "full_name": "S228 - Adhesive Primer and Promoter"
+            },
+            {
+              "product_id": "OSA",
+              "name": "OSA - Adhesive Primer and Promoter",
+              "description": "Used to promote adhesion in applications that include: painted surfaces, bare metals, and plastics",
+              "brand": "forza_bond",
+              "industry": "industrial_industry",
+              "chemistry": "Solvent Based",
+              "url": "https://forzabuilt.com/product/osa/",
+              "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/OSA tin can.webp",
+              "benefits": [
+                "Low odor",
+                "Fast drying",
+                "Promotes adhesion to difficult substrates",
+                "Easy wipe on format",
+                "Reduces grease and oils"
+              ],
+              "applications": [
+                "Used to promote adhesion in applications that include: painted surfaces, bare metals, and plastics"
+              ],
+              "technical": [
+                {
+                  "property": "Appearance",
+                  "value": "Clear"
+                },
+                {
+                  "property": "Base",
+                  "value": "Titanium (IV) isopropoxide"
+                },
+                {
+                  "property": "Coverage",
+                  "value": "Up to 5000",
+                  "unit": "ft"
+                },
+                {
+                  "property": "Hazards",
+                  "value": "Flammable"
+                },
+                {
+                  "property": "Open Time",
+                  "value": "Up to 3",
+                  "unit": "hours"
+                },
+                {
+                  "property": "Solids",
+                  "value": "<1",
+                  "unit": "%"
+                }
+              ],
+              "sizing": [
+                "2 oz",
+                "1 Quart Can",
+                "Custom Sizes Available"
+              ],
+              "color": "",
+              "cleanup": "",
+              "recommended_equipment": "",
+              "published": true,
+              "last_edited": "2026-01-02T20:38:18.655Z",
+              "full_name": "OSA - Adhesive Primer and Promoter"
             }
           ]
         },
