@@ -2,7 +2,6 @@
 node_modules/
 npm-debug.log*
 yarn-debug.log*
-yarn-error.log*
 
 # Production build
 dist/
@@ -41,14 +40,17 @@ coverage/
 # TypeScript cache
 *.tsbuildinfo
 
-# Optional npm cache directory
-.npm
-
-# Optional REPL history
-.node_repl_history
-
 # Vercel
 .vercel
 
 # Original project template (keeping separate)
 Product-Mangement-System-Template/
+
+# Database files
+*.db
+*.db-shm
+*.db-wal
+
+# Uploads directory
+public/uploads/*
+!public/uploads/.gitkeep

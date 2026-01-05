@@ -1,0 +1,12 @@
+{
+  "timestamp": "2025-10-24T19:06:49.189Z",
+  "summary": {
+    "totalProcessed": 0,
+    "successfulDownloads": 0,
+    "failedDownloads": 0,
+    "successRate": "NaN%"
+  },
+  "downloadedImages": [],
+  "failedDownloads": [],
+  "scrapedDirectory": "C:\\Users\\nimro\\Downloads\\01_Projects\\WebProjects\\PMST\\backend\\public\\scraped-products-full"
+}
