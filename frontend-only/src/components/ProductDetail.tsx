@@ -40,9 +40,24 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onProductUpdated
     return [];
   };
 
+  // Helper function to normalize sizing to always be an array
+  const normalizeSizing = (sizing: any): string[] => {
+    if (!sizing) return [];
+    if (Array.isArray(sizing)) {
+      // Ensure all items are strings
+      return sizing.filter(item => typeof item === 'string');
+    }
+    if (typeof sizing === 'object') {
+      // Convert object to array of string values
+      return Object.values(sizing).filter(v => typeof v === 'string') as string[];
+    }
+    return [];
+  };
+
   const [formData, setFormData] = useState<ProductFormData>({
     product_id: product.product_id,
     name: product.name,
+    full_name: product.full_name || product.name,
     description: product.description || '',
     url: product.url || '',
     brand: product.brand,
@@ -53,7 +68,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onProductUpdated
     benefits: Array.isArray(product.benefits) ? product.benefits : [],
     applications: Array.isArray(product.applications) ? product.applications : [],
     technical: normalizeTechnical(product.technical),
-    sizing: Array.isArray(product.sizing) ? product.sizing : [],
+    sizing: normalizeSizing(product.sizing),
     color: product.color || '',
     cleanup: product.cleanup || '',
     recommended_equipment: product.recommended_equipment || '',
@@ -66,6 +81,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onProductUpdated
     setFormData({
       product_id: product.product_id,
       name: product.name,
+      full_name: product.full_name || product.name,
       description: product.description || '',
       url: product.url || '',
       brand: product.brand,
@@ -76,7 +92,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onProductUpdated
       benefits: Array.isArray(product.benefits) ? product.benefits : [],
       applications: Array.isArray(product.applications) ? product.applications : [],
       technical: normalizeTechnical(product.technical),
-      sizing: Array.isArray(product.sizing) ? product.sizing : [],
+      sizing: normalizeSizing(product.sizing),
       color: product.color || '',
       cleanup: product.cleanup || '',
       recommended_equipment: product.recommended_equipment || '',
@@ -316,6 +332,7 @@ Check the browser console (F12) for more details.`;
                       setFormData({
                         product_id: product.product_id,
                         name: product.name,
+                        full_name: product.full_name || product.name,
                         description: product.description || '',
                         url: product.url || '',
                         brand: product.brand,
@@ -326,7 +343,7 @@ Check the browser console (F12) for more details.`;
                         benefits: Array.isArray(product.benefits) ? product.benefits : [],
                         applications: Array.isArray(product.applications) ? product.applications : [],
                         technical: normalizeTechnical(product.technical),
-                        sizing: Array.isArray(product.sizing) ? product.sizing : [],
+                        sizing: normalizeSizing(product.sizing),
                         color: product.color || '',
                         cleanup: product.cleanup || '',
                         recommended_equipment: product.recommended_equipment || '',
@@ -418,6 +435,25 @@ Check the browser console (F12) for more details.`;
             />
           ) : (
             <p className="text-2xl font-mono text-gray-900">{product.product_id}</p>
+          )}
+        </div>
+
+        {/* Full Name (for product cards) */}
+        <div className="mb-8 bg-white p-6 rounded-lg shadow-sm">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-sm font-medium text-gray-600">Full Name (for product cards)</span>
+          </div>
+          {isEditing ? (
+            <input
+              type="text"
+              value={formData.full_name}
+              onChange={(e) => handleInputChange('full_name', e.target.value)}
+              className="w-full text-xl text-gray-900 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Enter full product name (used on product cards)"
+              disabled={saving}
+            />
+          ) : (
+            <p className="text-xl text-gray-900">{product.full_name || product.name}</p>
           )}
         </div>
 
@@ -549,11 +585,26 @@ Check the browser console (F12) for more details.`;
             </div>
           ) : (
             <div className="flex flex-wrap gap-2">
-              {product.sizing?.map((size, index) => (
-                <span key={index} className="px-4 py-2 bg-gray-100 text-gray-800 rounded-lg text-lg">
-                  {size}
-                </span>
-              )) || <p className="text-lg text-gray-500 italic">No sizing information</p>}
+              {(() => {
+                // Handle both array and object formats for sizing
+                let sizingArray: string[] = [];
+                if (Array.isArray(product.sizing)) {
+                  sizingArray = product.sizing;
+                } else if (product.sizing && typeof product.sizing === 'object') {
+                  // Convert object to array of string values
+                  sizingArray = Object.values(product.sizing).filter(v => typeof v === 'string') as string[];
+                }
+                
+                return sizingArray.length > 0 ? (
+                  sizingArray.map((size, index) => (
+                    <span key={index} className="px-4 py-2 bg-gray-100 text-gray-800 rounded-lg text-lg">
+                      {String(size)}
+                    </span>
+                  ))
+                ) : (
+                  <p className="text-lg text-gray-500 italic">No sizing information</p>
+                );
+              })()}
             </div>
           )}
         </section>

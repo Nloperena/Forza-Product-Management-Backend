@@ -57,6 +57,7 @@ export interface ProductFilters {
 export interface ProductFormData {
   product_id: string;
   name: string;
+  full_name: string;
   description: string;
   brand: string;
   industry: string;
