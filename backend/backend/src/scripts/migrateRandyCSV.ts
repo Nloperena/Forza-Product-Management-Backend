@@ -359,16 +359,27 @@ class RandyCSVMigrator {
     let currentItem = '';
 
     for (const line of lines) {
-      const bulletMatch = line.match(/^[*•\u00B7\u2022\u2023\u2043\u204C\u204D\u2219\u25CB\u25CF\u25D8\u25E6]\s*/);
+      const bulletMatch = line.match(/^[*•\u00B7\u2022\u2023\u2043\u204C\u204D\u2219\u25CB\u25CF\u25D8\u25E6-]\s*/);
       
       if (bulletMatch) {
-        // If we have a current item being built, push it
-        if (currentItem) {
-          result.push(currentItem);
-          currentItem = '';
+        const bulletText = line.slice(bulletMatch[0].length).trim();
+        
+        // HEURISTIC: If the bulleted text starts with a lowercase letter,
+        // it's likely a continuation of the previous item that was mis-bulleted.
+        const firstChar = bulletText.charAt(0);
+        const isLowercase = firstChar === firstChar.toLowerCase() && firstChar !== firstChar.toUpperCase();
+        
+        if (isLowercase && currentItem) {
+          // Merge with previous item
+          currentItem += ' ' + bulletText;
+        } else {
+          // If we have a current item being built, push it
+          if (currentItem) {
+            result.push(currentItem);
+          }
+          // Start a new bulleted item
+          currentItem = bulletText;
         }
-        // This is a bulleted item
-        result.push(line.slice(bulletMatch[0].length).trim());
       } else {
         // No bullet - check if it's a lead-in like "This includes:" or ends in a colon
         const lowerLine = line.toLowerCase();
@@ -383,10 +394,6 @@ class RandyCSVMigrator {
         } else {
           currentItem = line;
         }
-
-        // If it's NOT a lead-in and NOT followed by a bullet immediately, 
-        // we might want to push it. But in most cases, consecutive non-bullet 
-        // lines should be merged until a bullet is found or the end of text.
       }
     }
     
