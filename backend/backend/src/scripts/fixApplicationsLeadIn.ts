@@ -57,6 +57,7 @@ function fixApplications() {
                                     const lowerCurrent = current.toLowerCase();
                                     const isLeadIn = lowerCurrent === 'this includes:' || 
                                                    lowerCurrent === 'including:' ||
+                                                   lowerCurrent === 'applications include:' ||
                                                    lowerCurrent === 'this also bonds to:' ||
                                                    lowerCurrent === 'compatible with:' ||
                                                    lowerCurrent === 'compatible for following resins:' ||

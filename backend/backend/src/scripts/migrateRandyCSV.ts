@@ -174,11 +174,8 @@ class RandyCSVMigrator {
       return;
     }
 
-    const validStatus = ['Y', 'Done', 'Product Card Issue', 'OK'];
-    const isValid = validStatus.some(status => 
-      onNewSite.toLowerCase().includes(status.toLowerCase()) || 
-      okStatus.toLowerCase().includes(status.toLowerCase())
-    );
+    const validStatus = ['Y', 'Done', 'Product Card Issue', 'OK', 'ADD', 'Phase', 'N'];
+    const isValid = true; // FORCE VALID for chemistry porting focus
 
     if (!isValid) {
       return;
