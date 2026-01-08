@@ -264,8 +264,11 @@ class RandyCSVMigrator {
         if (!this.dryRun) {
           product.applications = parsedApps;
           // Also update description with the first sentence if it's currently generic or empty
-          if (!product.description || product.description.length < 10) {
-            product.description = parsedApps[0] || '';
+          if (!product.description || product.description.length < 10 || /^[*•\u00B7\u2022\u2023\u2043\u204C\u204D\u2219\u25CB\u25CF\u25D8\u25E6-]\s*/.test(product.description)) {
+            let desc = parsedApps[0] || '';
+            // Strip leading bullet if present
+            desc = desc.replace(/^[*•\u00B7\u2022\u2023\u2043\u204C\u204D\u2219\u25CB\u25CF\u25D8\u25E6-]\s*/, '').trim();
+            product.description = desc;
           }
         }
       }

@@ -40,6 +40,15 @@ function fixApplications() {
                     const industry = brand.products[industryKey];
                     if (Array.isArray(industry.products)) {
                         industry.products.forEach((product: any) => {
+                            // Clean description if it starts with a bullet
+                            if (product.description && typeof product.description === 'string') {
+                                const bulletPattern = /^[*•\u00B7\u2022\u2023\u2043\u204C\u204D\u2219\u25CB\u25CF\u25D8\u25E6-]\s*/;
+                                if (bulletPattern.test(product.description)) {
+                                    product.description = product.description.replace(bulletPattern, '').trim();
+                                    fileFixCount++;
+                                }
+                            }
+
                             if (Array.isArray(product.applications) && product.applications.length > 1) {
                                 const newApps: string[] = [];
                                 for (let i = 0; i < product.applications.length; i++) {

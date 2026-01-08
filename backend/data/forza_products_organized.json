@@ -314,7 +314,7 @@
             {
               "product_id": "C150",
               "name": "C150 - CA-Compliant Contact Adhesive",
-              "description": "* Bonds polystyrene foam to itself and many other substrates",
+              "description": "Bonds polystyrene foam to itself and many other substrates",
               "brand": "forza_bond",
               "industry": "industrial_industry",
               "chemistry": "",
@@ -348,7 +348,7 @@
             {
               "product_id": "C331",
               "name": "C331 - Non-Flammable Sprayable Contact Adhesive",
-              "description": "* Bonds veneers, fabrics, upholstery, and foam",
+              "description": "Bonds veneers, fabrics, upholstery, and foam",
               "brand": "forza_bond",
               "industry": "industrial_industry",
               "chemistry": "Solvent Based",
@@ -432,7 +432,7 @@
             {
               "product_id": "C805",
               "name": "C805 - Vinyl Bonding",
-              "description": "* Bonds vinyl to vinyl, foam, and leather",
+              "description": "Bonds vinyl to vinyl, foam, and leather",
               "brand": "forza_bond",
               "industry": "industrial_industry",
               "chemistry": "NA",
@@ -479,7 +479,7 @@
             {
               "product_id": "C830",
               "name": "C830 - Plastic Adhesive",
-              "description": "* Designed for bonding vinyl to many different substrates",
+              "description": "Designed for bonding vinyl to many different substrates",
               "brand": "forza_bond",
               "industry": "industrial_industry",
               "chemistry": "NA",
@@ -529,7 +529,7 @@
             {
               "product_id": "C835",
               "name": "C835 - Fabrication Adhesive",
-              "description": "* Specially designed for use in fabricating abrasives",
+              "description": "Specially designed for use in fabricating abrasives",
               "brand": "forza_bond",
               "industry": "industrial_industry",
               "chemistry": "NA",
@@ -574,7 +574,7 @@
             {
               "product_id": "CA1000",
               "name": "CA1000 - Instant Adhesive",
-              "description": "* Designed for bonding instantly a variety of dissimilar materials",
+              "description": "Designed for bonding instantly a variety of dissimilar materials",
               "brand": "forza_bond",
               "industry": "industrial_industry",
               "chemistry": "Cyanoacrylates",
@@ -624,7 +624,7 @@
             {
               "product_id": "CA1500",
               "name": "CA1500 - Instant Adhesive",
-              "description": "* Formulated to bond both similar and dissimilar materials.",
+              "description": "Formulated to bond both similar and dissimilar materials.",
               "brand": "forza_bond",
               "industry": "industrial_industry",
               "chemistry": "Cyanoacrylates",
@@ -673,7 +673,7 @@
             {
               "product_id": "CA2400",
               "name": "CA2400 - Instant Adhesive",
-              "description": "* Formulated to bond both similar and dissimilar materials.",
+              "description": "Formulated to bond both similar and dissimilar materials.",
               "brand": "forza_bond",
               "industry": "industrial_industry",
               "chemistry": "Cyanoacrylates",
@@ -719,7 +719,7 @@
             {
               "product_id": "H103",
               "name": "H103 - Hot Melt Adhesive",
-              "description": "* Bonds foam to foam",
+              "description": "Bonds foam to foam",
               "brand": "forza_bond",
               "industry": "industrial_industry",
               "chemistry": "NA",
@@ -778,7 +778,7 @@
             {
               "product_id": "H117",
               "name": "H117 - Hot Melt Adhesive",
-              "description": "* Ideal for most packaging and assembly applications",
+              "description": "Ideal for most packaging and assembly applications",
               "brand": "forza_bond",
               "industry": "industrial_industry",
               "chemistry": "NA",
@@ -832,7 +832,7 @@
             {
               "product_id": "H158",
               "name": "H158 - Hot Melt Adhesive",
-              "description": "* Designed to adhere plain paper, corrugated paper, & packaging materials",
+              "description": "Designed to adhere plain paper, corrugated paper, & packaging materials",
               "brand": "forza_bond",
               "industry": "industrial_industry",
               "chemistry": "NA",
@@ -890,7 +890,7 @@
             {
               "product_id": "H163",
               "name": "H163 - Hot Melt Adhesive",
-              "description": "* Designed to adhere to nearly any surface",
+              "description": "Designed to adhere to nearly any surface",
               "brand": "forza_bond",
               "industry": "industrial_industry",
               "chemistry": "NA",
@@ -946,7 +946,7 @@
             {
               "product_id": "H164",
               "name": "H164 - Hot Melt Adhesive",
-              "description": "* Designed to aggressively adhere to nearly any surface",
+              "description": "Designed to aggressively adhere to nearly any surface",
               "brand": "forza_bond",
               "industry": "industrial_industry",
               "chemistry": "NA",
@@ -1009,7 +1009,7 @@
             {
               "product_id": "H167",
               "name": "H167 - Hot Melt Adhesive",
-              "description": "* Designed to aggressively adhere to nearly any surface",
+              "description": "Designed to aggressively adhere to nearly any surface",
               "brand": "forza_bond",
               "industry": "industrial_industry",
               "chemistry": "NA",
@@ -1045,7 +1045,7 @@
             {
               "product_id": "H176",
               "name": "H176 - Hot Melt Adhesive",
-              "description": "* Designed to bond case & carton sealing, & tray forming",
+              "description": "Designed to bond case & carton sealing, & tray forming",
               "brand": "forza_bond",
               "industry": "industrial_industry",
               "chemistry": "NA",
@@ -1077,7 +1077,7 @@
             {
               "product_id": "I1000",
               "name": "I1000 - Low-Medium Viscosity Laminating Adhesive",
-              "description": "*  For use in operations such as faced insulation manufacturing.",
+              "description": "For use in operations such as faced insulation manufacturing.",
               "brand": "forza_bond",
               "industry": "industrial_industry",
               "chemistry": "",
@@ -2260,7 +2260,7 @@
             {
               "product_id": "FRP",
               "name": "FRP - Hybrid Polymer Rollable Adhesive",
-              "description": "*  FRP modified silane rollable flooring adhesive is a high-performance adhesive that is specifically designed to bond a variety of substrates, including metal flooring, plywood, and vinyls.",
+              "description": "FRP modified silane rollable flooring adhesive is a high-performance adhesive that is specifically designed to bond a variety of substrates, including metal flooring, plywood, and vinyls.",
               "brand": "forza_bond",
               "industry": "industrial_industry",
               "chemistry": "",
@@ -3936,7 +3936,7 @@
             {
               "product_id": "M-S750",
               "name": "M-S750 - TAPE PRIMER AND ADHESION PROMOTER",
-              "description": "*  Primer specifically designed to increase adhesion with high bond tapes in many marine applications.",
+              "description": "Primer specifically designed to increase adhesion with high bond tapes in many marine applications.",
               "brand": "forza_bond",
               "industry": "marine_industry",
               "chemistry": "Solvent Based",
@@ -4242,7 +4242,7 @@
             {
               "product_id": "TAC-R750",
               "name": "TAC-R750 - Two Part, Methacrylate Adhesive",
-              "description": "*  Bonds engineered thermoplastics, thermosets, composites, and metal structural elements in any combination.",
+              "description": "Bonds engineered thermoplastics, thermosets, composites, and metal structural elements in any combination.",
               "brand": "forza_bond",
               "industry": "composites_industry",
               "chemistry": "Methacrylate/MMA",
@@ -6311,7 +6311,7 @@
             {
               "product_id": "C-S538",
               "name": "C-S538 - Tape Primer And Adhesion Promoter",
-              "description": "*  Specifically designed to increase adhesion with high bond tapes in most construction applications.",
+              "description": "Specifically designed to increase adhesion with high bond tapes in most construction applications.",
               "brand": "forza_bond",
               "industry": "construction_industry",
               "chemistry": "Solvent Based",
@@ -6509,7 +6509,7 @@
             {
               "product_id": "OA28",
               "name": "OA28 - Rollable Panel Adhesive",
-              "description": "* Designed for installing fiber reinforced plastic,",
+              "description": "Designed for installing fiber reinforced plastic,",
               "brand": "forza_seal",
               "industry": "industrial_industry",
               "chemistry": "Modified Silane",
@@ -6551,7 +6551,7 @@
             {
               "product_id": "OA29",
               "name": "OA29 - Trowelable Panel Adhesive",
-              "description": "* Specifically designed for installing fiber reinforced plastic,",
+              "description": "Specifically designed for installing fiber reinforced plastic,",
               "brand": "forza_seal",
               "industry": "industrial_industry",
               "chemistry": "Modified Silane",
@@ -7724,7 +7724,7 @@
             {
               "product_id": "M-OS796",
               "name": "M-OS796 - FAST-SKIN MULTI-PURPOSE HYBRID POLYMER SEALANT",
-              "description": "*  Specifically designed for sealing applications above water line including aluminum, steel, composite, and wood.",
+              "description": "Specifically designed for sealing applications above water line including aluminum, steel, composite, and wood.",
               "brand": "forza_seal",
               "industry": "marine_industry",
               "chemistry": "Modified Silane",
@@ -8773,7 +8773,7 @@
             {
               "product_id": "T215",
               "name": "T215 - Ultra High-Bond Acrylic Foam Tape",
-              "description": "* Bonds plastics, metals, woods, papers, and silicones used in the automotive, electronics, advertising, hardware, and construction industries where permanent flexibility is needed.",
+              "description": "Bonds plastics, metals, woods, papers, and silicones used in the automotive, electronics, advertising, hardware, and construction industries where permanent flexibility is needed.",
               "brand": "forza_tape",
               "industry": "industrial_industry",
               "chemistry": "Acrylic Foam",
@@ -8817,7 +8817,7 @@
             {
               "product_id": "T220",
               "name": "T220 - Ultra High-Bond Acrylic Foam Tape",
-              "description": "* Bonds plastics, metals, woods, papers, and silicones used in the automotive, electronics, advertising, hardware, and construction industries where permanent flexibility is needed.",
+              "description": "Bonds plastics, metals, woods, papers, and silicones used in the automotive, electronics, advertising, hardware, and construction industries where permanent flexibility is needed.",
               "brand": "forza_tape",
               "industry": "industrial_industry",
               "chemistry": "Acrylic Foam",
@@ -9122,7 +9122,7 @@
             {
               "product_id": "T461",
               "name": "T461 - Hot Melt Transfer Tape",
-              "description": "*  Used for mounting trim and insulation panels",
+              "description": "Used for mounting trim and insulation panels",
               "brand": "forza_tape",
               "industry": "industrial_industry",
               "chemistry": "Rubber Based",
@@ -9181,7 +9181,7 @@
             {
               "product_id": "T464",
               "name": "T464 - Transfer Tape",
-              "description": "*  Bonds paper and corrugate materials, including wax coated corrugate",
+              "description": "Bonds paper and corrugate materials, including wax coated corrugate",
               "brand": "forza_tape",
               "industry": "industrial_industry",
               "chemistry": "Transfer",
@@ -9345,7 +9345,7 @@
             {
               "product_id": "T600",
               "name": "T600 - Foam Gasketing Tape",
-              "description": "*  Used in applications requiring a seal for tight radius curves",
+              "description": "Used in applications requiring a seal for tight radius curves",
               "brand": "forza_tape",
               "industry": "industrial_industry",
               "chemistry": "",
@@ -9449,7 +9449,7 @@
             {
               "product_id": "T900",
               "name": "T900 - Butyl Tape",
-              "description": "*  T900 has outstanding webbing and elongation properties along with excellent adhesion to glass, plastic (but not plasticized PVC), polyethylene, galvanized aluminum, galvalume, siliconized polyester, polyurethane and polyvinyl fluoride painted substrates.",
+              "description": "T900 has outstanding webbing and elongation properties along with excellent adhesion to glass, plastic (but not plasticized PVC), polyethylene, galvanized aluminum, galvalume, siliconized polyester, polyurethane and polyvinyl fluoride painted substrates.",
               "brand": "forza_tape",
               "industry": "industrial_industry",
               "chemistry": "",
@@ -9479,7 +9479,7 @@
             {
               "product_id": "T950",
               "name": "T950 - FSK Bonding Tape",
-              "description": "*  Sealing applications for fibrous ductboard, FSK-faced duct wrap and sheet metal ducts.",
+              "description": "Sealing applications for fibrous ductboard, FSK-faced duct wrap and sheet metal ducts.",
               "brand": "forza_tape",
               "industry": "industrial_industry",
               "chemistry": "",
@@ -9508,7 +9508,7 @@
             {
               "product_id": "T970",
               "name": "T970 - Foil Bonding Tape",
-              "description": "*  Aircraft paint stripping maskant.",
+              "description": "Aircraft paint stripping maskant.",
               "brand": "forza_tape",
               "industry": "industrial_industry",
               "chemistry": "",
@@ -9650,7 +9650,7 @@
             {
               "product_id": "M-T815",
               "name": "M-T815 - DOUBLE-COATED ULTRA HIGH-BOND ACRYLIC FOAM TAPE",
-              "description": "* Bonds plastics, metals, woods, papers, and silicones used in marine applications.",
+              "description": "Bonds plastics, metals, woods, papers, and silicones used in marine applications.",
               "brand": "forza_tape",
               "industry": "marine_industry",
               "chemistry": "Acrylic Foam",
@@ -9734,7 +9734,7 @@
             {
               "product_id": "M-T820",
               "name": "M-T820 - DOUBLE-COATED ULTRA HIGH-BOND ACRYLIC FOAM TAPE",
-              "description": "* Bonds plastics, metals, woods, papers, and silicones used in marine applications.",
+              "description": "Bonds plastics, metals, woods, papers, and silicones used in marine applications.",
               "brand": "forza_tape",
               "industry": "marine_industry",
               "chemistry": "Acrylic Foam",
@@ -9862,7 +9862,7 @@
             {
               "product_id": "T-T1420 (ext seal)",
               "name": "T-T1420 (ext seal) - Extreme Sealing Tape",
-              "description": "*  A translucent tape, single-sided, pressure-sensitive acrylic adhesive tape.",
+              "description": "A translucent tape, single-sided, pressure-sensitive acrylic adhesive tape.",
               "brand": "forza_tape",
               "industry": "transportation_industry",
               "chemistry": "Acrylic Foam",
