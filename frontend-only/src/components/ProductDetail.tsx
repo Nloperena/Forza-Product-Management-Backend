@@ -460,23 +460,32 @@ Check the browser console (F12) for more details.`;
           )}
         </div>
 
-        {/* Description */}
-        <section className="mb-8 bg-white p-6 rounded-lg shadow-sm">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Description</h2>
-          {isEditing ? (
-            <textarea
-              value={formData.description}
-              onChange={(e) => handleInputChange('description', e.target.value)}
-              rows={6}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
-              disabled={saving}
-            />
-          ) : (
-            <p className="text-lg text-gray-700 leading-relaxed whitespace-pre-wrap">
-              {product.description || 'No description available'}
-            </p>
-          )}
-        </section>
+        {/* Description - Only show if it's not identical to the first application */}
+        {(() => {
+          const firstApp = product.applications?.[0] || '';
+          const isDup = product.description?.trim() === firstApp.trim();
+          
+          if (isDup && !isEditing) return null;
+          
+          return (
+            <section className="mb-8 bg-white p-6 rounded-lg shadow-sm">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">Description</h2>
+              {isEditing ? (
+                <textarea
+                  value={formData.description}
+                  onChange={(e) => handleInputChange('description', e.target.value)}
+                  rows={6}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
+                  disabled={saving}
+                />
+              ) : (
+                <p className="text-lg text-gray-700 leading-relaxed whitespace-pre-wrap">
+                  {product.description || 'No description available'}
+                </p>
+              )}
+            </section>
+          );
+        })()}
 
         {/* Chemistry */}
         {isEditing || product.chemistry ? (
