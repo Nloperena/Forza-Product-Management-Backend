@@ -1,11 +1,11 @@
 {
   "forza_products_organized": {
     "metadata": {
-      "total_products": 196,
-      "total_benefits": 186,
-      "organized_date": "2026-01-02",
+      "total_products": 192,
+      "total_benefits": 1299,
+      "organized_date": "2026-01-08",
       "hierarchy": "Brand (BOND/SEAL/TAPE) â†' Industry â†' Products",
-      "notes": "Optimized Structure V2"
+      "notes": "Updated from Randy's CSV on 2026-01-08."
     },
     "forza_bond": {
       "description": "High-performance industrial adhesives engineered to perform better than all others",
@@ -322,14 +322,12 @@
               "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/C150 1 gal pail.webp",
               "benefits": [
                 "Quick tack",
-                "Prevents attack of polystyrene foam, yet still creates a strong contact",
-                "like bond to many substrates",
+                "Prevents attack of polystyrene foam, yet still creates a strong contact-like bond to many substrates",
                 "Excellent water and moisture resistance"
               ],
               "applications": [
                 "Bonds polystyrene foam to itself and many other substrates",
-                "Used in refrigerator and freezer applications to bond foam on interior, non",
-                "load bearing sandwich panels",
+                "Used in refrigerator and freezer applications to bond foam on interior, non-load bearing sandwich panels",
                 "Used to bond precut foam to cardboard in fabrication of insulated shipping cartons",
                 "Used for preformed pipe insulation and the bonding of foam on prefabricated pump houses, animal shelters and farm waterers"
               ],
@@ -344,7 +342,8 @@
               "recommended_equipment": "",
               "published": true,
               "last_edited": "2026-01-02T20:38:18.653Z",
-              "full_name": "C150 - CA-Compliant Contact Adhesive"
+              "full_name": "C150 - CA-Compliant Contact Adhesive",
+              "benefits_count": 3
             },
             {
               "product_id": "C331",
@@ -2319,8 +2318,8 @@
               "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/81-0389 5 gal pail.webp",
               "benefits": [
                 "Excellent coverage",
-                "Excellent green strength",
                 "High temperature resistance",
+                "Excellent green strength",
                 "Fast, high tack",
                 "80% of final strength achieved immediately, full strength achieved in approximately 24 hours",
                 "Fast drying",
@@ -2385,7 +2384,8 @@
               "recommended_equipment": "",
               "published": true,
               "last_edited": "2026-01-02T20:38:18.652Z",
-              "full_name": "81-0389 - High Performance Neoprene Contact Adhesive"
+              "full_name": "81-0389 - High Performance Neoprene Contact Adhesive",
+              "benefits_count": 8
             },
             {
               "product_id": "S228",
@@ -4035,7 +4035,7 @@
             },
             {
               "product_id": "TAC-735R",
-              "name": "TAC-735R - MIST SPRAY NO HAPS INFUSION MOLDING ADHESIVE",
+              "name": "TAC-735R - Mist Spray No HAPS Infusion Molding Adhesive",
               "description": "An infusion molding adhesive that is specifically formulated to overcome problems normally associated with using other types of adhesives, such as bonding failure, resin blockage, & surface defects in the finish product. Temporarily bonds & fixtures materials including:",
               "brand": "forza_bond",
               "industry": "composites_industry",
@@ -4119,7 +4119,7 @@
             },
             {
               "product_id": "TAC-739R",
-              "name": "TAC-739R - MIST SPRAY INFUSION MOLDING ADHESIVE",
+              "name": "TAC-739R - Mist Spray Infusion Molding Adhesive",
               "description": "An infusion molding adhesive that is specifically formulated to overcome the problems normally associated with using other types of adhesives, such as bonding failure, resin blockage, and surface defects in the finish product. Temporarily bonds & fixtures materials including:",
               "brand": "forza_bond",
               "industry": "composites_industry",
@@ -4157,7 +4157,7 @@
               "recommended_equipment": "",
               "published": true,
               "last_edited": "2026-01-02T20:38:18.656Z",
-              "full_name": "TAC-739R"
+              "full_name": "TAC-739R - Mist Spray Infusion Molding Adhesive"
             },
             {
               "product_id": "TAC-745",
@@ -4199,7 +4199,7 @@
             },
             {
               "product_id": "TAC-850GR",
-              "name": "TAC-850GR - MIST SPRAY POLYMER CONCRETE MOLDING PROCESS TACKIFIER",
+              "name": "TAC-850GR - Mist Spray Polymer Concrete Molding Process Tackifier",
               "description": "A Web Spray Polymer Concrete Molding Process Tackifier that is purpose-built and excels at fixturing fiberglass matting to molds in Polymer Concrete Manufacturing",
               "brand": "forza_bond",
               "industry": "composites_industry",
@@ -4210,8 +4210,7 @@
                 "React New Site Already"
               ],
               "applications": [
-                "A Web Spray Polymer Concrete Molding Process Tackifier that is purpose",
-                "built and excels at fixturing fiberglass matting to molds in Polymer Concrete Manufacturing"
+                "A Web Spray Polymer Concrete Molding Process Tackifier that is purpose-built and excels at fixturing fiberglass matting to molds in Polymer Concrete Manufacturing"
               ],
               "technical": [],
               "sizing": [
@@ -4223,11 +4222,11 @@
               "recommended_equipment": "",
               "published": true,
               "last_edited": "2026-01-02T20:38:18.656Z",
-              "full_name": "TAC-850GR - MIST SPRAY POLYMER CONCRETE MOLDING PROCESS TACKIFIER"
+              "full_name": "TAC-850GR - Mist Spray Polymer Concrete Molding Process Tackifier"
             },
             {
               "product_id": "TAC-OS74",
-              "name": "TAC-OS74 - ULTRA HIGH-STRENGTH HYBRID POLYMER STRUCTURAL ADHESIVE",
+              "name": "TAC-OS74 - Ultra High-Strength Hybrid Polymer Structural Adhesive",
               "description": "Specifically designed to bond a large variety of materials including metals, granite, painted steel, glass, wood, most plastics, fiberglass, rubber, and polystyrene foam. Provides a permanent structural bond with internal and external applications above the waterline:",
               "brand": "forza_bond",
               "industry": "composites_industry",
@@ -4237,8 +4236,7 @@
               "benefits": [
                 "Retains strong bond through impact, peel, flex, and changing temperatures",
                 "Contains no solvents or isocyanate",
-                "Non",
-                "Yellowing",
+                "Non-Yellowing",
                 "Does not form bubbles, shrink, or crack",
                 "Highly resistant to water, salt water, oil, grease, fuel, and mild chemicals",
                 "Paintable even when wet",
@@ -4247,7 +4245,7 @@
               "applications": [
                 "Specifically designed to bond a large variety of materials including metals, granite, painted steel, glass, wood, most plastics, fiberglass, rubber, and polystyrene foam. Provides a permanent structural bond with internal and external applications above the waterline:",
                 "Structural bonding composites bond strength",
-                "Metal applications   repairing welds not under load",
+                "Metal applications – repairing welds not under load",
                 "Windshield on watercraft"
               ],
               "technical": [],
@@ -4263,11 +4261,12 @@
               "recommended_equipment": "",
               "published": true,
               "last_edited": "2026-01-02T20:38:18.656Z",
-              "full_name": "TAC-OS74 - Ultra High-Strength Hybrid Polymer Structural Adhesive"
+              "full_name": "TAC-OS74 - Ultra High-Strength Hybrid Polymer Structural Adhesive",
+              "benefits_count": 7
             },
             {
               "product_id": "TAC-R750",
-              "name": "TAC-R750 - TWO PART, METHACRYLATE ADHESIVE",
+              "name": "TAC-R750 - Two Part, Methacrylate Adhesive",
               "description": "*  Bonds engineered thermoplastics, thermosets, composites, and metal structural elements in any combination.",
               "brand": "forza_bond",
               "industry": "composites_industry",
@@ -4276,8 +4275,7 @@
               "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Composites/TAC-R750 2 Part.webp",
               "benefits": [
                 "Excellent bonding to a wide variety of substrates",
-                "1:1 ratio",
-                "easy mixing or dispensing",
+                "1:1 ratio - easy mixing or dispensing",
                 "Minimal surface preparation required",
                 "Excellent bond strength",
                 "Forms tough, high strength, high impact resistant bonds",
@@ -4302,7 +4300,8 @@
               "recommended_equipment": "",
               "published": true,
               "last_edited": "2026-01-02T20:38:18.657Z",
-              "full_name": "TAC-R750 - Two-Part Methacrylate Adhesive"
+              "full_name": "TAC-R750 - Two Part, Methacrylate Adhesive",
+              "benefits_count": 8
             },
             {
               "product_id": "TAC-R760",
@@ -4348,7 +4347,7 @@
             },
             {
               "product_id": "TAC-R777",
-              "name": "TAC-R777 - TWO-PART MODIFIED EPOXY ADHESIVE",
+              "name": "TAC-R777 - Two-Part Modified Epoxy Adhesive",
               "description": "Ideal for:",
               "brand": "forza_bond",
               "industry": "composites_industry",
@@ -4358,8 +4357,8 @@
               "benefits": [
                 "1:1 ratio, easy mixing/dispensing",
                 "Minimal surface preparation required",
-                "75 F to 400 F service temp",
-                "Retains flexible bond line, out performs most  brittle  two part adhesives",
+                "-75ºF to 400ºF service temp",
+                "Retains flexible bond line, out performs most “brittle” two part adhesives",
                 "Light stable and UV resistant",
                 "Paintable",
                 "0 VOC",
@@ -4368,15 +4367,9 @@
               ],
               "applications": [
                 "Ideal for:",
-                "Semi",
-                "flexible, low",
-                "exotherm epoxy for composite and marine bonding",
+                "Semi-flexible, low-exotherm epoxy for composite and marine bonding",
                 "Bonds FRP, gel coat laminates, vinylester/epoxy composites, carbon fiber, and sandwich panels",
-                "Ideal for panel",
-                "to",
-                "panel, panel",
-                "to",
-                "frame, bulkhead, stiffener, and stringer bonding",
+                "Ideal for panel-to-panel, panel-to-frame, bulkhead, stiffener, and stringer bonding",
                 "Securely attaches inserts, brackets, and hardware to composite hulls, decks, and body panels",
                 "Fills gaps and repairs seams in molded composite parts",
                 "Absorbs vibration, thermal movement, and dynamic loads while maintaining adhesion",
@@ -4393,7 +4386,8 @@
               "recommended_equipment": "",
               "published": true,
               "last_edited": "2026-01-02T20:38:18.657Z",
-              "full_name": "TAC-R777 - Two-Part Modified Epoxy Adhesive"
+              "full_name": "TAC-R777 - Two-Part Modified Epoxy Adhesive",
+              "benefits_count": 9
             }
           ]
         },
@@ -5360,7 +5354,7 @@
           "products": [
             {
               "product_id": "CC501",
-              "name": "CC501 - Low VOC, CA Complaint, Aggresive, Fast Drying Pressure Sensitive Adhesive",
+              "name": "CC501 - Low VOC, CA Compliant, Aggressive, Fast Drying Pressure Sensitive Adhesive",
               "description": "A CA-compliant pressure-sensitive adhesive designed for temporary fixturing in construction applications, including:",
               "brand": "forza_bond",
               "industry": "construction_industry",
@@ -5376,15 +5370,11 @@
                 "Bonds dissimilar materials"
               ],
               "applications": [
-                "A CA",
-                "compliant pressure",
-                "sensitive adhesive designed for temporary fixturing in construction applications, including:",
+                "A CA-compliant pressure-sensitive adhesive designed for temporary fixturing in construction applications, including:",
                 "Bonding of backed carpet and roofing materials",
                 "Construction of acoustical panels",
-                "Temporary bonding of reveal strips in tilt",
-                "up concrete",
-                "Foundation water",
-                "proof membran"
+                "Temporary bonding of reveal strips in tilt-up concrete",
+                "Foundation water-proof membran"
               ],
               "technical": [],
               "sizing": [
@@ -5397,11 +5387,11 @@
               "recommended_equipment": "*  Fk20 Gun\n*  Fk30 Hose\n*  6501B Tip",
               "published": true,
               "last_edited": "2026-01-02T20:38:18.657Z",
-              "full_name": "CC501 - Low VOC, CA Complaint, Aggresive, Fast Drying Pressure Sensitive Adhesive"
+              "full_name": "CC501 - Low VOC, CA Compliant, Aggressive, Fast Drying Pressure Sensitive Adhesive"
             },
             {
               "product_id": "CC503",
-              "name": "CC503 - Low VOC, CA Complaint, Multi-Purpose Adhesive",
+              "name": "CC503 - Low VOC, CA Compliant, Multi-Purpose Adhesive",
               "description": "A low-VOC, California-compliant, multi-purpose web spray canister adhesive, specifically designed for various bonding and fixturing applications in construction, including:",
               "brand": "forza_bond",
               "industry": "construction_industry",
@@ -5417,17 +5407,13 @@
                 "Bonds dissimilar materials"
               ],
               "applications": [
-                "A low",
-                "VOC, California",
-                "compliant, multi",
-                "purpose web spray canister adhesive, specifically designed for various bonding and fixturing applications in construction, including:",
+                "A low-VOC, California-compliant, multi-purpose web spray canister adhesive, specifically designed for various bonding and fixturing applications in construction, including:",
                 "Carpet Installations",
                 "Acoustical panel manufacturing",
                 "Adhering vapor barriers",
                 "Woodworking applications",
                 "Corner bead applications in drywall",
-                "Temporary securing of reveal strips in tilt",
-                "up concrete"
+                "Temporary securing of reveal strips in tilt-up concrete"
               ],
               "technical": [],
               "sizing": [
@@ -5440,7 +5426,7 @@
               "recommended_equipment": "",
               "published": true,
               "last_edited": "2026-01-02T20:38:18.657Z",
-              "full_name": "CC503 - Low VOC, CA Complaint, Multi-Purpose Adhesive"
+              "full_name": "CC503 - Low VOC, CA Compliant, Multi-Purpose Adhesive"
             },
             {
               "product_id": "CC507",
@@ -5464,16 +5450,12 @@
                 "Temporary fixturing single-sided applications"
               ],
               "applications": [
-                "A high",
-                "strength, styrene",
-                "safe pressure",
-                "sensitive adhesive designed specifically for construction applications, including:",
+                "A high-strength, styrene-safe pressure-sensitive adhesive designed specifically for construction applications, including:",
                 "Adhering EPS insulation materials for foundations",
                 "Vapor barrier materials",
                 "Wall and roofing insulation",
                 "EIFS applications",
-                "Temporarily bonding reveal strips for tilt",
-                "up concrete applications",
+                "Temporarily bonding reveal strips for tilt-up concrete applications",
                 "Backed roofing membran"
               ],
               "technical": [
@@ -5531,7 +5513,7 @@
             },
             {
               "product_id": "CC513",
-              "name": "CC513 - Non-Flam/Non-Methylene Chloride Contact Adhesive",
+              "name": "CC513 - Non Flam/Non-Methylene Chloride Contract Adhesive",
               "description": "A non-flammable, non-methylene chloride-based contact adhesive designed to bond a wide range of substrates in various construction applications, including:",
               "brand": "forza_bond",
               "industry": "construction_industry",
@@ -5547,10 +5529,7 @@
                 "Bonds dissimilar materials"
               ],
               "applications": [
-                "A non",
-                "flammable, non",
-                "methylene chloride",
-                "based contact adhesive designed to bond a wide range of substrates in various construction applications, including:",
+                "A non-flammable, non-methylene chloride-based contact adhesive designed to bond a wide range of substrates in various construction applications, including:",
                 "Carpet Installations",
                 "Acoustic panel manufacturing and installation",
                 "Backed roof membrane materials",
@@ -5566,11 +5545,11 @@
               "recommended_equipment": "*  FK18 Gun\n*  FK80 Hose\n*  11001B Tip",
               "published": true,
               "last_edited": "2026-01-02T20:38:18.657Z",
-              "full_name": "CC513 - Non-Flam/Non-Methylene Chloride Contact Adhesive"
+              "full_name": "CC513 - Non Flam/Non-Methylene Chloride Contract Adhesive"
             },
             {
               "product_id": "CC515",
-              "name": "CC515 - Pressure Sensitive Adhesive",
+              "name": "CC515 - Presure Sensitve Adhesive",
               "description": "An aggressive, fast-drying pressure-sensitive adhesive designed to bond a wide range of substrates, including:",
               "brand": "forza_bond",
               "industry": "construction_industry",
@@ -5586,9 +5565,7 @@
                 "Bonds dissimilar materials"
               ],
               "applications": [
-                "An aggressive, fast",
-                "drying pressure",
-                "sensitive adhesive designed to bond a wide range of substrates, including:",
+                "An aggressive, fast-drying pressure-sensitive adhesive designed to bond a wide range of substrates, including:",
                 "Carpet Installations",
                 "Acoustic panel manufacturing and installation",
                 "Backed roof membrane materials",
@@ -5605,11 +5582,11 @@
               "recommended_equipment": "*  FK20 Spray Gun\n*  FK30 Hose\n*  6501B Tip",
               "published": true,
               "last_edited": "2026-01-02T20:38:18.657Z",
-              "full_name": "CC515 - Pressure Sensitive Adhesive"
+              "full_name": "CC515 - Presure Sensitve Adhesive"
             },
             {
               "product_id": "CC519",
-              "name": "CC519 - CA Complaint Contact Adhesive",
+              "name": "CC519 - CA Compliant Contact Adhesive",
               "description": "A California-compliant contact adhesive designed to bond a wide range of substrates in construction applications including:",
               "brand": "forza_bond",
               "industry": "construction_industry",
@@ -5624,8 +5601,7 @@
                 "Good heat resistance (up to 180°F/82°C)"
               ],
               "applications": [
-                "A California",
-                "compliant contact adhesive designed to bond a wide range of substrates in construction applications including:",
+                "A California-compliant contact adhesive designed to bond a wide range of substrates in construction applications including:",
                 "Carpet Installations",
                 "Acoustic panel manufacturing and installation",
                 "Backed roof membrane materials",
@@ -5685,7 +5661,7 @@
               "recommended_equipment": "*  FK20 Spray Gun\n*  FK30 Hose\n*  Use 9501 Spray Tip",
               "published": true,
               "last_edited": "2026-01-02T20:38:18.657Z",
-              "full_name": "CC519 - CA Complaint Contact Adhesive"
+              "full_name": "CC519 - CA Compliant Contact Adhesive"
             },
             {
               "product_id": "C-C360",
@@ -5700,8 +5676,7 @@
                 "Excellent Weather Resistance",
                 "Excellent Coverage",
                 "Post formable",
-                "High",
-                "temperature resistance",
+                "High-temperature resistance",
                 "80% of final strength achieved upon bonding",
                 "Full strength achieved in 24 hours",
                 "Fast drying",
@@ -5711,8 +5686,7 @@
               ],
               "applications": [
                 "Flammable neoprene contact adhesive designed specifically for these and other construction applications:",
-                "Vinyl and rubber flooring in high",
-                "traffic areas",
+                "Vinyl and rubber flooring in high-traffic areas",
                 "Wall paneling and cladding",
                 "Countertop lamination",
                 "Roofing applications",
@@ -5729,7 +5703,8 @@
               "recommended_equipment": "",
               "published": true,
               "last_edited": "2026-01-02T20:38:18.657Z",
-              "full_name": "C-C360 - High-Temp Neoprene Contact Adhesive"
+              "full_name": "C-C360 - High-Temp Neoprene Contact Adhesive",
+              "benefits_count": 10
             },
             {
               "product_id": "C-C551",
@@ -5741,20 +5716,17 @@
               "url": "https://forzabuilt.com/product/c-c551/",
               "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Construction/C-C551 5 gal Pail.webp",
               "benefits": [
-                "Non-flammable",
-                "High coverage",
-                "Over 220°F (105°C) temperature resistant",
+                "Non-Flammable",
+                "High Coverage",
+                "Over 220ºF (105ºC) temperature resistant",
                 "80% of final strength achieved immediately; full strength achieved in 24 hours",
                 "Fast drying with long open time",
                 "No ODS (Ozone Depleting Substances)",
-                "VOC free",
+                "VOC Free",
                 "Qualifies for LEED-NC & CI EQ Credit 4.4: laminating adhesives shall contain no urea formaldehyde resins"
               ],
               "applications": [
-                "A non",
-                "flammable, high",
-                "performance spray contact adhesive specifically designed for these construction",
-                "related applications:",
+                "A non-flammable, high-performance spray contact adhesive specifically designed for these construction-related applications:",
                 "Wall coverings",
                 "Countertop bonding in cabinet manufacturing"
               ],
@@ -5795,11 +5767,12 @@
               "recommended_equipment": "",
               "published": true,
               "last_edited": "2026-01-02T20:38:18.657Z",
-              "full_name": "C-C551 - Non-Flam Sprayable Contact Adhesive"
+              "full_name": "C-C551 - Non-Flam Sprayable Contact Adhesive",
+              "benefits_count": 8
             },
             {
               "product_id": "C-OA5",
-              "name": "C-OA5 - HYBRID POLYMER, MOISTURE CURE ADHESIVE",
+              "name": "C-OA5 - Hybrid Polymer, Moisture Cure Adhesive",
               "description": "Specially designed for adhering and sealing roofing membranes and flashing materials, including:",
               "brand": "forza_bond",
               "industry": "construction_industry",
@@ -5886,7 +5859,7 @@
             },
             {
               "product_id": "C-OA52",
-              "name": "C-OA52 - QUICK GRAB ADHESIVE",
+              "name": "C-OA52 - Quick Grab Adhesive",
               "description": "A performance polymer adhesive with high initial strength, designed specifically for construction applications, including:",
               "brand": "forza_bond",
               "industry": "construction_industry",
@@ -5960,7 +5933,7 @@
             },
             {
               "product_id": "C-OA77",
-              "name": "C-OA77 - HYBRID POLYMER, HIGH PERFORMANCE, TROWEL GRADE, FLOORING ADHESIVE",
+              "name": "C-OA77 - Hybrid Polymer, High Performance, Trowel Grade, Flooring Adhesive",
               "description": "Specifically designed for use in the flooring industry, including:",
               "brand": "forza_bond",
               "industry": "construction_industry",
@@ -5990,11 +5963,11 @@
               "recommended_equipment": "",
               "published": true,
               "last_edited": "2026-01-02T20:38:18.657Z",
-              "full_name": "C-OA77 - HYBRID POLYMER, HIGH PERFORMANCE, TROWEL GRADE, FLOORING ADHESIVE"
+              "full_name": "C-OA77 - Hybrid Polymer, High Performance, Trowel Grade, Flooring Adhesive"
             },
             {
               "product_id": "C-OA98",
-              "name": "C-OA98 - HYBRID POLYMER, MOISTURE CURE ADHESIVE",
+              "name": "C-OA98 - Hybrid Polymer, Moisture Cure Adhesive",
               "description": "A permanent structural bond for interior and exterior construction applications. This product bonds a large variety of construction-related materials:",
               "brand": "forza_bond",
               "industry": "construction_industry",
@@ -6016,8 +5989,7 @@
                 "Extreme durability"
               ],
               "applications": [
-                "A permanent structural bond for interior and exterior construction applications. This product bonds a large variety of construction",
-                "related materials:",
+                "A permanent structural bond for interior and exterior construction applications. This product bonds a large variety of construction-related materials:",
                 "All Metals, Painted Steel, Glass",
                 "Granite, Wood, Most Plastics",
                 "Fiberglass, Rubber,Polystyrene Foam"
@@ -6083,11 +6055,11 @@
               "recommended_equipment": "",
               "published": true,
               "last_edited": "2026-01-02T20:38:18.657Z",
-              "full_name": "C-OA98 - Hybrid Polymer Moisture Cure Adhesive"
+              "full_name": "C-OA98 - Hybrid Polymer, Moisture Cure Adhesive"
             },
             {
               "product_id": "C-OSA",
-              "name": "C-OSA - ISOPROPYL ALCOHOL BASED CLEANER / ADHESION PROMOTER",
+              "name": "C-OSA - Isopropyl Alcohol Based Cleaner / Adhesion Promoter",
               "description": "Used to promote adhesion in construction applications to painted surfaces, bare metals, plastics.",
               "brand": "forza_bond",
               "industry": "construction_industry",
@@ -6146,11 +6118,11 @@
               "recommended_equipment": "",
               "published": true,
               "last_edited": "2026-01-02T20:38:18.657Z",
-              "full_name": "C-OSA - Isopropyl Alcohol Based Cleaner/Adhesion Promoter"
+              "full_name": "C-OSA - Isopropyl Alcohol Based Cleaner / Adhesion Promoter"
             },
             {
               "product_id": "C-R329",
-              "name": "C-R329 - TWO-PART METHACRYLATE ADHESIVE",
+              "name": "C-R329 - Two-Part Methacrylate Adhesive",
               "description": "Used in bonding engineered thermoplastics, thermosets, composites, and metal structural elements in any combination across numerous construction applications. It bonds a wide variety of rubber materials and a vast range of metals without the need for surface preparation, primers, or chemical wipes. Additionally, it effectively bonds composites and other substrates.",
               "brand": "forza_bond",
               "industry": "construction_industry",
@@ -6232,7 +6204,7 @@
             },
             {
               "product_id": "C-R552",
-              "name": "C-R552 - TWO-PART MODIFIED EPOXY",
+              "name": "C-R552 - Two-Part Modified Epoxy",
               "description": "Specially designed as a high-speed two-component sealant where rapid curing is necessary or deep joints are present in construction applications, including:",
               "brand": "forza_bond",
               "industry": "construction_industry",
@@ -6254,9 +6226,7 @@
                 "Easily bonds dissimilar material"
               ],
               "applications": [
-                "Specially designed as a high",
-                "speed two",
-                "component sealant where rapid curing is necessary or deep joints are present in construction applications, including:",
+                "Specially designed as a high-speed two-component sealant where rapid curing is necessary or deep joints are present in construction applications, including:",
                 "Joint sealing in precast concrete applications",
                 "Crack filling and repairing in concrete applications",
                 "Replaces mechanical fasteners in some applications"
@@ -6317,7 +6287,7 @@
             },
             {
               "product_id": "C-R560",
-              "name": "C-R560 - TWO-PART 5 MINUTE EPOXY ADHESIVE",
+              "name": "C-R560 - Two-Part 5 Minute Epoxy Adhesive",
               "description": "Provides a tenacious bond to wood, concrete, fiberglass, and most thermoset plastics for many construction applications, including:",
               "brand": "forza_bond",
               "industry": "construction_industry",
@@ -6334,8 +6304,7 @@
                 "Provides a tenacious bond to wood, concrete, fiberglass, and most thermoset plastics for many construction applications, including:",
                 "Carpet tack strip to concrete, metal, wood, and various other floor surfaces (carpet may be stretched as soon as 20 minutes after application)",
                 "Bonding metal balusters in wood handrails",
-                "Quickly adhering tread materials in high",
-                "traffic areas",
+                "Quickly adhering tread materials in high-traffic areas",
                 "Bonding various materials to ceramic tile without the need for drilling or fasteners"
               ],
               "technical": [
@@ -6378,7 +6347,7 @@
             },
             {
               "product_id": "C-S538",
-              "name": "C-S538 - TAPE PRIMER AND ADHESION PROMOTER",
+              "name": "C-S538 - Tape Primer And Adhesion Promoter",
               "description": "*  Specifically designed to increase adhesion with high bond tapes in most construction applications.",
               "brand": "forza_bond",
               "industry": "construction_industry",
@@ -6392,7 +6361,7 @@
               ],
               "applications": [
                 "Specifically designed to increase adhesion with high bond tapes in most construction applications.",
-                "Improves adhesion on polyethylene, polypropylene, other plastics, glass, metals, rubber, concrete, and painted surfaces when used in conjunction with the Forza s high bond, double coated, foam tapes."
+                "Improves adhesion on polyethylene, polypropylene, other plastics, glass, metals, rubber, concrete, and painted surfaces when used in conjunction with the Forza’s high bond, double coated, foam tapes."
               ],
               "technical": [],
               "sizing": [
@@ -6405,7 +6374,7 @@
               "recommended_equipment": "",
               "published": true,
               "last_edited": "2026-01-02T20:38:18.658Z",
-              "full_name": "C-S538 - Tape Primer and Adhesion Promoter"
+              "full_name": "C-S538 - Tape Primer And Adhesion Promoter"
             },
             {
               "product_id": "C-W6106",
@@ -7977,7 +7946,7 @@
             },
             {
               "product_id": "TAC-OS75",
-              "name": "TAC-OS75 - NEUTRAL CUREOXIME SILICONE SEALANT",
+              "name": "TAC-OS75 - Neutral Cureoxime Silicone Sealant",
               "description": "A neutral-cure oxime silicone sealant designed to offer a strong reliable seal to a variety of applications including:",
               "brand": "forza_seal",
               "industry": "composites_industry",
@@ -7992,14 +7961,12 @@
                 "Excellent UV resistance, does not crack, collapse in direct sunlight"
               ],
               "applications": [
-                "A neutral",
-                "cure oxime silicone sealant designed to offer a strong reliable seal to a variety of applications including:",
-                "Ceramic Tile",
+                "A neutral-cure oxime silicone sealant designed to offer a strong reliable seal to a variety of composite-related applications including:",
                 "Fiberglass",
                 "ABS",
                 "Acrylic",
                 "PVC",
-                "Wood & Masonry"
+                "Wood"
               ],
               "technical": [],
               "sizing": [
@@ -8014,7 +7981,8 @@
               "recommended_equipment": "",
               "published": true,
               "last_edited": "2026-01-02T20:38:18.656Z",
-              "full_name": "TAC-OS75 - Neutral Cure Oxime Silicone Sealant"
+              "full_name": "TAC-OS75 - Neutral Cureoxime Silicone Sealant",
+              "benefits_count": 5
             }
           ]
         },
@@ -8554,7 +8522,7 @@
             },
             {
               "product_id": "C-OS55",
-              "name": "C-OS55 - HYBRID POLYMER, SINGLE COMPONENT CURE, WITH OUTSTANDING ADHESIVE/SEALING PROPERTIES",
+              "name": "C-OS55 - Hybrid Polymer, Single Component Cure, With Outstanding Adhesive/Sealing Properties",
               "description": "A general-purpose silicone sealant for construction applications, including:",
               "brand": "forza_seal",
               "industry": "construction_industry",
@@ -8570,10 +8538,8 @@
                 "Di-electrical properties & FDA (Food Grade) Compliant. Sealing of solar panels & junction boxes"
               ],
               "applications": [
-                "A general",
-                "purpose silicone sealant for construction applications, including:",
-                "Most sealing applications in heavy",
-                "duty construction and DIY projects",
+                "A general-purpose silicone sealant for construction applications, including:",
+                "Most sealing applications in heavy-duty construction and DIY projects",
                 "Sealing around windows and doors",
                 "Kitchen and bath applications",
                 "Concrete void filling including driveway seems and cracks"
@@ -8629,11 +8595,11 @@
               "recommended_equipment": "",
               "published": true,
               "last_edited": "2026-01-02T20:38:18.657Z",
-              "full_name": "C-OS55 - Single Component Cure Silicone Sealant"
+              "full_name": "C-OS55 - Hybrid Polymer, Single Component Cure, With Outstanding Adhesive/Sealing Properties"
             },
             {
               "product_id": "C-OS9",
-              "name": "C-OS9 - HYBRID POLYMER, STRUCTURAL, SINGLE-PART, MOISTURE CURE ADHESIVE",
+              "name": "C-OS9 - Hybrid Polymer, Structural, Single-Part, Moisture Cure Adhesive",
               "description": "Designed for universal sealing applications in the construction industry, including:",
               "brand": "forza_seal",
               "industry": "construction_industry",
@@ -8723,7 +8689,7 @@
               "recommended_equipment": "",
               "published": true,
               "last_edited": "2026-01-02T20:38:18.657Z",
-              "full_name": "C-OS9 - Hybrid Polymer. Structural, Single-Part, Moisture Cure Adhesive"
+              "full_name": "C-OS9 - Hybrid Polymer, Structural, Single-Part, Moisture Cure Adhesive"
             },
             {
               "product_id": "TU-OA40",
@@ -10347,7 +10313,7 @@
           "products": [
             {
               "product_id": "C-T500",
-              "name": "C-T500 - FOAM TAPE",
+              "name": "C-T500 - Foam Tape",
               "description": "Used for gap filling and sealing in construction applications, including:",
               "brand": "forza_tape",
               "industry": "construction_industry",
@@ -10417,7 +10383,7 @@
             },
             {
               "product_id": "C-T5100",
-              "name": "C-T5100 - DOUBLE-COATEDPET",
+              "name": "C-T5100 - Double-Coatedpet",
               "description": "Used for bonding and mounting applications in construction, including:",
               "brand": "forza_tape",
               "industry": "construction_industry",
@@ -10491,23 +10457,23 @@
                 }
               ],
               "sizing": [
-                "in x 180ft",
-                "1   in x 180ft",
-                "1   in x 1080ft",
+                "¾ in x 180ft",
+                "1 ½ in x 180ft",
+                "1 ½ in x 1080ft",
                 "60 in x 1080ft",
                 "60 in x 400ft",
-                "1   in x 1800ft"
+                "1 ½ in x 1800ft"
               ],
               "color": "",
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
               "last_edited": "2026-01-02T20:38:18.658Z",
-              "full_name": "C-T5100 - Double Coated PET"
+              "full_name": "C-T5100 - Double-Coatedpet"
             },
             {
               "product_id": "C-T550",
-              "name": "C-T550 - DOUBLE-COATED ULTRA HIGH BOND ACRYLIC FOAM TAPE",
+              "name": "C-T550 - Double-Coated Ultra High Bond Acrylic Foam Tape",
               "description": "Specially designed for bonding and mounting to a broad range of substrates in various construction applications, including:",
               "brand": "forza_tape",
               "industry": "construction_industry",
@@ -10584,7 +10550,7 @@
                 "1/2in x 108",
                 "1/4 in x 108",
                 "1 in x 108",
-                "1   in x 108",
+                "1 ½ in x 108",
                 "3/4in x 108",
                 "3/8in x 108",
                 "2in x 108"
@@ -10594,11 +10560,11 @@
               "recommended_equipment": "",
               "published": true,
               "last_edited": "2026-01-02T20:38:18.658Z",
-              "full_name": "C-T550 - Double-Coated PE Foam Tape"
+              "full_name": "C-T550 - Double-Coated Ultra High Bond Acrylic Foam Tape"
             },
             {
               "product_id": "C-T553",
-              "name": "C-T553 - DOUBLE-COATED ULTRA HIGH BOND ACRYLIC FOAM TAPE",
+              "name": "C-T553 - Double-Coated Ultra High Bond Acrylic Foam Tape",
               "description": "Specially designed for bonding and mounting to a broad range of substrates across various construction applications, including:",
               "brand": "forza_tape",
               "industry": "construction_industry",
@@ -10676,7 +10642,7 @@
                 "1/2in x 108",
                 "1/4 in x 108",
                 "1 in x 108",
-                "1   in x 108",
+                "1 ½ in x 108",
                 "3/4in x 108",
                 "3/8in x 108",
                 "2in x 108"
@@ -10686,11 +10652,11 @@
               "recommended_equipment": "",
               "published": true,
               "last_edited": "2026-01-02T20:38:18.658Z",
-              "full_name": "C-T553 - Ultra High Bond Acrylic Foam Tape"
+              "full_name": "C-T553 - Double-Coated Ultra High Bond Acrylic Foam Tape"
             },
             {
               "product_id": "C-T557",
-              "name": "C-T557 - DOUBLE-COATED ULTRA HIGH BOND ACRYLIC FOAM TAPE",
+              "name": "C-T557 - Double-Coated Ultra High Bond Acrylic Foam Tape",
               "description": "Specially designed for bonding and mounting to a broad range of substrates across various construction applications, including:",
               "brand": "forza_tape",
               "industry": "construction_industry",
@@ -10768,7 +10734,7 @@
                 "1/2in x 108",
                 "1/4 in x 108",
                 "1 in x 108",
-                "1   in x 108",
+                "1 ½ in x 108",
                 "3/4in x 108",
                 "3/8in x 108"
               ],
@@ -10777,11 +10743,11 @@
               "recommended_equipment": "",
               "published": true,
               "last_edited": "2026-01-02T20:38:18.658Z",
-              "full_name": "C-T557 - Double-Coated Acrylic Foam Tape"
+              "full_name": "C-T557 - Double-Coated Ultra High Bond Acrylic Foam Tape"
             },
             {
               "product_id": "C-T564",
-              "name": "C-T564 - DOUBLE-COATED PE FOAM TAPE",
+              "name": "C-T564 - Double-Coated Pe Foam Tape",
               "description": "Used in various mounting applications in construction, including:",
               "brand": "forza_tape",
               "industry": "construction_industry",
@@ -10824,21 +10790,21 @@
                 }
               ],
               "sizing": [
-                "1/4  x 1/32 x 216",
-                "x 1/32  x 216",
-                "x 1/32  x 216",
-                "1  x 1/32  x 216"
+                "1/4” x 1/32 x 216",
+                "½” x 1/32” x 216",
+                "¾”x 1/32” x 216",
+                "1” x 1/32” x 216"
               ],
               "color": "",
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
               "last_edited": "2026-01-02T20:38:18.658Z",
-              "full_name": "C-T564 - Double Coated PE Foam Tape"
+              "full_name": "C-T564 - Double-Coated Pe Foam Tape"
             },
             {
               "product_id": "C-T731",
-              "name": "C-T731 - DOUBLE-SIDED TAPE",
+              "name": "C-T731 - Double-Sided Tape",
               "description": "Used for bonding and mounting applications across various construction projects, including:",
               "brand": "forza_tape",
               "industry": "construction_industry",
@@ -10875,8 +10841,8 @@
               ],
               "sizing": [
                 "1/2 x 150",
-                "1   x 180",
-                "1   x 1080",
+                "1 ½ x 180",
+                "1 ½ x 1080",
                 "2 x 180"
               ],
               "color": "",
@@ -10884,7 +10850,7 @@
               "recommended_equipment": "",
               "published": true,
               "last_edited": "2026-01-02T20:38:18.658Z",
-              "full_name": "C-T731 - Double Sided Tape"
+              "full_name": "C-T731 - Double-Sided Tape"
             },
             {
               "product_id": "TU-800",

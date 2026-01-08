@@ -18,10 +18,13 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onProductUpdated
   const { user } = useUser();
   const { showSuccess, showError } = useToast();
   
-  // Log API base URL for debugging
+  // Log API base URL and product data for debugging
   React.useEffect(() => {
     console.log('ProductDetail - API Base URL:', apiBaseUrl);
-  }, [apiBaseUrl]);
+    console.log('ProductDetail - Product JSON:', JSON.stringify(product, null, 2));
+    console.log('ProductDetail - Applications:', product.applications);
+    console.log('ProductDetail - Benefits:', product.benefits);
+  }, [apiBaseUrl, product]);
   const [isEditing, setIsEditing] = useState(false);
   const [saving, setSaving] = useState(false);
   // Helper function to ensure technical is always an array

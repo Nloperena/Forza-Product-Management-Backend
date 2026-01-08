@@ -13,12 +13,16 @@ class ImageUrlSyncer {
   private findProductInJSON(productId: string, obj: any): any {
     if (Array.isArray(obj)) {
       for (const item of obj) {
-        if (item.product_id === productId) return item;
+        if (item.product_id === productId) {
+          return item;
+        }
         const found = this.findProductInJSON(productId, item);
         if (found) return found;
       }
     } else if (obj && typeof obj === 'object') {
-      if (obj.product_id === productId) return obj;
+      if (obj.product_id === productId) {
+        return obj;
+      }
       for (const key in obj) {
         const found = this.findProductInJSON(productId, obj[key]);
         if (found) return found;
@@ -30,60 +34,82 @@ class ImageUrlSyncer {
   async sync(): Promise<void> {
     try {
       console.log('🔄 Syncing image URLs from JSON to database...\n');
-      
+
       // Load JSON
-      if (!fs.existsSync(JSON_FILE_PATH)) {
-        console.error(`❌ JSON not found at ${JSON_FILE_PATH}`);
-        return;
-      }
+      console.log('📄 Loading JSON file...');
       const jsonContent = fs.readFileSync(JSON_FILE_PATH, 'utf-8');
       const jsonData = JSON.parse(jsonContent);
 
-      // Force DB path if needed for local run
-      if (!process.env.DATABASE_URL && !process.env.POSTGRES_URL) {
-        const rootDbPath = path.resolve(__dirname, '../../../data/products.db');
-        console.log(`🔎 Checking for local data/products.db at: ${rootDbPath}`);
-        if (fs.existsSync(rootDbPath)) {
-          console.log(`🔌 Forcing local DB path to: ${rootDbPath}`);
-          (databaseService as any).dbPath = rootDbPath;
-        } else {
-          console.log(`⚠️ Database not found. Current directory: ${process.cwd()}`);
-        }
+      // Connect to database
+      console.log('🔌 Connecting to database...');
+      const isHeroku = !!process.env.DATABASE_URL && process.env.DATABASE_URL.includes('amazonaws.com');
+      if (isHeroku) {
+        console.log('🌐 Detected Heroku/Production database');
       }
-
       await databaseService.connect();
       await databaseService.initializeDatabase();
       this.productModel = databaseService.isPostgres()
         ? new ProductModel()
         : new ProductModel(databaseService.getDatabase());
+      console.log('✅ Database connected\n');
+
+      // Get all products from database
       const dbProducts = await this.productModel.getAllProducts();
+      console.log(`📊 Found ${dbProducts.length} products in database\n`);
+
+      // Sync each product
       for (const dbProduct of dbProducts) {
         if (!dbProduct.image) continue;
+
+        // Find product in JSON
         const jsonProduct = this.findProductInJSON(dbProduct.product_id, jsonData);
+
         if (!jsonProduct || !jsonProduct.image) {
           this.notFoundCount++;
+          console.log(`⚠️  ${dbProduct.product_id}: Not found in JSON or has no image`);
           continue;
         }
+
+        // Compare URLs
         if (dbProduct.image !== jsonProduct.image) {
+          console.log(`🔄 Updating ${dbProduct.product_id}:`);
+          console.log(`   DB:   ${dbProduct.image}`);
+          console.log(`   JSON: ${jsonProduct.image}`);
+
           try {
             await this.productModel.updateProduct(dbProduct.id, {
               image: jsonProduct.image
             });
             this.updatedCount++;
+            console.log(`   ✅ Updated\n`);
           } catch (error) {
             console.error(`   ❌ Error: ${error}\n`);
           }
+        } else {
+          console.log(`✓ ${dbProduct.product_id}: Already in sync`);
         }
       }
-      console.log(`✅ Updated: ${this.updatedCount} image URLs`);
+
+      console.log('\n' + '='.repeat(80));
+      console.log('📊 SYNC SUMMARY');
+      console.log('='.repeat(80));
+      console.log(`✅ Updated: ${this.updatedCount} products`);
+      console.log(`⚠️  Not found in JSON: ${this.notFoundCount} products`);
+      console.log(`✓ In sync: ${dbProducts.length - this.updatedCount - this.notFoundCount} products`);
+
     } catch (error) {
       console.error('❌ Error syncing image URLs:', error);
       throw error;
+    } finally {
+      if (databaseService.isPostgres()) {
+        const pool = (databaseService as any).pool;
+        if (pool) await pool.end();
+      }
     }
-    // Note: Don't close the pool here - let the database service manage it
   }
 }
 
+// Run sync
 if (require.main === module) {
   const syncer = new ImageUrlSyncer();
   syncer.sync()
