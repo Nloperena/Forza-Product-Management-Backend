@@ -352,20 +352,46 @@ class RandyCSVMigrator {
   private parseApplications(val: string): string[] {
     if (!val) return [];
     
-    // First, split by newlines only
+    // First, split by newlines
     const lines = val.split(/\r?\n/).map(line => line.trim()).filter(line => line.length > 0);
     
     const result: string[] = [];
+    let currentItem = '';
+
     for (const line of lines) {
-      // Check if line starts with a bullet character (but NOT a hyphen, which could be part of text)
       const bulletMatch = line.match(/^[*•\u00B7\u2022\u2023\u2043\u204C\u204D\u2219\u25CB\u25CF\u25D8\u25E6]\s*/);
+      
       if (bulletMatch) {
-        // Remove the bullet and add the content
+        // If we have a current item being built, push it
+        if (currentItem) {
+          result.push(currentItem);
+          currentItem = '';
+        }
+        // This is a bulleted item
         result.push(line.slice(bulletMatch[0].length).trim());
       } else {
-        // No bullet - this is either a sentence or continuation
-        result.push(line);
+        // No bullet - check if it's a lead-in like "This includes:" or ends in a colon
+        const lowerLine = line.toLowerCase();
+        const isLeadIn = lowerLine.includes('includes:') || 
+                         lowerLine.includes('including:') ||
+                         lowerLine.includes('bonds to:') ||
+                         lowerLine.includes('compatible with:') ||
+                         lowerLine.endsWith(':');
+        
+        if (currentItem) {
+          currentItem += ' ' + line;
+        } else {
+          currentItem = line;
+        }
+
+        // If it's NOT a lead-in and NOT followed by a bullet immediately, 
+        // we might want to push it. But in most cases, consecutive non-bullet 
+        // lines should be merged until a bullet is found or the end of text.
       }
+    }
+    
+    if (currentItem) {
+      result.push(currentItem);
     }
     
     return result.filter(item => item.length > 0);

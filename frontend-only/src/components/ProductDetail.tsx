@@ -460,32 +460,23 @@ Check the browser console (F12) for more details.`;
           )}
         </div>
 
-        {/* Description - Only show if it's not identical to the first application */}
-        {(() => {
-          const firstApp = product.applications?.[0] || '';
-          const isDup = product.description?.trim() === firstApp.trim();
-          
-          if (isDup && !isEditing) return null;
-          
-          return (
-            <section className="mb-8 bg-white p-6 rounded-lg shadow-sm">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Description</h2>
-              {isEditing ? (
-                <textarea
-                  value={formData.description}
-                  onChange={(e) => handleInputChange('description', e.target.value)}
-                  rows={6}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
-                  disabled={saving}
-                />
-              ) : (
-                <p className="text-lg text-gray-700 leading-relaxed whitespace-pre-wrap">
-                  {product.description || 'No description available'}
-                </p>
-              )}
-            </section>
-          );
-        })()}
+        {/* Description */}
+        <section className="mb-8 bg-white p-6 rounded-lg shadow-sm">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Description</h2>
+          {isEditing ? (
+            <textarea
+              value={formData.description}
+              onChange={(e) => handleInputChange('description', e.target.value)}
+              rows={6}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
+              disabled={saving}
+            />
+          ) : (
+            <p className="text-lg text-gray-700 leading-relaxed whitespace-pre-wrap">
+              {product.description || 'No description available'}
+            </p>
+          )}
+        </section>
 
         {/* Chemistry */}
         {isEditing || product.chemistry ? (
@@ -660,20 +651,12 @@ Check the browser console (F12) for more details.`;
             </div>
           ) : (
             <ul className="space-y-3">
-              {product.benefits?.map((benefit, index) => {
-                const isHeader = benefit.trim().endsWith(':');
-                
-                return (
-                  <li key={index} className={`flex items-start ${isHeader ? 'gap-0 mt-4 first:mt-0' : 'gap-3'}`}>
-                    {!isHeader && (
-                      <div className="flex-shrink-0 w-3 h-3 bg-blue-500 rounded-full mt-2.5"></div>
-                    )}
-                    <p className={`text-lg text-gray-700 flex-1 ${isHeader ? 'font-semibold text-gray-900' : ''}`}>
-                      {benefit}
-                    </p>
-                  </li>
-                );
-              })}
+              {product.benefits?.map((benefit, index) => (
+                <li key={index} className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-3 h-3 bg-blue-500 rounded-full mt-2.5"></div>
+                  <p className="text-lg text-gray-700 flex-1">{benefit}</p>
+                </li>
+              ))}
             </ul>
           )}
         </section>
@@ -713,21 +696,12 @@ Check the browser console (F12) for more details.`;
             </div>
           ) : (
             <ul className="space-y-3">
-              {product.applications?.map((application, index) => {
-                const isHeader = application.trim().endsWith(':');
-                const isIntro = index === 0 && application.length > 40 && !application.includes('•');
-                
-                return (
-                  <li key={index} className={`flex items-start ${isHeader ? 'gap-0 mt-4 first:mt-0' : 'gap-3'}`}>
-                    {!isHeader && !isIntro && (
-                      <div className="flex-shrink-0 w-3 h-3 bg-green-500 rounded-full mt-2.5"></div>
-                    )}
-                    <p className={`text-lg text-gray-700 flex-1 ${isHeader ? 'font-semibold text-gray-900' : ''} ${isIntro && !isHeader ? 'mb-2' : ''}`}>
-                      {application}
-                    </p>
-                  </li>
-                );
-              })}
+              {product.applications?.map((application, index) => (
+                <li key={index} className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-3 h-3 bg-green-500 rounded-full mt-2.5"></div>
+                  <p className="text-lg text-gray-700 flex-1">{application}</p>
+                </li>
+              ))}
             </ul>
           )}
         </section>
