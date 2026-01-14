@@ -1,10 +1,12 @@
-import fs from 'fs';
-import path from 'path';
+import axios from 'axios';
 
-const CSV_FILE_PATH = 'c:\\Users\\NicoL\\Downloads\\Untitled spreadsheet - Prod Attr for Website DB Jan 1 2025(Randy Review Jan 4) (1).csv';
+async function checkHeaders() {
+    try {
+        const response = await axios.get('https://forza-product-managementsystem-b7c3ff8d3d2d.herokuapp.com/api/products/C150');
+        console.log('Headers:', response.headers);
+    } catch (error: any) {
+        console.error('Error:', error.message);
+    }
+}
 
-const content = fs.readFileSync(CSV_FILE_PATH, 'utf-8');
-const lines = content.split('\n');
-console.log('Headers:', lines[0]);
-console.log('Sample Row:', lines[1]);
-
+checkHeaders();
