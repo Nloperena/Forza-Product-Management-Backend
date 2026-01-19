@@ -125,6 +125,11 @@ const AppContent: React.FC = () => {
     setRefreshKey(prev => prev + 1);
   };
 
+  const handleProductDeleted = (productId: string) => {
+    setSelectedProduct(null);
+    setRefreshKey(prev => prev + 1);
+  };
+
   if (!isAuthenticated) {
     return <Login />;
   }
@@ -194,6 +199,7 @@ const AppContent: React.FC = () => {
                 <ProductDetail 
                   product={selectedProduct} 
                   onProductUpdated={handleProductUpdated}
+                  onProductDeleted={handleProductDeleted}
                 />
               ) : (
                 <div className="h-full flex items-center justify-center">

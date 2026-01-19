@@ -270,8 +270,11 @@ export class ProductModel {
         if (updates.benefits !== undefined) { 
           fields.push(`benefits = $${paramIndex++}`); 
           values.push(JSON.stringify(updates.benefits));
-          fields.push(`benefits_count = $${paramIndex++}`);
-          values.push(updates.benefits.length);
+          // If benefits_count is not explicitly provided, update it based on the array length
+          if (updates.benefits_count === undefined) {
+            fields.push(`benefits_count = $${paramIndex++}`);
+            values.push(updates.benefits.length);
+          }
         }
         if (updates.applications !== undefined) { fields.push(`applications = $${paramIndex++}`); values.push(JSON.stringify(updates.applications)); }
         if (updates.technical !== undefined) { fields.push(`technical = $${paramIndex++}`); values.push(JSON.stringify(updates.technical)); }
