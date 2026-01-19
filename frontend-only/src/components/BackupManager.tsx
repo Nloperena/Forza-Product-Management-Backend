@@ -15,8 +15,8 @@ import {
   Eye,
   RotateCcw
 } from 'lucide-react';
-import { useApi } from '../contexts/ApiContext';
-import { useToast } from '../contexts/ToastContext';
+import { useApi } from '@/contexts/ApiContext';
+import { useToast } from '@/components/ui/ToastContainer';
 
 interface Backup {
   id: number;

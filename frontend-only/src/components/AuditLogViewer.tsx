@@ -17,7 +17,7 @@ import {
   Loader2,
   ExternalLink
 } from 'lucide-react';
-import { useApi } from '../contexts/ApiContext';
+import { useApi } from '@/contexts/ApiContext';
 
 interface AuditLog {
   id: number;
