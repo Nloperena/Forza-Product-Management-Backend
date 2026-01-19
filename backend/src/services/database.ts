@@ -145,6 +145,7 @@ class DatabaseService {
   private async initializeSQLite(): Promise<void> {
     return new Promise((resolve, reject) => {
       this.db!.serialize(() => {
+        // Products table
         this.db!.run(`
           CREATE TABLE IF NOT EXISTS products (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -173,9 +174,56 @@ class DatabaseService {
         `, (err) => {
           if (err) {
             console.error('Error creating products table:', err);
-            reject(err);
           } else {
             console.log('Products table ensured in SQLite');
+          }
+        });
+
+        // Audit logs table
+        this.db!.run(`
+          CREATE TABLE IF NOT EXISTS audit_logs (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            action TEXT NOT NULL,
+            entity_type TEXT NOT NULL,
+            entity_id TEXT NOT NULL,
+            user_name TEXT NOT NULL,
+            user_email TEXT,
+            changes_summary TEXT NOT NULL,
+            before_data TEXT,
+            after_data TEXT,
+            ip_address TEXT,
+            user_agent TEXT,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+          )
+        `, (err) => {
+          if (err) {
+            console.error('Error creating audit_logs table:', err);
+          } else {
+            console.log('Audit logs table ensured in SQLite');
+          }
+        });
+
+        // Backups table
+        this.db!.run(`
+          CREATE TABLE IF NOT EXISTS backups (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            backup_name TEXT NOT NULL,
+            description TEXT,
+            created_by TEXT NOT NULL,
+            product_count INTEGER NOT NULL,
+            file_path TEXT,
+            backup_data TEXT,
+            status TEXT DEFAULT 'active',
+            promoted_at DATETIME,
+            promoted_by TEXT,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+          )
+        `, (err) => {
+          if (err) {
+            console.error('Error creating backups table:', err);
+            reject(err);
+          } else {
+            console.log('Backups table ensured in SQLite');
             resolve();
           }
         });
@@ -214,6 +262,43 @@ class DatabaseService {
           last_edited TEXT
         )
       `);
+
+      // Create audit_logs table
+      await client.query(`
+        CREATE TABLE IF NOT EXISTS audit_logs (
+          id SERIAL PRIMARY KEY,
+          action VARCHAR(50) NOT NULL,
+          entity_type VARCHAR(50) NOT NULL,
+          entity_id VARCHAR(255) NOT NULL,
+          user_name VARCHAR(255) NOT NULL,
+          user_email VARCHAR(255),
+          changes_summary TEXT NOT NULL,
+          before_data TEXT,
+          after_data TEXT,
+          ip_address VARCHAR(50),
+          user_agent TEXT,
+          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+      `);
+      console.log('Audit logs table ensured in PostgreSQL');
+
+      // Create backups table
+      await client.query(`
+        CREATE TABLE IF NOT EXISTS backups (
+          id SERIAL PRIMARY KEY,
+          backup_name VARCHAR(255) NOT NULL,
+          description TEXT,
+          created_by VARCHAR(255) NOT NULL,
+          product_count INTEGER NOT NULL,
+          file_path VARCHAR(255),
+          backup_data TEXT,
+          status VARCHAR(50) DEFAULT 'active',
+          promoted_at TIMESTAMP,
+          promoted_by VARCHAR(255),
+          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+      `);
+      console.log('Backups table ensured in PostgreSQL');
 
       // Migrate existing last_edited column from TIMESTAMP to TEXT if needed
       try {

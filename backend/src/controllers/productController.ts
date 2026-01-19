@@ -3,6 +3,7 @@ import { ProductModel, Product } from '../models/Product';
 import { databaseService } from '../services/database';
 import * as XLSX from 'xlsx';
 import { isProductAllowed, ALLOWED_PRODUCT_IDS } from '../config/allowedProducts';
+import { auditLogModel } from '../models/AuditLog';
 
 export class ProductController {
   private productModel: ProductModel;
@@ -127,6 +128,20 @@ export class ProductController {
 
       const newProduct = await this.productModel.createProduct(productData);
 
+      // Log the creation
+      const userName = req.body.edited_by || req.headers['x-user-name'] as string || 'System';
+      await auditLogModel.createLog({
+        action: 'CREATE',
+        entity_type: 'product',
+        entity_id: newProduct.product_id,
+        user_name: userName,
+        user_email: req.headers['x-user-email'] as string,
+        changes_summary: `Created new product "${newProduct.name}" (${newProduct.product_id})`,
+        after_data: JSON.stringify(newProduct),
+        ip_address: req.ip || req.socket?.remoteAddress,
+        user_agent: req.headers['user-agent']
+      });
+
       res.status(201).json({
         success: true,
         message: 'Product created successfully',
@@ -157,6 +172,17 @@ export class ProductController {
         res.status(400).json({ success: false, message: 'Product ID is required' });
         return;
       }
+      
+      // Get original product for audit log
+      const originalProduct = await this.productModel.getProductById(id);
+      if (!originalProduct) {
+        res.status(404).json({
+          success: false,
+          message: `Product with ID "${id}" not found`
+        });
+        return;
+      }
+
       const updates = req.body;
 
       // Remove fields that shouldn't be updated directly
@@ -178,10 +204,34 @@ export class ProductController {
       if (!updatedProduct) {
         res.status(404).json({
           success: false,
-          message: `Product with ID "${id}" not found`
+          message: `Product with ID "${id}" not found after update`
         });
         return;
       }
+
+      // Generate changes summary
+      const changedFields = Object.keys(updates).filter(key => {
+        const origVal = (originalProduct as any)[key];
+        const newVal = updates[key];
+        if (Array.isArray(origVal) && Array.isArray(newVal)) {
+          return JSON.stringify(origVal) !== JSON.stringify(newVal);
+        }
+        return origVal !== newVal;
+      });
+      
+      const userName = req.body.edited_by || req.headers['x-user-name'] as string || 'System';
+      await auditLogModel.createLog({
+        action: 'UPDATE',
+        entity_type: 'product',
+        entity_id: id,
+        user_name: userName,
+        user_email: req.headers['x-user-email'] as string,
+        changes_summary: `Updated ${changedFields.length} field(s): ${changedFields.join(', ')}`,
+        before_data: JSON.stringify(originalProduct),
+        after_data: JSON.stringify(updatedProduct),
+        ip_address: req.ip || req.socket?.remoteAddress,
+        user_agent: req.headers['user-agent']
+      });
 
       res.json({
         success: true,
@@ -218,16 +268,40 @@ export class ProductController {
         return;
       }
       
-      console.log(`[DeleteProduct Controller] Deleting product with ID: ${id}`);
-      const deleted = await this.productModel.deleteProduct(id);
-
-      if (!deleted) {
+      // Get product before deletion for audit log
+      const productBeforeDelete = await this.productModel.getProductById(id);
+      if (!productBeforeDelete) {
         res.status(404).json({
           success: false,
           message: `Product with ID "${id}" not found`
         });
         return;
       }
+      
+      console.log(`[DeleteProduct Controller] Deleting product with ID: ${id}`);
+      const deleted = await this.productModel.deleteProduct(id);
+
+      if (!deleted) {
+        res.status(404).json({
+          success: false,
+          message: `Product with ID "${id}" could not be deleted`
+        });
+        return;
+      }
+
+      // Log the deletion
+      const userName = req.body.deleted_by || req.headers['x-user-name'] as string || 'System';
+      await auditLogModel.createLog({
+        action: 'DELETE',
+        entity_type: 'product',
+        entity_id: id,
+        user_name: userName,
+        user_email: req.headers['x-user-email'] as string,
+        changes_summary: `Deleted product "${productBeforeDelete.name}" (${id})`,
+        before_data: JSON.stringify(productBeforeDelete),
+        ip_address: req.ip || req.socket?.remoteAddress,
+        user_agent: req.headers['user-agent']
+      });
 
       // If running locally (not on Heroku/Postgres), also remove from JSON files to keep them in sync
       if (!databaseService.isPostgres()) {
