@@ -137,8 +137,50 @@ class DatabaseService {
       await this.initializePostgres();
     } else {
       await this.connect();
+      await this.initializeSQLite();
       console.log('SQLite database initialized successfully');
     }
+  }
+
+  private async initializeSQLite(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.db!.serialize(() => {
+        this.db!.run(`
+          CREATE TABLE IF NOT EXISTS products (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            product_id TEXT UNIQUE NOT NULL,
+            name TEXT NOT NULL,
+            full_name TEXT,
+            description TEXT,
+            brand TEXT,
+            industry TEXT,
+            chemistry TEXT,
+            url TEXT,
+            image TEXT,
+            benefits TEXT,
+            applications TEXT,
+            technical TEXT,
+            sizing TEXT,
+            color TEXT,
+            cleanup TEXT,
+            recommended_equipment TEXT,
+            published INTEGER DEFAULT 0,
+            benefits_count INTEGER DEFAULT 0,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            last_edited TEXT
+          )
+        `, (err) => {
+          if (err) {
+            console.error('Error creating products table:', err);
+            reject(err);
+          } else {
+            console.log('Products table ensured in SQLite');
+            resolve();
+          }
+        });
+      });
+    });
   }
 
   private async initializePostgres(): Promise<void> {

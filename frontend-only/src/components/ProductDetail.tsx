@@ -11,12 +11,13 @@ import type { Product, ProductFormData, TechnicalProperty } from '@/types/produc
 interface ProductDetailProps {
   product: Product;
   onProductUpdated?: (updatedProduct: Product) => void;
+  onProductDeleted?: (productId: string) => void;
 }
 
-const ProductDetail: React.FC<ProductDetailProps> = ({ product, onProductUpdated }) => {
+const ProductDetail: React.FC<ProductDetailProps> = ({ product, onProductUpdated, onProductDeleted }) => {
   const { apiBaseUrl } = useApi();
   const { user } = useUser();
-  const { showSuccess, showError } = useToast();
+  const { showSuccess, showError, showInfo } = useToast();
   
   // Log API base URL and product data for debugging
   React.useEffect(() => {
@@ -27,6 +28,31 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onProductUpdated
   }, [apiBaseUrl, product]);
   const [isEditing, setIsEditing] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+
+  const handleDelete = async () => {
+    try {
+      setDeleting(true);
+      const productId = product.product_id || product.id;
+      console.log('Deleting product:', productId);
+      
+      const result = await productApi.deleteProduct(productId);
+      console.log('Delete result:', result);
+      
+      showSuccess('Product Deleted', `"${product.name}" has been removed successfully.`);
+      setShowDeleteConfirm(false);
+      
+      if (onProductDeleted) {
+        onProductDeleted(productId);
+      }
+    } catch (error: any) {
+      console.error('Failed to delete product:', error);
+      showError('Delete Failed', error.message || 'Failed to delete product. Please try again.');
+    } finally {
+      setDeleting(false);
+    }
+  };
   // Helper function to ensure technical is always an array
   const normalizeTechnical = (technical: any): any[] => {
     if (!technical) return [];
@@ -378,20 +404,72 @@ Check the browser console (F12) for more details.`;
                   </button>
                 </>
               ) : (
-                <button
-                  onClick={() => {
-                    console.log('Edit button clicked, setting isEditing to true');
-                    setIsEditing(true);
-                  }}
-                  className="flex items-center gap-2 px-6 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 text-lg font-medium transition-colors cursor-pointer"
-                  type="button"
-                >
-                  <Edit2 className="h-5 w-5" />
-                  Edit
-                </button>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => {
+                      console.log('Edit button clicked, setting isEditing to true');
+                      setIsEditing(true);
+                    }}
+                    className="flex items-center gap-2 px-6 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 text-lg font-medium transition-colors cursor-pointer"
+                    type="button"
+                  >
+                    <Edit2 className="h-5 w-5" />
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => setShowDeleteConfirm(true)}
+                    className="flex items-center gap-2 px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 text-lg font-medium transition-colors cursor-pointer"
+                    type="button"
+                  >
+                    <Trash2 className="h-5 w-5" />
+                    Delete
+                  </button>
+                </div>
               )}
             </div>
           </div>
+          
+          {/* Delete Confirmation Modal/Overlay */}
+          {showDeleteConfirm && (
+            <div className="mt-6 p-6 bg-red-50 border-2 border-red-200 rounded-xl animate-in fade-in zoom-in duration-200">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="bg-red-100 p-2 rounded-full">
+                  <Trash2 className="h-6 w-6 text-red-600" />
+                </div>
+                <h3 className="text-xl font-bold text-red-900">Confirm Product Deletion</h3>
+              </div>
+              <p className="text-red-800 text-lg mb-6">
+                Are you absolutely sure you want to delete <span className="font-bold">"{product.name}"</span>? 
+                This action cannot be undone and the product will be permanently removed from the database.
+              </p>
+              <div className="flex justify-end gap-3">
+                <button
+                  onClick={() => setShowDeleteConfirm(false)}
+                  disabled={deleting}
+                  className="px-6 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 text-lg font-medium transition-colors disabled:opacity-50"
+                >
+                  No, Keep Product
+                </button>
+                <button
+                  onClick={handleDelete}
+                  disabled={deleting}
+                  className="flex items-center gap-2 px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 text-lg font-medium transition-colors disabled:opacity-50"
+                >
+                  {deleting ? (
+                    <>
+                      <Loader2 className="h-5 w-5 animate-spin" />
+                      Deleting...
+                    </>
+                  ) : (
+                    <>
+                      <Trash2 className="h-5 w-5" />
+                      Yes, Delete Permanently
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Product Image */}

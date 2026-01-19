@@ -280,6 +280,7 @@ export class ProductModel {
         if (updates.cleanup !== undefined) { fields.push(`cleanup = $${paramIndex++}`); values.push(updates.cleanup); }
         if (updates.recommended_equipment !== undefined) { fields.push(`recommended_equipment = $${paramIndex++}`); values.push(updates.recommended_equipment); }
         if (updates.published !== undefined) { fields.push(`published = $${paramIndex++}`); values.push(Boolean(updates.published)); }
+        if (updates.benefits_count !== undefined) { fields.push(`benefits_count = $${paramIndex++}`); values.push(updates.benefits_count); }
         if (updates.last_edited !== undefined) { fields.push(`last_edited = $${paramIndex++}`); values.push(updates.last_edited); }
 
         if (fields.length === 0) {

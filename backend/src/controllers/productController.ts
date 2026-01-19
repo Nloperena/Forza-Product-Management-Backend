@@ -217,14 +217,66 @@ export class ProductController {
         res.status(400).json({ success: false, message: 'Product ID is required' });
         return;
       }
+      
+      console.log(`[DeleteProduct Controller] Deleting product with ID: ${id}`);
       const deleted = await this.productModel.deleteProduct(id);
 
       if (!deleted) {
         res.status(404).json({
           success: false,
-          message: 'Product not found'
+          message: `Product with ID "${id}" not found`
         });
         return;
+      }
+
+      // If running locally (not on Heroku/Postgres), also remove from JSON files to keep them in sync
+      if (!databaseService.isPostgres()) {
+        try {
+          const fs = require('fs');
+          const path = require('path');
+          const JSON_FILES = [
+            path.join(__dirname, '../../data/forza_products_organized.json'),
+            path.join(__dirname, '../../../data/forza_products_organized.json')
+          ].filter(p => fs.existsSync(p));
+
+          for (const jsonPath of JSON_FILES) {
+            console.log(`[DeleteProduct Controller] Removing ${id} from JSON: ${jsonPath}`);
+            const data = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
+            
+            let removedCount = 0;
+            const removeProduct = (obj: any) => {
+              if (Array.isArray(obj)) {
+                for (let i = 0; i < obj.length; i++) {
+                  if (obj[i] && obj[i].product_id === id) {
+                    obj.splice(i, 1);
+                    removedCount++;
+                    i--; // Adjust index after splice
+                  } else {
+                    removeProduct(obj[i]);
+                  }
+                }
+              } else if (obj && typeof obj === 'object') {
+                for (const key in obj) {
+                  removeProduct(obj[key]);
+                }
+              }
+            };
+
+            removeProduct(data);
+            
+            if (removedCount > 0) {
+              // Update metadata
+              if (data.forza_products_organized?.metadata) {
+                data.forza_products_organized.metadata.total_products -= removedCount;
+              }
+              fs.writeFileSync(jsonPath, JSON.stringify(data, null, 2), 'utf-8');
+              console.log(`[DeleteProduct Controller] Successfully removed ${id} from ${jsonPath}`);
+            }
+          }
+        } catch (jsonErr) {
+          console.error('[DeleteProduct Controller] Error syncing deletion to JSON:', jsonErr);
+          // Don't fail the request if JSON sync fails, as the DB deletion succeeded
+        }
       }
 
       res.json({
