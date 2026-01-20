@@ -11,6 +11,8 @@ import dotenv from 'dotenv';
 import productRoutes from './routes/products';
 import imageRoutes from './routes/images';
 import statsRoutes from './routes/statistics';
+import backupRoutes from './routes/backups';
+import auditLogRoutes from './routes/auditLogs';
 
 // Import database service
 import { databaseService } from './services/database';
@@ -159,6 +161,8 @@ app.get('/health', (_req, res) => {
 app.use('/api/products', productRoutes);
 app.use('/api/images', imageRoutes);
 app.use('/api/statistics', statsRoutes);
+app.use('/api/backups', backupRoutes);
+app.use('/api/audit-logs', auditLogRoutes);
 
 // Error handling middleware
 app.use(notFound);
