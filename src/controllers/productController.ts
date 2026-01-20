@@ -210,7 +210,9 @@ export class ProductController {
       }
 
       // Generate changes summary
+      const ignoredFields = ['last_edited', 'benefits_count', 'updated_at', 'id'];
       const changedFields = Object.keys(updates).filter(key => {
+        if (ignoredFields.includes(key)) return false;
         const origVal = (originalProduct as any)[key];
         const newVal = updates[key];
         if (Array.isArray(origVal) && Array.isArray(newVal)) {

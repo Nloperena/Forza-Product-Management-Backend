@@ -157,33 +157,93 @@ const AuditLogViewer: React.FC<AuditLogViewerProps> = ({ productId }) => {
     const after = parseJsonSafe(log.after_data);
 
     if (!before && !after) {
-      return <p className="text-gray-500 italic">No detailed data available</p>;
+      return <p className="text-gray-500 italic px-4 py-2">No detailed data available</p>;
+    }
+
+    // Identify all keys from both objects
+    const allKeys = Array.from(new Set([
+      ...Object.keys(before || {}),
+      ...Object.keys(after || {})
+    ])).filter(key => {
+      // Filter out internal fields and last_edited
+      const internalFields = ['id', 'last_edited', 'benefits_count', 'updated_at', 'created_at'];
+      return !internalFields.includes(key);
+    });
+
+    const changedKeys = allKeys.filter(key => {
+      const b = before?.[key];
+      const a = after?.[key];
+      return JSON.stringify(b) !== JSON.stringify(a);
+    });
+
+    if (changedKeys.length === 0) {
+      return <p className="text-gray-500 italic px-4 py-2">No product data fields were changed (likely only metadata)</p>;
     }
 
     return (
-      <div className="grid grid-cols-2 gap-4">
-        {before && (
-          <div>
-            <h4 className="text-sm font-medium text-gray-700 mb-2 flex items-center gap-1">
-              <span className="inline-block w-2 h-2 bg-red-400 rounded-full"></span>
-              Before
-            </h4>
-            <pre className="text-xs bg-red-50 p-3 rounded-lg overflow-auto max-h-64 text-red-800">
-              {JSON.stringify(before, null, 2)}
-            </pre>
-          </div>
-        )}
-        {after && (
-          <div>
-            <h4 className="text-sm font-medium text-gray-700 mb-2 flex items-center gap-1">
-              <span className="inline-block w-2 h-2 bg-green-400 rounded-full"></span>
-              After
-            </h4>
-            <pre className="text-xs bg-green-50 p-3 rounded-lg overflow-auto max-h-64 text-green-800">
-              {JSON.stringify(after, null, 2)}
-            </pre>
-          </div>
-        )}
+      <div className="border border-gray-200 rounded-lg overflow-hidden bg-white shadow-sm">
+        <table className="w-full text-sm border-collapse">
+          <thead>
+            <tr className="bg-gray-50 border-b border-gray-200 text-gray-600">
+              <th className="px-4 py-2 text-left font-semibold w-1/4 border-r border-gray-200">Field</th>
+              <th className="px-4 py-2 text-left font-semibold w-[37.5%] border-r border-gray-200">Before</th>
+              <th className="px-4 py-2 text-left font-semibold w-[37.5%]">After</th>
+            </tr>
+          </thead>
+          <tbody>
+            {changedKeys.map(key => {
+              const b = before?.[key];
+              const a = after?.[key];
+              
+              // Helper to render value (handle arrays/objects)
+              const renderVal = (val: any, isAfter: boolean) => {
+                if (val === undefined || val === null) return <span className="text-gray-300 italic">None</span>;
+                if (Array.isArray(val)) {
+                  return (
+                    <ul className="list-disc list-inside space-y-1">
+                      {val.map((item, i) => (
+                        <li key={i} className={isAfter ? "text-green-700" : "text-red-700"}>
+                          {typeof item === 'string' ? item : JSON.stringify(item)}
+                        </li>
+                      ))}
+                    </ul>
+                  );
+                }
+                if (typeof val === 'object') return <pre className="whitespace-pre-wrap font-mono text-[10px]">{JSON.stringify(val, null, 2)}</pre>;
+                
+                // Image special handling
+                if (key === 'image' && typeof val === 'string' && val.startsWith('http')) {
+                  return (
+                    <div className="flex flex-col gap-2">
+                      <img src={val} alt="Preview" className="h-16 w-16 object-cover rounded border border-gray-200" />
+                      <span className="text-[10px] break-all opacity-60">{val}</span>
+                    </div>
+                  );
+                }
+
+                return val.toString();
+              };
+
+              return (
+                <tr key={key} className="border-b border-gray-100 last:border-0 hover:bg-gray-50/50 transition-colors">
+                  <td className="px-4 py-3 font-medium text-gray-700 bg-gray-50/30 border-r border-gray-200">
+                    {key.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
+                  </td>
+                  <td className="px-4 py-3 bg-red-50/30 border-r border-gray-200 align-top">
+                    <div className="text-red-700 break-words">
+                      {renderVal(b, false)}
+                    </div>
+                  </td>
+                  <td className="px-4 py-3 bg-green-50/30 align-top">
+                    <div className="text-green-700 break-words font-medium">
+                      {renderVal(a, true)}
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
     );
   };
@@ -303,17 +363,30 @@ const AuditLogViewer: React.FC<AuditLogViewerProps> = ({ productId }) => {
                     <div className={`p-2 rounded-lg ${getActionColor(log.action).replace('text-', 'bg-').replace('-800', '-100')}`}>
                       {getActionIcon(log.action)}
                     </div>
+                    {/* Product Thumbnail */}
+                    {log.entity_type === 'product' && (parseJsonSafe(log.after_data)?.image || parseJsonSafe(log.before_data)?.image) && (
+                      <div className="h-12 w-12 rounded-md overflow-hidden border border-gray-200 bg-gray-50 flex-shrink-0">
+                        <img 
+                          src={parseJsonSafe(log.after_data)?.image || parseJsonSafe(log.before_data)?.image} 
+                          alt="Product" 
+                          className="h-full w-full object-cover"
+                          onError={(e) => (e.currentTarget.src = '/placeholder-product.svg')}
+                        />
+                      </div>
+                    )}
                     <div>
                       <div className="flex items-center gap-2 mb-1">
                         <span className={`px-2 py-0.5 rounded text-xs font-medium ${getActionColor(log.action)}`}>
                           {log.action}
                         </span>
-                        <span className="text-gray-500 text-sm">{log.entity_type}</span>
+                        <span className="text-gray-500 text-sm">{log.entity_type === 'product' ? 'Product' : log.entity_type}</span>
                         <code className="text-xs bg-gray-100 px-2 py-0.5 rounded text-gray-700 font-mono">
                           {log.entity_id}
                         </code>
                       </div>
-                      <p className="text-gray-900 font-medium">{log.changes_summary}</p>
+                      <p className="text-gray-900 font-medium">
+                        {log.changes_summary.replace(/,\s*last_edited/, '').replace(/Updated\s*name,\s*last_edited/, 'Updated name')}
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
