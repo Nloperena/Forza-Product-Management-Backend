@@ -856,36 +856,73 @@ const ProductEditPage: React.FC = () => {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
-              <div className="space-y-2">
-                <label className="text-xs font-bold text-gray-500 uppercase">Product Image</label>
-                <ImageUpload
-                  productId={formData.product_id}
-                  type="image"
-                  onImageUpload={(url) => handleInputChange('image', url)}
-                  currentImage={formData.image ? imageUrl : undefined}
-                />
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <label className="text-xs font-bold text-gray-500 uppercase">Product Image (Drag & Drop)</label>
+                  <ImageUpload
+                    productId={formData.product_id}
+                    type="image"
+                    onImageUpload={(url) => handleInputChange('image', url)}
+                    currentImage={formData.image ? imageUrl : undefined}
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <label className="text-xs font-bold text-gray-500 uppercase">Image URL (Fallback/Manual)</label>
+                  <Input
+                    value={formData.image}
+                    onChange={(e) => handleInputChange('image', e.target.value)}
+                    placeholder="https://example.com/image.png"
+                    className="text-xs font-mono"
+                  />
+                  <p className="text-[10px] text-gray-400">
+                    Paste a direct image link here if drag & drop is not used.
+                  </p>
+                </div>
               </div>
 
-              <div className="space-y-2 border-t pt-4">
-                <label className="text-xs font-bold text-gray-500 uppercase">Technical Data Sheet (TDS)</label>
-                <ImageUpload
-                  productId={formData.product_id}
-                  type="tds"
-                  onImageUpload={(url) => handleInputChange('tds_pdf', url)}
-                  currentImage={formData.tds_pdf ? '/pdf-icon.svg' : undefined}
-                />
-                {formData.tds_pdf && <div className="text-[10px] text-green-600 truncate">{formData.tds_pdf}</div>}
+              <div className="space-y-4 border-t pt-4">
+                <div className="space-y-2">
+                  <label className="text-xs font-bold text-gray-500 uppercase">Technical Data Sheet (TDS)</label>
+                  <ImageUpload
+                    productId={formData.product_id}
+                    type="tds"
+                    onImageUpload={(url) => handleInputChange('tds_pdf', url)}
+                    currentImage={formData.tds_pdf ? '/pdf-icon.svg' : undefined}
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <label className="text-xs font-bold text-gray-500 uppercase">TDS URL (Manual)</label>
+                  <Input
+                    value={formData.tds_pdf || ''}
+                    onChange={(e) => handleInputChange('tds_pdf', e.target.value)}
+                    placeholder="Manual TDS link..."
+                    className="text-xs font-mono"
+                  />
+                </div>
               </div>
 
-              <div className="space-y-2 border-t pt-4">
-                <label className="text-xs font-bold text-gray-500 uppercase">Safety Data Sheet (SDS)</label>
-                <ImageUpload
-                  productId={formData.product_id}
-                  type="sds"
-                  onImageUpload={(url) => handleInputChange('sds_pdf', url)}
-                  currentImage={formData.sds_pdf ? '/pdf-icon.svg' : undefined}
-                />
-                {formData.sds_pdf && <div className="text-[10px] text-green-600 truncate">{formData.sds_pdf}</div>}
+              <div className="space-y-4 border-t pt-4">
+                <div className="space-y-2">
+                  <label className="text-xs font-bold text-gray-500 uppercase">Safety Data Sheet (SDS)</label>
+                  <ImageUpload
+                    productId={formData.product_id}
+                    type="sds"
+                    onImageUpload={(url) => handleInputChange('sds_pdf', url)}
+                    currentImage={formData.sds_pdf ? '/pdf-icon.svg' : undefined}
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <label className="text-xs font-bold text-gray-500 uppercase">SDS URL (Manual)</label>
+                  <Input
+                    value={formData.sds_pdf || ''}
+                    onChange={(e) => handleInputChange('sds_pdf', e.target.value)}
+                    placeholder="Manual SDS link..."
+                    className="text-xs font-mono"
+                  />
+                </div>
               </div>
 
               <Button
@@ -893,7 +930,7 @@ const ProductEditPage: React.FC = () => {
                 className="w-full text-xs"
                 onClick={() => setShowImagePicker(true)}
               >
-                Browse All Storage
+                Browse Storage
               </Button>
             </CardContent>
           </Card>
