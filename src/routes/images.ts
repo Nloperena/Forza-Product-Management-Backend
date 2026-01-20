@@ -2,7 +2,7 @@ import express from 'express';
 import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
-import { put } from '@vercel/blob';
+import { put, list } from '@vercel/blob';
 
 const router = express.Router();
 
@@ -64,32 +64,54 @@ const upload = multer({
   }
 });
 
-// GET /api/images - Get all uploaded images
-router.get('/', (_req, res) => {
+// GET /api/images - Get all images from Vercel Blob + local
+router.get('/', async (_req, res) => {
   try {
-    const uploadDir = path.join(__dirname, '../../public/uploads');
+    const blobToken = process.env.BLOB_READ_WRITE_TOKEN || 
+                      process.env.Images_READ_WRITE_TOKEN || 
+                      Object.keys(process.env).find(key => key.endsWith('_READ_WRITE_TOKEN') && process.env[key]);
+
+    let blobImages: Array<{url: string; pathname: string; size?: number}> = [];
     
-    if (!fs.existsSync(uploadDir)) {
-      res.json([]);
-      return;
+    // Fetch from Vercel Blob if token is available
+    if (blobToken) {
+      try {
+        const { blobs } = await list({ token: blobToken });
+        blobImages = blobs
+          .filter(blob => /\.(jpg|jpeg|png|gif|svg|webp)$/i.test(blob.pathname))
+          .map(blob => ({
+            url: blob.url,
+            pathname: blob.pathname,
+            size: blob.size
+          }));
+      } catch (blobError) {
+        console.error('Error fetching from Vercel Blob:', blobError);
+      }
     }
 
-    const files = fs.readdirSync(uploadDir);
-    const images = files
-      .filter(file => /\.(jpg|jpeg|png|gif|svg|webp)$/i.test(file))
-      .map(file => {
-        const filePath = path.join(uploadDir, file);
-        const stats = fs.statSync(filePath);
-        
-        return {
-          filename: file,
-          path: `/product-images/${file}`,
-          size: stats.size,
-          created: stats.birthtime
-        };
-      });
+    // Also fetch local images if they exist
+    const uploadDir = path.join(__dirname, '../../public/uploads');
+    let localImages: Array<{url: string; pathname: string; size?: number}> = [];
+    
+    if (fs.existsSync(uploadDir)) {
+      const files = fs.readdirSync(uploadDir);
+      localImages = files
+        .filter(file => /\.(jpg|jpeg|png|gif|svg|webp)$/i.test(file))
+        .map(file => {
+          const filePath = path.join(uploadDir, file);
+          const stats = fs.statSync(filePath);
+          return {
+            url: `/product-images/${file}`,
+            pathname: file,
+            size: stats.size
+          };
+        });
+    }
 
-    res.json(images);
+    res.json({
+      success: true,
+      images: [...blobImages, ...localImages]
+    });
   } catch (error) {
     console.error('Error fetching images:', error);
     res.status(500).json({

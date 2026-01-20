@@ -6,7 +6,7 @@ import { useToast } from '@/components/ui/ToastContainer';
 import { productApi } from '@/services/api';
 import ImageSkeleton from '@/components/ui/ImageSkeleton';
 import ImageUpload from '@/components/ui/ImageUpload';
-import { Package, Tag, CheckCircle, XCircle, Save, Edit2, Plus, Trash2, Loader2, Image as ImageIcon } from 'lucide-react';
+import { Package, Tag, CheckCircle, XCircle, Save, Edit2, Plus, Trash2, Loader2, Image as ImageIcon, FileText, X, Search, ZoomIn } from 'lucide-react';
 import type { Product, ProductFormData, TechnicalProperty } from '@/types/product';
 
 interface ProductDetailProps {
@@ -31,6 +31,11 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onProductUpdated
   const [saving, setSaving] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [showLightbox, setShowLightbox] = useState(false);
+  const [showBlobBrowser, setShowBlobBrowser] = useState(false);
+  const [blobImages, setBlobImages] = useState<Array<{url: string; pathname: string}>>([]);
+  const [blobSearchTerm, setBlobSearchTerm] = useState('');
+  const [loadingBlobs, setLoadingBlobs] = useState(false);
 
   const handleDelete = async () => {
     try {
@@ -161,6 +166,27 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onProductUpdated
       technical: prev.technical.filter((_, i) => i !== index)
     }));
   };
+
+  // Fetch all images from Vercel Blob
+  const fetchBlobImages = async () => {
+    setLoadingBlobs(true);
+    try {
+      const response = await fetch(`${apiBaseUrl}/api/images`);
+      const data = await response.json();
+      if (data.success && data.images) {
+        setBlobImages(data.images);
+      }
+    } catch (error) {
+      console.error('Failed to fetch blob images:', error);
+    } finally {
+      setLoadingBlobs(false);
+    }
+  };
+
+  // Filter blobs by search term
+  const filteredBlobs = blobImages.filter(blob => 
+    blob.pathname.toLowerCase().includes(blobSearchTerm.toLowerCase())
+  );
 
   const handleSave = async () => {
     try {
@@ -479,51 +505,75 @@ Check the browser console (F12) for more details.`;
 
         {/* Product Assets (Images & Documents) */}
         <div className="mb-8 bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-          <div className="flex items-center gap-2 mb-6">
-            <ImageIcon className="h-6 w-6 text-blue-600" />
-            <h2 className="text-2xl font-bold text-gray-900">Product Assets</h2>
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-2">
+              <ImageIcon className="h-6 w-6 text-blue-600" />
+              <h2 className="text-2xl font-bold text-gray-900">Product Assets</h2>
+            </div>
+            {isEditing && (
+              <button
+                onClick={() => { setShowBlobBrowser(true); fetchBlobImages(); }}
+                className="flex items-center gap-2 px-4 py-2 bg-indigo-50 text-indigo-700 rounded-lg hover:bg-indigo-100 transition-colors text-sm font-medium"
+              >
+                <Search className="h-4 w-4" />
+                Browse Vercel Blob
+              </button>
+            )}
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Product Image */}
-            <div className="space-y-4">
-              <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest">
-                Main Image
-              </label>
-              {isEditing ? (
-                <div className="space-y-3">
-                  <ImageUpload
-                    productId={formData.product_id}
-                    type="image"
-                    onImageUpload={(url) => handleInputChange('image', url)}
-                    currentImage={formData.image ? imageUrl : undefined}
+          {/* Main Product Image - Large and Prominent */}
+          <div className="mb-6">
+            <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">
+              Product Image
+            </label>
+            {isEditing ? (
+              <div className="space-y-4">
+                <ImageUpload
+                  productId={formData.product_id}
+                  type="image"
+                  onImageUpload={(url) => handleInputChange('image', url)}
+                  currentImage={formData.image ? imageUrl : undefined}
+                />
+                <div className="space-y-1">
+                  <label className="text-[10px] font-medium text-gray-400 uppercase">Manual URL</label>
+                  <input
+                    type="text"
+                    value={formData.image}
+                    onChange={(e) => handleInputChange('image', e.target.value)}
+                    className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg bg-gray-50 font-mono"
+                    placeholder="https://..."
                   />
-                  <div className="space-y-1">
-                    <label className="text-[10px] font-medium text-gray-400 uppercase">Manual URL Fallback</label>
-                    <input
-                      type="text"
-                      value={formData.image}
-                      onChange={(e) => handleInputChange('image', e.target.value)}
-                      className="w-full px-2 py-1 text-xs border border-gray-200 rounded bg-gray-50 font-mono"
-                      placeholder="https://..."
-                    />
-                  </div>
                 </div>
-              ) : (
+              </div>
+            ) : (
+              <div 
+                className="relative group cursor-zoom-in"
+                onClick={() => setShowLightbox(true)}
+              >
                 <ImageSkeleton
                   src={imageUrl}
                   alt={product.name}
-                  className="w-full h-48 rounded-lg"
-                  aspectRatio="square"
+                  className="w-full max-h-[500px] rounded-xl"
+                  aspectRatio="video"
                   objectFit="contain"
-                  containerClassName="bg-gray-50 border border-gray-100"
+                  containerClassName="bg-gradient-to-b from-gray-50 to-gray-100 border border-gray-100 rounded-xl overflow-hidden"
                 />
-              )}
-            </div>
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all rounded-xl flex items-center justify-center">
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg flex items-center gap-2">
+                    <ZoomIn className="h-5 w-5 text-gray-700" />
+                    <span className="text-sm font-medium text-gray-700">Click to enlarge</span>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
 
-            {/* TDS Upload */}
-            <div className="space-y-4 border-l border-gray-100 pl-0 md:pl-8">
-              <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest">
+          {/* TDS & SDS in a Row Below */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-gray-100">
+            {/* TDS */}
+            <div className="space-y-3">
+              <label className="flex items-center gap-2 text-xs font-bold text-gray-500 uppercase tracking-widest">
+                <FileText className="h-4 w-4 text-blue-500" />
                 Technical Data Sheet (TDS)
               </label>
               {isEditing ? (
@@ -534,25 +584,22 @@ Check the browser console (F12) for more details.`;
                     onImageUpload={(url) => handleInputChange('tds_pdf', url)}
                     currentImage={formData.tds_pdf ? '/pdf-icon.svg' : undefined}
                   />
-                  <div className="space-y-1">
-                    <label className="text-[10px] font-medium text-gray-400 uppercase">Manual TDS Link</label>
-                    <input
-                      type="text"
-                      value={formData.tds_pdf || ''}
-                      onChange={(e) => handleInputChange('tds_pdf', e.target.value)}
-                      className="w-full px-2 py-1 text-xs border border-gray-200 rounded bg-gray-50 font-mono"
-                      placeholder="Manual link..."
-                    />
-                  </div>
+                  <input
+                    type="text"
+                    value={formData.tds_pdf || ''}
+                    onChange={(e) => handleInputChange('tds_pdf', e.target.value)}
+                    className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg bg-gray-50 font-mono"
+                    placeholder="TDS link..."
+                  />
                 </div>
               ) : (
-                <div className="h-48 flex flex-col items-center justify-center bg-gray-50 rounded-lg border border-dashed border-gray-200">
+                <div className="h-32 flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl border border-blue-100">
                   {product.tds_pdf ? (
-                    <a href={product.tds_pdf} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 group">
-                      <div className="p-4 bg-white rounded-full shadow-sm group-hover:shadow-md transition-all">
-                        <ImageIcon className="h-8 w-8 text-blue-500" />
+                    <a href={product.tds_pdf} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 group hover:scale-105 transition-transform">
+                      <div className="p-3 bg-white rounded-full shadow-md group-hover:shadow-lg transition-all">
+                        <FileText className="h-8 w-8 text-blue-600" />
                       </div>
-                      <span className="text-sm font-medium text-blue-600 underline">View TDS PDF</span>
+                      <span className="text-sm font-semibold text-blue-700">View TDS</span>
                     </a>
                   ) : (
                     <span className="text-gray-400 text-sm">No TDS attached</span>
@@ -561,9 +608,10 @@ Check the browser console (F12) for more details.`;
               )}
             </div>
 
-            {/* SDS Upload */}
-            <div className="space-y-4 border-l border-gray-100 pl-0 md:pl-8">
-              <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest">
+            {/* SDS */}
+            <div className="space-y-3">
+              <label className="flex items-center gap-2 text-xs font-bold text-gray-500 uppercase tracking-widest">
+                <FileText className="h-4 w-4 text-red-500" />
                 Safety Data Sheet (SDS)
               </label>
               {isEditing ? (
@@ -574,25 +622,22 @@ Check the browser console (F12) for more details.`;
                     onImageUpload={(url) => handleInputChange('sds_pdf', url)}
                     currentImage={formData.sds_pdf ? '/pdf-icon.svg' : undefined}
                   />
-                  <div className="space-y-1">
-                    <label className="text-[10px] font-medium text-gray-400 uppercase">Manual SDS Link</label>
-                    <input
-                      type="text"
-                      value={formData.sds_pdf || ''}
-                      onChange={(e) => handleInputChange('sds_pdf', e.target.value)}
-                      className="w-full px-2 py-1 text-xs border border-gray-200 rounded bg-gray-50 font-mono"
-                      placeholder="Manual link..."
-                    />
-                  </div>
+                  <input
+                    type="text"
+                    value={formData.sds_pdf || ''}
+                    onChange={(e) => handleInputChange('sds_pdf', e.target.value)}
+                    className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg bg-gray-50 font-mono"
+                    placeholder="SDS link..."
+                  />
                 </div>
               ) : (
-                <div className="h-48 flex flex-col items-center justify-center bg-gray-50 rounded-lg border border-dashed border-gray-200">
+                <div className="h-32 flex flex-col items-center justify-center bg-gradient-to-br from-red-50 to-orange-50 rounded-xl border border-red-100">
                   {product.sds_pdf ? (
-                    <a href={product.sds_pdf} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 group">
-                      <div className="p-4 bg-white rounded-full shadow-sm group-hover:shadow-md transition-all">
-                        <ImageIcon className="h-8 w-8 text-red-500" />
+                    <a href={product.sds_pdf} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 group hover:scale-105 transition-transform">
+                      <div className="p-3 bg-white rounded-full shadow-md group-hover:shadow-lg transition-all">
+                        <FileText className="h-8 w-8 text-red-600" />
                       </div>
-                      <span className="text-sm font-medium text-red-600 underline">View SDS PDF</span>
+                      <span className="text-sm font-semibold text-red-700">View SDS</span>
                     </a>
                   ) : (
                     <span className="text-gray-400 text-sm">No SDS attached</span>
@@ -602,6 +647,101 @@ Check the browser console (F12) for more details.`;
             </div>
           </div>
         </div>
+
+        {/* Image Lightbox Modal */}
+        {showLightbox && (
+          <div 
+            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 animate-in fade-in duration-200"
+            onClick={() => setShowLightbox(false)}
+          >
+            <button
+              onClick={() => setShowLightbox(false)}
+              className="absolute top-4 right-4 p-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors"
+            >
+              <X className="h-8 w-8 text-white" />
+            </button>
+            <img 
+              src={imageUrl} 
+              alt={product.name}
+              className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            />
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 backdrop-blur-sm px-6 py-2 rounded-full">
+              <p className="text-white text-sm font-medium">{product.name}</p>
+            </div>
+          </div>
+        )}
+
+        {/* Vercel Blob Browser Modal */}
+        {showBlobBrowser && (
+          <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+            <div className="bg-white rounded-2xl w-full max-w-4xl max-h-[85vh] overflow-hidden flex flex-col shadow-2xl">
+              <div className="p-6 border-b border-gray-100 flex items-center justify-between">
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900">Vercel Blob Browser</h3>
+                  <p className="text-sm text-gray-500 mt-1">Search and select from your existing images</p>
+                </div>
+                <button
+                  onClick={() => setShowBlobBrowser(false)}
+                  className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                >
+                  <X className="h-5 w-5 text-gray-500" />
+                </button>
+              </div>
+              
+              <div className="p-4 border-b border-gray-100">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+                  <input
+                    type="text"
+                    value={blobSearchTerm}
+                    onChange={(e) => setBlobSearchTerm(e.target.value)}
+                    placeholder="Search by filename (e.g. marine, IC936, tape)..."
+                    className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  />
+                </div>
+                <p className="text-xs text-gray-400 mt-2">{filteredBlobs.length} images found</p>
+              </div>
+
+              <div className="flex-1 overflow-y-auto p-4">
+                {loadingBlobs ? (
+                  <div className="flex items-center justify-center py-12">
+                    <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+                  </div>
+                ) : filteredBlobs.length === 0 ? (
+                  <div className="text-center py-12 text-gray-500">
+                    {blobSearchTerm ? 'No images match your search' : 'No images found in Vercel Blob'}
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                    {filteredBlobs.map((blob, index) => (
+                      <button
+                        key={index}
+                        onClick={() => {
+                          handleInputChange('image', blob.url);
+                          setShowBlobBrowser(false);
+                        }}
+                        className="group relative aspect-square bg-gray-100 rounded-xl overflow-hidden hover:ring-2 hover:ring-blue-500 transition-all"
+                      >
+                        <img 
+                          src={blob.url} 
+                          alt={blob.pathname}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                          onError={(e) => (e.currentTarget.src = '/placeholder-product.svg')}
+                        />
+                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-2">
+                          <p className="text-white text-xs truncate font-medium">
+                            {blob.pathname.split('/').pop()}
+                          </p>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Product ID */}
         <div className="mb-8 bg-white p-6 rounded-lg shadow-sm">
