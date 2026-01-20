@@ -5,7 +5,8 @@ import { useUser } from '@/contexts/UserContext';
 import { useToast } from '@/components/ui/ToastContainer';
 import { productApi } from '@/services/api';
 import ImageSkeleton from '@/components/ui/ImageSkeleton';
-import { Package, Tag, CheckCircle, XCircle, Save, Edit2, Plus, Trash2, Loader2 } from 'lucide-react';
+import ImageUpload from '@/components/ui/ImageUpload';
+import { Package, Tag, CheckCircle, XCircle, Save, Edit2, Plus, Trash2, Loader2, Image as ImageIcon } from 'lucide-react';
 import type { Product, ProductFormData, TechnicalProperty } from '@/types/product';
 
 interface ProductDetailProps {
@@ -477,18 +478,42 @@ Check the browser console (F12) for more details.`;
         </div>
 
         {/* Product Image */}
-        <div className="mb-8 bg-white rounded-xl p-6 shadow-sm">
+        <div className="mb-8 bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+          <div className="flex items-center gap-2 mb-4">
+            <ImageIcon className="h-5 w-5 text-blue-600" />
+            <h2 className="text-xl font-bold text-gray-900">Product Image</h2>
+          </div>
+          
           {isEditing ? (
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Image URL</label>
-              <input
-                type="text"
-                value={formData.image}
-                onChange={(e) => handleInputChange('image', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-base"
-                placeholder="Enter image URL"
-                disabled={saving}
-              />
+            <div className="space-y-4">
+              <div className="p-4 bg-blue-50/50 rounded-lg border border-blue-100">
+                <label className="block text-sm font-bold text-blue-900 mb-2 uppercase tracking-wider">
+                  Drag & Drop Upload (Vercel Blob)
+                </label>
+                <ImageUpload
+                  productId={formData.product_id}
+                  type="image"
+                  onImageUpload={(url) => handleInputChange('image', url)}
+                  currentImage={formData.image ? imageUrl : undefined}
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2 uppercase tracking-wider">
+                  Or Paste Image URL
+                </label>
+                <input
+                  type="text"
+                  value={formData.image}
+                  onChange={(e) => handleInputChange('image', e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm font-mono bg-gray-50"
+                  placeholder="https://..."
+                  disabled={saving}
+                />
+                <p className="text-[10px] text-gray-400 mt-1">
+                  Manual fallback: useful for external links or existing Vercel URLs.
+                </p>
+              </div>
             </div>
           ) : (
             <ImageSkeleton
