@@ -33,6 +33,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onProductUpdated
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [showLightbox, setShowLightbox] = useState(false);
   const [showBlobBrowser, setShowBlobBrowser] = useState(false);
+  const [blobBrowserTarget, setBlobBrowserTarget] = useState<'image' | 'tds_pdf' | 'sds_pdf'>('image');
   const [blobImages, setBlobImages] = useState<Array<{url: string; pathname: string}>>([]);
   const [blobFolders, setBlobFolders] = useState<string[]>([]);
   const [blobCurrentPath, setBlobCurrentPath] = useState('');
@@ -548,9 +549,20 @@ Check the browser console (F12) for more details.`;
           
           {/* Main Product Image - Large and Prominent */}
           <div className="mb-6">
-            <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">
-              Product Image
-            </label>
+            <div className="flex items-center justify-between mb-3">
+              <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest">
+                Product Image
+              </label>
+              {isEditing && (
+                <button
+                  onClick={() => { setBlobBrowserTarget('image'); setShowBlobBrowser(true); fetchBlobImages(); }}
+                  className="flex items-center gap-2 px-3 py-1 bg-indigo-50 text-indigo-700 rounded-lg hover:bg-indigo-100 transition-colors text-[10px] font-bold uppercase tracking-wider border border-indigo-100 shadow-sm"
+                >
+                  <Search className="h-3 w-3" />
+                  Browse Vercel Blob
+                </button>
+              )}
+            </div>
             {isEditing ? (
               <div className="space-y-4">
                 <ImageUpload
@@ -597,10 +609,20 @@ Check the browser console (F12) for more details.`;
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-gray-100">
             {/* TDS */}
             <div className="space-y-3">
-              <label className="flex items-center gap-2 text-xs font-bold text-gray-500 uppercase tracking-widest">
-                <FileText className="h-4 w-4 text-blue-500" />
-                Technical Data Sheet (TDS)
-              </label>
+              <div className="flex items-center justify-between">
+                <label className="flex items-center gap-2 text-xs font-bold text-gray-500 uppercase tracking-widest">
+                  <FileText className="h-4 w-4 text-blue-500" />
+                  Technical Data Sheet (TDS)
+                </label>
+                {isEditing && (
+                  <button
+                    onClick={() => { setBlobBrowserTarget('tds_pdf'); setShowBlobBrowser(true); fetchBlobImages(); }}
+                    className="text-[9px] font-bold text-blue-600 hover:text-blue-800 bg-blue-50 px-2 py-0.5 rounded border border-blue-100"
+                  >
+                    Browse
+                  </button>
+                )}
+              </div>
               {isEditing ? (
                 <div className="space-y-3">
                   <ImageUpload
@@ -635,10 +657,20 @@ Check the browser console (F12) for more details.`;
 
             {/* SDS */}
             <div className="space-y-3">
-              <label className="flex items-center gap-2 text-xs font-bold text-gray-500 uppercase tracking-widest">
-                <FileText className="h-4 w-4 text-red-500" />
-                Safety Data Sheet (SDS)
-              </label>
+              <div className="flex items-center justify-between">
+                <label className="flex items-center gap-2 text-xs font-bold text-gray-500 uppercase tracking-widest">
+                  <FileText className="h-4 w-4 text-red-500" />
+                  Safety Data Sheet (SDS)
+                </label>
+                {isEditing && (
+                  <button
+                    onClick={() => { setBlobBrowserTarget('sds_pdf'); setShowBlobBrowser(true); fetchBlobImages(); }}
+                    className="text-[9px] font-bold text-red-600 hover:text-red-800 bg-red-50 px-2 py-0.5 rounded border border-red-100"
+                  >
+                    Browse
+                  </button>
+                )}
+              </div>
               {isEditing ? (
                 <div className="space-y-3">
                   <ImageUpload
@@ -813,20 +845,29 @@ Check the browser console (F12) for more details.`;
                             return (
                               <button
                                 key={index}
-                                onClick={() => {
-                                  handleInputChange('image', blob.url);
-                                  setShowBlobBrowser(false);
-                                  setBlobCurrentPath('');
-                                  setBlobSearchTerm('');
-                                }}
+                              onClick={() => {
+                                handleInputChange(blobBrowserTarget, blob.url);
+                                setShowBlobBrowser(false);
+                                setBlobCurrentPath('');
+                                setBlobSearchTerm('');
+                              }}
                                 className="group relative aspect-square bg-gray-100 rounded-xl overflow-hidden hover:ring-2 hover:ring-blue-500 hover:shadow-lg transition-all"
                               >
-                                <img 
-                                  src={blob.url} 
-                                  alt={blob.pathname}
-                                  className="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                                  onError={(e) => (e.currentTarget.src = '/placeholder-product.svg')}
-                                />
+                                <div className="w-full h-full flex items-center justify-center">
+                                  {ext === 'PDF' ? (
+                                    <div className="flex flex-col items-center gap-2">
+                                      <FileText className="h-12 w-12 text-blue-500" />
+                                      <span className="text-[10px] font-bold text-blue-600">PDF DOCUMENT</span>
+                                    </div>
+                                  ) : (
+                                    <img 
+                                      src={blob.url} 
+                                      alt={blob.pathname}
+                                      className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                                      onError={(e) => (e.currentTarget.src = '/placeholder-product.svg')}
+                                    />
+                                  )}
+                                </div>
                                 {/* File type badge */}
                                 <span className={`absolute top-2 right-2 px-1.5 py-0.5 text-[9px] font-bold rounded ${
                                   isWebp 
