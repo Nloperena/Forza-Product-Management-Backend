@@ -477,56 +477,130 @@ Check the browser console (F12) for more details.`;
           )}
         </div>
 
-        {/* Product Image */}
+        {/* Product Assets (Images & Documents) */}
         <div className="mb-8 bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-          <div className="flex items-center gap-2 mb-4">
-            <ImageIcon className="h-5 w-5 text-blue-600" />
-            <h2 className="text-xl font-bold text-gray-900">Product Image</h2>
+          <div className="flex items-center gap-2 mb-6">
+            <ImageIcon className="h-6 w-6 text-blue-600" />
+            <h2 className="text-2xl font-bold text-gray-900">Product Assets</h2>
           </div>
           
-          {isEditing ? (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Product Image */}
             <div className="space-y-4">
-              <div className="p-4 bg-blue-50/50 rounded-lg border border-blue-100">
-                <label className="block text-sm font-bold text-blue-900 mb-2 uppercase tracking-wider">
-                  Drag & Drop Upload (Vercel Blob)
-                </label>
-                <ImageUpload
-                  productId={formData.product_id}
-                  type="image"
-                  onImageUpload={(url) => handleInputChange('image', url)}
-                  currentImage={formData.image ? imageUrl : undefined}
+              <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest">
+                Main Image
+              </label>
+              {isEditing ? (
+                <div className="space-y-3">
+                  <ImageUpload
+                    productId={formData.product_id}
+                    type="image"
+                    onImageUpload={(url) => handleInputChange('image', url)}
+                    currentImage={formData.image ? imageUrl : undefined}
+                  />
+                  <div className="space-y-1">
+                    <label className="text-[10px] font-medium text-gray-400 uppercase">Manual URL Fallback</label>
+                    <input
+                      type="text"
+                      value={formData.image}
+                      onChange={(e) => handleInputChange('image', e.target.value)}
+                      className="w-full px-2 py-1 text-xs border border-gray-200 rounded bg-gray-50 font-mono"
+                      placeholder="https://..."
+                    />
+                  </div>
+                </div>
+              ) : (
+                <ImageSkeleton
+                  src={imageUrl}
+                  alt={product.name}
+                  className="w-full h-48 rounded-lg"
+                  aspectRatio="square"
+                  objectFit="contain"
+                  containerClassName="bg-gray-50 border border-gray-100"
                 />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2 uppercase tracking-wider">
-                  Or Paste Image URL
-                </label>
-                <input
-                  type="text"
-                  value={formData.image}
-                  onChange={(e) => handleInputChange('image', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm font-mono bg-gray-50"
-                  placeholder="https://..."
-                  disabled={saving}
-                />
-                <p className="text-[10px] text-gray-400 mt-1">
-                  Manual fallback: useful for external links or existing Vercel URLs.
-                </p>
-              </div>
+              )}
             </div>
-          ) : (
-            <ImageSkeleton
-              src={imageUrl}
-              alt={product.name}
-              className="max-w-full"
-              aspectRatio="video"
-              objectFit="contain"
-              fallbackIcon={<Package className="h-24 w-24 mb-4 text-gray-400" />}
-              fallbackText="No Image Available"
-              containerClassName="bg-gray-50 rounded-lg"
-            />
-          )}
+
+            {/* TDS Upload */}
+            <div className="space-y-4 border-l border-gray-100 pl-0 md:pl-8">
+              <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest">
+                Technical Data Sheet (TDS)
+              </label>
+              {isEditing ? (
+                <div className="space-y-3">
+                  <ImageUpload
+                    productId={formData.product_id}
+                    type="tds"
+                    onImageUpload={(url) => handleInputChange('tds_pdf', url)}
+                    currentImage={formData.tds_pdf ? '/pdf-icon.svg' : undefined}
+                  />
+                  <div className="space-y-1">
+                    <label className="text-[10px] font-medium text-gray-400 uppercase">Manual TDS Link</label>
+                    <input
+                      type="text"
+                      value={formData.tds_pdf || ''}
+                      onChange={(e) => handleInputChange('tds_pdf', e.target.value)}
+                      className="w-full px-2 py-1 text-xs border border-gray-200 rounded bg-gray-50 font-mono"
+                      placeholder="Manual link..."
+                    />
+                  </div>
+                </div>
+              ) : (
+                <div className="h-48 flex flex-col items-center justify-center bg-gray-50 rounded-lg border border-dashed border-gray-200">
+                  {product.tds_pdf ? (
+                    <a href={product.tds_pdf} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 group">
+                      <div className="p-4 bg-white rounded-full shadow-sm group-hover:shadow-md transition-all">
+                        <ImageIcon className="h-8 w-8 text-blue-500" />
+                      </div>
+                      <span className="text-sm font-medium text-blue-600 underline">View TDS PDF</span>
+                    </a>
+                  ) : (
+                    <span className="text-gray-400 text-sm">No TDS attached</span>
+                  )}
+                </div>
+              )}
+            </div>
+
+            {/* SDS Upload */}
+            <div className="space-y-4 border-l border-gray-100 pl-0 md:pl-8">
+              <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest">
+                Safety Data Sheet (SDS)
+              </label>
+              {isEditing ? (
+                <div className="space-y-3">
+                  <ImageUpload
+                    productId={formData.product_id}
+                    type="sds"
+                    onImageUpload={(url) => handleInputChange('sds_pdf', url)}
+                    currentImage={formData.sds_pdf ? '/pdf-icon.svg' : undefined}
+                  />
+                  <div className="space-y-1">
+                    <label className="text-[10px] font-medium text-gray-400 uppercase">Manual SDS Link</label>
+                    <input
+                      type="text"
+                      value={formData.sds_pdf || ''}
+                      onChange={(e) => handleInputChange('sds_pdf', e.target.value)}
+                      className="w-full px-2 py-1 text-xs border border-gray-200 rounded bg-gray-50 font-mono"
+                      placeholder="Manual link..."
+                    />
+                  </div>
+                </div>
+              ) : (
+                <div className="h-48 flex flex-col items-center justify-center bg-gray-50 rounded-lg border border-dashed border-gray-200">
+                  {product.sds_pdf ? (
+                    <a href={product.sds_pdf} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 group">
+                      <div className="p-4 bg-white rounded-full shadow-sm group-hover:shadow-md transition-all">
+                        <ImageIcon className="h-8 w-8 text-red-500" />
+                      </div>
+                      <span className="text-sm font-medium text-red-600 underline">View SDS PDF</span>
+                    </a>
+                  ) : (
+                    <span className="text-gray-400 text-sm">No SDS attached</span>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
         </div>
 
         {/* Product ID */}
