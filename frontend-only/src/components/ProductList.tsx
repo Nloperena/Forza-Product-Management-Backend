@@ -4,6 +4,7 @@ import { useApi } from '@/contexts/ApiContext';
 import { Search, Package, Loader2, X, Plus } from 'lucide-react';
 import { formatBrandName, formatIndustryName, getProductImageUrl } from '@/utils/formatting';
 import ImageSkeleton from '@/components/ui/ImageSkeleton';
+import { useUser } from '@/contexts/UserContext';
 import type { Product } from '@/types/product';
 
 interface ProductListProps {
@@ -18,6 +19,7 @@ const ProductList: React.FC<ProductListProps> = ({ onSelectProduct, selectedProd
   const [selectedIndustry, setSelectedIndustry] = useState<string>('');
   const { products: allProducts, loading, error } = useProducts({ published: true });
   const { apiBaseUrl } = useApi();
+  const { isAdmin } = useUser();
 
   // Get unique brands and industries for filters
   const brands = useMemo(() => {
@@ -177,19 +179,21 @@ const ProductList: React.FC<ProductListProps> = ({ onSelectProduct, selectedProd
         )}
 
         {/* Add New Product Button */}
-        <button
-          onClick={() => {
-            if (onNewProduct) {
-              onNewProduct();
-            } else {
-              window.location.href = '/products/new';
-            }
-          }}
-          className="mt-3 w-full flex items-center justify-center gap-2 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
-        >
-          <Plus className="h-4 w-4" />
-          Add New Product
-        </button>
+        {isAdmin && (
+          <button
+            onClick={() => {
+              if (onNewProduct) {
+                onNewProduct();
+              } else {
+                window.location.href = '/products/new';
+              }
+            }}
+            className="mt-3 w-full flex items-center justify-center gap-2 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+          >
+            <Plus className="h-4 w-4" />
+            Add New Product
+          </button>
+        )}
 
         <p className="text-sm text-gray-500 mt-3">
           {filteredProducts.length} product{filteredProducts.length !== 1 ? 's' : ''} found

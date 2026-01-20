@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 
 interface User {
   name: string;
+  isAdmin: boolean;
 }
 
 interface UserContextType {
@@ -9,11 +10,13 @@ interface UserContextType {
   login: (name: string, password: string) => boolean;
   logout: () => void;
   isAuthenticated: boolean;
+  isAdmin: boolean;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 const VALID_USERS = ['Nico', 'Rick', 'Sydney', 'Randy', 'Whitney'];
+const ADMIN_USERS = ['Nico', 'Whitney'];
 const PASSWORD = 'Glue123!';
 
 export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -22,7 +25,12 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const savedUser = localStorage.getItem('user');
     if (savedUser) {
       try {
-        return JSON.parse(savedUser);
+        const parsed = JSON.parse(savedUser);
+        // Ensure isAdmin is up to date based on the name
+        return {
+          ...parsed,
+          isAdmin: ADMIN_USERS.includes(parsed.name)
+        };
       } catch {
         return null;
       }
@@ -41,7 +49,10 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const login = (name: string, password: string): boolean => {
     if (VALID_USERS.includes(name) && password === PASSWORD) {
-      setUser({ name });
+      setUser({ 
+        name, 
+        isAdmin: ADMIN_USERS.includes(name)
+      });
       return true;
     }
     return false;
@@ -52,7 +63,13 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   return (
-    <UserContext.Provider value={{ user, login, logout, isAuthenticated: !!user }}>
+    <UserContext.Provider value={{ 
+      user, 
+      login, 
+      logout, 
+      isAuthenticated: !!user,
+      isAdmin: user?.isAdmin || false
+    }}>
       {children}
     </UserContext.Provider>
   );
