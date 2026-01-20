@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { useApi } from '@/contexts/ApiContext';
 import { useToast } from '@/components/ui/ToastContainer';
+import { useUser } from '@/contexts/UserContext';
 
 interface Backup {
   id: number;
@@ -44,6 +45,7 @@ interface BackupManagerProps {
 const BackupManager: React.FC<BackupManagerProps> = ({ userName, onBackupPromoted }) => {
   const { apiBaseUrl } = useApi();
   const { showSuccess, showError, showInfo } = useToast();
+  const { isAdmin } = useUser();
   
   const [backups, setBackups] = useState<Backup[]>([]);
   const [loading, setLoading] = useState(true);
@@ -234,13 +236,15 @@ const BackupManager: React.FC<BackupManagerProps> = ({ userName, onBackupPromote
           >
             <RefreshCw className={`h-5 w-5 ${loading ? 'animate-spin' : ''}`} />
           </button>
-          <button
-            onClick={() => setShowCreateForm(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors font-medium"
-          >
-            <Plus className="h-4 w-4" />
-            Create Backup
-          </button>
+          {isAdmin && (
+            <button
+              onClick={() => setShowCreateForm(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors font-medium"
+            >
+              <Plus className="h-4 w-4" />
+              Create Backup
+            </button>
+          )}
         </div>
       </div>
 
@@ -315,14 +319,21 @@ const BackupManager: React.FC<BackupManagerProps> = ({ userName, onBackupPromote
         <div className="text-center py-12 bg-gray-50 rounded-xl border-2 border-dashed border-gray-200">
           <Archive className="h-12 w-12 text-gray-400 mx-auto mb-4" />
           <h3 className="text-lg font-medium text-gray-900 mb-2">No Backups Yet</h3>
-          <p className="text-gray-500 mb-4">Create your first backup to protect your product data</p>
-          <button
-            onClick={() => setShowCreateForm(true)}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
-          >
-            <Plus className="h-4 w-4" />
-            Create Backup
-          </button>
+          <p className="text-gray-500 mb-4">
+            {isAdmin 
+              ? 'Create your first backup to protect your product data'
+              : 'Backups will appear here once they are created by an administrator'
+            }
+          </p>
+          {isAdmin && (
+            <button
+              onClick={() => setShowCreateForm(true)}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
+            >
+              <Plus className="h-4 w-4" />
+              Create Backup
+            </button>
+          )}
         </div>
       ) : (
         <div className="space-y-4">
@@ -368,31 +379,35 @@ const BackupManager: React.FC<BackupManagerProps> = ({ userName, onBackupPromote
                   >
                     <Eye className="h-5 w-5" />
                   </button>
-                  <button
-                    onClick={() => setConfirmPromote(backup)}
-                    disabled={promoting === backup.id}
-                    className="flex items-center gap-2 px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 transition-colors text-sm font-medium"
-                    title="Promote this backup to production"
-                  >
-                    {promoting === backup.id ? (
-                      <Loader2 className="h-4 w-4 animate-spin" />
-                    ) : (
-                      <RotateCcw className="h-4 w-4" />
-                    )}
-                    Promote
-                  </button>
-                  <button
-                    onClick={() => deleteBackup(backup)}
-                    disabled={deleting === backup.id}
-                    className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                    title="Delete backup"
-                  >
-                    {deleting === backup.id ? (
-                      <Loader2 className="h-5 w-5 animate-spin" />
-                    ) : (
-                      <Trash2 className="h-5 w-5" />
-                    )}
-                  </button>
+                  {isAdmin && (
+                    <>
+                      <button
+                        onClick={() => setConfirmPromote(backup)}
+                        disabled={promoting === backup.id}
+                        className="flex items-center gap-2 px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 transition-colors text-sm font-medium"
+                        title="Promote this backup to production"
+                      >
+                        {promoting === backup.id ? (
+                          <Loader2 className="h-4 w-4 animate-spin" />
+                        ) : (
+                          <RotateCcw className="h-4 w-4" />
+                        )}
+                        Promote
+                      </button>
+                      <button
+                        onClick={() => deleteBackup(backup)}
+                        disabled={deleting === backup.id}
+                        className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                        title="Delete backup"
+                      >
+                        {deleting === backup.id ? (
+                          <Loader2 className="h-5 w-5 animate-spin" />
+                        ) : (
+                          <Trash2 className="h-5 w-5" />
+                        )}
+                      </button>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
@@ -412,20 +427,17 @@ const BackupManager: React.FC<BackupManagerProps> = ({ userName, onBackupPromote
                 {previewBackup.preview.total} products in this backup
               </p>
             </div>
-            <div className="flex-1 overflow-y-auto p-6">
+            <div className="flex-1 overflow-y-auto p-6 bg-gray-50/50">
               <div className="space-y-2">
                 {previewBackup.preview.products.map((product) => (
-                  <div key={product.product_id} className="flex items-center gap-4 p-3 bg-gray-50 rounded-lg">
-                    <span className="font-mono text-sm text-indigo-600 font-medium">{product.product_id}</span>
-                    <span className="text-gray-900 flex-1">{product.name}</span>
-                    <span className="text-sm text-gray-500">{product.brand} / {product.industry}</span>
+                  <div key={product.product_id} className="flex items-center gap-4 p-3 bg-white border border-gray-100 rounded-lg hover:border-indigo-200 transition-colors">
+                    <span className="font-mono text-sm text-indigo-600 font-bold bg-indigo-50 px-2 py-1 rounded w-24 text-center">{product.product_id}</span>
+                    <div className="flex-1 min-w-0">
+                      <div className="text-gray-900 font-medium truncate">{product.name}</div>
+                      <div className="text-xs text-gray-500">{product.brand.replace(/_/g, ' ')} / {product.industry.replace(/_/g, ' ')}</div>
+                    </div>
                   </div>
                 ))}
-                {previewBackup.preview.total > 20 && (
-                  <div className="text-center text-gray-500 py-4">
-                    ... and {previewBackup.preview.total - 20} more products
-                  </div>
-                )}
               </div>
             </div>
             <div className="p-4 border-t border-gray-200 flex justify-end">

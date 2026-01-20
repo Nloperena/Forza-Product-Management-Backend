@@ -8,29 +8,35 @@ interface ImageUploadProps {
   onImageUpload: (url: string) => void;
   currentImage?: string;
   className?: string;
+  productId?: string;
+  type?: 'image' | 'tds' | 'sds';
+  label?: string;
 }
 
 const ImageUpload: React.FC<ImageUploadProps> = ({ 
   onImageUpload, 
   currentImage, 
-  className = '' 
+  className = '',
+  productId,
+  type = 'image',
+  label
 }) => {
   const [isUploading, setIsUploading] = useState(false);
   const [dragActive, setDragActive] = useState(false);
   const { apiBaseUrl } = useApi();
 
+  const isPdf = type === 'tds' || type === 'sds';
+
   const handleUpload = async (file: File) => {
     if (!file) return;
 
-    // Validate file type
-    if (!file.type.startsWith('image/')) {
-      alert('Please select an image file');
+    if (isPdf && !file.type.includes('pdf')) {
+      alert('Please select a PDF file');
       return;
     }
 
-    // Validate file size (5MB limit)
-    if (file.size > 5 * 1024 * 1024) {
-      alert('File size must be less than 5MB');
+    if (!isPdf && !file.type.startsWith('image/')) {
+      alert('Please select an image file');
       return;
     }
 
@@ -39,28 +45,24 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
     try {
       const formData = new FormData();
       formData.append('image', file);
+      if (productId) formData.append('product_id', productId);
+      formData.append('type', type);
 
-      // Upload to backend which will handle Vercel Blob storage
-      const response = await fetch(`${apiBaseUrl}/api/images/upload`, {
+      let response = await fetch(`${apiBaseUrl}/api/images/upload`, {
         method: 'POST',
         body: formData,
       });
 
-      if (!response.ok) {
-        throw new Error('Upload failed');
-      }
-
-      const result = await response.json();
+      let result = await response.json();
       
-      if (result.success && result.filepath) {
-        // The backend should return the Vercel Blob URL
-        onImageUpload(result.filepath);
+      if (result.success && result.url) {
+        onImageUpload(result.url);
       } else {
         throw new Error(result.message || 'Upload failed');
       }
     } catch (error) {
       console.error('Upload error:', error);
-      alert('Failed to upload image. Please try again.');
+      alert('Failed to upload. Please try again.');
     } finally {
       setIsUploading(false);
     }

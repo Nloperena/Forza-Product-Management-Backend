@@ -200,71 +200,71 @@ const AppContent: React.FC = () => {
 
       {/* Main Content */}
       {currentView === 'products' ? (
-        <div className="flex-1 flex overflow-hidden">
-          {/* Left Sidebar - Product List */}
-          <aside 
-            ref={sidebarRef}
-            className="bg-white border-r border-gray-200 flex flex-col relative"
-            style={{ width: `${sidebarWidth}px`, minWidth: `${MIN_WIDTH}px`, maxWidth: `${MAX_WIDTH}px` }}
-          >
-            <ProductList 
-              key={refreshKey}
-              onSelectProduct={(product) => {
-                setSelectedProduct(product);
-                setIsCreatingNew(false);
-              }}
-              selectedProduct={selectedProduct}
-              onNewProduct={handleNewProduct}
-            />
-            
-            {/* Resize Handle */}
-            <div
-              onMouseDown={(e) => {
-                e.preventDefault();
-                setIsResizing(true);
-              }}
-              className={`
-                absolute right-0 top-0 bottom-0 w-1 cursor-col-resize
-                hover:bg-blue-500 transition-colors
-                ${isResizing ? 'bg-blue-500' : 'bg-transparent'}
-                group
-              `}
-              style={{ touchAction: 'none' }}
+          <div className="flex-1 flex overflow-hidden">
+            {/* Left Sidebar - Product List */}
+            <aside 
+              ref={sidebarRef}
+              className="bg-white border-r border-gray-200 flex flex-col relative"
+              style={{ width: `${sidebarWidth}px`, minWidth: `${MIN_WIDTH}px`, maxWidth: `${MAX_WIDTH}px` }}
             >
-              <div className="absolute right-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-6 h-12 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                <div className="w-1 h-full bg-blue-500 rounded-full"></div>
-              </div>
-            </div>
-          </aside>
-
-          {/* Right Panel - Product Details */}
-          <main className="flex-1 overflow-y-auto bg-white">
-            {isCreatingNew ? (
-              <NewProductForm
-                onProductCreated={handleProductCreated}
-                onCancel={handleCancelCreate}
+              <ProductList 
+                key={refreshKey}
+                onSelectProduct={(product) => {
+                  setSelectedProduct(product);
+                  setIsCreatingNew(false);
+                }}
+                selectedProduct={selectedProduct}
+                onNewProduct={handleNewProduct}
               />
-            ) : selectedProduct ? (
-              <ProductDetail 
-                product={selectedProduct} 
-                onProductUpdated={handleProductUpdated}
-                onProductDeleted={handleProductDeleted}
-              />
-            ) : (
-              <div className="h-full flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-6xl mb-4">📦</div>
-                  <h2 className="text-2xl font-semibold text-gray-700 mb-2">
-                    Select a Product
-                  </h2>
-                  <p className="text-gray-500 text-lg">
-                    Click on a product from the list to view and edit its details
-                  </p>
+              
+              {/* Resize Handle */}
+              <div
+                onMouseDown={(e) => {
+                  e.preventDefault();
+                  setIsResizing(true);
+                }}
+                className={`
+                  absolute right-0 top-0 bottom-0 w-1 cursor-col-resize
+                  hover:bg-blue-500 transition-colors
+                  ${isResizing ? 'bg-blue-500' : 'bg-transparent'}
+                  group
+                `}
+                style={{ touchAction: 'none' }}
+              >
+                <div className="absolute right-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-6 h-12 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="w-1 h-full bg-blue-500 rounded-full"></div>
                 </div>
               </div>
-            )}
-          </main>
-        </div>
+            </aside>
+
+            {/* Right Panel - Product Details */}
+            <main className="flex-1 overflow-y-auto bg-white">
+              {isCreatingNew ? (
+                <NewProductForm
+                  onProductCreated={handleProductCreated}
+                  onCancel={handleCancelCreate}
+                />
+              ) : selectedProduct ? (
+                <ProductDetail 
+                  product={selectedProduct} 
+                  onProductUpdated={handleProductUpdated}
+                onProductDeleted={handleProductDeleted}
+                />
+              ) : (
+                <div className="h-full flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="text-6xl mb-4">📦</div>
+                    <h2 className="text-2xl font-semibold text-gray-700 mb-2">
+                      Select a Product
+                    </h2>
+                    <p className="text-gray-500 text-lg">
+                      Click on a product from the list to view and edit its details
+                    </p>
+                  </div>
+                </div>
+              )}
+            </main>
+          </div>
       ) : currentView === 'backups' ? (
         <main className="flex-1 overflow-y-auto bg-gray-50">
           <BackupManager 
