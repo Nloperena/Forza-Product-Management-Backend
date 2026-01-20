@@ -96,7 +96,7 @@ router.get('/', async (req, res) => {
           if (parts.length > 1) {
             // This is inside a subfolder - add the folder
             folderSet.add(parts[0]);
-          } else if (parts.length === 1 && /\.(jpg|jpeg|png|gif|svg|webp)$/i.test(blob.pathname)) {
+          } else if (parts.length === 1 && /\.(jpg|jpeg|png|gif|svg|webp|pdf)$/i.test(blob.pathname)) {
             // This is a file at the current level
             items.push({
               url: blob.url,
