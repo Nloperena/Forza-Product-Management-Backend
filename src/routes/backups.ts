@@ -4,7 +4,7 @@ import { backupModel } from '../models/Backup';
 const router = Router();
 
 // Get all backups
-router.get('/', async (req: Request, res: Response) => {
+router.get('/', async (req: Request, res: Response): Promise<void> => {
   try {
     const backups = await backupModel.getAllBackups();
     res.json({ success: true, backups });
@@ -15,13 +15,14 @@ router.get('/', async (req: Request, res: Response) => {
 });
 
 // Get backup by ID
-router.get('/:id', async (req: Request, res: Response) => {
+router.get('/:id', async (req: Request, res: Response): Promise<void> => {
   try {
     const id = parseInt(req.params.id);
     const backup = await backupModel.getBackupById(id);
     
     if (!backup) {
-      return res.status(404).json({ success: false, error: 'Backup not found' });
+      res.status(404).json({ success: false, error: 'Backup not found' });
+      return;
     }
     
     res.json({ success: true, backup });
@@ -32,13 +33,14 @@ router.get('/:id', async (req: Request, res: Response) => {
 });
 
 // Get backup preview (list of products without full data)
-router.get('/:id/preview', async (req: Request, res: Response) => {
+router.get('/:id/preview', async (req: Request, res: Response): Promise<void> => {
   try {
     const id = parseInt(req.params.id);
     const preview = await backupModel.getBackupPreview(id);
     
     if (!preview) {
-      return res.status(404).json({ success: false, error: 'Backup not found or has no data' });
+      res.status(404).json({ success: false, error: 'Backup not found or has no data' });
+      return;
     }
     
     res.json({ success: true, ...preview });
@@ -49,15 +51,16 @@ router.get('/:id/preview', async (req: Request, res: Response) => {
 });
 
 // Create a new backup
-router.post('/', async (req: Request, res: Response) => {
+router.post('/', async (req: Request, res: Response): Promise<void> => {
   try {
     const { name, description, created_by } = req.body;
     
     if (!name || !created_by) {
-      return res.status(400).json({ 
+      res.status(400).json({ 
         success: false, 
         error: 'Name and created_by are required' 
       });
+      return;
     }
     
     const backup = await backupModel.createBackup(name, description, created_by);
@@ -69,22 +72,24 @@ router.post('/', async (req: Request, res: Response) => {
 });
 
 // Promote (restore) a backup to production
-router.post('/:id/promote', async (req: Request, res: Response) => {
+router.post('/:id/promote', async (req: Request, res: Response): Promise<void> => {
   try {
     const id = parseInt(req.params.id);
     const { promoted_by } = req.body;
     
     if (!promoted_by) {
-      return res.status(400).json({ 
+      res.status(400).json({ 
         success: false, 
         error: 'promoted_by is required' 
       });
+      return;
     }
     
     const result = await backupModel.promoteBackup(id, promoted_by);
     
     if (!result.success) {
-      return res.status(400).json(result);
+      res.status(400).json(result);
+      return;
     }
     
     res.json(result);
@@ -95,7 +100,7 @@ router.post('/:id/promote', async (req: Request, res: Response) => {
 });
 
 // Delete a backup
-router.delete('/:id', async (req: Request, res: Response) => {
+router.delete('/:id', async (req: Request, res: Response): Promise<void> => {
   try {
     const id = parseInt(req.params.id);
     const { deleted_by } = req.body;
@@ -103,7 +108,8 @@ router.delete('/:id', async (req: Request, res: Response) => {
     const deleted = await backupModel.deleteBackup(id, deleted_by || 'Unknown');
     
     if (!deleted) {
-      return res.status(404).json({ success: false, error: 'Backup not found' });
+      res.status(404).json({ success: false, error: 'Backup not found' });
+      return;
     }
     
     res.json({ success: true, message: 'Backup deleted successfully' });
@@ -114,4 +120,3 @@ router.delete('/:id', async (req: Request, res: Response) => {
 });
 
 export default router;
-

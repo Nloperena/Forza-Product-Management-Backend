@@ -38,13 +38,14 @@ router.get('/', async (req: Request, res: Response) => {
 });
 
 // Get audit log by ID (for viewing full before/after data)
-router.get('/:id', async (req: Request, res: Response) => {
+router.get('/:id', async (req: Request, res: Response): Promise<void> => {
   try {
     const id = parseInt(req.params.id);
     const log = await auditLogModel.getLogById(id);
     
     if (!log) {
-      return res.status(404).json({ success: false, error: 'Audit log not found' });
+      res.status(404).json({ success: false, error: 'Audit log not found' });
+      return;
     }
     
     res.json({ success: true, log });
