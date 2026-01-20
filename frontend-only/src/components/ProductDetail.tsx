@@ -34,6 +34,8 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onProductUpdated
   const [showLightbox, setShowLightbox] = useState(false);
   const [showBlobBrowser, setShowBlobBrowser] = useState(false);
   const [blobImages, setBlobImages] = useState<Array<{url: string; pathname: string}>>([]);
+  const [blobFolders, setBlobFolders] = useState<string[]>([]);
+  const [blobCurrentPath, setBlobCurrentPath] = useState('');
   const [blobSearchTerm, setBlobSearchTerm] = useState('');
   const [loadingBlobs, setLoadingBlobs] = useState(false);
 
@@ -168,13 +170,15 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onProductUpdated
   };
 
   // Fetch all images from Vercel Blob
-  const fetchBlobImages = async () => {
+  const fetchBlobImages = async (prefix: string = '') => {
     setLoadingBlobs(true);
     try {
-      const response = await fetch(`${apiBaseUrl}/api/images`);
+      const response = await fetch(`${apiBaseUrl}/api/images?prefix=${encodeURIComponent(prefix)}`);
       const data = await response.json();
-      if (data.success && data.images) {
-        setBlobImages(data.images);
+      if (data.success) {
+        setBlobImages(data.images || []);
+        setBlobFolders(data.folders || []);
+        setBlobCurrentPath(data.currentPath || '');
       }
     } catch (error) {
       console.error('Failed to fetch blob images:', error);
@@ -183,9 +187,30 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onProductUpdated
     }
   };
 
+  // Navigate into a folder
+  const navigateToFolder = (folderName: string) => {
+    const newPath = blobCurrentPath ? `${blobCurrentPath}${folderName}/` : `${folderName}/`;
+    fetchBlobImages(newPath);
+  };
+
+  // Navigate up one level
+  const navigateUp = () => {
+    const parts = blobCurrentPath.split('/').filter(p => p);
+    parts.pop();
+    const newPath = parts.length > 0 ? `${parts.join('/')}/` : '';
+    fetchBlobImages(newPath);
+  };
+
+  // Get breadcrumb parts
+  const breadcrumbs = blobCurrentPath.split('/').filter(p => p);
+
   // Filter blobs by search term
   const filteredBlobs = blobImages.filter(blob => 
     blob.pathname.toLowerCase().includes(blobSearchTerm.toLowerCase())
+  );
+  
+  const filteredFolders = blobFolders.filter(folder =>
+    folder.toLowerCase().includes(blobSearchTerm.toLowerCase())
   );
 
   const handleSave = async () => {
@@ -675,20 +700,48 @@ Check the browser console (F12) for more details.`;
         {/* Vercel Blob Browser Modal */}
         {showBlobBrowser && (
           <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-            <div className="bg-white rounded-2xl w-full max-w-4xl max-h-[85vh] overflow-hidden flex flex-col shadow-2xl">
+            <div className="bg-white rounded-2xl w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl">
               <div className="p-6 border-b border-gray-100 flex items-center justify-between">
                 <div>
                   <h3 className="text-xl font-bold text-gray-900">Vercel Blob Browser</h3>
-                  <p className="text-sm text-gray-500 mt-1">Search and select from your existing images</p>
+                  <p className="text-sm text-gray-500 mt-1">Navigate folders and select from your existing images</p>
                 </div>
                 <button
-                  onClick={() => setShowBlobBrowser(false)}
+                  onClick={() => { setShowBlobBrowser(false); setBlobCurrentPath(''); setBlobSearchTerm(''); }}
                   className="p-2 hover:bg-gray-100 rounded-full transition-colors"
                 >
                   <X className="h-5 w-5 text-gray-500" />
                 </button>
               </div>
               
+              {/* Breadcrumbs */}
+              <div className="px-6 py-3 bg-gray-50 border-b border-gray-100 flex items-center gap-2 text-sm overflow-x-auto">
+                <button
+                  onClick={() => fetchBlobImages('')}
+                  className="text-blue-600 hover:text-blue-800 font-medium flex-shrink-0"
+                >
+                  🏠 Root
+                </button>
+                {breadcrumbs.map((crumb, index) => (
+                  <span key={index} className="flex items-center gap-2 flex-shrink-0">
+                    <span className="text-gray-400">/</span>
+                    <button
+                      onClick={() => {
+                        const path = breadcrumbs.slice(0, index + 1).join('/') + '/';
+                        fetchBlobImages(path);
+                      }}
+                      className={index === breadcrumbs.length - 1 
+                        ? "text-gray-900 font-semibold" 
+                        : "text-blue-600 hover:text-blue-800"
+                      }
+                    >
+                      {crumb}
+                    </button>
+                  </span>
+                ))}
+              </div>
+              
+              {/* Search */}
               <div className="p-4 border-b border-gray-100">
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -696,11 +749,13 @@ Check the browser console (F12) for more details.`;
                     type="text"
                     value={blobSearchTerm}
                     onChange={(e) => setBlobSearchTerm(e.target.value)}
-                    placeholder="Search by filename (e.g. marine, IC936, tape)..."
+                    placeholder="Filter by filename..."
                     className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
-                <p className="text-xs text-gray-400 mt-2">{filteredBlobs.length} images found</p>
+                <p className="text-xs text-gray-400 mt-2">
+                  {filteredFolders.length} folders, {filteredBlobs.length} images
+                </p>
               </div>
 
               <div className="flex-1 overflow-y-auto p-4">
@@ -708,34 +763,68 @@ Check the browser console (F12) for more details.`;
                   <div className="flex items-center justify-center py-12">
                     <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
                   </div>
-                ) : filteredBlobs.length === 0 ? (
-                  <div className="text-center py-12 text-gray-500">
-                    {blobSearchTerm ? 'No images match your search' : 'No images found in Vercel Blob'}
-                  </div>
                 ) : (
-                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                    {filteredBlobs.map((blob, index) => (
-                      <button
-                        key={index}
-                        onClick={() => {
-                          handleInputChange('image', blob.url);
-                          setShowBlobBrowser(false);
-                        }}
-                        className="group relative aspect-square bg-gray-100 rounded-xl overflow-hidden hover:ring-2 hover:ring-blue-500 transition-all"
-                      >
-                        <img 
-                          src={blob.url} 
-                          alt={blob.pathname}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                          onError={(e) => (e.currentTarget.src = '/placeholder-product.svg')}
-                        />
-                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-2">
-                          <p className="text-white text-xs truncate font-medium">
-                            {blob.pathname.split('/').pop()}
-                          </p>
+                  <div className="space-y-6">
+                    {/* Folders Section */}
+                    {filteredFolders.length > 0 && (
+                      <div>
+                        <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Folders</h4>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+                          {filteredFolders.map((folder, index) => (
+                            <button
+                              key={index}
+                              onClick={() => navigateToFolder(folder)}
+                              className="group flex flex-col items-center gap-2 p-4 bg-gradient-to-b from-amber-50 to-orange-50 border border-amber-200 rounded-xl hover:border-amber-400 hover:shadow-md transition-all"
+                            >
+                              <span className="text-4xl">📁</span>
+                              <span className="text-sm font-medium text-gray-700 truncate w-full text-center">
+                                {folder}
+                              </span>
+                            </button>
+                          ))}
                         </div>
-                      </button>
-                    ))}
+                      </div>
+                    )}
+
+                    {/* Images Section */}
+                    {filteredBlobs.length > 0 && (
+                      <div>
+                        <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Images</h4>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+                          {filteredBlobs.map((blob, index) => (
+                            <button
+                              key={index}
+                              onClick={() => {
+                                handleInputChange('image', blob.url);
+                                setShowBlobBrowser(false);
+                                setBlobCurrentPath('');
+                                setBlobSearchTerm('');
+                              }}
+                              className="group relative aspect-square bg-gray-100 rounded-xl overflow-hidden hover:ring-2 hover:ring-blue-500 transition-all"
+                            >
+                              <img 
+                                src={blob.url} 
+                                alt={blob.pathname}
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                                onError={(e) => (e.currentTarget.src = '/placeholder-product.svg')}
+                              />
+                              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-2">
+                                <p className="text-white text-[10px] truncate font-medium">
+                                  {blob.pathname.split('/').pop()}
+                                </p>
+                              </div>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Empty State */}
+                    {filteredFolders.length === 0 && filteredBlobs.length === 0 && (
+                      <div className="text-center py-12 text-gray-500">
+                        {blobSearchTerm ? 'No items match your search' : 'This folder is empty'}
+                      </div>
+                    )}
                   </div>
                 )}
               </div>

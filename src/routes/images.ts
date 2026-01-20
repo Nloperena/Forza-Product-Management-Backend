@@ -65,52 +65,79 @@ const upload = multer({
 });
 
 // GET /api/images - Get all images from Vercel Blob + local
-router.get('/', async (_req, res) => {
+// Supports ?prefix= for folder navigation
+router.get('/', async (req, res) => {
   try {
     const blobToken = process.env.BLOB_READ_WRITE_TOKEN || 
                       process.env.Images_READ_WRITE_TOKEN || 
                       Object.keys(process.env).find(key => key.endsWith('_READ_WRITE_TOKEN') && process.env[key]);
 
-    let blobImages: Array<{url: string; pathname: string; size?: number}> = [];
+    const prefix = (req.query.prefix as string) || '';
+    let items: Array<{url: string; pathname: string; size?: number; isFolder?: boolean}> = [];
+    let folders: string[] = [];
     
     // Fetch from Vercel Blob if token is available
     if (blobToken) {
       try {
-        const { blobs } = await list({ token: blobToken });
-        blobImages = blobs
-          .filter(blob => /\.(jpg|jpeg|png|gif|svg|webp)$/i.test(blob.pathname))
-          .map(blob => ({
-            url: blob.url,
-            pathname: blob.pathname,
-            size: blob.size
-          }));
+        const { blobs } = await list({ 
+          token: blobToken,
+          prefix: prefix || undefined
+        });
+        
+        // Track unique folder paths at current level
+        const folderSet = new Set<string>();
+        
+        blobs.forEach(blob => {
+          // Get path relative to current prefix
+          const relativePath = prefix ? blob.pathname.replace(prefix, '') : blob.pathname;
+          const parts = relativePath.split('/').filter(p => p);
+          
+          if (parts.length > 1) {
+            // This is inside a subfolder - add the folder
+            folderSet.add(parts[0]);
+          } else if (parts.length === 1 && /\.(jpg|jpeg|png|gif|svg|webp)$/i.test(blob.pathname)) {
+            // This is a file at the current level
+            items.push({
+              url: blob.url,
+              pathname: blob.pathname,
+              size: blob.size,
+              isFolder: false
+            });
+          }
+        });
+        
+        folders = Array.from(folderSet).sort();
       } catch (blobError) {
         console.error('Error fetching from Vercel Blob:', blobError);
       }
     }
 
-    // Also fetch local images if they exist
-    const uploadDir = path.join(__dirname, '../../public/uploads');
-    let localImages: Array<{url: string; pathname: string; size?: number}> = [];
-    
-    if (fs.existsSync(uploadDir)) {
-      const files = fs.readdirSync(uploadDir);
-      localImages = files
-        .filter(file => /\.(jpg|jpeg|png|gif|svg|webp)$/i.test(file))
-        .map(file => {
-          const filePath = path.join(uploadDir, file);
-          const stats = fs.statSync(filePath);
-          return {
-            url: `/product-images/${file}`,
-            pathname: file,
-            size: stats.size
-          };
-        });
+    // Also fetch local images if at root and they exist
+    if (!prefix) {
+      const uploadDir = path.join(__dirname, '../../public/uploads');
+      if (fs.existsSync(uploadDir)) {
+        const files = fs.readdirSync(uploadDir);
+        const localImages = files
+          .filter(file => /\.(jpg|jpeg|png|gif|svg|webp)$/i.test(file))
+          .map(file => {
+            const filePath = path.join(uploadDir, file);
+            const stats = fs.statSync(filePath);
+            return {
+              url: `/product-images/${file}`,
+              pathname: `local/${file}`,
+              size: stats.size,
+              isFolder: false
+            };
+          });
+        items = [...items, ...localImages];
+      }
     }
 
     res.json({
       success: true,
-      images: [...blobImages, ...localImages]
+      currentPath: prefix,
+      folders: folders,
+      images: items
     });
   } catch (error) {
     console.error('Error fetching images:', error);
