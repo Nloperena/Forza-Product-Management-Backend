@@ -398,8 +398,8 @@ export class BackupModel {
       return null;
     }
 
-    // Return a preview with minimal product data
-    const preview = products.slice(0, 20).map(p => ({
+    // Return a preview with minimal product data for all products
+    const preview = products.map(p => ({
       product_id: p.product_id,
       name: p.name,
       brand: p.brand,

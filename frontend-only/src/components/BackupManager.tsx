@@ -412,20 +412,17 @@ const BackupManager: React.FC<BackupManagerProps> = ({ userName, onBackupPromote
                 {previewBackup.preview.total} products in this backup
               </p>
             </div>
-            <div className="flex-1 overflow-y-auto p-6">
+            <div className="flex-1 overflow-y-auto p-6 bg-gray-50/50">
               <div className="space-y-2">
                 {previewBackup.preview.products.map((product) => (
-                  <div key={product.product_id} className="flex items-center gap-4 p-3 bg-gray-50 rounded-lg">
-                    <span className="font-mono text-sm text-indigo-600 font-medium">{product.product_id}</span>
-                    <span className="text-gray-900 flex-1">{product.name}</span>
-                    <span className="text-sm text-gray-500">{product.brand} / {product.industry}</span>
+                  <div key={product.product_id} className="flex items-center gap-4 p-3 bg-white border border-gray-100 rounded-lg hover:border-indigo-200 transition-colors">
+                    <span className="font-mono text-sm text-indigo-600 font-bold bg-indigo-50 px-2 py-1 rounded w-24 text-center">{product.product_id}</span>
+                    <div className="flex-1 min-w-0">
+                      <div className="text-gray-900 font-medium truncate">{product.name}</div>
+                      <div className="text-xs text-gray-500">{product.brand.replace(/_/g, ' ')} / {product.industry.replace(/_/g, ' ')}</div>
+                    </div>
                   </div>
                 ))}
-                {previewBackup.preview.total > 20 && (
-                  <div className="text-center text-gray-500 py-4">
-                    ... and {previewBackup.preview.total - 20} more products
-                  </div>
-                )}
               </div>
             </div>
             <div className="p-4 border-t border-gray-200 flex justify-end">
