@@ -111,11 +111,15 @@ router.post('/upload', uploadToBlob.single('image'), async (req, res) => {
       return;
     }
 
-    // Check if Vercel Blob token is configured
-    if (!process.env.BLOB_READ_WRITE_TOKEN) {
+    // Check if Vercel Blob token is configured (check for default or prefixed versions)
+    const blobToken = process.env.BLOB_READ_WRITE_TOKEN || 
+                      process.env.Images_READ_WRITE_TOKEN || 
+                      Object.keys(process.env).find(key => key.endsWith('_READ_WRITE_TOKEN') && process.env[key]);
+
+    if (!blobToken) {
       res.status(500).json({
         success: false,
-        message: 'Vercel Blob not configured. Please set BLOB_READ_WRITE_TOKEN environment variable.'
+        message: 'Vercel Blob not configured. Please set BLOB_READ_WRITE_TOKEN or Images_READ_WRITE_TOKEN environment variable.'
       });
       return;
     }
@@ -133,6 +137,7 @@ router.post('/upload', uploadToBlob.single('image'), async (req, res) => {
     const blob = await put(uniqueFilename, req.file.buffer, {
       access: 'public',
       contentType: req.file.mimetype,
+      token: blobToken // Explicitly pass the detected token
     });
 
     const imageData = {
