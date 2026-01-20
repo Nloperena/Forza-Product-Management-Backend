@@ -174,11 +174,8 @@ class RandyCSVMigrator {
       return;
     }
 
-    const validStatus = ['Y', 'Done', 'Product Card Issue', 'OK'];
-    const isValid = validStatus.some(status => 
-      onNewSite.toLowerCase().includes(status.toLowerCase()) || 
-      okStatus.toLowerCase().includes(status.toLowerCase())
-    );
+    const validStatus = ['Y', 'Done', 'Product Card Issue', 'OK', 'ADD', 'Phase', 'N'];
+    const isValid = true; // FORCE VALID for chemistry porting focus
 
     if (!isValid) {
       return;
@@ -264,8 +261,11 @@ class RandyCSVMigrator {
         if (!this.dryRun) {
           product.applications = parsedApps;
           // Also update description with the first sentence if it's currently generic or empty
-          if (!product.description || product.description.length < 10) {
-            product.description = parsedApps[0] || '';
+          if (!product.description || product.description.length < 10 || /^[*•\u00B7\u2022\u2023\u2043\u204C\u204D\u2219\u25CB\u25CF\u25D8\u25E6-]\s*/.test(product.description)) {
+            let desc = parsedApps[0] || '';
+            // Strip leading bullet if present
+            desc = desc.replace(/^[*•\u00B7\u2022\u2023\u2043\u204C\u204D\u2219\u25CB\u25CF\u25D8\u25E6-]\s*/, '').trim();
+            product.description = desc;
           }
         }
       }
@@ -352,20 +352,53 @@ class RandyCSVMigrator {
   private parseApplications(val: string): string[] {
     if (!val) return [];
     
-    // First, split by newlines only
+    // First, split by newlines
     const lines = val.split(/\r?\n/).map(line => line.trim()).filter(line => line.length > 0);
     
     const result: string[] = [];
+    let currentItem = '';
+
     for (const line of lines) {
-      // Check if line starts with a bullet character (but NOT a hyphen, which could be part of text)
-      const bulletMatch = line.match(/^[*•\u00B7\u2022\u2023\u2043\u204C\u204D\u2219\u25CB\u25CF\u25D8\u25E6]\s*/);
+      const bulletMatch = line.match(/^[*•\u00B7\u2022\u2023\u2043\u204C\u204D\u2219\u25CB\u25CF\u25D8\u25E6-]\s*/);
+      
       if (bulletMatch) {
-        // Remove the bullet and add the content
-        result.push(line.slice(bulletMatch[0].length).trim());
+        const bulletText = line.slice(bulletMatch[0].length).trim();
+        
+        // HEURISTIC: If the bulleted text starts with a lowercase letter,
+        // it's likely a continuation of the previous item that was mis-bulleted.
+        const firstChar = bulletText.charAt(0);
+        const isLowercase = firstChar === firstChar.toLowerCase() && firstChar !== firstChar.toUpperCase();
+        
+        if (isLowercase && currentItem) {
+          // Merge with previous item
+          currentItem += ' ' + bulletText;
+        } else {
+          // If we have a current item being built, push it
+          if (currentItem) {
+            result.push(currentItem);
+          }
+          // Start a new bulleted item
+          currentItem = bulletText;
+        }
       } else {
-        // No bullet - this is either a sentence or continuation
-        result.push(line);
+        // No bullet - check if it's a lead-in like "This includes:" or ends in a colon
+        const lowerLine = line.toLowerCase();
+        const isLeadIn = lowerLine.includes('includes:') || 
+                         lowerLine.includes('including:') ||
+                         lowerLine.includes('bonds to:') ||
+                         lowerLine.includes('compatible with:') ||
+                         lowerLine.endsWith(':');
+        
+        if (currentItem) {
+          currentItem += ' ' + line;
+        } else {
+          currentItem = line;
+        }
       }
+    }
+    
+    if (currentItem) {
+      result.push(currentItem);
     }
     
     return result.filter(item => item.length > 0);
