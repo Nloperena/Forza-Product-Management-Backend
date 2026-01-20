@@ -68,7 +68,8 @@ const upload = multer({
 // Supports ?prefix= for folder navigation
 router.get('/', async (req, res) => {
   try {
-    const blobToken = process.env.BLOB_READ_WRITE_TOKEN || 
+    const blobToken = process.env.PRODUCTS_READ_WRITE_TOKEN || 
+                      process.env.BLOB_READ_WRITE_TOKEN || 
                       process.env.Images_READ_WRITE_TOKEN || 
                       Object.keys(process.env).find(key => key.endsWith('_READ_WRITE_TOKEN') && process.env[key]);
 
@@ -157,7 +158,8 @@ router.post('/upload', uploadToBlob.single('image'), async (req, res) => {
       return;
     }
 
-    const blobToken = process.env.BLOB_READ_WRITE_TOKEN || 
+    const blobToken = process.env.PRODUCTS_READ_WRITE_TOKEN || 
+                      process.env.BLOB_READ_WRITE_TOKEN || 
                       process.env.Images_READ_WRITE_TOKEN || 
                       Object.keys(process.env).find(key => key.endsWith('_READ_WRITE_TOKEN') && process.env[key]);
 
