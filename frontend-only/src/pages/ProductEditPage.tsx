@@ -852,28 +852,49 @@ const ProductEditPage: React.FC = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Package className="h-5 w-5" />
-                Product Image
+                Product Assets (Vercel Blob)
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
-              <ImageUpload
-                onImageUpload={(url) => handleInputChange('image', url)}
-                currentImage={formData.image ? imageUrl : undefined}
-              />
+            <CardContent className="space-y-6">
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-gray-500 uppercase">Product Image</label>
+                <ImageUpload
+                  productId={formData.product_id}
+                  type="image"
+                  onImageUpload={(url) => handleInputChange('image', url)}
+                  currentImage={formData.image ? imageUrl : undefined}
+                />
+              </div>
+
+              <div className="space-y-2 border-t pt-4">
+                <label className="text-xs font-bold text-gray-500 uppercase">Technical Data Sheet (TDS)</label>
+                <ImageUpload
+                  productId={formData.product_id}
+                  type="tds"
+                  onImageUpload={(url) => handleInputChange('tds_pdf', url)}
+                  currentImage={formData.tds_pdf ? '/pdf-icon.svg' : undefined}
+                />
+                {formData.tds_pdf && <div className="text-[10px] text-green-600 truncate">{formData.tds_pdf}</div>}
+              </div>
+
+              <div className="space-y-2 border-t pt-4">
+                <label className="text-xs font-bold text-gray-500 uppercase">Safety Data Sheet (SDS)</label>
+                <ImageUpload
+                  productId={formData.product_id}
+                  type="sds"
+                  onImageUpload={(url) => handleInputChange('sds_pdf', url)}
+                  currentImage={formData.sds_pdf ? '/pdf-icon.svg' : undefined}
+                />
+                {formData.sds_pdf && <div className="text-[10px] text-green-600 truncate">{formData.sds_pdf}</div>}
+              </div>
 
               <Button
                 variant="outline"
-                className="w-full"
+                className="w-full text-xs"
                 onClick={() => setShowImagePicker(true)}
               >
-                Choose Existing Image
+                Browse All Storage
               </Button>
-
-              {formData.image && (
-                <div className="text-xs text-gray-500">
-                  Current: {formData.image}
-                </div>
-              )}
             </CardContent>
           </Card>
 

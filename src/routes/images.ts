@@ -100,65 +100,53 @@ router.get('/', (_req, res) => {
   }
 });
 
-// POST /api/images/upload - Upload new image to Vercel Blob
+// POST /api/images/upload - Upload to product-specific folder
 router.post('/upload', uploadToBlob.single('image'), async (req, res) => {
   try {
     if (!req.file) {
-      res.status(400).json({
-        success: false,
-        message: 'No image file provided'
-      });
+      res.status(400).json({ success: false, message: 'No file provided' });
       return;
     }
 
-    // Check if Vercel Blob token is configured (check for default or prefixed versions)
     const blobToken = process.env.BLOB_READ_WRITE_TOKEN || 
                       process.env.Images_READ_WRITE_TOKEN || 
                       Object.keys(process.env).find(key => key.endsWith('_READ_WRITE_TOKEN') && process.env[key]);
 
     if (!blobToken) {
-      res.status(500).json({
-        success: false,
-        message: 'Vercel Blob not configured. Please set BLOB_READ_WRITE_TOKEN or Images_READ_WRITE_TOKEN environment variable.'
-      });
+      res.status(500).json({ success: false, message: 'Vercel Blob not configured' });
       return;
     }
 
-    // Get product ID from request body or generate unique name
     const productId = req.body.product_id || req.body.productId;
+    const uploadType = req.body.type || 'image'; // 'image', 'tds', or 'sds'
+    
+    if (!productId) {
+      res.status(400).json({ success: false, message: 'Product ID is required for folder organization' });
+      return;
+    }
+
     const fileExtension = path.extname(req.file.originalname).toLowerCase();
     
-    // If product ID is provided, use it as the filename for consistency
-    const uniqueFilename = productId 
-      ? `${productId}${fileExtension}`
-      : `product-${Date.now()}-${Math.round(Math.random() * 1E9)}${fileExtension}`;
+    // Create the "folder" structure: product-data/[ProductID]/[type].[extension]
+    // We use the type as the filename to keep it perfectly consistent
+    const folderPath = `product-data/${productId}/${uploadType}${fileExtension}`;
 
-    // Upload to Vercel Blob
-    const blob = await put(uniqueFilename, req.file.buffer, {
+    const blob = await put(folderPath, req.file.buffer, {
       access: 'public',
       contentType: req.file.mimetype,
-      token: blobToken // Explicitly pass the detected token
+      token: blobToken,
+      addRandomSuffix: false // Keep the name clean as requested
     });
-
-    const imageData = {
-      filename: uniqueFilename,
-      url: blob.url,
-      size: req.file.size,
-      originalname: req.file.originalname
-    };
 
     res.json({
       success: true,
-      message: 'Image uploaded successfully to Vercel Blob',
-      ...imageData
+      message: `${uploadType} uploaded to product folder`,
+      url: blob.url,
+      filename: folderPath
     });
   } catch (error) {
-    console.error('Error uploading image to Vercel Blob:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Failed to upload image',
-      error: error instanceof Error ? error.message : 'Unknown error'
-    });
+    console.error('Upload error:', error);
+    res.status(500).json({ success: false, message: 'Upload failed', error: error instanceof Error ? error.message : 'Unknown' });
   }
 });
 
