@@ -700,7 +700,7 @@ Check the browser console (F12) for more details.`;
         {/* Vercel Blob Browser Modal */}
         {showBlobBrowser && (
           <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-            <div className="bg-white rounded-2xl w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl">
+            <div className="bg-white rounded-2xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl">
               <div className="p-6 border-b border-gray-100 flex items-center justify-between">
                 <div>
                   <h3 className="text-xl font-bold text-gray-900">Vercel Blob Browser</h3>
@@ -714,31 +714,41 @@ Check the browser console (F12) for more details.`;
                 </button>
               </div>
               
-              {/* Breadcrumbs */}
-              <div className="px-6 py-3 bg-gray-50 border-b border-gray-100 flex items-center gap-2 text-sm overflow-x-auto">
+              {/* Breadcrumbs Navigation */}
+              <div className="px-6 py-3 bg-gradient-to-r from-slate-50 to-gray-50 border-b border-gray-200 flex items-center gap-2 text-sm overflow-x-auto">
                 <button
                   onClick={() => fetchBlobImages('')}
-                  className="text-blue-600 hover:text-blue-800 font-medium flex-shrink-0"
+                  className="text-blue-600 hover:text-blue-800 font-semibold flex-shrink-0 flex items-center gap-1"
                 >
                   🏠 Root
                 </button>
                 {breadcrumbs.map((crumb, index) => (
                   <span key={index} className="flex items-center gap-2 flex-shrink-0">
-                    <span className="text-gray-400">/</span>
+                    <span className="text-gray-400 font-bold">/</span>
                     <button
                       onClick={() => {
                         const path = breadcrumbs.slice(0, index + 1).join('/') + '/';
                         fetchBlobImages(path);
                       }}
                       className={index === breadcrumbs.length - 1 
-                        ? "text-gray-900 font-semibold" 
-                        : "text-blue-600 hover:text-blue-800"
+                        ? "text-gray-900 font-bold bg-blue-100 px-2 py-0.5 rounded" 
+                        : "text-blue-600 hover:text-blue-800 font-medium"
                       }
                     >
                       {crumb}
                     </button>
                   </span>
                 ))}
+                
+                {/* Go Up Button */}
+                {blobCurrentPath && (
+                  <button
+                    onClick={navigateUp}
+                    className="ml-auto flex items-center gap-1 px-3 py-1.5 bg-gray-200 hover:bg-gray-300 rounded-lg text-gray-700 font-medium transition-colors flex-shrink-0"
+                  >
+                    ⬆️ Go Up
+                  </button>
+                )}
               </div>
               
               {/* Search */}
@@ -754,7 +764,7 @@ Check the browser console (F12) for more details.`;
                   />
                 </div>
                 <p className="text-xs text-gray-400 mt-2">
-                  {filteredFolders.length} folders, {filteredBlobs.length} images
+                  📁 {filteredFolders.length} folders, 🖼️ {filteredBlobs.length} images
                 </p>
               </div>
 
@@ -768,16 +778,19 @@ Check the browser console (F12) for more details.`;
                     {/* Folders Section */}
                     {filteredFolders.length > 0 && (
                       <div>
-                        <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Folders</h4>
+                        <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 flex items-center gap-2">
+                          📁 Folders ({filteredFolders.length})
+                        </h4>
                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
                           {filteredFolders.map((folder, index) => (
                             <button
                               key={index}
                               onClick={() => navigateToFolder(folder)}
-                              className="group flex flex-col items-center gap-2 p-4 bg-gradient-to-b from-amber-50 to-orange-50 border border-amber-200 rounded-xl hover:border-amber-400 hover:shadow-md transition-all"
+                              className="group flex flex-col items-center gap-2 p-4 bg-gradient-to-b from-amber-50 to-orange-50 border-2 border-amber-200 rounded-xl hover:border-amber-400 hover:shadow-lg hover:scale-[1.02] transition-all"
+                              title={folder}
                             >
-                              <span className="text-4xl">📁</span>
-                              <span className="text-sm font-medium text-gray-700 truncate w-full text-center">
+                              <span className="text-4xl group-hover:scale-110 transition-transform">📁</span>
+                              <span className="text-xs font-semibold text-gray-800 text-center break-all leading-tight">
                                 {folder}
                               </span>
                             </button>
@@ -789,32 +802,47 @@ Check the browser console (F12) for more details.`;
                     {/* Images Section */}
                     {filteredBlobs.length > 0 && (
                       <div>
-                        <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Images</h4>
+                        <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 flex items-center gap-2">
+                          🖼️ Images ({filteredBlobs.length})
+                        </h4>
                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
-                          {filteredBlobs.map((blob, index) => (
-                            <button
-                              key={index}
-                              onClick={() => {
-                                handleInputChange('image', blob.url);
-                                setShowBlobBrowser(false);
-                                setBlobCurrentPath('');
-                                setBlobSearchTerm('');
-                              }}
-                              className="group relative aspect-square bg-gray-100 rounded-xl overflow-hidden hover:ring-2 hover:ring-blue-500 transition-all"
-                            >
-                              <img 
-                                src={blob.url} 
-                                alt={blob.pathname}
-                                className="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                                onError={(e) => (e.currentTarget.src = '/placeholder-product.svg')}
-                              />
-                              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-2">
-                                <p className="text-white text-[10px] truncate font-medium">
-                                  {blob.pathname.split('/').pop()}
-                                </p>
-                              </div>
-                            </button>
-                          ))}
+                          {filteredBlobs.map((blob, index) => {
+                            const filename = blob.pathname.split('/').pop() || '';
+                            const ext = filename.split('.').pop()?.toUpperCase() || '';
+                            const isWebp = ext === 'WEBP';
+                            return (
+                              <button
+                                key={index}
+                                onClick={() => {
+                                  handleInputChange('image', blob.url);
+                                  setShowBlobBrowser(false);
+                                  setBlobCurrentPath('');
+                                  setBlobSearchTerm('');
+                                }}
+                                className="group relative aspect-square bg-gray-100 rounded-xl overflow-hidden hover:ring-2 hover:ring-blue-500 hover:shadow-lg transition-all"
+                              >
+                                <img 
+                                  src={blob.url} 
+                                  alt={blob.pathname}
+                                  className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                                  onError={(e) => (e.currentTarget.src = '/placeholder-product.svg')}
+                                />
+                                {/* File type badge */}
+                                <span className={`absolute top-2 right-2 px-1.5 py-0.5 text-[9px] font-bold rounded ${
+                                  isWebp 
+                                    ? 'bg-green-500 text-white' 
+                                    : 'bg-gray-700 text-white'
+                                }`}>
+                                  {ext}
+                                </span>
+                                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 to-transparent p-2">
+                                  <p className="text-white text-[10px] truncate font-medium">
+                                    {filename}
+                                  </p>
+                                </div>
+                              </button>
+                            );
+                          })}
                         </div>
                       </div>
                     )}
@@ -822,6 +850,7 @@ Check the browser console (F12) for more details.`;
                     {/* Empty State */}
                     {filteredFolders.length === 0 && filteredBlobs.length === 0 && (
                       <div className="text-center py-12 text-gray-500">
+                        <span className="text-4xl block mb-4">📭</span>
                         {blobSearchTerm ? 'No items match your search' : 'This folder is empty'}
                       </div>
                     )}
