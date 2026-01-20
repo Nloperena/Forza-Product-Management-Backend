@@ -6,8 +6,10 @@ import { put } from '@vercel/blob';
 
 const router = express.Router();
 
-// Configure multer for file uploads
-const storage = multer.diskStorage({
+// Configure multer for file uploads - use memory storage for Vercel Blob uploads
+const memoryStorage = multer.memoryStorage();
+
+const diskStorage = multer.diskStorage({
   destination: (_req, _file, cb) => {
     const uploadDir = path.join(__dirname, '../../public/uploads');
     
@@ -24,10 +26,30 @@ const storage = multer.diskStorage({
   }
 });
 
-const upload = multer({
-  storage: storage,
+// Use memory storage for Vercel Blob uploads
+const uploadToBlob = multer({
+  storage: memoryStorage,
   limits: {
-    fileSize: 5 * 1024 * 1024 // 5MB limit
+    fileSize: 10 * 1024 * 1024 // 10MB limit
+  },
+  fileFilter: (_req, file, cb) => {
+    const allowedTypes = /jpeg|jpg|png|gif|svg|webp/;
+    const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
+    const mimetype = allowedTypes.test(file.mimetype);
+
+    if (mimetype && extname) {
+      return cb(null, true);
+    } else {
+      cb(new Error('Only image files are allowed'));
+    }
+  }
+});
+
+// Use disk storage for local uploads
+const upload = multer({
+  storage: diskStorage,
+  limits: {
+    fileSize: 10 * 1024 * 1024 // 10MB limit
   },
   fileFilter: (_req, file, cb) => {
     const allowedTypes = /jpeg|jpg|png|gif|svg|webp/;
@@ -79,7 +101,7 @@ router.get('/', (_req, res) => {
 });
 
 // POST /api/images/upload - Upload new image to Vercel Blob
-router.post('/upload', upload.single('image'), async (req, res) => {
+router.post('/upload', uploadToBlob.single('image'), async (req, res) => {
   try {
     if (!req.file) {
       res.status(400).json({
@@ -98,18 +120,20 @@ router.post('/upload', upload.single('image'), async (req, res) => {
       return;
     }
 
-    // Generate unique filename
-    const fileExtension = path.extname(req.file.originalname);
-    const uniqueFilename = `product-${Date.now()}-${Math.round(Math.random() * 1E9)}${fileExtension}`;
+    // Get product ID from request body or generate unique name
+    const productId = req.body.product_id || req.body.productId;
+    const fileExtension = path.extname(req.file.originalname).toLowerCase();
+    
+    // If product ID is provided, use it as the filename for consistency
+    const uniqueFilename = productId 
+      ? `${productId}${fileExtension}`
+      : `product-${Date.now()}-${Math.round(Math.random() * 1E9)}${fileExtension}`;
 
     // Upload to Vercel Blob
     const blob = await put(uniqueFilename, req.file.buffer, {
       access: 'public',
       contentType: req.file.mimetype,
     });
-
-    // Clean up local file
-    fs.unlinkSync(req.file.path);
 
     const imageData = {
       filename: uniqueFilename,
@@ -125,6 +149,42 @@ router.post('/upload', upload.single('image'), async (req, res) => {
     });
   } catch (error) {
     console.error('Error uploading image to Vercel Blob:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to upload image',
+      error: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+});
+
+// POST /api/images/upload-local - Upload image to local Heroku storage (fallback)
+router.post('/upload-local', upload.single('image'), async (req, res) => {
+  try {
+    if (!req.file) {
+      res.status(400).json({
+        success: false,
+        message: 'No image file provided'
+      });
+      return;
+    }
+
+    // Get the Heroku app URL
+    const baseUrl = process.env.HEROKU_APP_URL || 'https://forza-product-managementsystem-b7c3ff8d3d2d.herokuapp.com';
+    
+    const imageData = {
+      filename: req.file.filename,
+      url: `${baseUrl}/product-images/${req.file.filename}`,
+      size: req.file.size,
+      originalname: req.file.originalname
+    };
+
+    res.json({
+      success: true,
+      message: 'Image uploaded successfully to local storage',
+      ...imageData
+    });
+  } catch (error) {
+    console.error('Error uploading image locally:', error);
     res.status(500).json({
       success: false,
       message: 'Failed to upload image',

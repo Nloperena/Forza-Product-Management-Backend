@@ -41,22 +41,32 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
       formData.append('image', file);
 
       // Upload to backend which will handle Vercel Blob storage
-      const response = await fetch(`${apiBaseUrl}/api/images/upload`, {
+      let response = await fetch(`${apiBaseUrl}/api/images/upload`, {
         method: 'POST',
         body: formData,
       });
 
-      if (!response.ok) {
-        throw new Error('Upload failed');
+      let result = await response.json();
+      
+      // If Vercel Blob not configured, try local upload
+      if (!result.success && result.message?.includes('Vercel Blob not configured')) {
+        response = await fetch(`${apiBaseUrl}/api/images/upload-local`, {
+          method: 'POST',
+          body: formData,
+        });
+        result = await response.json();
       }
 
-      const result = await response.json();
-      
-      if (result.success && result.filepath) {
-        // The backend should return the Vercel Blob URL
-        onImageUpload(result.filepath);
-      } else {
+      if (!response.ok && !result.success) {
         throw new Error(result.message || 'Upload failed');
+      }
+      
+      if (result.success && (result.url || result.filepath || result.filename)) {
+        // The backend returns either url (Vercel Blob) or filename (local)
+        const imageUrl = result.url || result.filepath || result.filename;
+        onImageUpload(imageUrl);
+      } else {
+        throw new Error(result.message || 'Upload failed - no image URL returned');
       }
     } catch (error) {
       console.error('Upload error:', error);
