@@ -232,7 +232,25 @@ export class NewsletterSubscriberModel {
 
     const client = await databaseService.getClient();
     try {
-      const result = await client.query(`
+      // Find by token first to ensure it's valid
+      const result = await client.query(
+        'SELECT * FROM newsletter_subscribers WHERE unsubscribe_token = $1',
+        [token]
+      );
+
+      if (result.rows.length === 0) {
+        return null;
+      }
+
+      const subscriber = this.parseRow(result.rows[0]);
+
+      // If already unsubscribed, just return the subscriber object
+      if (subscriber.status === 'unsubscribed') {
+        return subscriber;
+      }
+
+      // Otherwise update status
+      const updateResult = await client.query(`
         UPDATE newsletter_subscribers 
         SET status = 'unsubscribed',
             unsubscribed_at = NOW(),
@@ -241,11 +259,7 @@ export class NewsletterSubscriberModel {
         RETURNING *
       `, [token]);
 
-      if (result.rows.length === 0) {
-        return null;
-      }
-
-      return this.parseRow(result.rows[0]);
+      return this.parseRow(updateResult.rows[0]);
     } finally {
       client.release();
     }

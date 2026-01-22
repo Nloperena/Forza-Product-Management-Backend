@@ -15,8 +15,13 @@ export const errorHandler = (
   let error = { ...err };
   error.message = err.message;
 
-  // Log error
-  console.error('Error:', err);
+  // Log error (Safe for production - no PII or request bodies)
+  const isProduction = process.env['NODE_ENV'] === 'production';
+  if (isProduction) {
+    console.error(`[Error] ${err.name}: ${err.message}`);
+  } else {
+    console.error('Error Details:', err);
+  }
 
   // Mongoose bad ObjectId
   if (err.name === 'CastError') {

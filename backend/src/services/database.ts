@@ -133,12 +133,22 @@ class DatabaseService {
   }
 
   async initializeDatabase(): Promise<void> {
+    const isProduction = process.env.NODE_ENV === 'production';
+    const autoInit = process.env.DB_AUTO_INITIALIZE === 'true';
+
+    if (isProduction && !autoInit) {
+      console.log('ℹ️ Skipping database auto-initialization in production (use "npm run migrate").');
+      return;
+    }
+
+    console.log(`🛠️ Initializing database (${this.usePostgres ? 'PostgreSQL' : 'SQLite'})...`);
+
     if (this.usePostgres) {
       await this.initializePostgres();
     } else {
       await this.connect();
       await this.initializeSQLite();
-      console.log('SQLite database initialized successfully');
+      console.log('✅ SQLite database initialized successfully');
     }
   }
 

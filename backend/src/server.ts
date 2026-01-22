@@ -6,6 +6,7 @@ import compression from 'compression';
 import rateLimit from 'express-rate-limit';
 import path from 'path';
 import dotenv from 'dotenv';
+import crypto from 'crypto';
 
 // Import routes
 import productRoutes from './routes/products';
@@ -15,9 +16,11 @@ import backupRoutes from './routes/backups';
 import auditLogRoutes from './routes/auditLogs';
 import contactRoutes from './routes/contact';
 import newsletterRoutes from './routes/newsletter';
+import adminRoutes from './routes/admin';
 
-// Import database service
+// Import services
 import { databaseService } from './services/database';
+import { emailService } from './services/emailService';
 
 // Import middleware
 import { errorHandler } from './middleware/errorHandler';
@@ -26,8 +29,35 @@ import { notFound } from './middleware/notFound';
 // Load environment variables
 dotenv.config();
 
+/**
+ * Validate required environment variables at startup
+ */
+function validateEnv() {
+  const required = [
+    'POSTMARK_API_TOKEN',
+    'EMAIL_FROM',
+    'TEAM_EMAIL',
+    'IP_HASH_SALT',
+    'FRONTEND_URL'
+  ];
+  
+  const missing = required.filter(key => !process.env[key]);
+  
+  if (missing.length > 0) {
+    console.error(`❌ Missing required environment variables: ${missing.join(', ')}`);
+    if (process.env.NODE_ENV === 'production') {
+      process.exit(1);
+    }
+  } else {
+    console.log('✅ Environment variables validated');
+  }
+}
+
 const app = express();
 const PORT = process.env['PORT'] || 5000;
+
+// Validate env vars before starting
+validateEnv();
 
 // Security middleware
 app.use(helmet({ crossOriginResourcePolicy: { policy: "cross-origin" } }));
@@ -96,8 +126,21 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 // Compression middleware
 app.use(compression());
 
-// Logging middleware
-app.use(morgan('combined'));
+// Custom morgan token for hashed IP
+morgan.token('hashed-ip', (req: any) => {
+  const ip = req.headers['x-forwarded-for']?.split(',')[0].trim() || 
+             req.ip || 
+             req.socket.remoteAddress || 
+             'unknown';
+  const salt = process.env.IP_HASH_SALT || 'forza-default-salt';
+  return crypto.createHash('sha256').update(ip + salt).digest('hex').substring(0, 16);
+});
+
+// Logging middleware with privacy (no raw IPs)
+const morganFormat = process.env.NODE_ENV === 'production' 
+  ? ':hashed-ip - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"'
+  : 'dev';
+app.use(morgan(morganFormat));
 
 // Safer debugging middleware using response finish event
 app.use((req, res, next) => {
@@ -149,14 +192,106 @@ app.use('/scraped-images', express.static(path.join(__dirname, '../public/scrape
 }));
 
 
-// Health check endpoint
-app.get('/health', (_req, res) => {
-  res.status(200).json({
+// Health check endpoint (Liveness)
+app.get('/health', async (_req, res) => {
+  const health = {
+    ok: true,
     status: 'OK',
     timestamp: new Date().toISOString(),
+    checks: {
+      database: false
+    }
+  };
+
+  try {
+    if (databaseService.isPostgres()) {
+      const client = await databaseService.getClient();
+      try {
+        await client.query('SELECT 1');
+        health.checks.database = true;
+      } finally {
+        client.release();
+      }
+    } else {
+      const db = databaseService.getDatabase();
+      await new Promise((resolve, reject) => {
+        db.get('SELECT 1', (err) => {
+          if (err) reject(err);
+          else resolve(true);
+        });
+      });
+      health.checks.database = true;
+    }
+
+    res.status(health.ok ? 200 : 503).json(health);
+  } catch (error: any) {
+    console.error('Liveness check failed:', error.message);
+    res.status(503).json({
+      ok: false,
+      status: 'Unhealthy',
+      error: 'Database connection failed',
+      timestamp: new Date().toISOString()
+    });
+  }
+});
+
+// Readiness endpoint (Detailed dependency check)
+app.get('/ready', async (_req, res) => {
+  const readiness = {
+    ok: true,
+    status: 'Ready',
+    timestamp: new Date().toISOString(),
+    version: process.env.npm_package_version || '1.0.0',
     uptime: process.uptime(),
-    environment: process.env['NODE_ENV'] || 'development'
-  });
+    checks: {
+      database: false,
+      postmark: false
+    }
+  };
+
+  try {
+    // Check DB
+    if (databaseService.isPostgres()) {
+      const client = await databaseService.getClient();
+      try {
+        await client.query('SELECT 1');
+        readiness.checks.database = true;
+      } finally {
+        client.release();
+      }
+    } else {
+      const db = databaseService.getDatabase();
+      await new Promise((resolve, reject) => {
+        db.get('SELECT 1', (err) => {
+          if (err) reject(err);
+          else resolve(true);
+        });
+      });
+      readiness.checks.database = true;
+    }
+
+    // Check Postmark
+    readiness.checks.postmark = emailService.isConfigured();
+
+    // Note: We return 200 even if Postmark is not configured, 
+    // but the 'ok' flag and checks will reflect the state.
+    // Only DB failure causes a non-200 if it makes the app unusable.
+    if (!readiness.checks.database) {
+      readiness.ok = false;
+      readiness.status = 'Not Ready';
+      return res.status(503).json(readiness);
+    }
+
+    return res.status(200).json(readiness);
+  } catch (error: any) {
+    console.error('Readiness check failed:', error.message);
+    return res.status(503).json({
+      ok: false,
+      status: 'Error',
+      error: error.message,
+      timestamp: new Date().toISOString()
+    });
+  }
 });
 
 // API routes
@@ -167,6 +302,7 @@ app.use('/api/backups', backupRoutes);
 app.use('/api/audit-logs', auditLogRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/newsletter', newsletterRoutes);
+app.use('/admin', adminRoutes);
 
 // Error handling middleware
 app.use(notFound);

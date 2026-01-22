@@ -59,10 +59,11 @@ function sanitize(input: string | undefined): string {
  */
 router.post('/subscribe', async (req: Request, res: Response) => {
   try {
-    const { email, source, pageUrl, honeypot } = req.body;
+    const { email, source, pageUrl, website } = req.body;
 
     // Honeypot check - if filled, return silent success (bot trap)
-    if (honeypot && honeypot.trim() !== '') {
+    // Field named "website" to appear legitimate but hidden on frontend
+    if (website && website.trim() !== '') {
       console.log('[Newsletter] Honeypot triggered - silent success returned');
       return res.status(200).json({ ok: true });
     }
@@ -222,7 +223,7 @@ router.get('/unsubscribe', async (req: Request, res: Response) => {
     if (!unsubscribed) {
       return res.status(400).json({ 
         ok: false, 
-        error: 'Invalid unsubscribe link or already unsubscribed' 
+        error: 'Invalid unsubscribe link' 
       });
     }
 
@@ -259,7 +260,7 @@ router.post('/unsubscribe', async (req: Request, res: Response) => {
     if (!unsubscribed) {
       return res.status(400).json({ 
         ok: false, 
-        error: 'Invalid unsubscribe link or already unsubscribed' 
+        error: 'Invalid unsubscribe link' 
       });
     }
 

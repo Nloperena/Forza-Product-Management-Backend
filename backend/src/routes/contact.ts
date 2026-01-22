@@ -95,10 +95,11 @@ function sanitize(input: string | undefined): string {
  */
 router.post('/', async (req: Request, res: Response) => {
   try {
-    const { firstName, lastName, email, message, pageUrl, honeypot } = req.body;
+    const { firstName, lastName, email, message, pageUrl, website } = req.body;
 
     // Honeypot check - if filled, return silent success (bot trap)
-    if (honeypot && honeypot.trim() !== '') {
+    // Field named "website" to appear legitimate but hidden on frontend
+    if (website && website.trim() !== '') {
       console.log('[Contact] Honeypot triggered - silent success returned');
       return res.status(200).json({ ok: true });
     }
@@ -153,10 +154,13 @@ router.post('/', async (req: Request, res: Response) => {
     res.setHeader('X-RateLimit-Reset', Math.ceil(rateLimit.resetIn / 1000));
 
     if (!rateLimit.allowed) {
+      const retryAfterSeconds = Math.ceil(rateLimit.resetIn / 1000);
+      res.setHeader('Retry-After', retryAfterSeconds);
       console.log(`[Contact] Rate limit exceeded for IP hash: ${ipHash}`);
       return res.status(429).json({ 
         ok: false, 
-        error: 'Too many requests. Please try again later.' 
+        error: 'Too many requests. Please try again later.',
+        retryAfter: retryAfterSeconds
       });
     }
 
