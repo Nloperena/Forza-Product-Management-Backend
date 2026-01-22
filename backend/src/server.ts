@@ -31,6 +31,7 @@ dotenv.config();
 
 /**
  * Validate required environment variables at startup
+ * In production: logs warnings but does NOT exit (allows health checks to work)
  */
 function validateEnv() {
   const required = [
@@ -44,12 +45,10 @@ function validateEnv() {
   const missing = required.filter(key => !process.env[key]);
   
   if (missing.length > 0) {
-    console.error(`❌ Missing required environment variables: ${missing.join(', ')}`);
-    if (process.env.NODE_ENV === 'production') {
-      process.exit(1);
-    }
+    console.warn(`⚠️ Missing environment variables: ${missing.join(', ')}`);
+    console.warn('⚠️ Some features (email sending) will be disabled until these are set.');
   } else {
-    console.log('✅ Environment variables validated');
+    console.log('✅ All required environment variables are set');
   }
 }
 
