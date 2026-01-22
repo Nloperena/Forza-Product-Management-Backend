@@ -41,6 +41,12 @@ interface EmailResult {
   errorMessage?: string;
 }
 
+interface PostmarkResponse {
+  Message: string;
+  MessageID: string;
+  ErrorCode: number;
+}
+
 class EmailService {
   private apiToken: string | undefined;
   private fromEmail: string;
@@ -96,7 +102,7 @@ class EmailService {
         body: JSON.stringify(payload)
       });
 
-      const data = await response.json();
+      const data = (await response.json()) as PostmarkResponse;
 
       if (!response.ok) {
         throw new Error(data.Message || `Postmark error: ${response.status}`);

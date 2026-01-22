@@ -7,10 +7,10 @@ const router = Router();
 router.get('/', async (req: Request, res: Response) => {
   try {
     const backups = await backupModel.getAllBackups();
-    res.json({ success: true, backups });
+    return res.json({ success: true, backups });
   } catch (error: any) {
     console.error('Error fetching backups:', error);
-    res.status(500).json({ success: false, error: error.message });
+    return res.status(500).json({ success: false, error: error.message });
   }
 });
 
@@ -24,10 +24,10 @@ router.get('/:id', async (req: Request, res: Response) => {
       return res.status(404).json({ success: false, error: 'Backup not found' });
     }
     
-    res.json({ success: true, backup });
+    return res.json({ success: true, backup });
   } catch (error: any) {
     console.error('Error fetching backup:', error);
-    res.status(500).json({ success: false, error: error.message });
+    return res.status(500).json({ success: false, error: error.message });
   }
 });
 
@@ -41,10 +41,10 @@ router.get('/:id/preview', async (req: Request, res: Response) => {
       return res.status(404).json({ success: false, error: 'Backup not found or has no data' });
     }
     
-    res.json({ success: true, ...preview });
+    return res.json({ success: true, ...preview });
   } catch (error: any) {
     console.error('Error fetching backup preview:', error);
-    res.status(500).json({ success: false, error: error.message });
+    return res.status(500).json({ success: false, error: error.message });
   }
 });
 
@@ -61,10 +61,10 @@ router.post('/', async (req: Request, res: Response) => {
     }
     
     const backup = await backupModel.createBackup(name, description, created_by);
-    res.status(201).json({ success: true, backup });
+    return res.status(201).json({ success: true, backup });
   } catch (error: any) {
     console.error('Error creating backup:', error);
-    res.status(500).json({ success: false, error: error.message });
+    return res.status(500).json({ success: false, error: error.message });
   }
 });
 
@@ -87,10 +87,10 @@ router.post('/:id/promote', async (req: Request, res: Response) => {
       return res.status(400).json(result);
     }
     
-    res.json(result);
+    return res.json(result);
   } catch (error: any) {
     console.error('Error promoting backup:', error);
-    res.status(500).json({ success: false, error: error.message });
+    return res.status(500).json({ success: false, error: error.message });
   }
 });
 
@@ -106,10 +106,10 @@ router.delete('/:id', async (req: Request, res: Response) => {
       return res.status(404).json({ success: false, error: 'Backup not found' });
     }
     
-    res.json({ success: true, message: 'Backup deleted successfully' });
+    return res.json({ success: true, message: 'Backup deleted successfully' });
   } catch (error: any) {
     console.error('Error deleting backup:', error);
-    res.status(500).json({ success: false, error: error.message });
+    return res.status(500).json({ success: false, error: error.message });
   }
 });
 

@@ -24,7 +24,7 @@ router.get('/', async (req: Request, res: Response) => {
       offset: parseInt(offset as string)
     });
     
-    res.json({ 
+    return res.json({ 
       success: true, 
       logs: result.logs,
       total: result.total,
@@ -33,7 +33,7 @@ router.get('/', async (req: Request, res: Response) => {
     });
   } catch (error: any) {
     console.error('Error fetching audit logs:', error);
-    res.status(500).json({ success: false, error: error.message });
+    return res.status(500).json({ success: false, error: error.message });
   }
 });
 
@@ -47,10 +47,10 @@ router.get('/:id', async (req: Request, res: Response) => {
       return res.status(404).json({ success: false, error: 'Audit log not found' });
     }
     
-    res.json({ success: true, log });
+    return res.json({ success: true, log });
   } catch (error: any) {
     console.error('Error fetching audit log:', error);
-    res.status(500).json({ success: false, error: error.message });
+    return res.status(500).json({ success: false, error: error.message });
   }
 });
 
@@ -67,14 +67,14 @@ router.get('/product/:productId', async (req: Request, res: Response) => {
       offset: parseInt(offset as string)
     });
     
-    res.json({ 
+    return res.json({ 
       success: true, 
       logs: result.logs,
       total: result.total
     });
   } catch (error: any) {
     console.error('Error fetching product audit logs:', error);
-    res.status(500).json({ success: false, error: error.message });
+    return res.status(500).json({ success: false, error: error.message });
   }
 });
 
