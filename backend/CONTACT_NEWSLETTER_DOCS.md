@@ -80,6 +80,9 @@ This will:
 Add these to your Heroku config vars:
 
 ```bash
+# Enable email features (set to 'true' to require Postmark for /ready)
+EMAIL_FEATURES_ENABLED=true
+
 # Required for email functionality
 POSTMARK_API_TOKEN=your-postmark-server-api-token
 
@@ -93,9 +96,28 @@ IP_HASH_SALT=your-random-salt-here-change-in-production
 # Frontend URL for email links
 FRONTEND_URL=https://forzabuilt.com
 
+# Admin token for protected endpoints (header: X-Admin-Token)
+ADMIN_TOKEN=your-secure-admin-token-here
+
 # Database (Heroku provides this automatically)
 DATABASE_URL=postgres://...
 ```
+
+---
+
+## Admin Endpoints
+
+Protected endpoints requiring `X-Admin-Token` header.
+
+### GET /admin/migrations
+Returns list of applied database migrations.
+
+**Headers:** `X-Admin-Token: <your-admin-token>`
+
+### GET /admin/health/details
+Returns detailed health information including database, migrations, email config, and security settings.
+
+**Headers:** `X-Admin-Token: <your-admin-token>`
 
 ---
 
@@ -104,12 +126,12 @@ DATABASE_URL=postgres://...
 ### POST /api/contact
 Submit a contact form.
 
-**Fields:** `firstName`, `lastName`, `email`, `message`, `pageUrl`, `honeypot`
+**Fields:** `firstName`, `lastName`, `email`, `message`, `pageUrl`, `website` (honeypot - hidden field)
 
 ### POST /api/newsletter/subscribe
 Subscribe to the newsletter (initiates double opt-in).
 
-**Fields:** `email`, `source`, `pageUrl`, `honeypot`
+**Fields:** `email`, `source`, `pageUrl`, `website` (honeypot - hidden field)
 
 ### GET /api/newsletter/confirm?token=...
 Confirm newsletter subscription (complete double opt-in).
@@ -149,7 +171,7 @@ done
 ```bash
 curl -i -X POST "https://forza-product-managementsystem-b7c3ff8d3d2d.herokuapp.com/api/contact" \
   -H "Content-Type: application/json" \
-  -d '{"firstName":"Bot","lastName":"Spam","email":"bot@spam.com","message":"Buy!","honeypot":"trap"}'
+  -d '{"firstName":"Bot","lastName":"Spam","email":"bot@spam.com","message":"Buy!","website":"http://spam.com"}'
 ```
 **Expected Output**: `200 OK` with `{"ok":true}`, but no data is stored or emailed.
 

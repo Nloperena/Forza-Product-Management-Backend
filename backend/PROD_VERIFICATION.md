@@ -11,13 +11,22 @@ This document provides exact commands and expected outputs to verify the contact
 Set these Heroku config vars before verification:
 
 ```bash
+# Core email configuration
+heroku config:set EMAIL_FEATURES_ENABLED=true -a forza-product-managementsystem
 heroku config:set POSTMARK_API_TOKEN=your-postmark-token -a forza-product-managementsystem
 heroku config:set EMAIL_FROM=noreply@forzabuilt.com -a forza-product-managementsystem
 heroku config:set TEAM_EMAIL=team@forzabuilt.com -a forza-product-managementsystem
-heroku config:set IP_HASH_SALT=$(openssl rand -hex 32) -a forza-product-managementsystem
 heroku config:set FRONTEND_URL=https://forzabuilt.com -a forza-product-managementsystem
+
+# Security configuration (use actual random values)
+heroku config:set IP_HASH_SALT=$(openssl rand -hex 32) -a forza-product-managementsystem
 heroku config:set ADMIN_TOKEN=$(openssl rand -hex 32) -a forza-product-managementsystem
+
+# Restart to apply
+heroku restart -a forza-product-managementsystem
 ```
+
+**Note**: Save your ADMIN_TOKEN somewhere secure - you'll need it for admin endpoints.
 
 ---
 
@@ -26,7 +35,7 @@ heroku config:set ADMIN_TOKEN=$(openssl rand -hex 32) -a forza-product-managemen
 ### Deploy
 ```bash
 git add .
-git commit -m "Final hardening: admin endpoints, rate limit headers, honeypot standardization"
+git commit -m "Production hardening"
 git push heroku main
 ```
 
@@ -39,11 +48,8 @@ heroku run npm run migrate -a forza-product-managementsystem
 ```
 🚀 Starting database migrations...
 🔍 Found 3 migration files.
-➡️  Applying migration: 001_create_contact_submissions.sql...
 ✅ Applied: 001_create_contact_submissions.sql
-➡️  Applying migration: 002_create_newsletter_subscribers.sql...
 ✅ Applied: 002_create_newsletter_subscribers.sql
-➡️  Applying migration: 003_create_email_logs.sql...
 ✅ Applied: 003_create_email_logs.sql
 🎉 Successfully applied 3 migrations.
 ```
@@ -55,8 +61,9 @@ heroku run npm run migrate -a forza-product-managementsystem
 ### PowerShell
 ```powershell
 $token = "YOUR_ADMIN_TOKEN_HERE"
-Invoke-RestMethod -Method Get -Uri "https://forza-product-managementsystem-b7c3ff8d3d2d.herokuapp.com/admin/migrations" `
-  -Headers @{ "X-Admin-Token" = $token }
+Invoke-RestMethod -Method Get `
+  -Uri "https://forza-product-managementsystem-b7c3ff8d3d2d.herokuapp.com/admin/migrations" `
+  -Headers @{ "X-Admin-Token" = $token } | ConvertTo-Json -Depth 3
 ```
 
 ### curl
@@ -84,7 +91,7 @@ curl -H "X-Admin-Token: YOUR_ADMIN_TOKEN_HERE" \
 
 ### Liveness (GET /health)
 ```powershell
-Invoke-RestMethod -Method Get -Uri "https://forza-product-managementsystem-b7c3ff8d3d2d.herokuapp.com/health"
+Invoke-RestMethod -Uri "https://forza-product-managementsystem-b7c3ff8d3d2d.herokuapp.com/health" | ConvertTo-Json
 ```
 
 **Expected Output**:
@@ -98,10 +105,10 @@ Invoke-RestMethod -Method Get -Uri "https://forza-product-managementsystem-b7c3f
 
 ### Readiness (GET /ready)
 ```powershell
-Invoke-RestMethod -Method Get -Uri "https://forza-product-managementsystem-b7c3ff8d3d2d.herokuapp.com/ready"
+Invoke-RestMethod -Uri "https://forza-product-managementsystem-b7c3ff8d3d2d.herokuapp.com/ready" | ConvertTo-Json
 ```
 
-**Expected Output**:
+**Expected Output (EMAIL_FEATURES_ENABLED=true and Postmark configured)**:
 ```json
 {
   "ok": true,
@@ -109,15 +116,28 @@ Invoke-RestMethod -Method Get -Uri "https://forza-product-managementsystem-b7c3f
   "checks": {
     "database": true,
     "postmark": true
-  }
+  },
+  "emailFeaturesEnabled": true
+}
+```
+
+**Expected Output (EMAIL_FEATURES_ENABLED=true but Postmark NOT configured)**:
+- HTTP Status: `503`
+```json
+{
+  "ok": false,
+  "status": "Not Ready - Email configuration missing",
+  "checks": { "database": true, "postmark": false },
+  "emailFeaturesEnabled": true
 }
 ```
 
 ### Admin Health Details (GET /admin/health/details)
 ```powershell
 $token = "YOUR_ADMIN_TOKEN_HERE"
-Invoke-RestMethod -Method Get -Uri "https://forza-product-managementsystem-b7c3ff8d3d2d.herokuapp.com/admin/health/details" `
-  -Headers @{ "X-Admin-Token" = $token }
+Invoke-RestMethod -Method Get `
+  -Uri "https://forza-product-managementsystem-b7c3ff8d3d2d.herokuapp.com/admin/health/details" `
+  -Headers @{ "X-Admin-Token" = $token } | ConvertTo-Json -Depth 3
 ```
 
 **Expected Output**:
@@ -127,8 +147,17 @@ Invoke-RestMethod -Method Get -Uri "https://forza-product-managementsystem-b7c3f
   "app": { "version": "1.0.0", "nodeVersion": "v20.x.x", "environment": "production" },
   "database": { "connected": true, "type": "postgresql" },
   "migrations": { "count": 3, "latest": "003_create_email_logs.sql" },
-  "email": { "postmarkConfigured": true, "fromEmail": "noreply@forzabuilt.com" },
-  "security": { "ipHashSaltConfigured": true, "adminTokenConfigured": true }
+  "email": { 
+    "featuresEnabled": true, 
+    "postmarkConfigured": true, 
+    "fromEmail": "(set)", 
+    "teamEmail": "(set)" 
+  },
+  "security": { 
+    "ipHashSaltConfigured": true, 
+    "adminTokenConfigured": true,
+    "frontendUrlConfigured": true
+  }
 }
 ```
 
@@ -157,7 +186,6 @@ for ($i=1; $i -le 12; $i++) {
 **Expected Output**:
 ```
 Request 1 : 200 - {"ok":true}
-Request 2 : 200 - {"ok":true}
 ...
 Request 10 : 200 - {"ok":true}
 Request 11 : 429 - {"ok":false,"error":"Too many requests. Please try again later.","retryAfter":XX}
@@ -183,7 +211,7 @@ $body = @{
 Invoke-RestMethod -Method Post `
   -Uri "https://forza-product-managementsystem-b7c3ff8d3d2d.herokuapp.com/api/contact" `
   -ContentType "application/json" `
-  -Body $body
+  -Body $body | ConvertTo-Json
 ```
 
 **Expected Output**: `{"ok":true}` (silent success)
@@ -192,23 +220,64 @@ Invoke-RestMethod -Method Post `
 
 ---
 
-## 6. Invalid Token Test (Negative)
+## 6. Admin Auth Test (Negative)
 
-### PowerShell
+### Without Token (Should fail)
 ```powershell
-Invoke-RestMethod -Method Get `
-  -Uri "https://forza-product-managementsystem-b7c3ff8d3d2d.herokuapp.com/api/newsletter/confirm?token=invalid_token_12345"
+try {
+    Invoke-RestMethod -Uri "https://forza-product-managementsystem-b7c3ff8d3d2d.herokuapp.com/admin/migrations"
+} catch {
+    Write-Host "Status: $([int]$_.Exception.Response.StatusCode)"
+    Write-Host "Body: $($_.ErrorDetails.Message)"
+}
 ```
 
 **Expected Output**:
-```json
-{ "ok": false, "error": "Invalid or expired confirmation link" }
 ```
-With HTTP Status: `400 Bad Request`
+Status: 401
+Body: {"ok":false,"error":"Unauthorized"}
+```
+
+### With Wrong Token (Should fail)
+```powershell
+try {
+    Invoke-RestMethod -Uri "https://forza-product-managementsystem-b7c3ff8d3d2d.herokuapp.com/admin/migrations" `
+      -Headers @{ "X-Admin-Token" = "wrong-token" }
+} catch {
+    Write-Host "Status: $([int]$_.Exception.Response.StatusCode)"
+    Write-Host "Body: $($_.ErrorDetails.Message)"
+}
+```
+
+**Expected Output**:
+```
+Status: 401
+Body: {"ok":false,"error":"Unauthorized"}
+```
 
 ---
 
-## 7. Newsletter Double Opt-In Flow (Positive)
+## 7. Invalid Token Test (Negative)
+
+### PowerShell
+```powershell
+try {
+    Invoke-RestMethod -Uri "https://forza-product-managementsystem-b7c3ff8d3d2d.herokuapp.com/api/newsletter/confirm?token=invalid_token_12345"
+} catch {
+    Write-Host "Status: $([int]$_.Exception.Response.StatusCode)"
+    Write-Host "Body: $($_.ErrorDetails.Message)"
+}
+```
+
+**Expected Output**:
+```
+Status: 400
+Body: {"ok":false,"error":"Invalid or expired confirmation link"}
+```
+
+---
+
+## 8. Newsletter Double Opt-In Flow (Positive)
 
 ### Step 1: Subscribe
 ```powershell
@@ -216,7 +285,7 @@ $body = @{ email = "realuser@example.com"; source = "prod_verification" } | Conv
 Invoke-RestMethod -Method Post `
   -Uri "https://forza-product-managementsystem-b7c3ff8d3d2d.herokuapp.com/api/newsletter/subscribe" `
   -ContentType "application/json" `
-  -Body $body
+  -Body $body | ConvertTo-Json
 ```
 
 **Expected Output**: `{"ok":true}`
@@ -224,33 +293,34 @@ Invoke-RestMethod -Method Post `
 **Verification**: Check Postmark Activity - a "Confirm your subscription" email should be sent.
 
 ### Step 2: Confirm (use token from email or DB)
-```powershell
+```bash
 # Get token from Heroku Postgres:
-# heroku pg:psql -a forza-product-managementsystem
-# SELECT confirm_token FROM newsletter_subscribers WHERE email = 'realuser@example.com';
+heroku pg:psql -a forza-product-managementsystem
+SELECT confirm_token FROM newsletter_subscribers WHERE email = 'realuser@example.com';
+```
 
-Invoke-RestMethod -Method Get `
-  -Uri "https://forza-product-managementsystem-b7c3ff8d3d2d.herokuapp.com/api/newsletter/confirm?token=TOKEN_FROM_DB"
+```powershell
+Invoke-RestMethod -Uri "https://forza-product-managementsystem-b7c3ff8d3d2d.herokuapp.com/api/newsletter/confirm?token=TOKEN_FROM_DB" | ConvertTo-Json
 ```
 
 **Expected Output**: `{"ok":true,"message":"Your subscription has been confirmed!"}`
 
-**Verification**: Check Postmark Activity - a "Welcome" email should be sent.
-
 ### Step 3: Unsubscribe (use token from email or DB)
-```powershell
+```bash
 # Get token from Heroku Postgres:
-# SELECT unsubscribe_token FROM newsletter_subscribers WHERE email = 'realuser@example.com';
+heroku pg:psql -a forza-product-managementsystem
+SELECT unsubscribe_token FROM newsletter_subscribers WHERE email = 'realuser@example.com';
+```
 
-Invoke-RestMethod -Method Get `
-  -Uri "https://forza-product-managementsystem-b7c3ff8d3d2d.herokuapp.com/api/newsletter/unsubscribe?token=UNSUBSCRIBE_TOKEN"
+```powershell
+Invoke-RestMethod -Uri "https://forza-product-managementsystem-b7c3ff8d3d2d.herokuapp.com/api/newsletter/unsubscribe?token=UNSUBSCRIBE_TOKEN" | ConvertTo-Json
 ```
 
 **Expected Output**: `{"ok":true,"message":"You have been successfully unsubscribed."}`
 
 ---
 
-## 8. Contact Form (Positive)
+## 9. Contact Form (Positive)
 
 ### PowerShell
 ```powershell
@@ -265,7 +335,7 @@ $body = @{
 Invoke-RestMethod -Method Post `
   -Uri "https://forza-product-managementsystem-b7c3ff8d3d2d.herokuapp.com/api/contact" `
   -ContentType "application/json" `
-  -Body $body
+  -Body $body | ConvertTo-Json
 ```
 
 **Expected Output**: `{"ok":true}`
@@ -276,32 +346,20 @@ Invoke-RestMethod -Method Post `
 
 ---
 
-## 9. Log Privacy Check
-
-Run this after testing to confirm no PII leakage:
-
-```bash
-heroku logs --tail -a forza-product-managementsystem | grep -E "(email|message|firstName|192\.|10\.)"
-```
-
-**Expected Output**: No matches containing raw email addresses, message content, or raw IP addresses.
-
----
-
 ## Summary Checklist
 
 | Test | Status | Notes |
 |------|--------|-------|
-| Migrations run | ⬜ | |
-| /health returns 200 | ⬜ | |
-| /ready returns 200 with checks | ⬜ | |
-| /admin/migrations returns list | ⬜ | |
-| Rate limit triggers at 11th request | ⬜ | |
-| Honeypot returns 200, no email | ⬜ | |
+| Migrations run | ⬜ | 3 migrations applied |
+| /health returns 200 | ⬜ | database: true |
+| /ready returns 200 with checks | ⬜ | database: true, postmark: true |
+| /admin/migrations returns list | ⬜ | With X-Admin-Token header |
+| /admin/health/details returns info | ⬜ | With X-Admin-Token header |
+| Admin without token returns 401 | ⬜ | |
+| Rate limit triggers at 11th request | ⬜ | Returns 429 with retryAfter |
+| Honeypot returns 200, no email | ⬜ | Field: website |
 | Invalid token returns 400 | ⬜ | |
 | Newsletter subscribe sends email | ⬜ | |
 | Newsletter confirm works | ⬜ | |
-| Newsletter unsubscribe works | ⬜ | |
-| Contact form sends 2 emails | ⬜ | |
-| Logs contain no PII | ⬜ | |
-
+| Newsletter unsubscribe works | ⬜ | Idempotent |
+| Contact form sends 2 emails | ⬜ | Internal + confirmation |

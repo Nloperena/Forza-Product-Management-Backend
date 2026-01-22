@@ -1,7 +1,7 @@
 /**
  * Admin Routes (Protected)
  * 
- * These endpoints require the ADMIN_TOKEN header for access.
+ * These endpoints require the X-Admin-Token header for access.
  * 
  * GET /admin/migrations - List applied migrations
  * GET /admin/health/details - Detailed health info
@@ -15,10 +15,14 @@ const router = express.Router();
 
 /**
  * Admin Token Middleware
+ * Requires header: X-Admin-Token: <token>
  */
 function requireAdminToken(req: Request, res: Response, next: NextFunction) {
   const adminToken = process.env.ADMIN_TOKEN;
-  const providedToken = req.headers['x-admin-token'] || req.headers['authorization']?.replace('Bearer ', '');
+  const providedToken = req.headers['x-admin-token'] as string | undefined;
+
+  // Set security headers for all admin responses
+  res.setHeader('Cache-Control', 'no-store');
 
   if (!adminToken) {
     return res.status(503).json({ 
@@ -27,7 +31,7 @@ function requireAdminToken(req: Request, res: Response, next: NextFunction) {
     });
   }
 
-  if (providedToken !== adminToken) {
+  if (!providedToken || providedToken !== adminToken) {
     return res.status(401).json({ 
       ok: false, 
       error: 'Unauthorized' 
@@ -104,6 +108,8 @@ router.get('/migrations', async (_req: Request, res: Response) => {
  * Returns detailed health information
  */
 router.get('/health/details', async (_req: Request, res: Response) => {
+  const emailFeaturesEnabled = process.env.EMAIL_FEATURES_ENABLED === 'true';
+  
   const details = {
     ok: true,
     timestamp: new Date().toISOString(),
@@ -122,13 +128,15 @@ router.get('/health/details', async (_req: Request, res: Response) => {
       latest: null as string | null
     },
     email: {
+      featuresEnabled: emailFeaturesEnabled,
       postmarkConfigured: emailService.isConfigured(),
-      fromEmail: process.env.EMAIL_FROM || 'not set',
-      teamEmail: process.env.TEAM_EMAIL || 'not set'
+      fromEmail: process.env.EMAIL_FROM ? '(set)' : 'not set',
+      teamEmail: process.env.TEAM_EMAIL ? '(set)' : 'not set'
     },
     security: {
       ipHashSaltConfigured: !!process.env.IP_HASH_SALT,
-      adminTokenConfigured: !!process.env.ADMIN_TOKEN
+      adminTokenConfigured: !!process.env.ADMIN_TOKEN,
+      frontendUrlConfigured: !!process.env.FRONTEND_URL
     }
   };
 

@@ -236,6 +236,8 @@ app.get('/health', async (_req, res) => {
 
 // Readiness endpoint (Detailed dependency check)
 app.get('/ready', async (_req, res) => {
+  const emailFeaturesEnabled = process.env.EMAIL_FEATURES_ENABLED === 'true';
+  
   const readiness = {
     ok: true,
     status: 'Ready',
@@ -245,7 +247,8 @@ app.get('/ready', async (_req, res) => {
     checks: {
       database: false,
       postmark: false
-    }
+    },
+    emailFeaturesEnabled
   };
 
   try {
@@ -272,12 +275,18 @@ app.get('/ready', async (_req, res) => {
     // Check Postmark
     readiness.checks.postmark = emailService.isConfigured();
 
-    // Note: We return 200 even if Postmark is not configured, 
-    // but the 'ok' flag and checks will reflect the state.
-    // Only DB failure causes a non-200 if it makes the app unusable.
+    // Determine readiness status
+    // Database must always be connected
     if (!readiness.checks.database) {
       readiness.ok = false;
       readiness.status = 'Not Ready';
+      return res.status(503).json(readiness);
+    }
+
+    // If email features are enabled, Postmark must be configured
+    if (emailFeaturesEnabled && !readiness.checks.postmark) {
+      readiness.ok = false;
+      readiness.status = 'Not Ready - Email configuration missing';
       return res.status(503).json(readiness);
     }
 
@@ -288,7 +297,8 @@ app.get('/ready', async (_req, res) => {
       ok: false,
       status: 'Error',
       error: error.message,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
+      emailFeaturesEnabled
     });
   }
 });
