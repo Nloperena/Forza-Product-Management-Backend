@@ -96,12 +96,17 @@ async function seedDatabase(): Promise<void> {
       }
     } else {
       const db = databaseService.getDatabase();
-      db.run('DELETE FROM products', (err) => {
-        if (err) {
-          console.error('Error clearing products:', err);
-        } else {
-          console.log('✅ Existing products cleared');
-        }
+      await new Promise<void>((resolve, reject) => {
+        db.run('DELETE FROM products', (err) => {
+          if (err) {
+            console.error('Error clearing products:', err);
+            // Don't reject if table doesn't exist, just continue
+            resolve();
+          } else {
+            console.log('✅ Existing products cleared');
+            resolve();
+          }
+        });
       });
     }
     
@@ -116,6 +121,7 @@ async function seedDatabase(): Promise<void> {
       
       for (const forzaProduct of batch) {
         try {
+          const benefitsCount = forzaProduct.benefits_count || (forzaProduct.benefits ? forzaProduct.benefits.length : 0);
           const productData: Omit<Product, 'created_at' | 'updated_at'> = {
             id: forzaProduct.product_id,
             product_id: forzaProduct.product_id,
@@ -132,9 +138,13 @@ async function seedDatabase(): Promise<void> {
             technical: forzaProduct.technical,
             sizing: forzaProduct.sizing || [],
             published: forzaProduct.published,
-            benefits_count: forzaProduct.benefits_count,
+            benefits_count: benefitsCount,
             last_edited: forzaProduct.last_edited || new Date().toISOString()
           };
+          
+          if (forzaProduct.product_id === 'TAC-745') {
+            console.log(`DEBUG: TAC-745 benefitsCount = ${benefitsCount}`);
+          }
           
           await productModel.createProduct(productData);
           insertedCount++;

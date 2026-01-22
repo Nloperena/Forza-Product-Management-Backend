@@ -32,16 +32,3 @@ async function listImages() {
 
 listImages().catch(console.error);
 
-
-
-
-
-
-
-
-
-
-
-
-
-

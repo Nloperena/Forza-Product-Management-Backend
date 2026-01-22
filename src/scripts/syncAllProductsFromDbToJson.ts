@@ -38,18 +38,6 @@ class DbToJsonSyncer {
       const jsonContent = fs.readFileSync(JSON_FILE_PATH, 'utf-8');
       const jsonData = JSON.parse(jsonContent);
 
-      // Force DB path if needed for local run
-      if (!process.env.DATABASE_URL && !process.env.POSTGRES_URL) {
-        const rootDbPath = path.resolve(__dirname, '../../../data/products.db');
-        console.log(`🔎 Checking for local data/products.db at: ${rootDbPath}`);
-        if (fs.existsSync(rootDbPath)) {
-          console.log(`🔌 Forcing local DB path to: ${rootDbPath}`);
-          (databaseService as any).dbPath = rootDbPath;
-        } else {
-          console.log(`⚠️ No local database found. Will use DATABASE_URL if set.`);
-        }
-      }
-
       await databaseService.connect();
       await databaseService.initializeDatabase();
       this.productModel = databaseService.isPostgres()

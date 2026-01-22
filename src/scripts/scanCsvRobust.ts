@@ -75,16 +75,3 @@ async function scanCsv() {
 
 scanCsv().catch(console.error);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
