@@ -300,6 +300,79 @@ class DatabaseService {
       `);
       console.log('Backups table ensured in PostgreSQL');
 
+      // Create contact_submissions table
+      await client.query(`
+        CREATE TABLE IF NOT EXISTS contact_submissions (
+          id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+          first_name VARCHAR(100) NOT NULL,
+          last_name VARCHAR(100) NOT NULL,
+          email VARCHAR(255) NOT NULL,
+          message TEXT NOT NULL,
+          page_url TEXT,
+          ip_hash VARCHAR(64),
+          status VARCHAR(50) DEFAULT 'pending',
+          internal_email_sent BOOLEAN DEFAULT false,
+          confirmation_email_sent BOOLEAN DEFAULT false,
+          internal_email_sent_at TIMESTAMP,
+          confirmation_email_sent_at TIMESTAMP,
+          email_error TEXT,
+          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+          updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+      `);
+      // Create indexes for contact_submissions
+      await client.query(`CREATE INDEX IF NOT EXISTS idx_contact_submissions_email ON contact_submissions(email)`);
+      await client.query(`CREATE INDEX IF NOT EXISTS idx_contact_submissions_created_at ON contact_submissions(created_at DESC)`);
+      console.log('Contact submissions table ensured in PostgreSQL');
+
+      // Create newsletter_subscribers table
+      await client.query(`
+        CREATE TABLE IF NOT EXISTS newsletter_subscribers (
+          id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+          email VARCHAR(255) UNIQUE NOT NULL,
+          status VARCHAR(50) DEFAULT 'pending',
+          source VARCHAR(100),
+          page_url TEXT,
+          ip_hash VARCHAR(64),
+          confirm_token VARCHAR(64),
+          confirm_expires_at TIMESTAMP,
+          confirmed_at TIMESTAMP,
+          unsubscribe_token VARCHAR(64) NOT NULL,
+          unsubscribed_at TIMESTAMP,
+          welcome_email_sent BOOLEAN DEFAULT false,
+          welcome_email_sent_at TIMESTAMP,
+          email_error TEXT,
+          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+          updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+      `);
+      // Create indexes for newsletter_subscribers
+      await client.query(`CREATE INDEX IF NOT EXISTS idx_newsletter_subscribers_email ON newsletter_subscribers(email)`);
+      await client.query(`CREATE INDEX IF NOT EXISTS idx_newsletter_subscribers_confirm_token ON newsletter_subscribers(confirm_token)`);
+      await client.query(`CREATE INDEX IF NOT EXISTS idx_newsletter_subscribers_unsubscribe_token ON newsletter_subscribers(unsubscribe_token)`);
+      console.log('Newsletter subscribers table ensured in PostgreSQL');
+
+      // Create email_logs table
+      await client.query(`
+        CREATE TABLE IF NOT EXISTS email_logs (
+          id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+          email_type VARCHAR(50) NOT NULL,
+          recipient_email VARCHAR(255) NOT NULL,
+          subject VARCHAR(255) NOT NULL,
+          status VARCHAR(50) DEFAULT 'pending',
+          provider_message_id VARCHAR(255),
+          provider_response TEXT,
+          error_message TEXT,
+          retry_count INTEGER DEFAULT 0,
+          metadata JSONB DEFAULT '{}',
+          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+          sent_at TIMESTAMP,
+          updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+      `);
+      await client.query(`CREATE INDEX IF NOT EXISTS idx_email_logs_created_at ON email_logs(created_at DESC)`);
+      console.log('Email logs table ensured in PostgreSQL');
+
       // Migrate existing last_edited column from TIMESTAMP to TEXT if needed
       try {
         // Check current column type

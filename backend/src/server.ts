@@ -13,6 +13,8 @@ import imageRoutes from './routes/images';
 import statsRoutes from './routes/statistics';
 import backupRoutes from './routes/backups';
 import auditLogRoutes from './routes/auditLogs';
+import contactRoutes from './routes/contact';
+import newsletterRoutes from './routes/newsletter';
 
 // Import database service
 import { databaseService } from './services/database';
@@ -163,6 +165,8 @@ app.use('/api/images', imageRoutes);
 app.use('/api/statistics', statsRoutes);
 app.use('/api/backups', backupRoutes);
 app.use('/api/audit-logs', auditLogRoutes);
+app.use('/api/contact', contactRoutes);
+app.use('/api/newsletter', newsletterRoutes);
 
 // Error handling middleware
 app.use(notFound);
