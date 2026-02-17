@@ -1,0 +1,802 @@
+[
+  {
+    "product_id": "A465",
+    "field": "applications",
+    "index": 0,
+    "reason": "formulated_for",
+    "before": "Specifically formulated for:",
+    "after": "Specifically formulated for the following applications:"
+  },
+  {
+    "product_id": "A729",
+    "field": "applications",
+    "index": 0,
+    "reason": "formulated_for",
+    "before": "Specifically formulated for",
+    "after": "Specifically formulated for the following applications:"
+  },
+  {
+    "product_id": "C110",
+    "field": "applications",
+    "index": 0,
+    "reason": "colon_fallback_with_context",
+    "before": "High Temperature Resistent General Adhesive:",
+    "after": "High Temperature Resistent General Adhesive. The following are typical applications:"
+  },
+  {
+    "product_id": "C130",
+    "field": "applications",
+    "index": 0,
+    "reason": "colon_fallback_with_context",
+    "before": "High Temperature Resistent Neoprene Contact Adhesive:",
+    "after": "High Temperature Resistent Neoprene Contact Adhesive. The following are typical applications:"
+  },
+  {
+    "product_id": "IC932",
+    "field": "applications",
+    "index": 0,
+    "reason": "bonds_to",
+    "before": "Permanently bonds to:",
+    "after": "Permanently bonds to the following substrates:"
+  },
+  {
+    "product_id": "IC933",
+    "field": "applications",
+    "index": 0,
+    "reason": "bonds_to",
+    "before": "Permanently bonds to:",
+    "after": "Permanently bonds to the following substrates:"
+  },
+  {
+    "product_id": "IC934",
+    "field": "applications",
+    "index": 0,
+    "reason": "bonds_to",
+    "before": "Pressure sensitive adhesive that permanently bonds to:",
+    "after": "Pressure sensitive adhesive that permanently bonds to the following substrates:"
+  },
+  {
+    "product_id": "IC946",
+    "field": "applications",
+    "index": 0,
+    "reason": "colon_fallback_with_context",
+    "before": "Designed to bond numerous substrates including these:",
+    "after": "Designed to bond numerous substrates including these. The following are typical applications:"
+  },
+  {
+    "product_id": "IC947",
+    "field": "applications",
+    "index": 0,
+    "reason": "using",
+    "before": "Web spray adhesive designed for applications using:",
+    "after": "Web spray adhesive designed for applications using the following materials:"
+  },
+  {
+    "product_id": "IC951",
+    "field": "applications",
+    "index": 0,
+    "reason": "bonds_to",
+    "before": "Permanently bonds to:",
+    "after": "Permanently bonds to the following substrates:"
+  },
+  {
+    "product_id": "IC952",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "Portable, spray adhesive system designed for field and shop applications including:",
+    "after": "Portable, spray adhesive system designed for field and shop applications including the following:"
+  },
+  {
+    "product_id": "OA12",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "Ideal for use in a wide range of applications where high strength and immediate adhesion is necessary including:",
+    "after": "Ideal for use in a wide range of applications where high strength and immediate adhesion is necessary including the following:"
+  },
+  {
+    "product_id": "OA13",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "Ideal for use in a wide range of applications where high strength and immediate adhesion is necessary including:",
+    "after": "Ideal for use in a wide range of applications where high strength and immediate adhesion is necessary including the following:"
+  },
+  {
+    "product_id": "OA23",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "Ideal for use in a wide range of applications where high strength and immediate adhesion is necessary including:",
+    "after": "Ideal for use in a wide range of applications where high strength and immediate adhesion is necessary including the following:"
+  },
+  {
+    "product_id": "OA4",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "Ideally suited where permanently flexible and/or structural bonding is required. It bonds a large variety of materials including:",
+    "after": "Ideally suited where permanently flexible and/or structural bonding is required. It bonds a large variety of materials including the following:"
+  },
+  {
+    "product_id": "R160",
+    "field": "applications",
+    "index": 0,
+    "reason": "this_includes",
+    "before": "Used in applications that benefit from a tenacious bond with wood, concrete, fiberglass, and most thermoset plastics. This includes:",
+    "after": "Used in applications that benefit from a tenacious bond with wood, concrete, fiberglass, and most thermoset plastics. this includes the following:"
+  },
+  {
+    "product_id": "R221",
+    "field": "applications",
+    "index": 1,
+    "reason": "colon_fallback_with_context",
+    "before": "Also suitable for structural bonding where a flexible bond line is desired including these substrates:",
+    "after": "Also suitable for structural bonding where a flexible bond line is desired including these substrates. The following are typical applications:"
+  },
+  {
+    "product_id": "RC826",
+    "field": "applications",
+    "index": 0,
+    "reason": "bonds_to",
+    "before": "Specifically designed as an economical & aggressive pressure sensitive adhesive. Ideal for quick stick applications including fixturing and wrapping of porous materials. This also bonds to:",
+    "after": "Specifically designed as an economical & aggressive pressure sensitive adhesive. Ideal for quick stick applications including fixturing and wrapping of porous materials. This also bonds to the following substrates:"
+  },
+  {
+    "product_id": "RC886",
+    "field": "applications",
+    "index": 1,
+    "reason": "bonds_to",
+    "before": "Also bonds to:",
+    "after": "Also bonds to the following substrates:"
+  },
+  {
+    "product_id": "M-C280",
+    "field": "applications",
+    "index": 0,
+    "reason": "this_includes",
+    "before": "Specifically designed for laminating and general bonding to substrates in the Marine industry. Laminates and bonds a wide variety of materials. This includes:",
+    "after": "Specifically designed for laminating and general bonding to substrates in the Marine industry. Laminates and bonds a wide variety of materials. this includes the following:"
+  },
+  {
+    "product_id": "M-C283",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "Specifically designed for laminating and general bonding to substrates in marine applications including:",
+    "after": "Specifically designed for laminating and general bonding to substrates in marine applications including the following:"
+  },
+  {
+    "product_id": "M-C285",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "Specifically designed for marine applications, bonding materials without the need for fasterners, including:",
+    "after": "Specifically designed for marine applications, bonding materials without the need for fasterners, including the following:"
+  },
+  {
+    "product_id": "M-C285",
+    "field": "applications",
+    "index": 3,
+    "reason": "applications_include",
+    "before": "Metal, Fiberglass, Various plastics Typical applications Include:",
+    "after": "Metal, Fiberglass, Various plastics Typical applications include the following:"
+  },
+  {
+    "product_id": "MC722",
+    "field": "applications",
+    "index": 0,
+    "reason": "colon_fallback_with_context",
+    "before": "Specifically designed to bond:",
+    "after": "Specifically designed to bond. The following are typical applications:"
+  },
+  {
+    "product_id": "MC723",
+    "field": "applications",
+    "index": 0,
+    "reason": "colon_fallback_with_context",
+    "before": "Specifically designed to bond:",
+    "after": "Specifically designed to bond. The following are typical applications:"
+  },
+  {
+    "product_id": "MC724",
+    "field": "applications",
+    "index": 0,
+    "reason": "using",
+    "before": "Pressure sensitive adhesive designed for use in applications using:",
+    "after": "Pressure sensitive adhesive designed for use in applications using the following materials:"
+  },
+  {
+    "product_id": "MC736",
+    "field": "applications",
+    "index": 0,
+    "reason": "colon_fallback_with_context",
+    "before": "Designed to bond numerous substrates including these:",
+    "after": "Designed to bond numerous substrates including these. The following are typical applications:"
+  },
+  {
+    "product_id": "MC737",
+    "field": "applications",
+    "index": 0,
+    "reason": "using",
+    "before": "Web spray adhesive designed for applications using:",
+    "after": "Web spray adhesive designed for applications using the following materials:"
+  },
+  {
+    "product_id": "MC739",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "Temporarily bonds & fixtures materials in various marine applications including:",
+    "after": "Temporarily bonds & fixtures materials in various marine applications including the following:"
+  },
+  {
+    "product_id": "MC739",
+    "field": "applications",
+    "index": 3,
+    "reason": "compatible_with",
+    "before": "Compatible with:",
+    "after": "compatible with the following:"
+  },
+  {
+    "product_id": "MC741",
+    "field": "applications",
+    "index": 0,
+    "reason": "bonds_to",
+    "before": "Permanently bonds to:",
+    "after": "Permanently bonds to the following substrates:"
+  },
+  {
+    "product_id": "M-OA755",
+    "field": "applications",
+    "index": 0,
+    "reason": "applications_include",
+    "before": "Specifically designed for permanent, flexible, and structural bonding in marine applications. It is formulated to bond a wide variety of materials, including aluminum, brass, steel, wood, plastics, and fiberglass composites without the need for fasteners. Applications include:",
+    "after": "Specifically designed for permanent, flexible, and structural bonding in marine applications. It is formulated to bond a wide variety of materials, including aluminum, brass, steel, wood, plastics, and fiberglass composites without the need for fasteners. applications include the following:"
+  },
+  {
+    "product_id": "M-OS764",
+    "field": "applications",
+    "index": 0,
+    "reason": "colon_fallback_with_context",
+    "before": "Specifically designed to bond a large variety of materials including metals, granite, painted steel, glass, wood, most plastics, fiberglass, rubber, and polystyrene foam. Provides a permanent structural bond with internal and external applications above the waterline:",
+    "after": "Specifically designed to bond a large variety of materials including metals, granite, painted steel, glass, wood, most plastics, fiberglass, rubber, and polystyrene foam. Provides a permanent structural bond with internal and external applications above the waterline. The following are typical applications:"
+  },
+  {
+    "product_id": "TAC-734G",
+    "field": "applications",
+    "index": 0,
+    "reason": "colon_fallback_with_context",
+    "before": "An infusion molding adhesive that is specifically formulated to overcome the problems normally associated with using other types of adhesives, such as bonding failure, resin blockage, and surface defects in the finish product. Designed to work with these materials and processes associated with infusion molding:",
+    "after": "An infusion molding adhesive that is specifically formulated to overcome the problems normally associated with using other types of adhesives, such as bonding failure, resin blockage, and surface defects in the finish product. Designed to work with these materials and processes associated with infusion molding. The following are typical applications:"
+  },
+  {
+    "product_id": "TAC-735R",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "An infusion molding adhesive that is specifically formulated to overcome problems normally associated with using other types of adhesives, such as bonding failure, resin blockage, & surface defects in the finish product. Temporarily bonds & fixtures materials including:",
+    "after": "An infusion molding adhesive that is specifically formulated to overcome problems normally associated with using other types of adhesives, such as bonding failure, resin blockage, & surface defects in the finish product. Temporarily bonds & fixtures materials including the following:"
+  },
+  {
+    "product_id": "TAC-735R",
+    "field": "applications",
+    "index": 3,
+    "reason": "colon_fallback_with_context",
+    "before": "Infusion molding consumables in RTM & LRTM process Compatible for following resins:",
+    "after": "Infusion molding consumables in RTM & LRTM process Compatible for following resins. The following are typical applications:"
+  },
+  {
+    "product_id": "TAC-739R",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "An infusion molding adhesive that is specifically formulated to overcome the problems normally associated with using other types of adhesives, such as bonding failure, resin blockage, and surface defects in the finish product. Temporarily bonds & fixtures materials including:",
+    "after": "An infusion molding adhesive that is specifically formulated to overcome the problems normally associated with using other types of adhesives, such as bonding failure, resin blockage, and surface defects in the finish product. Temporarily bonds & fixtures materials including the following:"
+  },
+  {
+    "product_id": "TAC-745",
+    "field": "applications",
+    "index": 1,
+    "reason": "including",
+    "before": "Temporarily bonds and fixtures materials including:",
+    "after": "Temporarily bonds and fixtures materials including the following:"
+  },
+  {
+    "product_id": "TAC-OS74",
+    "field": "applications",
+    "index": 0,
+    "reason": "colon_fallback_with_context",
+    "before": "Specifically designed to bond a large variety of materials including metals, granite, painted steel, glass, wood, most plastics, fiberglass, rubber, and polystyrene foam. Provides a permanent structural bond with internal and external applications above the waterline:",
+    "after": "Specifically designed to bond a large variety of materials including metals, granite, painted steel, glass, wood, most plastics, fiberglass, rubber, and polystyrene foam. Provides a permanent structural bond with internal and external applications above the waterline. The following are typical applications:"
+  },
+  {
+    "product_id": "TAC-R760",
+    "field": "applications",
+    "index": 0,
+    "reason": "used_for",
+    "before": "Used for:",
+    "after": "used for the following applications:"
+  },
+  {
+    "product_id": "TAC-R777",
+    "field": "applications",
+    "index": 0,
+    "reason": "ideal_for",
+    "before": "Ideal for:",
+    "after": "ideal for the following applications:"
+  },
+  {
+    "product_id": "T-C222",
+    "field": "applications",
+    "index": 0,
+    "reason": "applications_include",
+    "before": "Specifically designed to laminate and bond laminates, unbacked vinyl, carpeting, and headliners to metals, composites, and treated lumber in transportation applications. Applications include:",
+    "after": "Specifically designed to laminate and bond laminates, unbacked vinyl, carpeting, and headliners to metals, composites, and treated lumber in transportation applications. applications include the following:"
+  },
+  {
+    "product_id": "T-C225",
+    "field": "applications",
+    "index": 0,
+    "reason": "applications_include",
+    "before": "Specifically designed for bonding foams, backed vinyl, laminates, and carpeting in transportation applications where a bulk non flammable adhesive is needed. Applications include:",
+    "after": "Specifically designed for bonding foams, backed vinyl, laminates, and carpeting in transportation applications where a bulk non flammable adhesive is needed. applications include the following:"
+  },
+  {
+    "product_id": "TC452",
+    "field": "applications",
+    "index": 0,
+    "reason": "applications_include",
+    "before": "Specifically designed to permanently bond plastics, metals, treated wood, foams of all types, insulation materials, fabric, carpet, backed vinyl, and FRP materials in the transportation industry. Applications include:",
+    "after": "Specifically designed to permanently bond plastics, metals, treated wood, foams of all types, insulation materials, fabric, carpet, backed vinyl, and FRP materials in the transportation industry. applications include the following:"
+  },
+  {
+    "product_id": "TC454",
+    "field": "applications",
+    "index": 0,
+    "reason": "applications_include",
+    "before": "Specifically designed to permanently bond foams, cork, backed vinyls, polystyrene, porous insulation materials, and virgin rubber. This adhesive is ideal for various transportation applications that require a strong, lasting bond. Applications include:",
+    "after": "Specifically designed to permanently bond foams, cork, backed vinyls, polystyrene, porous insulation materials, and virgin rubber. This adhesive is ideal for various transportation applications that require a strong, lasting bond. applications include the following:"
+  },
+  {
+    "product_id": "TC466",
+    "field": "applications",
+    "index": 0,
+    "reason": "applications_include",
+    "before": "Specifically designed to permanently bond foams, cork, backed vinyls, porous insulation materials, and virgin rubber in various transportation applications. This adhesive is ideal for transportation applications requiring strong, durable bonds. Applications include:",
+    "after": "Specifically designed to permanently bond foams, cork, backed vinyls, porous insulation materials, and virgin rubber in various transportation applications. This adhesive is ideal for transportation applications requiring strong, durable bonds. applications include the following:"
+  },
+  {
+    "product_id": "TC471",
+    "field": "applications",
+    "index": 0,
+    "reason": "colon_fallback_with_context",
+    "before": "Permanently bonds these substrates in various transportation applications:",
+    "after": "Permanently bonds these substrates in various transportation applications. The following are typical applications:"
+  },
+  {
+    "product_id": "T-C485",
+    "field": "applications",
+    "index": 0,
+    "reason": "this_includes",
+    "before": "Specifically designed to bond unbacked vinyl, carpeting, laminates, headliners to metals, composites, and treated lumber in transportation applications with extreme temperature requirements. This includes:",
+    "after": "Specifically designed to bond unbacked vinyl, carpeting, laminates, headliners to metals, composites, and treated lumber in transportation applications with extreme temperature requirements. this includes the following:"
+  },
+  {
+    "product_id": "T-R679",
+    "field": "applications",
+    "index": 0,
+    "reason": "applications_include",
+    "before": "Specifically designed for structural bonding and sealing applications in transportation, offering high strength under flex and vibration. Applications include:",
+    "after": "Specifically designed for structural bonding and sealing applications in transportation, offering high strength under flex and vibration. applications include the following:"
+  },
+  {
+    "product_id": "T-R785",
+    "field": "applications",
+    "index": 0,
+    "reason": "applications_include",
+    "before": "Specifically designed for structural bonding applications in transportation where high strength bonding is required. Applications include:",
+    "after": "Specifically designed for structural bonding applications in transportation where high strength bonding is required. applications include the following:"
+  },
+  {
+    "product_id": "CC501",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "A CA compliant pressure sensitive adhesive designed for temporary fixturing in construction applications, including:",
+    "after": "A CA compliant pressure sensitive adhesive designed for temporary fixturing in construction applications, including the following:"
+  },
+  {
+    "product_id": "CC503",
+    "field": "applications",
+    "index": 1,
+    "reason": "including",
+    "before": "VOC, California compliant, multi purpose web spray canister adhesive, specifically designed for various bonding and fixturing applications in construction, including:",
+    "after": "VOC, California compliant, multi purpose web spray canister adhesive, specifically designed for various bonding and fixturing applications in construction, including the following:"
+  },
+  {
+    "product_id": "CC507",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "A high strength, styrene safe pressure sensitive adhesive designed specifically for construction applications, including:",
+    "after": "A high strength, styrene safe pressure sensitive adhesive designed specifically for construction applications, including the following:"
+  },
+  {
+    "product_id": "CC513",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "A non flammable, non methylene chloride based contact adhesive designed to bond a wide range of substrates in various construction applications, including:",
+    "after": "A non flammable, non methylene chloride based contact adhesive designed to bond a wide range of substrates in various construction applications, including the following:"
+  },
+  {
+    "product_id": "CC515",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "An aggressive, fast drying pressure sensitive adhesive designed to bond a wide range of substrates, including:",
+    "after": "An aggressive, fast drying pressure sensitive adhesive designed to bond a wide range of substrates, including the following:"
+  },
+  {
+    "product_id": "CC519",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "A California compliant contact adhesive designed to bond a wide range of substrates in construction applications including:",
+    "after": "A California compliant contact adhesive designed to bond a wide range of substrates in construction applications including the following:"
+  },
+  {
+    "product_id": "C-C360",
+    "field": "applications",
+    "index": 0,
+    "reason": "colon_fallback_with_context",
+    "before": "Flammable neoprene contact adhesive designed specifically for these and other construction applications:",
+    "after": "Flammable neoprene contact adhesive designed specifically for these and other construction applications. The following are typical applications:"
+  },
+  {
+    "product_id": "C-C551",
+    "field": "applications",
+    "index": 0,
+    "reason": "colon_fallback_with_context",
+    "before": "A non flammable, high performance spray contact adhesive specifically designed for these construction related applications:",
+    "after": "A non flammable, high performance spray contact adhesive specifically designed for these construction related applications. The following are typical applications:"
+  },
+  {
+    "product_id": "C-OA5",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "Specially designed for adhering and sealing roofing membranes and flashing materials, including:",
+    "after": "Specially designed for adhering and sealing roofing membranes and flashing materials, including the following:"
+  },
+  {
+    "product_id": "C-OA52",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "A performance polymer adhesive with high initial strength, designed specifically for construction applications, including:",
+    "after": "A performance polymer adhesive with high initial strength, designed specifically for construction applications, including the following:"
+  },
+  {
+    "product_id": "C-OA77",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "Specifically designed for use in the flooring industry, including:",
+    "after": "Specifically designed for use in the flooring industry, including the following:"
+  },
+  {
+    "product_id": "C-OA98",
+    "field": "applications",
+    "index": 0,
+    "reason": "colon_fallback_with_context",
+    "before": "A permanent structural bond for interior and exterior construction applications. This product bonds a large variety of construction related materials:",
+    "after": "A permanent structural bond for interior and exterior construction applications. This product bonds a large variety of construction related materials. The following are typical applications:"
+  },
+  {
+    "product_id": "C-R552",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "Specially designed as a high speed two component sealant where rapid curing is necessary or deep joints are present in construction applications, including:",
+    "after": "Specially designed as a high speed two component sealant where rapid curing is necessary or deep joints are present in construction applications, including the following:"
+  },
+  {
+    "product_id": "C-R560",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "Provides a tenacious bond to wood, concrete, fiberglass, and most thermoset plastics for many construction applications, including:",
+    "after": "Provides a tenacious bond to wood, concrete, fiberglass, and most thermoset plastics for many construction applications, including the following:"
+  },
+  {
+    "product_id": "TU615",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "An aggressive, fast-drying pressure-sensitive adhesive designed to bond a wide range of substrates, including:",
+    "after": "An aggressive, fast-drying pressure-sensitive adhesive designed to bond a wide range of substrates, including the following:"
+  },
+  {
+    "product_id": "TU-OS50",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "Designed to seal a wide variety of materials in construction and tilt up applications including:",
+    "after": "Designed to seal a wide variety of materials in construction and tilt up applications including the following:"
+  },
+  {
+    "product_id": "OS2 WT",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "Seals a large variety of materials including:",
+    "after": "Seals a large variety of materials including the following:"
+  },
+  {
+    "product_id": "OS24",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "Ideal for interior and exterior applications requiring permanent structural bonding. Bonds a large variety of materials including:",
+    "after": "Ideal for interior and exterior applications requiring permanent structural bonding. Bonds a large variety of materials including the following:"
+  },
+  {
+    "product_id": "OS35",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "A neutral-cure oxime silicone sealant designed to offer strong reliable sealing to a variety of applications including:",
+    "after": "A neutral-cure oxime silicone sealant designed to offer strong reliable sealing to a variety of applications including the following:"
+  },
+  {
+    "product_id": "OS37",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "Moisture cure acetoxy silicone sealant designed to reliably seal a variety of substrates in a variety of applications including:",
+    "after": "Moisture cure acetoxy silicone sealant designed to reliably seal a variety of substrates in a variety of applications including the following:"
+  },
+  {
+    "product_id": "OS55",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "General-purpose silicone sealant for construction applications, including:",
+    "after": "General-purpose silicone sealant for construction applications, including the following:"
+  },
+  {
+    "product_id": "OS61",
+    "field": "applications",
+    "index": 0,
+    "reason": "such_as",
+    "before": "Designed to seal a wide variety of materials such as:",
+    "after": "Designed to seal a wide variety of materials such as the following:"
+  },
+  {
+    "product_id": "M-OS789",
+    "field": "applications",
+    "index": 0,
+    "reason": "colon_fallback_with_context",
+    "before": "Designed to seal a large variety of materials in boat manufacturing:",
+    "after": "Designed to seal a large variety of materials in boat manufacturing. The following are typical applications:"
+  },
+  {
+    "product_id": "TAC-OS7",
+    "field": "applications",
+    "index": 0,
+    "reason": "used_for",
+    "before": "Used for:",
+    "after": "used for the following applications:"
+  },
+  {
+    "product_id": "TAC-OS75",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "A neutral cure oxime silicone sealant designed to offer a strong reliable seal to a variety of applications including:",
+    "after": "A neutral cure oxime silicone sealant designed to offer a strong reliable seal to a variety of applications including the following:"
+  },
+  {
+    "product_id": "T-OA152",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "A permanent hybrid polymer structural bond for interior and exterior transportation applications. Bonds a large variety of materials in various transportation applications including:",
+    "after": "A permanent hybrid polymer structural bond for interior and exterior transportation applications. Bonds a large variety of materials in various transportation applications including the following:"
+  },
+  {
+    "product_id": "T-OA156",
+    "field": "applications",
+    "index": 0,
+    "reason": "applications_include",
+    "before": "Specifically designed for mounting and bonding metals, plastics, FRP materials, and treated wood where structural strength is required, making it ideal for various transportation applications. Applications include:",
+    "after": "Specifically designed for mounting and bonding metals, plastics, FRP materials, and treated wood where structural strength is required, making it ideal for various transportation applications. applications include the following:"
+  },
+  {
+    "product_id": "T-OA177",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "Specifically designed for mounting and bonding of metals, plastics, FRP materials, and treated wood, in various transportation applications without the need of fasteners. Including:",
+    "after": "Specifically designed for mounting and bonding of metals, plastics, FRP materials, and treated wood, in various transportation applications without the need of fasteners. including the following:"
+  },
+  {
+    "product_id": "T-OS150",
+    "field": "applications",
+    "index": 0,
+    "reason": "such_as",
+    "before": "Designed to seal a wide variety of materials in transportation applications such as:",
+    "after": "Designed to seal a wide variety of materials in transportation applications such as the following:"
+  },
+  {
+    "product_id": "T-OS151",
+    "field": "applications",
+    "index": 0,
+    "reason": "applications_include",
+    "before": "Specifically designed for versatile sealing across both interior and exterior applications in transportation. Applications include:",
+    "after": "Specifically designed for versatile sealing across both interior and exterior applications in transportation. applications include the following:"
+  },
+  {
+    "product_id": "T-OS164",
+    "field": "applications",
+    "index": 1,
+    "reason": "applications_include",
+    "before": "Specific applications Include:",
+    "after": "Specific applications include the following:"
+  },
+  {
+    "product_id": "C-OA52W",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "A performance polymer adhesive with high initial strength, designed specifically for construction applications, including:",
+    "after": "A performance polymer adhesive with high initial strength, designed specifically for construction applications, including the following:"
+  },
+  {
+    "product_id": "C-OS55",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "A general purpose silicone sealant for construction applications, including:",
+    "after": "A general purpose silicone sealant for construction applications, including the following:"
+  },
+  {
+    "product_id": "C-OS9",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "Designed for universal sealing applications in the construction industry, including:",
+    "after": "Designed for universal sealing applications in the construction industry, including the following:"
+  },
+  {
+    "product_id": "TU-OS45",
+    "field": "applications",
+    "index": 0,
+    "reason": "colon_fallback_with_context",
+    "before": "Designed for outstanding adhesion and sealing in construction applications:",
+    "after": "Designed for outstanding adhesion and sealing in construction applications. The following are typical applications:"
+  },
+  {
+    "product_id": "T449",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "Ideal for use in general purpose mounting & bonding applications including:",
+    "after": "Ideal for use in general purpose mounting & bonding applications including the following:"
+  },
+  {
+    "product_id": "T532",
+    "field": "applications",
+    "index": 0,
+    "reason": "colon_fallback_with_context",
+    "before": "An aggressive mounting tape ideally suiting for applications involving these types of surfaces:",
+    "after": "An aggressive mounting tape ideally suiting for applications involving these types of surfaces. The following are typical applications:"
+  },
+  {
+    "product_id": "T710",
+    "field": "applications",
+    "index": 0,
+    "reason": "colon_fallback_with_context",
+    "before": "Specifically designed for seam sealing for water proof and dust proof applications on roof and other areas in the trailer and transporation industry where liquid sealant may have been used:",
+    "after": "Specifically designed for seam sealing for water proof and dust proof applications on roof and other areas in the trailer and transporation industry where liquid sealant may have been used. The following are typical applications:"
+  },
+  {
+    "product_id": "R-T860",
+    "field": "applications",
+    "index": 0,
+    "reason": "colon_fallback_with_context",
+    "before": "Specifically designed and engineered for cold weather applications where excellent initial tack and extreme temperature requirements are necessary. Ideally suited for:",
+    "after": "Specifically designed and engineered for cold weather applications where excellent initial tack and extreme temperature requirements are necessary. Ideally suited for. The following are typical applications:"
+  },
+  {
+    "product_id": "T-T415",
+    "field": "applications",
+    "index": 0,
+    "reason": "applications_include",
+    "before": "Specially designed for bonding and mounting to a wide range of substrates in transportation applications, including aluminum, stainless steel, composites, plastics, acrylics, and ABS plastic in the commercial vehicle market. Applications include:",
+    "after": "Specially designed for bonding and mounting to a wide range of substrates in transportation applications, including aluminum, stainless steel, composites, plastics, acrylics, and ABS plastic in the commercial vehicle market. applications include the following:"
+  },
+  {
+    "product_id": "T-T420",
+    "field": "applications",
+    "index": 0,
+    "reason": "applications_include",
+    "before": "Specially designed for bonding and mounting to a wide range of substrates, including aluminum, stainless steel, composites, plastics, acrylics, and ABS plastic in the commercial vehicle market. Applications include:",
+    "after": "Specially designed for bonding and mounting to a wide range of substrates, including aluminum, stainless steel, composites, plastics, acrylics, and ABS plastic in the commercial vehicle market. applications include the following:"
+  },
+  {
+    "product_id": "T-T430",
+    "field": "applications",
+    "index": 0,
+    "reason": "applications_include",
+    "before": "Provides excellent adhesion and sealing to a wide range of surfaces and conditions in transportation applications including: porous, low energy, cold, and damp surfaces. Applications Include:",
+    "after": "Provides excellent adhesion and sealing to a wide range of surfaces and conditions in transportation applications including: porous, low energy, cold, and damp surfaces. applications include the following:"
+  },
+  {
+    "product_id": "C-T500",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "Used for gap filling and sealing in construction applications, including:",
+    "after": "Used for gap filling and sealing in construction applications, including the following:"
+  },
+  {
+    "product_id": "C-T5100",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "Used for bonding and mounting applications in construction, including:",
+    "after": "Used for bonding and mounting applications in construction, including the following:"
+  },
+  {
+    "product_id": "C-T550",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "Specially designed for bonding and mounting to a broad range of substrates in various construction applications, including:",
+    "after": "Specially designed for bonding and mounting to a broad range of substrates in various construction applications, including the following:"
+  },
+  {
+    "product_id": "C-T553",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "Specially designed for bonding and mounting to a broad range of substrates across various construction applications, including:",
+    "after": "Specially designed for bonding and mounting to a broad range of substrates across various construction applications, including the following:"
+  },
+  {
+    "product_id": "C-T557",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "Specially designed for bonding and mounting to a broad range of substrates across various construction applications, including:",
+    "after": "Specially designed for bonding and mounting to a broad range of substrates across various construction applications, including the following:"
+  },
+  {
+    "product_id": "C-T564",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "Used in various mounting applications in construction, including:",
+    "after": "Used in various mounting applications in construction, including the following:"
+  },
+  {
+    "product_id": "C-T731",
+    "field": "applications",
+    "index": 0,
+    "reason": "including",
+    "before": "Used for bonding and mounting applications across various construction projects, including:",
+    "after": "Used for bonding and mounting applications across various construction projects, including the following:"
+  },
+  {
+    "product_id": "TU-800",
+    "field": "applications",
+    "index": 0,
+    "reason": "colon_fallback_with_context",
+    "before": "Designed for sealing and fastening in construction and industrial environments:",
+    "after": "Designed for sealing and fastening in construction and industrial environments. The following are typical applications:"
+  }
+]
