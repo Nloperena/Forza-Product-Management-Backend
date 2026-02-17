@@ -27,6 +27,13 @@ export interface CreateSubscriberInput {
   ip_hash?: string;
 }
 
+export interface NewsletterSubscriberListOptions {
+  page?: number;
+  limit?: number;
+  status?: NewsletterSubscriber['status'];
+  search?: string;
+}
+
 export class NewsletterSubscriberModel {
   /**
    * Create or update a subscriber (upsert)
@@ -327,6 +334,68 @@ export class NewsletterSubscriberModel {
   async isSubscribed(email: string): Promise<boolean> {
     const subscriber = await this.findByEmail(email);
     return subscriber?.status === 'subscribed';
+  }
+
+  /**
+   * List newsletter subscribers for admin reporting UI
+   */
+  async list(
+    options: NewsletterSubscriberListOptions = {}
+  ): Promise<{ items: NewsletterSubscriber[]; total: number }> {
+    if (!databaseService.isPostgres()) {
+      throw new Error('NewsletterSubscriberModel requires PostgreSQL');
+    }
+
+    const page = Math.max(1, options.page || 1);
+    const limit = Math.min(100, Math.max(1, options.limit || 25));
+    const offset = (page - 1) * limit;
+    const search = options.search?.trim();
+
+    const whereParts: string[] = [];
+    const whereValues: any[] = [];
+    let paramIndex = 1;
+
+    if (options.status) {
+      whereParts.push(`status = $${paramIndex}`);
+      whereValues.push(options.status);
+      paramIndex++;
+    }
+
+    if (search) {
+      whereParts.push(`(email ILIKE $${paramIndex} OR source ILIKE $${paramIndex})`);
+      whereValues.push(`%${search}%`);
+      paramIndex++;
+    }
+
+    const whereClause = whereParts.length > 0 ? `WHERE ${whereParts.join(' AND ')}` : '';
+
+    const client = await databaseService.getClient();
+    try {
+      const totalResult = await client.query(
+        `SELECT COUNT(*) as count FROM newsletter_subscribers ${whereClause}`,
+        whereValues
+      );
+      const total = parseInt(totalResult.rows[0].count, 10);
+
+      const listValues = [...whereValues, limit, offset];
+      const listResult = await client.query(
+        `
+          SELECT *
+          FROM newsletter_subscribers
+          ${whereClause}
+          ORDER BY created_at DESC
+          LIMIT $${paramIndex} OFFSET $${paramIndex + 1}
+        `,
+        listValues
+      );
+
+      return {
+        items: listResult.rows.map((row) => this.parseRow(row)),
+        total
+      };
+    } finally {
+      client.release();
+    }
   }
 
   private generateToken(): string {

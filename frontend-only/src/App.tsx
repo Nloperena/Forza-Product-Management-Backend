@@ -5,16 +5,17 @@ import { ToastProvider } from '@/components/ui/ToastContainer';
 import ProductList from '@/components/ProductList';
 import ProductDetail from '@/components/ProductDetail';
 import NewProductForm from '@/components/NewProductForm';
-import BackupManager from '@/components/BackupManager';
-import AuditLogViewer from '@/components/AuditLogViewer';
 import Login from '@/components/Login';
-import { CheckCircle, AlertCircle, LogOut, User, GripVertical, Package, Archive, History } from 'lucide-react';
+import BlogsView from '@/components/team/BlogsView';
+import ContactSubmissionsView from '@/components/team/ContactSubmissionsView';
+import NewsletterSignupsView from '@/components/team/NewsletterSignupsView';
+import { CheckCircle, AlertCircle, LogOut, User, Package, FileText, MessageSquare, Mail } from 'lucide-react';
 import type { Product } from '@/types/product';
 
-type AppView = 'products' | 'backups' | 'audit-log';
+type AppView = 'products' | 'blogs' | 'contact-submissions' | 'newsletter-signups';
 
 const ApiIndicator: React.FC = () => {
-  const { environment, apiBaseUrl } = useApi();
+  const { environment } = useApi();
   const isProduction = environment === 'heroku';
   
   return (
@@ -56,7 +57,7 @@ const UserInfo: React.FC = () => {
 };
 
 const AppContent: React.FC = () => {
-  const { isAuthenticated, user } = useUser();
+  const { isAuthenticated } = useUser();
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isCreatingNew, setIsCreatingNew] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
@@ -130,7 +131,7 @@ const AppContent: React.FC = () => {
     setRefreshKey(prev => prev + 1);
   };
 
-  const handleProductDeleted = (productId: string) => {
+  const handleProductDeleted = (_productId: string) => {
     setSelectedProduct(null);
     setRefreshKey(prev => prev + 1);
   };
@@ -139,12 +140,6 @@ const AppContent: React.FC = () => {
     return <Login />;
   }
 
-  const handleBackupPromoted = () => {
-    // Refresh product list after backup promotion
-    setRefreshKey(prev => prev + 1);
-    setSelectedProduct(null);
-  };
-
   return (
     <div className="h-screen flex flex-col bg-gray-50">
       {/* Header with Navigation */}
@@ -152,7 +147,7 @@ const AppContent: React.FC = () => {
         <div className="flex items-center justify-between mb-4">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">Forza Product Management</h1>
-            <p className="text-sm text-gray-600 mt-1">Edit and manage products</p>
+            <p className="text-sm text-gray-600 mt-1">Products, blogs, contact form submissions, and newsletter signups</p>
           </div>
           <div className="flex items-center gap-4">
             <ApiIndicator />
@@ -174,26 +169,37 @@ const AppContent: React.FC = () => {
             Products
           </button>
           <button
-            onClick={() => setCurrentView('backups')}
+            onClick={() => setCurrentView('blogs')}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
-              currentView === 'backups'
+              currentView === 'blogs'
                 ? 'bg-indigo-100 text-indigo-700'
                 : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
             }`}
           >
-            <Archive className="h-4 w-4" />
-            Backups
+            <FileText className="h-4 w-4" />
+            Blogs
           </button>
           <button
-            onClick={() => setCurrentView('audit-log')}
+            onClick={() => setCurrentView('contact-submissions')}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
-              currentView === 'audit-log'
+              currentView === 'contact-submissions'
                 ? 'bg-amber-100 text-amber-700'
                 : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
             }`}
           >
-            <History className="h-4 w-4" />
-            Audit Log
+            <MessageSquare className="h-4 w-4" />
+            Contact Form
+          </button>
+          <button
+            onClick={() => setCurrentView('newsletter-signups')}
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
+              currentView === 'newsletter-signups'
+                ? 'bg-emerald-100 text-emerald-700'
+                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+            }`}
+          >
+            <Mail className="h-4 w-4" />
+            Newsletter Signups
           </button>
         </nav>
       </header>
@@ -265,16 +271,17 @@ const AppContent: React.FC = () => {
               )}
             </main>
           </div>
-      ) : currentView === 'backups' ? (
+      ) : currentView === 'blogs' ? (
         <main className="flex-1 overflow-y-auto bg-gray-50">
-          <BackupManager 
-            userName={user?.name || 'Unknown'} 
-            onBackupPromoted={handleBackupPromoted}
-          />
+          <BlogsView />
+        </main>
+      ) : currentView === 'contact-submissions' ? (
+        <main className="flex-1 overflow-y-auto bg-gray-50">
+          <ContactSubmissionsView />
         </main>
       ) : (
         <main className="flex-1 overflow-y-auto bg-gray-50">
-          <AuditLogViewer />
+          <NewsletterSignupsView />
         </main>
       )}
     </div>

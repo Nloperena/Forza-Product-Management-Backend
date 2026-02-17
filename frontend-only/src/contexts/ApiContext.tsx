@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { setApiBaseUrl } from '@/services/api';
+import { setApiBaseUrl, setAdminBaseUrl } from '@/services/api';
 
 export type ApiEnvironment = 'local' | 'heroku';
 
@@ -32,6 +32,7 @@ export const ApiProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Update API base URL immediately when component mounts and when environment changes
   useEffect(() => {
     setApiBaseUrl(apiBaseUrl);
+    setAdminBaseUrl(apiBaseUrl);
   }, [apiBaseUrl, environment]);
 
   // Save to localStorage when environment changes

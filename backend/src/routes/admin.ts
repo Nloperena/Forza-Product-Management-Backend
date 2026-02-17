@@ -10,6 +10,8 @@
 import express, { Request, Response, NextFunction } from 'express';
 import { databaseService } from '../services/database';
 import { emailService } from '../services/emailService';
+import { contactSubmissionModel } from '../models/ContactSubmission';
+import { newsletterSubscriberModel } from '../models/NewsletterSubscriber';
 
 const router = express.Router();
 
@@ -185,6 +187,74 @@ router.get('/health/details', async (_req: Request, res: Response) => {
     return res.status(503).json({
       ...details,
       error: 'Database connection failed'
+    });
+  }
+});
+
+/**
+ * GET /admin/contact-submissions
+ * List contact form submissions for internal team dashboard
+ */
+router.get('/contact-submissions', async (req: Request, res: Response) => {
+  try {
+    const page = Number.parseInt(String(req.query.page || '1'), 10) || 1;
+    const limit = Number.parseInt(String(req.query.limit || '25'), 10) || 25;
+    const status = req.query.status ? String(req.query.status) : undefined;
+    const search = req.query.search ? String(req.query.search) : undefined;
+
+    const { items, total } = await contactSubmissionModel.list({
+      page,
+      limit,
+      status: status as 'pending' | 'processed' | 'replied' | 'spam' | undefined,
+      search
+    });
+
+    return res.status(200).json({
+      ok: true,
+      page,
+      limit,
+      total,
+      items
+    });
+  } catch (error: any) {
+    console.error('[Admin] Error fetching contact submissions:', error.message);
+    return res.status(500).json({
+      ok: false,
+      error: 'Failed to fetch contact submissions'
+    });
+  }
+});
+
+/**
+ * GET /admin/newsletter-subscribers
+ * List newsletter subscribers for internal team dashboard
+ */
+router.get('/newsletter-subscribers', async (req: Request, res: Response) => {
+  try {
+    const page = Number.parseInt(String(req.query.page || '1'), 10) || 1;
+    const limit = Number.parseInt(String(req.query.limit || '25'), 10) || 25;
+    const status = req.query.status ? String(req.query.status) : undefined;
+    const search = req.query.search ? String(req.query.search) : undefined;
+
+    const { items, total } = await newsletterSubscriberModel.list({
+      page,
+      limit,
+      status: status as 'pending' | 'subscribed' | 'unsubscribed' | undefined,
+      search
+    });
+
+    return res.status(200).json({
+      ok: true,
+      page,
+      limit,
+      total,
+      items
+    });
+  } catch (error: any) {
+    console.error('[Admin] Error fetching newsletter subscribers:', error.message);
+    return res.status(500).json({
+      ok: false,
+      error: 'Failed to fetch newsletter subscribers'
     });
   }
 });

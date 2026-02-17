@@ -27,6 +27,13 @@ export interface CreateContactSubmissionInput {
   ip_hash?: string;
 }
 
+export interface ContactSubmissionListOptions {
+  page?: number;
+  limit?: number;
+  status?: ContactSubmission['status'];
+  search?: string;
+}
+
 export class ContactSubmissionModel {
   /**
    * Create a new contact submission
@@ -168,6 +175,70 @@ export class ContactSubmissionModel {
       );
 
       return parseInt(result.rows[0].count, 10);
+    } finally {
+      client.release();
+    }
+  }
+
+  /**
+   * List contact submissions for admin reporting UI
+   */
+  async list(
+    options: ContactSubmissionListOptions = {}
+  ): Promise<{ items: ContactSubmission[]; total: number }> {
+    if (!databaseService.isPostgres()) {
+      throw new Error('ContactSubmissionModel requires PostgreSQL');
+    }
+
+    const page = Math.max(1, options.page || 1);
+    const limit = Math.min(100, Math.max(1, options.limit || 25));
+    const offset = (page - 1) * limit;
+    const search = options.search?.trim();
+
+    const whereParts: string[] = [];
+    const whereValues: any[] = [];
+    let paramIndex = 1;
+
+    if (options.status) {
+      whereParts.push(`status = $${paramIndex}`);
+      whereValues.push(options.status);
+      paramIndex++;
+    }
+
+    if (search) {
+      whereParts.push(
+        `(first_name ILIKE $${paramIndex} OR last_name ILIKE $${paramIndex} OR email ILIKE $${paramIndex} OR message ILIKE $${paramIndex})`
+      );
+      whereValues.push(`%${search}%`);
+      paramIndex++;
+    }
+
+    const whereClause = whereParts.length > 0 ? `WHERE ${whereParts.join(' AND ')}` : '';
+
+    const client = await databaseService.getClient();
+    try {
+      const totalResult = await client.query(
+        `SELECT COUNT(*) as count FROM contact_submissions ${whereClause}`,
+        whereValues
+      );
+      const total = parseInt(totalResult.rows[0].count, 10);
+
+      const listValues = [...whereValues, limit, offset];
+      const listResult = await client.query(
+        `
+          SELECT *
+          FROM contact_submissions
+          ${whereClause}
+          ORDER BY created_at DESC
+          LIMIT $${paramIndex} OFFSET $${paramIndex + 1}
+        `,
+        listValues
+      );
+
+      return {
+        items: listResult.rows.map((row) => this.parseRow(row)),
+        total
+      };
     } finally {
       client.release();
     }

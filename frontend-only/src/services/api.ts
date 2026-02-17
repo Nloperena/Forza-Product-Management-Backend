@@ -232,4 +232,98 @@ export const productApi = {
   },
 };
 
+export interface BlogPost {
+  id: string | number;
+  title?: string;
+  slug?: string;
+  excerpt?: string;
+  content?: string;
+  author?: string;
+  status?: string;
+  published_at?: string;
+  created_at?: string;
+  updated_at?: string;
+  [key: string]: unknown;
+}
+
+export interface ContactSubmission {
+  id: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  message: string;
+  page_url?: string;
+  status: 'pending' | 'processed' | 'replied' | 'spam';
+  internal_email_sent: boolean;
+  confirmation_email_sent: boolean;
+  created_at: string;
+}
+
+export interface NewsletterSubscriber {
+  id: string;
+  email: string;
+  status: 'pending' | 'subscribed' | 'unsubscribed';
+  source?: string;
+  page_url?: string;
+  confirmed_at?: string;
+  unsubscribed_at?: string;
+  created_at: string;
+}
+
+export const blogsApi = {
+  async getBlogs(): Promise<BlogPost[]> {
+    const response = await api.get<BlogPost[]>('/blogs');
+    return response.data;
+  },
+};
+
+interface AdminListResponse<T> {
+  ok: boolean;
+  page: number;
+  limit: number;
+  total: number;
+  items: T[];
+}
+
+const adminClient = axios.create({
+  baseURL: getApiBaseUrl(),
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  withCredentials: false,
+  timeout: 30000,
+});
+
+export const setAdminBaseUrl = (baseUrl: string) => {
+  adminClient.defaults.baseURL = baseUrl;
+};
+
+export const adminApi = {
+  async getContactSubmissions(
+    adminToken: string,
+    params?: { page?: number; limit?: number; status?: string; search?: string }
+  ): Promise<AdminListResponse<ContactSubmission>> {
+    const response = await adminClient.get<AdminListResponse<ContactSubmission>>('/admin/contact-submissions', {
+      params,
+      headers: {
+        'X-Admin-Token': adminToken,
+      },
+    });
+    return response.data;
+  },
+
+  async getNewsletterSubscribers(
+    adminToken: string,
+    params?: { page?: number; limit?: number; status?: string; search?: string }
+  ): Promise<AdminListResponse<NewsletterSubscriber>> {
+    const response = await adminClient.get<AdminListResponse<NewsletterSubscriber>>('/admin/newsletter-subscribers', {
+      params,
+      headers: {
+        'X-Admin-Token': adminToken,
+      },
+    });
+    return response.data;
+  },
+};
+
 export default productApi;
