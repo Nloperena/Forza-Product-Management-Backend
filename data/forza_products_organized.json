@@ -16,7 +16,7 @@
             {
               "product_id": "81-0389",
               "name": "81-0389 - High Performance Neoprene Contact Adhesive",
-              "description": "Ideal for bonding furniture and cabinets,",
+              "description": "Ideal for bonding furniture and cabinets.",
               "brand": "forza_bond",
               "industry": "industrial_industry",
               "chemistry": "Solvent Based",
@@ -24,7 +24,6 @@
               "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/81-0389 5 gal pail.png",
               "benefits": [
                 "Excellent coverage",
-                "High temperature resistance",
                 "Excellent green strength",
                 "Fast, high tack",
                 "80% of final strength achieved immediately, full strength achieved in approximately 24 hours",
@@ -33,7 +32,7 @@
                 "Ideal for aircraft applications"
               ],
               "applications": [
-                "Ideal for bonding furniture and cabinets,",
+                "Ideal for bonding furniture and cabinets",
                 "Especially good for laminating flexible materials to panels.",
                 "Good for rapid bonding of light weight parts",
                 "Bonds leather, veneer, fabric, upholstery",
@@ -78,6 +77,10 @@
                   "property": "Open Time",
                   "value": "15-20",
                   "unit": "minutes"
+                },
+                {
+                  "property": "Temperature",
+                  "value": "High temperature resistance"
                 }
               ],
               "sizing": [
@@ -104,7 +107,7 @@
               "benefits": [
                 "Fast drying",
                 "Excellent fiber-tearing bonds",
-                "Excellent coverage - 600 sq ft per gallon",
+                "Excellent coverage 600 sq ft per gallon",
                 "UL 723 Certification"
               ],
               "applications": [
@@ -170,14 +173,13 @@
             {
               "product_id": "A465",
               "name": "A465 - Filter Coating Adhesive",
-              "description": "Specifically formulated for:",
+              "description": "Specifically formulated for demanding construction applications.",
               "brand": "forza_bond",
               "industry": "industrial_industry",
               "chemistry": "NA",
               "url": "https://forzabuilt.com/product/a465/",
               "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/A465 drum.webp",
               "benefits": [
-                "High temperature resistance.",
                 "No ODS (Ozone Depleting Substances)",
                 "No chlorinated solvents",
                 "Dried adhesive is permanently tacky",
@@ -206,6 +208,10 @@
                   "property": "Elongation",
                   "value": "15",
                   "unit": "%"
+                },
+                {
+                  "property": "Temperature",
+                  "value": "High temperature resistance."
                 }
               ],
               "sizing": [
@@ -223,7 +229,7 @@
             {
               "product_id": "A729",
               "name": "A729 - Filter Bonding Adhesive",
-              "description": "Specifically formulated for",
+              "description": "Specifically formulated for demanding construction applications.",
               "brand": "forza_bond",
               "industry": "industrial_industry",
               "chemistry": "NA",
@@ -279,7 +285,6 @@
               "benefits": [
                 "Post formable",
                 "Excellent coverage",
-                "High - temperature resistance",
                 "80% of final strength achieved upon bonding",
                 "Full strength achieved in 24 hours",
                 "Fast drying with long open time (30-45 minutes)",
@@ -307,6 +312,10 @@
                   "property": "Elongation",
                   "value": "15",
                   "unit": "%"
+                },
+                {
+                  "property": "Temperature",
+                  "value": "High - temperature resistance"
                 }
               ],
               "sizing": [
@@ -325,7 +334,7 @@
             {
               "product_id": "C130",
               "name": "C130 - High Heat Neoprene Adhesive",
-              "description": "High Temperature Resistent Neoprene Contact Adhesive:",
+              "description": "High Temperature Resistent Neoprene Contact Adhesive.",
               "brand": "forza_bond",
               "industry": "industrial_industry",
               "chemistry": "Solvent Based",
@@ -774,7 +783,6 @@
                 "Excellent bonding properties to a variety of substrates, including metal flooring, plywood, and vinyls",
                 "Can be used in refrigerated and walk",
                 "in coolers",
-                "Can withstand extreme temperatures and conditions",
                 "High solids content for excellent coverage and reduced shrinkage",
                 "Easy to apply and rollable",
                 "Tack",
@@ -788,7 +796,12 @@
                 "FRP modified silane rollable flooring adhesive is a high performance adhesive that is specifically designed to bond a variety of substrates, including metal flooring, plywood, and vinyls.",
                 "FRP adhesive is ideal for use in refrigerated and walk in coolers, as it is able to withstand the extreme temperatures and conditions found in these environments."
               ],
-              "technical": [],
+              "technical": [
+                {
+                  "property": "Temperature",
+                  "value": "Can withstand extreme temperatures and conditions"
+                }
+              ],
               "sizing": [
                 "28 oz",
                 "20 oz",
@@ -875,8 +888,7 @@
                 "Long open time",
                 "Aggressive tack",
                 "Excellent Adhesion",
-                "Good heat stability",
-                "Great high and low temperature bond performance"
+                "Good heat stability"
               ],
               "applications": [
                 "Ideal for most packaging and assembly applications",
@@ -903,6 +915,10 @@
                 {
                   "property": "Color",
                   "value": "Clear"
+                },
+                {
+                  "property": "Temperature",
+                  "value": "Great high and low temperature bond performance"
                 }
               ],
               "sizing": [
@@ -1095,7 +1111,6 @@
               "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/H167.webp",
               "benefits": [
                 "Good adhesion to metals, plastics, ceramics, coated paper, melamine, and other non-porous surfaces.",
-                "Good resistance to show at low and ambient temperatures.",
                 "25 second open time",
                 "Meets FDA Food Packaging Requirements 21 CFR 175.105"
               ],
@@ -1105,7 +1120,12 @@
                 "Excellent at bonding diffcult coated papers",
                 "Well suited for bonding electric potting/encapsulating"
               ],
-              "technical": [],
+              "technical": [
+                {
+                  "property": "Temperature",
+                  "value": "Good resistance to show at low and ambient temperatures."
+                }
+              ],
               "sizing": [
                 "PEL",
                 "PT",
@@ -1161,7 +1181,7 @@
               "benefits": [
                 "Fast drying.",
                 "Excellent fiber-tearing bonds.",
-                "Excellent coverage - 600 sq ft per gallon.",
+                "Excellent coverage 600 sq ft per gallon.",
                 "Strong and durable bond.",
                 "UL723 Certification"
               ],
@@ -1185,7 +1205,7 @@
             {
               "product_id": "IC932",
               "name": "IC932 - Non Flammable Not-Methylene Chloride Contact Adhesive",
-              "description": "Permanently bonds to:",
+              "description": "Permanently bonds to a wide variety of substrates.",
               "brand": "forza_bond",
               "industry": "industrial_industry",
               "chemistry": "Solvent Based",
@@ -1256,7 +1276,7 @@
             {
               "product_id": "IC933",
               "name": "IC933 - CA Compliant High Strength Contact Adhesive",
-              "description": "Permanently bonds to:",
+              "description": "Permanently bonds to a wide variety of substrates.",
               "brand": "forza_bond",
               "industry": "industrial_industry",
               "chemistry": "Solvent Based",
@@ -1327,7 +1347,7 @@
             {
               "product_id": "IC934",
               "name": "IC934 - Styrene Safe Pressure Sensitive Spray Adhesive",
-              "description": "Pressure sensitive adhesive that permanently bonds to:",
+              "description": "Pressure sensitive adhesive that permanently bonds to a wide variety of substrates.",
               "brand": "forza_bond",
               "industry": "industrial_industry",
               "chemistry": "Solvent Based",
@@ -1402,7 +1422,7 @@
               "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/IC936 Canister and Aerosol.webp",
               "benefits": [
                 "Excellent bonding to porous substrates",
-                "Aggressive - bonds to nearly any surface",
+                "Aggressive bonds to nearly any surface",
                 "Good heat resistance (up to 180ºF / 82º C)",
                 "High-strength, long-term bond",
                 "Low VOC & California Compliant (SCAQMD Rule 1168)"
@@ -1426,7 +1446,7 @@
             {
               "product_id": "IC946",
               "name": "IC946 - CA Compliant Pressure-Sensitive Adhesive",
-              "description": "Designed to bond numerous substrates including these:",
+              "description": "Designed to bond numerous substrates including these.",
               "brand": "forza_bond",
               "industry": "industrial_industry",
               "chemistry": "Solvent Based",
@@ -1495,7 +1515,7 @@
             {
               "product_id": "IC947",
               "name": "IC947 - High-Temp Styrene-Safe Pressure Sensitive Adhesive",
-              "description": "Web spray adhesive designed for applications using:",
+              "description": "Web spray adhesive designed for applications using.",
               "brand": "forza_bond",
               "industry": "industrial_industry",
               "chemistry": "Solvent Based",
@@ -1574,7 +1594,7 @@
               "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/IC951 Canister.webp",
               "benefits": [
                 "Excellent bonding to porous substrates",
-                "Aggressive - bonds to nearly any surface",
+                "Aggressive bonds to nearly any surface",
                 "Good heat resistance (up to 180ºF/82ºC)",
                 "High-strenth, long-term bond",
                 "Low VOC & California Compliant (SCAQMD Rule 1168)",
@@ -1954,7 +1974,7 @@
             {
               "product_id": "OA4",
               "name": "OA4 - Hybrid Polymer High-Strength Adhesive / Sealant",
-              "description": "Ideally suited where permanently flexible and/or structural bonding is required. It bonds a large variety of materials including:",
+              "description": "Ideally suited where permanently flexible and/or structural bonding is required. It bonds a large variety of materials.",
               "brand": "forza_bond",
               "industry": "industrial_industry",
               "chemistry": "Modified Silane",
@@ -2127,7 +2147,6 @@
               "benefits": [
                 "1:1 ratio, easy mixing or dispensing",
                 "3 minute work life, 8 minute handling strength",
-                "60º to 250º F service temperature",
                 "Resistant to water, salt, vehicle fuels and fluids, and many other substances"
               ],
               "applications": [
@@ -2172,6 +2191,10 @@
                 {
                   "property": "Resistance",
                   "value": "Water, salt, vehicle fuels and fluids"
+                },
+                {
+                  "property": "Temperature",
+                  "value": "60º to 250º F service temperature"
                 }
               ],
               "sizing": [
@@ -2496,8 +2519,7 @@
                 "Excellent coverage",
                 "Extended closed assembly time for press preparation",
                 "Easy clean up",
-                "Excellent sanding properties",
-                "Good low-temperature curing properties"
+                "Excellent sanding properties"
               ],
               "applications": [
                 "Specifically formulated for cold press applications, edge bonding, veneer & HPL laminating, Panel to frame bonding, and general wood assembly."
@@ -2542,6 +2564,10 @@
                   "property": "Package Size",
                   "value": "Industrial",
                   "unit": "tote"
+                },
+                {
+                  "property": "Temperature",
+                  "value": "Good low-temperature curing properties"
                 }
               ],
               "sizing": [
@@ -2611,7 +2637,7 @@
                 "55 Gallon Drum",
                 "Tote"
               ],
-              "color": "*  5 Gallon Pail\n*  55 Gallon Drum\n*  Tote",
+              "color": "",
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
@@ -2637,7 +2663,7 @@
                 "5 Gallon Pail",
                 "55 Gallon Drum"
               ],
-              "color": "*  Amber",
+              "color": "Amber",
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
@@ -2647,7 +2673,7 @@
             {
               "product_id": "RC826",
               "name": "RC826 - LOW VOC, CA COMPLIANT, MULTI-PURPOSE ADHESIVE",
-              "description": "Specifically designed as an economical & aggressive pressure sensitive adhesive. Ideal for quick stick applications including fixturing and wrapping of porous materials. This also bonds to:",
+              "description": "Specifically designed as an economical & aggressive pressure sensitive adhesive. Ideal for quick stick applications including fixturing and wrapping of porous materials. This also bonds to a wide variety of substrates.",
               "brand": "forza_bond",
               "industry": "insulation_industry",
               "chemistry": "Solvent Based",
@@ -2667,7 +2693,7 @@
                 "22L Disposable Canister",
                 "108L Returnable Canister"
               ],
-              "color": "*  Clear\n*  Red",
+              "color": "Clear, Red",
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
@@ -2692,7 +2718,7 @@
                 "22L Disposable Canister",
                 "108L Returnable Canister"
               ],
-              "color": "*  Clear\n*  Blue",
+              "color": "Clear, Blue",
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
@@ -2720,7 +2746,7 @@
                 "5 Gallon Pail",
                 "55 Gallon Drum"
               ],
-              "color": "*  Clear\n*  Red",
+              "color": "Clear, Red",
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
@@ -2746,7 +2772,7 @@
                 "22L Disposable Canister",
                 "108L Returnable Canister"
               ],
-              "color": "*  Clear\n*  Green",
+              "color": "Clear, Green",
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
@@ -2777,7 +2803,7 @@
                 "22L Disposable Canister",
                 "108L Returnable Canister"
               ],
-              "color": "*  Clear\n*  Red",
+              "color": "Clear, Red",
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
@@ -2829,7 +2855,7 @@
                 "5 Gallon Pail",
                 "50ml Dual Cartridge"
               ],
-              "color": "*  Clear\n*  Blue",
+              "color": "Clear, Blue",
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
@@ -2893,7 +2919,7 @@
                 "5 Gallon Pail",
                 "55 Gallon Drum"
               ],
-              "color": "*  Amber",
+              "color": "Amber",
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
@@ -2903,7 +2929,7 @@
             {
               "product_id": "M-C283",
               "name": "M-C283 - Non-Flammable Contact Adhesive",
-              "description": "Specifically designed for laminating and general bonding to substrates in marine applications including:",
+              "description": "Specifically designed for laminating and general bonding to substrates in marine applications.",
               "brand": "forza_bond",
               "industry": "marine_industry",
               "chemistry": "Solvent Based",
@@ -2912,12 +2938,11 @@
               "benefits": [
                 "Non-Flammable",
                 "Excellent high coverage",
-                "Over 220ºF (105ºF) temperature resistant",
                 "80% of final strength achieved immediately; full strength achieved in 24 hours",
                 "Fast drying with long open time",
                 "No ODS (Ozone Depleting Substances)",
                 "VOC free",
-                "Qualifies for LEED - NC & CI EQ Credit 4.4: laminating adhesives shall contain no urea formaldehyde resin"
+                "Qualifies for LEED NC & CI EQ Credit 4.4: laminating adhesives shall contain no urea formaldehyde resin"
               ],
               "applications": [
                 "Specifically designed for laminating and general bonding to substrates in marine applications including:",
@@ -2929,14 +2954,19 @@
                 "Fiberglass",
                 "Plastics"
               ],
-              "technical": [],
+              "technical": [
+                {
+                  "property": "Temperature",
+                  "value": "Over 220ºF (105ºF) temperature resistant"
+                }
+              ],
               "sizing": [
                 "1 Gallon Can",
                 "5 Gallon Pail",
                 "52 Gallon Drum"
               ],
               "color": "",
-              "cleanup": "  FC-CAR (citrus cleaner)\n  Organic Solvents",
+              "cleanup": "FC-CAR (citrus cleaner), Organic Solvents",
               "recommended_equipment": "",
               "published": true,
               "last_edited": "2026-01-16T14:30:31.509Z",
@@ -2945,7 +2975,7 @@
             {
               "product_id": "M-C285",
               "name": "M-C285 - PREMIUM HIGH TEMP NEOPRENE CONTACT ADHESIVE",
-              "description": "Specifically designed for marine applications, bonding materials without the need for fasterners, including:",
+              "description": "Specifically designed for marine applications, bonding materials without the need for fasterners.",
               "brand": "forza_bond",
               "industry": "marine_industry",
               "chemistry": "Solvent Based",
@@ -2955,7 +2985,7 @@
               "applications": [
                 "Specifically designed for marine applications, bonding materials without the need for fasterners, including:",
                 "Veneer, Fabric, Upholstery, Foam, Wood",
-                "Rubber, Plastic laminate, Melamine,",
+                "Rubber, Plastic laminate, Melamine",
                 "Metal, Fiberglass, Various plastics Typical applications Include:",
                 "Laminating flexible materials to panels on boats and yachts",
                 "Rapid bonding of lightweight parts in cabins, decks, and marine vehicles",
@@ -3007,7 +3037,7 @@
                 "5 Gallon Pail",
                 "55 Gallon Drum"
               ],
-              "color": "*  Red\n*  Amber",
+              "color": "Red, Amber",
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
@@ -3017,7 +3047,7 @@
             {
               "product_id": "MC722",
               "name": "MC722 - WEB SPRAY NON-FLAM/NON-METHYLENE CHLORIDE CONTACT ADHESIVE",
-              "description": "Specifically designed to bond:",
+              "description": "Specifically designed to bond.",
               "brand": "forza_bond",
               "industry": "marine_industry",
               "chemistry": "Solvent Based",
@@ -3074,7 +3104,7 @@
                 "22L Disposable Canister",
                 "108L Returnable Canister"
               ],
-              "color": "*  Clear\n*  Blue",
+              "color": "Clear, Blue",
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
@@ -3084,7 +3114,7 @@
             {
               "product_id": "MC723",
               "name": "MC723 - WEB SPRAY CA COMPLIANT MULTI-PURPOSE CONTACT ADHESIVE",
-              "description": "Specifically designed to bond:",
+              "description": "Specifically designed to bond.",
               "brand": "forza_bond",
               "industry": "marine_industry",
               "chemistry": "Solvent Based",
@@ -3143,7 +3173,7 @@
                 "55 Gallon Drum",
                 "5 Gallon Pail"
               ],
-              "color": "*  Clear\n*  Red",
+              "color": "Clear, Red",
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
@@ -3153,7 +3183,7 @@
             {
               "product_id": "MC724",
               "name": "MC724 - WEB SPRAY PRESSURE SENSITIVE ADHESIVE",
-              "description": "Pressure sensitive adhesive designed for use in applications using:",
+              "description": "Pressure sensitive adhesive designed for use in applications using.",
               "brand": "forza_bond",
               "industry": "marine_industry",
               "chemistry": "Solvent Based",
@@ -3215,7 +3245,7 @@
                 "22L Disposable Canister",
                 "108L Disposable Canister"
               ],
-              "color": "*  Clear\n*  Green",
+              "color": "Clear, Green",
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
@@ -3237,7 +3267,7 @@
                 "Pressure sensitive adhesive",
                 "Very fast drying",
                 "Long lasting high tack (pressure sensitive)",
-                "Aggressive - bonds to nearly any surface",
+                "Aggressive bonds to nearly any surface",
                 "High strength, long-term bond",
                 "Low VOC & California Compliant (SCAQMD Rule 1168)",
                 "No ODS (ozone depleting substances"
@@ -3258,7 +3288,7 @@
                 "108L Disposable Canister"
               ],
               "color": "",
-              "cleanup": "  FC-CAR (citrus cleaner)\n  Organic Solvents",
+              "cleanup": "FC-CAR (citrus cleaner), Organic Solvents",
               "recommended_equipment": "  FK20 Gun\n  FK30 Hose\n  Use 6501B Spray Tip\n  FK300 Valve Splitter",
               "published": true,
               "last_edited": "2026-01-16T14:30:31.509Z",
@@ -3267,7 +3297,7 @@
             {
               "product_id": "MC737",
               "name": "MC737 - WEB SPRAY STYRENE SAFE PRESSURE SENSITIVE ADHESIVE",
-              "description": "Web spray adhesive designed for applications using:",
+              "description": "Web spray adhesive designed for applications using.",
               "brand": "forza_bond",
               "industry": "marine_industry",
               "chemistry": "Solvent Based",
@@ -3329,7 +3359,7 @@
                 "22L Disposable Canister",
                 "108L Returnable Canister"
               ],
-              "color": "*  Clear\n*  Green",
+              "color": "Clear, Green",
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
@@ -3415,7 +3445,7 @@
             {
               "product_id": "MC741",
               "name": "MC741 - CA COMPLIANT MULTI-PURPOSE CONTACT ADHESIVE",
-              "description": "Permanently bonds to:",
+              "description": "Permanently bonds to a wide variety of substrates.",
               "brand": "forza_bond",
               "industry": "marine_industry",
               "chemistry": "Solvent Based",
@@ -3474,7 +3504,7 @@
                 "108L Returnable Canister",
                 "55 Gallon Drum"
               ],
-              "color": "*  Clear\n*  Red",
+              "color": "Clear, Red",
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
@@ -3560,7 +3590,7 @@
                 "52 Gallon Drum",
                 "5 Gallon Pail"
               ],
-              "color": "*  Grey\n*  White",
+              "color": "Grey, White",
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
@@ -3570,7 +3600,7 @@
             {
               "product_id": "M-OS764",
               "name": "M-OS764 - ULTRA HIGH-STRENGTH HYBRID POLYMER STRUCTURAL ADHESIVE",
-              "description": "Specifically designed to bond a large variety of materials including metals, granite, painted steel, glass, wood, most plastics, fiberglass, rubber, and polystyrene foam. Provides a permanent structural bond with internal and external applications above the waterline:",
+              "description": "Specifically designed to bond a large variety of materials including metals, granite, painted steel, glass, wood, most plastics, fiberglass, rubber, and polystyrene foam. Provides a permanent structural bond with internal and external applications above the waterline.",
               "brand": "forza_bond",
               "industry": "marine_industry",
               "chemistry": "Modified Silane",
@@ -3639,7 +3669,7 @@
                 "52 Gallon Drum",
                 "5 Gallon Pail"
               ],
-              "color": "*  Grey\n*  White",
+              "color": "Grey, White",
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
@@ -3841,7 +3871,7 @@
               "benefits": [
                 "Excellent bond strength",
                 "Impact and weather resistant",
-                "1:1 ratio - easy mixing or dispensing",
+                "1:1 ratio easy mixing or dispensing",
                 "Minimal surface preparation required",
                 "Forms tough, high-strength, high-impact resistant bonds",
                 "Resists most common industrial cleaners, fuels, lubricants, and environmental conditions",
@@ -3904,7 +3934,7 @@
             {
               "product_id": "TAC-734G",
               "name": "TAC-734G - WEB SPRAY HIGH TACK INFUSION MOLDING ADHESIVE",
-              "description": "An infusion molding adhesive that is specifically formulated to overcome the problems normally associated with using other types of adhesives, such as bonding failure, resin blockage, and surface defects in the finish product. Designed to work with these materials and processes associated with infusion molding:",
+              "description": "An infusion molding adhesive that is specifically formulated to overcome the problems normally associated with using other types of adhesives, such as bonding failure, resin blockage, and surface defects in the finish product. Designed to work with these materials and processes associated with infusion molding.",
               "brand": "forza_bond",
               "industry": "composites_industry",
               "chemistry": "Solvent Based",
@@ -3936,7 +3966,7 @@
             {
               "product_id": "TAC-735R",
               "name": "TAC-735R - MIST SPRAY NO HAPS INFUSION MOLDING ADHESIVE",
-              "description": "An infusion molding adhesive that is specifically formulated to overcome problems normally associated with using other types of adhesives, such as bonding failure, resin blockage, & surface defects in the finish product. Temporarily bonds & fixtures materials including:",
+              "description": "An infusion molding adhesive that is specifically formulated to overcome problems normally associated with using other types of adhesives, such as bonding failure, resin blockage, & surface defects in the finish product. Temporarily bonds & fixtures materials.",
               "brand": "forza_bond",
               "industry": "composites_industry",
               "chemistry": "Solvent Based",
@@ -4009,7 +4039,7 @@
             {
               "product_id": "TAC-739R",
               "name": "TAC-739R - MIST SPRAY INFUSION MOLDING ADHESIVE",
-              "description": "An infusion molding adhesive that is specifically formulated to overcome the problems normally associated with using other types of adhesives, such as bonding failure, resin blockage, and surface defects in the finish product. Temporarily bonds & fixtures materials including:",
+              "description": "An infusion molding adhesive that is specifically formulated to overcome the problems normally associated with using other types of adhesives, such as bonding failure, resin blockage, and surface defects in the finish product. Temporarily bonds & fixtures materials.",
               "brand": "forza_bond",
               "industry": "composites_industry",
               "chemistry": "Solvent Based",
@@ -4095,7 +4125,7 @@
                 "22L Disposable Canister",
                 "108L Returnable Canister"
               ],
-              "color": "*  Gray",
+              "color": "Gray",
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
@@ -4105,14 +4135,13 @@
             {
               "product_id": "TAC-OS74",
               "name": "TAC-OS74 - ULTRA HIGH-STRENGTH HYBRID POLYMER STRUCTURAL ADHESIVE",
-              "description": "Specifically designed to bond a large variety of materials including metals, granite, painted steel, glass, wood, most plastics, fiberglass, rubber, and polystyrene foam. Provides a permanent structural bond with internal and external applications above the waterline:",
+              "description": "Specifically designed to bond a large variety of materials including metals, granite, painted steel, glass, wood, most plastics, fiberglass, rubber, and polystyrene foam. Provides a permanent structural bond with internal and external applications above the waterline.",
               "brand": "forza_bond",
               "industry": "composites_industry",
               "chemistry": "Modified Silane",
               "url": "",
               "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Composites/TAC-OS74 Sausage.png",
               "benefits": [
-                "Retains strong bond through impact, peel, flex, and changing temperatures",
                 "Contains no solvents or isocyanate",
                 "Non",
                 "Yellowing",
@@ -4124,10 +4153,15 @@
               "applications": [
                 "Specifically designed to bond a large variety of materials including metals, granite, painted steel, glass, wood, most plastics, fiberglass, rubber, and polystyrene foam. Provides a permanent structural bond with internal and external applications above the waterline:",
                 "Structural bonding composites bond strength",
-                "Metal applications   repairing welds not under load",
+                "Metal applications repairing welds not under load",
                 "Windshield on watercraft"
               ],
-              "technical": [],
+              "technical": [
+                {
+                  "property": "Temperature",
+                  "value": "Retains strong bond through impact, peel, flex, and changing temperatures"
+                }
+              ],
               "sizing": [
                 "10.1oz Cartridge",
                 "20 oz Sausage",
@@ -4135,7 +4169,7 @@
                 "5 Gallon Pail",
                 "52 Gallon Drum"
               ],
-              "color": "*  White\n*  Gray",
+              "color": "White, Gray",
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
@@ -4164,7 +4198,7 @@
               ],
               "applications": [
                 "Bonds engineered thermoplastics, thermosets, composites, and metal structural elements in any combination.",
-                "Bonds a wide variety of rubber materials and a vast range of metals without the need for surface preparation, primers, or  chemical wipes.",
+                "Bonds a wide variety of rubber materials and a vast range of metals without the need for surface preparation, primers, or chemical wipes.",
                 "Additionally, effectively bonds composites and other substrates"
               ],
               "technical": [],
@@ -4174,7 +4208,7 @@
                 "5 Gallon Pail",
                 "52 Gallon Drum"
               ],
-              "color": "*  White",
+              "color": "White",
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
@@ -4184,7 +4218,7 @@
             {
               "product_id": "TAC-R760",
               "name": "TAC-R760 - Two-Part Epoxy Adhesives",
-              "description": "Used for:",
+              "description": "Used for.",
               "brand": "forza_bond",
               "industry": "composites_industry",
               "chemistry": "Epoxy",
@@ -4193,7 +4227,6 @@
               "benefits": [
                 "1:1 ratio, easy mixing or dispensing",
                 "3 minute work life, 10 minute handling strength",
-                "60º to 250ºF service temperature",
                 "Resistant to water, salt, vehicle fuels and fluids, and many other substances"
               ],
               "applications": [
@@ -4205,7 +4238,12 @@
                 "Fills small voids, seams, and surface defects in polyester, epoxy, and vinylester laminates",
                 "Provides non-structural composite-to-metal bonding for marine and transportation assemblies"
               ],
-              "technical": [],
+              "technical": [
+                {
+                  "property": "Temperature",
+                  "value": "60º to 250ºF service temperature"
+                }
+              ],
               "sizing": [
                 "300 mL Dual Cartridge",
                 "50 mL Dual Cartridge",
@@ -4223,7 +4261,7 @@
             {
               "product_id": "TAC-R777",
               "name": "TAC-R777 - TWO-PART MODIFIED EPOXY ADHESIVE",
-              "description": "Ideal for:",
+              "description": "Ideal for.",
               "brand": "forza_bond",
               "industry": "composites_industry",
               "chemistry": "Modified Epoxy",
@@ -4233,7 +4271,7 @@
                 "1:1 ratio, easy mixing/dispensing",
                 "Minimal surface preparation required",
                 "75 F to 400 F service temp",
-                "Retains flexible bond line, out performs most  brittle  two part adhesives",
+                "Retains flexible bond line, out performs most brittle two part adhesives",
                 "Light stable and UV resistant",
                 "Paintable",
                 "0 VOC",
@@ -4256,7 +4294,7 @@
                 "5 Gallon Pail",
                 "52 Gallon Drum"
               ],
-              "color": "*  Gray",
+              "color": "Gray",
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
@@ -4576,7 +4614,7 @@
                 "22L Disposable Canister",
                 "108L Returnable Canister"
               ],
-              "color": "*  Clear\n*  Green",
+              "color": "Clear, Green",
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
@@ -4787,7 +4825,7 @@
                 "Low VOC",
                 "Low HAPs formula",
                 "Excellent bonding to porous substrates",
-                "Aggressive - bonds to nearly any surface",
+                "Aggressive bonds to nearly any surface",
                 "Good heat resistance (up to 180OF/82OC)",
                 "High-strength, long-term bond"
               ],
@@ -4806,7 +4844,7 @@
                 "108L Returnable Canister"
               ],
               "color": "",
-              "cleanup": "  ForzaCLEAN FC-CAR (citrus cleaner)\n  Organic Solvents",
+              "cleanup": "ForzaCLEAN FC-CAR (citrus cleaner), Organic Solvents",
               "recommended_equipment": "  FK20 Spray Gun\n  FK30 Hose\n  Use 9501 Spray Tip",
               "published": true,
               "last_edited": "2026-01-16T14:30:31.510Z",
@@ -5092,7 +5130,7 @@
             {
               "product_id": "CC501",
               "name": "CC501 - LOW VOC, CA COMPLIANT, AGGRESSIVE, FAST DRYING PRESSURE SENSITIVE ADHESIVE",
-              "description": "A CA-compliant pressure-sensitive adhesive designed for temporary fixturing in construction applications, including:",
+              "description": "A CA-compliant pressure-sensitive adhesive designed for temporary fixturing in construction applications.",
               "brand": "forza_bond",
               "industry": "construction_industry",
               "chemistry": "Solvent Based",
@@ -5112,8 +5150,8 @@
                 "22L Disposable Canister",
                 "108 Returnable Canister"
               ],
-              "color": "*  Clear\n*  Red",
-              "cleanup": "*  ForzaCLEAN Citrus Cleaner\n*  Organic Solvents",
+              "color": "Clear, Red",
+              "cleanup": "ForzaCLEAN Citrus Cleaner, Organic Solvents",
               "recommended_equipment": "*  Fk20 Gun\n*  Fk30 Hose\n*  6501B Tip",
               "published": true,
               "last_edited": "2026-01-02T20:38:18.657Z",
@@ -5122,7 +5160,7 @@
             {
               "product_id": "CC503",
               "name": "CC503 - LOW VOC, CA COMPLIANT, MULTI-PURPOSE ADHESIVE",
-              "description": "A low-VOC, California-compliant, multi-purpose web spray canister adhesive, specifically designed for various bonding and fixturing applications in construction, including:",
+              "description": "A low-VOC, California-compliant, multi-purpose web spray canister adhesive, specifically designed for various bonding and fixturing applications in construction.",
               "brand": "forza_bond",
               "industry": "construction_industry",
               "chemistry": "Solvent Based",
@@ -5155,7 +5193,7 @@
             {
               "product_id": "CC507",
               "name": "CC507 - HIGH-TEMP STYRENE SAFE PRESSURE SENSITIVE ADHESIVE",
-              "description": "A high-strength, styrene-safe pressure-sensitive adhesive designed specifically for construction applications, including:",
+              "description": "A high-strength, styrene-safe pressure-sensitive adhesive designed specifically for construction applications.",
               "brand": "forza_bond",
               "industry": "construction_industry",
               "chemistry": "Solvent Based",
@@ -5217,8 +5255,8 @@
                 "22L Disposable Canister",
                 "108 Returnable Canister"
               ],
-              "color": "*  Clear\n*  Green",
-              "cleanup": "*  ForzaCLEAN Citrus Cleaner\n*  Organic Solvents",
+              "color": "Clear, Green",
+              "cleanup": "ForzaCLEAN Citrus Cleaner, Organic Solvents",
               "recommended_equipment": "*  FK20 Gun\n*  Fk30 Hose\n*  M201, or 6501 Tip",
               "published": true,
               "last_edited": "2026-01-02T20:38:18.657Z",
@@ -5227,7 +5265,7 @@
             {
               "product_id": "CC513",
               "name": "CC513 - NON FLAM/NON-METHYLENE CHLORIDE CONTRACT ADHESIVE",
-              "description": "A non-flammable, non-methylene chloride-based contact adhesive designed to bond a wide range of substrates in various construction applications, including:",
+              "description": "A non-flammable, non-methylene chloride-based contact adhesive designed to bond a wide range of substrates in various construction applications.",
               "brand": "forza_bond",
               "industry": "construction_industry",
               "chemistry": "Solvent Based",
@@ -5246,8 +5284,8 @@
                 "22L Disposable Canister",
                 "108L Returnable Canister"
               ],
-              "color": "*  Clear\n*  Blue",
-              "cleanup": "*  ForzaCLEAN Citrus Cleaner\n*  Organic Solvents",
+              "color": "Clear, Blue",
+              "cleanup": "ForzaCLEAN Citrus Cleaner, Organic Solvents",
               "recommended_equipment": "*  FK18 Gun\n*  FK80 Hose\n*  11001B Tip",
               "published": true,
               "last_edited": "2026-01-02T20:38:18.657Z",
@@ -5256,7 +5294,7 @@
             {
               "product_id": "CC515",
               "name": "CC515 - PRESURE SENSITVE ADHESIVE",
-              "description": "An aggressive, fast-drying pressure-sensitive adhesive designed to bond a wide range of substrates, including:",
+              "description": "An aggressive, fast-drying pressure-sensitive adhesive designed to bond a wide range of substrates.",
               "brand": "forza_bond",
               "industry": "construction_industry",
               "chemistry": "Solvent Based",
@@ -5276,8 +5314,8 @@
                 "22L Disposable Canister",
                 "108 Returnable Canister"
               ],
-              "color": "*  Clear\n*  Green",
-              "cleanup": "*  ForzaCLEAN Citrus Cleaner\n*  Organic Solvents",
+              "color": "Clear, Green",
+              "cleanup": "ForzaCLEAN Citrus Cleaner, Organic Solvents",
               "recommended_equipment": "*  FK20 Spray Gun\n*  FK30 Hose\n*  6501B Tip",
               "published": true,
               "last_edited": "2026-01-02T20:38:18.657Z",
@@ -5286,7 +5324,7 @@
             {
               "product_id": "CC519",
               "name": "CC519 - CA COMPLIANT CONTACT ADHESIVE",
-              "description": "A California-compliant contact adhesive designed to bond a wide range of substrates in construction applications including:",
+              "description": "A California-compliant contact adhesive designed to bond a wide range of substrates in construction applications.",
               "brand": "forza_bond",
               "industry": "construction_industry",
               "chemistry": "Solvent Based",
@@ -5349,8 +5387,8 @@
                 "55 Gallon Drum",
                 "5 Gallon Pail"
               ],
-              "color": "*  Clear\n*  Red",
-              "cleanup": "*  ForzaCLEAN Citrus Cleaner\n*  Organic Solvents",
+              "color": "Clear, Red",
+              "cleanup": "ForzaCLEAN Citrus Cleaner, Organic Solvents",
               "recommended_equipment": "*  FK20 Spray Gun\n*  FK30 Hose\n*  Use 9501 Spray Tip",
               "published": true,
               "last_edited": "2026-01-02T20:38:18.657Z",
@@ -5359,7 +5397,7 @@
             {
               "product_id": "C-C360",
               "name": "C-C360 - High-Temp Neoprene Contact Adhesive",
-              "description": "Flammable neoprene contact adhesive designed specifically for these and other construction applications:",
+              "description": "Flammable neoprene contact adhesive designed specifically for these and other construction applications.",
               "brand": "forza_bond",
               "industry": "construction_industry",
               "chemistry": "Solvent Based",
@@ -5370,7 +5408,6 @@
                 "Excellent Coverage",
                 "Post formable",
                 "High",
-                "temperature resistance",
                 "80% of final strength achieved upon bonding",
                 "Full strength achieved in 24 hours",
                 "Fast drying",
@@ -5386,7 +5423,12 @@
                 "Roofing applications",
                 "Bonding membrane materials in flat roofing"
               ],
-              "technical": [],
+              "technical": [
+                {
+                  "property": "temperature",
+                  "value": "resistance"
+                }
+              ],
               "sizing": [
                 "1 Gallon Can",
                 "5 Gallon Pail",
@@ -5402,7 +5444,7 @@
             {
               "product_id": "C-C551",
               "name": "C-C551 - Non-Flam Sprayable Contact Adhesive",
-              "description": "A non-flammable, high-performance spray contact adhesive specifically designed for these construction-related applications:",
+              "description": "A non-flammable, high-performance spray contact adhesive specifically designed for these construction-related applications.",
               "brand": "forza_bond",
               "industry": "construction_industry",
               "chemistry": "Solvent Based",
@@ -5412,7 +5454,6 @@
                 "Non",
                 "Flammable",
                 "High Coverage",
-                "Over 220 F (105 C) temperature resistant",
                 "80% of final strength achieved immediately; full strength achieved in 24 hours",
                 "Fast drying with long open time",
                 "No ODS (Ozone Depleting Substances)",
@@ -5450,6 +5491,10 @@
                   "property": "VOC",
                   "value": "0 g/L",
                   "unit": ""
+                },
+                {
+                  "property": "Temperature",
+                  "value": "Over 220 F (105 C) temperature resistant"
                 }
               ],
               "sizing": [
@@ -5467,7 +5512,7 @@
             {
               "product_id": "C-OA5",
               "name": "C-OA5 - HYBRID POLYMER, MOISTURE CURE ADHESIVE",
-              "description": "Specially designed for adhering and sealing roofing membranes and flashing materials, including:",
+              "description": "Specially designed for adhering and sealing roofing membranes and flashing materials.",
               "brand": "forza_bond",
               "industry": "construction_industry",
               "chemistry": "Modified Silane",
@@ -5545,7 +5590,7 @@
             {
               "product_id": "C-OA52",
               "name": "C-OA52 - QUICK GRAB ADHESIVE",
-              "description": "A performance polymer adhesive with high initial strength, designed specifically for construction applications, including:",
+              "description": "A performance polymer adhesive with high initial strength, designed specifically for construction applications.",
               "brand": "forza_bond",
               "industry": "construction_industry",
               "chemistry": "Modified Silane",
@@ -5612,7 +5657,7 @@
             {
               "product_id": "C-OA77",
               "name": "C-OA77 - HYBRID POLYMER, HIGH PERFORMANCE, TROWEL GRADE, FLOORING ADHESIVE",
-              "description": "Specifically designed for use in the flooring industry, including:",
+              "description": "Specifically designed for use in the flooring industry.",
               "brand": "forza_bond",
               "industry": "construction_industry",
               "chemistry": "Modified Silane",
@@ -5646,7 +5691,7 @@
             {
               "product_id": "C-OA98",
               "name": "C-OA98 - HYBRID POLYMER, MOISTURE CURE ADHESIVE",
-              "description": "A permanent structural bond for interior and exterior construction applications. This product bonds a large variety of construction-related materials:",
+              "description": "A permanent structural bond for interior and exterior construction applications. This product bonds a large variety of construction-related materials.",
               "brand": "forza_bond",
               "industry": "construction_industry",
               "chemistry": "Modified Silane",
@@ -5657,7 +5702,7 @@
                 "A permanent structural bond for interior and exterior construction applications. This product bonds a large variety of construction related materials:",
                 "All Metals, Painted Steel, Glass",
                 "Granite, Wood, Most Plastics",
-                "Fiberglass, Rubber,Polystyrene Foam"
+                "Fiberglass, Rubber, Polystyrene Foam"
               ],
               "technical": [
                 {
@@ -5855,7 +5900,7 @@
             {
               "product_id": "C-R552",
               "name": "C-R552 - TWO-PART MODIFIED EPOXY",
-              "description": "Specially designed as a high-speed two-component sealant where rapid curing is necessary or deep joints are present in construction applications, including:",
+              "description": "Specially designed as a high-speed two-component sealant where rapid curing is necessary or deep joints are present in construction applications.",
               "brand": "forza_bond",
               "industry": "construction_industry",
               "chemistry": "Modified Epoxy",
@@ -5925,7 +5970,7 @@
             {
               "product_id": "C-R560",
               "name": "C-R560 - TWO-PART 5 MINUTE EPOXY ADHESIVE",
-              "description": "Provides a tenacious bond to wood, concrete, fiberglass, and most thermoset plastics for many construction applications, including:",
+              "description": "Provides a tenacious bond to wood, concrete, fiberglass, and most thermoset plastics for many construction applications.",
               "brand": "forza_bond",
               "industry": "construction_industry",
               "chemistry": "Epoxy",
@@ -6121,7 +6166,6 @@
                 "Stands up to weather and UV, flexible, durable, and crack-resistant",
                 "Performs in extreme temps from -75°F to 400°F, all year long",
                 "Cures fast and tack-free in under an hour, strong within 24 hours",
-                "Delivers reliable joint support with high tensile strength",
                 "Bonds to concrete, steel, aluminum, wood, and plastics with ease",
                 "Flexes with slab movement to reduce repairs",
                 "Safe, VOC-compliant, and non-yellowing for any jobsite",
@@ -6136,7 +6180,12 @@
                 "Concrete",
                 "Wood and Many Plastics"
               ],
-              "technical": [],
+              "technical": [
+                {
+                  "property": "Tensile",
+                  "value": "Delivers reliable joint support with high tensile strength"
+                }
+              ],
               "sizing": [
                 "20oz Sausage",
                 "10.1oz Cartridge",
@@ -6163,7 +6212,7 @@
             {
               "product_id": "OA28",
               "name": "OA28 - Rollable Panel Adhesive",
-              "description": "Designed for installing fiber reinforced plastic,",
+              "description": "Designed for installing fiber reinforced plastic.",
               "brand": "forza_seal",
               "industry": "industrial_industry",
               "chemistry": "Modified Silane",
@@ -6203,7 +6252,7 @@
             {
               "product_id": "OA29",
               "name": "OA29 - Trowelable Panel Adhesive",
-              "description": "Specifically designed for installing fiber reinforced plastic,",
+              "description": "Specifically designed for installing fiber reinforced plastic.",
               "brand": "forza_seal",
               "industry": "industrial_industry",
               "chemistry": "Modified Silane",
@@ -6274,7 +6323,7 @@
             {
               "product_id": "OS10",
               "name": "OS10 - Performance Polymer",
-              "description": "Seals a large variety of materials including:",
+              "description": "Seals a large variety of materials.",
               "brand": "forza_seal",
               "industry": "industrial_industry",
               "chemistry": "Modified Silane",
@@ -6381,7 +6430,7 @@
             {
               "product_id": "OS2",
               "name": "OS2 - Multi-Purpose Hybrid Polymer Sealant",
-              "description": "Seals a large variety of materials including:",
+              "description": "Seals a large variety of materials.",
               "brand": "forza_seal",
               "industry": "industrial_industry",
               "chemistry": "Modified Silane",
@@ -6496,14 +6545,12 @@
               "url": "",
               "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/OS2WT Pail.webp",
               "benefits": [
-                "Retains strong bond through impact, peel, flex and changing temperature",
                 "Easily apply by extrusion or trowel",
                 "Non-yellowing",
                 "Does not form bubbles, shrink or crack",
                 "Highly weather resistant",
                 "Immediately paintable applications",
                 "Semi Self-Leveling",
-                "Low temperature flexibility (properties retained to -75° F)",
                 "High UV resistance",
                 "Doesn’t attract dust or dirt"
               ],
@@ -6516,7 +6563,16 @@
                 "Safe for use in applications involving polystyrene foam board",
                 "Ideal for applications requiring California Regulatory Compliance"
               ],
-              "technical": [],
+              "technical": [
+                {
+                  "property": "Temperature",
+                  "value": "Retains strong bond through impact, peel, flex and changing temperature"
+                },
+                {
+                  "property": "Temperature",
+                  "value": "Low temperature flexibility (properties retained to -75° F)"
+                }
+              ],
               "sizing": [
                 "10.1oz Cartridge",
                 "28oz Cartridge",
@@ -6534,7 +6590,7 @@
             {
               "product_id": "OS20",
               "name": "OS20 - High-Strength Hybrid Polymer Adhesive/Sealnt",
-              "description": "Seals a large variety of materials including:",
+              "description": "Seals a large variety of materials.",
               "brand": "forza_seal",
               "industry": "industrial_industry",
               "chemistry": "Modified Silane",
@@ -6641,7 +6697,7 @@
             {
               "product_id": "OS24",
               "name": "OS24 - Ultra High-Strength Hybrid Polymer Structural Ahesive",
-              "description": "Ideal for interior and exterior applications requiring permanent structural bonding. Bonds a large variety of materials including:",
+              "description": "Ideal for interior and exterior applications requiring permanent structural bonding. Bonds a large variety of materials.",
               "brand": "forza_seal",
               "industry": "industrial_industry",
               "chemistry": "Modified Silane",
@@ -6859,7 +6915,7 @@
             {
               "product_id": "OS35",
               "name": "OS35 - Single Component Silicone Sealant",
-              "description": "A neutral-cure oxime silicone sealant designed to offer strong reliable sealing to a variety of applications including:",
+              "description": "A neutral-cure oxime silicone sealant designed to offer strong reliable sealing to a variety of applications.",
               "brand": "forza_seal",
               "industry": "industrial_industry",
               "chemistry": "Silicone",
@@ -6868,7 +6924,6 @@
               "benefits": [
                 "High weather resistant",
                 "Multi-surface bond",
-                "Single components RTV (Room Temperature Vulcanizing, Anti-fungal properties)",
                 "Can be applied to overhead or vertical joints",
                 "Excellent UV resistance, does not crack or collapse in direct sunlight"
               ],
@@ -6921,6 +6976,10 @@
                 {
                   "property": "Staining",
                   "value": "Non"
+                },
+                {
+                  "property": "Temperature",
+                  "value": "Single components RTV (Room Temperature Vulcanizing, Anti-fungal properties)"
                 }
               ],
               "sizing": [
@@ -6940,7 +6999,7 @@
             {
               "product_id": "OS37",
               "name": "OS37 - Acetoxy Silicone",
-              "description": "Moisture cure acetoxy silicone sealant designed to reliably seal a variety of substrates in a variety of applications including:",
+              "description": "Moisture cure acetoxy silicone sealant designed to reliably seal a variety of substrates in a variety of applications.",
               "brand": "forza_seal",
               "industry": "industrial_industry",
               "chemistry": "Silicone",
@@ -7058,7 +7117,6 @@
               "benefits": [
                 "Excellent UV resistance, Does not crack, collapse in direct sunlight",
                 "Multi-purpose",
-                "Single Component RTV (Room Temperature Vulcanizing), Anti-fungal properties",
                 "Can be applied to overhead or vertical joints",
                 "Bonds many surfaces: Clean metal-including chrome, painted surfaces, glasses, ceramics, most plastics, non-oily woods, fibrous cement and concrete surfaces",
                 "Di-electrical properties & FDA (Food Grade) Compliant. Sealing of solar panels & junction boxes"
@@ -7070,7 +7128,12 @@
                 "Kitchen and bath applications",
                 "Concrete void filling including driveway seems and crack"
               ],
-              "technical": [],
+              "technical": [
+                {
+                  "property": "Temperature",
+                  "value": "Single Component RTV (Room Temperature Vulcanizing), Anti-fungal properties"
+                }
+              ],
               "sizing": [
                 "10.1 oz Cartridge",
                 "20 oz Sausage"
@@ -7085,7 +7148,7 @@
             {
               "product_id": "OS61",
               "name": "OS61 - High-Performance Semi Self-Leveling Polymer Sealant",
-              "description": "Designed to seal a wide variety of materials such as:",
+              "description": "Designed to seal a wide variety of materials such as materials.",
               "brand": "forza_seal",
               "industry": "industrial_industry",
               "chemistry": "Modified Silane",
@@ -7193,7 +7256,7 @@
                 "52 Gallon Drum",
                 "5 Gallon Pail"
               ],
-              "color": "*  Grey\n*  White\n*  Black",
+              "color": "Grey, White, Black",
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
@@ -7218,7 +7281,7 @@
                 "10.1oz Cartridge",
                 "20oz Sausage"
               ],
-              "color": "*  Clear\n*  White",
+              "color": "Clear, White",
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
@@ -7233,7 +7296,7 @@
             {
               "product_id": "M-OS789",
               "name": "M-OS789 - MULTI-PURPOSE HYBRID POLYMER SEALANT",
-              "description": "Designed to seal a large variety of materials in boat manufacturing:",
+              "description": "Designed to seal a large variety of materials in boat manufacturing.",
               "brand": "forza_seal",
               "industry": "marine_industry",
               "chemistry": "Modified Silane",
@@ -7298,7 +7361,7 @@
                 "52 Gallon Drum",
                 "5 Gallon Pail"
               ],
-              "color": "*  Grey\n*  Black\n*  White",
+              "color": "Grey, Black, White",
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
@@ -7315,15 +7378,13 @@
               "url": "https://forzabuilt.com/product/m-os796/",
               "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/m-os796.png",
               "benefits": [
-                "Retains strong bond through impact, peel, flex and changing temperature",
                 "Easily apply by extrusion, spray or trowel",
                 "Non",
                 "yellowing",
                 "Does not form bubbles, shrink or crack",
                 "Highly weather resistant",
                 "Immediately paintable applications",
-                "Low temperature flexibility (properties retained to",
-                "75  F)",
+                "75 F)",
                 "Quick skin",
                 "Can be painted"
               ],
@@ -7387,6 +7448,14 @@
                 {
                   "property": "Staining",
                   "value": "Non-Staining"
+                },
+                {
+                  "property": "Temperature",
+                  "value": "Retains strong bond through impact, peel, flex and changing temperature"
+                },
+                {
+                  "property": "Temperature",
+                  "value": "Low temperature flexibility (properties retained to"
                 }
               ],
               "sizing": [
@@ -7418,12 +7487,10 @@
               "url": "",
               "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Composites/TAC-OS7.png",
               "benefits": [
-                "Retains strong seal through impact, peel, flex, and changing temperature",
                 "Non-yellowing",
                 "Does not form bubbles, shrink or crack",
                 "Highly weather resistant",
                 "Immediately paintable",
-                "Low temperature flexibility (properties retained to -75ºF)",
                 "High UV resistance/ Doesn’t Chalkout",
                 "Doesn’t attract dust or dirt"
               ],
@@ -7436,7 +7503,16 @@
                 "Environments requiring UV, weather, and chemical resistance",
                 "Both interior and exterior composite assemblies"
               ],
-              "technical": [],
+              "technical": [
+                {
+                  "property": "Temperature",
+                  "value": "Retains strong seal through impact, peel, flex, and changing temperature"
+                },
+                {
+                  "property": "Temperature",
+                  "value": "Low temperature flexibility (properties retained to -75ºF)"
+                }
+              ],
               "sizing": [
                 "20oz Sausage",
                 "10.1 oz Cartridge",
@@ -7454,7 +7530,7 @@
             {
               "product_id": "TAC-OS75",
               "name": "TAC-OS75 - NEUTRAL CUREOXIME SILICONE SEALANT",
-              "description": "A neutral-cure oxime silicone sealant designed to offer a strong reliable seal to a variety of applications including:",
+              "description": "A neutral-cure oxime silicone sealant designed to offer a strong reliable seal to a variety of applications.",
               "brand": "forza_seal",
               "industry": "composites_industry",
               "chemistry": "Silicone",
@@ -7478,7 +7554,7 @@
                 "5 Gallon Pail",
                 "55 Gallon Drum"
               ],
-              "color": "*  Clear\n*  White\n*  Gray\n*  Black",
+              "color": "Clear, White, Gray, Black",
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
@@ -7493,18 +7569,17 @@
             {
               "product_id": "T-OA152",
               "name": "T-OA152 - Hybrid Polymer Structural Adhesive",
-              "description": "A permanent hybrid polymer structural bond for interior and exterior transportation applications. Bonds a large variety of materials in various transportation applications including:",
+              "description": "A permanent hybrid polymer structural bond for interior and exterior transportation applications. Bonds a large variety of materials in various transportation applications.",
               "brand": "forza_seal",
               "industry": "transportation_industry",
               "chemistry": "Modified Silane",
               "url": "https://forzabuilt.com/product/t-oa152/",
               "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Transportation/T-OA152 Cartridge.png",
               "benefits": [
-                "Retains strong bond through impact, peel, flex, and changing temperatures",
                 "Contains no solvents or iscyanates",
                 "Easily applied by extrusion or trowel",
                 "Non",
-                "yellowing   Exposed to UV",
+                "yellowing Exposed to UV",
                 "Does not form bubbles, shrink, or crack when curing",
                 "High resistant to water, salt",
                 "water, oil, grease, fuel, and mild chemicals",
@@ -7564,6 +7639,10 @@
                 {
                   "property": "Staining",
                   "value": "Non-Staining"
+                },
+                {
+                  "property": "Temperature",
+                  "value": "Retains strong bond through impact, peel, flex, and changing temperatures"
                 }
               ],
               "sizing": [
@@ -7647,7 +7726,7 @@
                 "5 Gallon Pail",
                 "52 Gallon Drum"
               ],
-              "color": "*  White\n*  Gray\n*  Black",
+              "color": "White, Gray, Black",
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
@@ -7734,7 +7813,7 @@
             {
               "product_id": "T-OS150",
               "name": "T-OS150 - High-Performance Semi Self-Leveling Polymer Sealant",
-              "description": "Designed to seal a wide variety of materials in transportation applications such as:",
+              "description": "T-OS150 is a high-performance semi-self-leveling sealant designed to seal a wide variety of materials in transportation applications, including glass, steel, aluminum, and most plastics.",
               "brand": "forza_seal",
               "industry": "transportation_industry",
               "chemistry": "Modified Silane",
@@ -7743,29 +7822,11 @@
               "benefits": [
                 "Retains strong seal through impact, peel, flex, and changing temperatures",
                 "Easy apply by extrusion, spray, or trowel",
-                "Non",
-                "Yellowing, UV",
-                "resistant",
+                "Non-yellowing and UV-resistant",
                 "Does not form bubbles, shrink or crack",
                 "Highly weather resistant",
                 "Can be painted in most applications",
-                "Low temperature flexibility (properties retained to",
-                "75 F)",
-                "ASTM C920, Type S, Grade P, Class 25, Use T and M",
-                "Federal Specification TT",
-                "S",
-                "00230C, Type 1, Class A",
-                "CAN/GGSB",
-                "19. 13",
-                "M87, Class C",
-                "1",
-                "40",
-                "B",
-                "N and C",
-                "1",
-                "25",
-                "B",
-                "N",
+                "Low temperature flexibility (properties retained to -75 F)",
                 "USDA Accepted"
               ],
               "applications": [
@@ -7774,7 +7835,20 @@
                 "Marble, Concrete, Wood",
                 "Most plastics"
               ],
-              "technical": [],
+              "technical": [
+                {
+                  "property": "ASTM Standard",
+                  "value": "ASTM C920, Type S, Grade P, Class 25, Use T and M"
+                },
+                {
+                  "property": "Federal Specification",
+                  "value": "TT-S-00230C, Type 1, Class A"
+                },
+                {
+                  "property": "CAN/GGSB Standard",
+                  "value": "19.13-M87, Class C"
+                }
+              ],
               "sizing": [
                 "10.1oz Cartridge",
                 "20oz Sausage"
@@ -7943,7 +8017,7 @@
             {
               "product_id": "C-OA52W",
               "name": "C-OA52W - QUICK GRAB ADHESIVE",
-              "description": "A performance polymer adhesive with high initial strength, designed specifically for construction applications, including:",
+              "description": "A performance polymer adhesive with high initial strength, designed specifically for construction applications.",
               "brand": "forza_seal",
               "industry": "construction_industry",
               "chemistry": "Modified Silane",
@@ -7970,7 +8044,7 @@
                 "28oz Cartridge",
                 "10.1oz Cartridge"
               ],
-              "color": "*  White",
+              "color": "White",
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
@@ -7980,7 +8054,7 @@
             {
               "product_id": "C-OS55",
               "name": "C-OS55 - HYBRID POLYMER, SINGLE COMPONENT CURE, WITH OUTSTANDING ADHESIVE/SEALING PROPERTIES",
-              "description": "A general-purpose silicone sealant for construction applications, including:",
+              "description": "A general-purpose silicone sealant for construction applications.",
               "brand": "forza_seal",
               "industry": "construction_industry",
               "chemistry": "Silicone",
@@ -8050,7 +8124,7 @@
             {
               "product_id": "C-OS9",
               "name": "C-OS9 - HYBRID POLYMER, STRUCTURAL, SINGLE-PART, MOISTURE CURE ADHESIVE",
-              "description": "Designed for universal sealing applications in the construction industry, including:",
+              "description": "Designed for universal sealing applications in the construction industry.",
               "brand": "forza_seal",
               "industry": "construction_industry",
               "chemistry": "Modified Silane",
@@ -8124,7 +8198,7 @@
                 "5 Gallon Pail",
                 "52 Gallon Drum"
               ],
-              "color": "*  Gray\n*  White\n*  Black",
+              "color": "Gray, White, Black",
               "cleanup": "",
               "recommended_equipment": "",
               "published": true,
@@ -8292,12 +8366,9 @@
               "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/T215 Tape.webp",
               "benefits": [
                 ".045″ Thick Foam",
-                "Can withstand a wide range of weathering and temperature conditions without losing adhesion",
                 "Replaces screw, riveting and welding",
                 "High strength bond resists moisture, chemicals, dust and UV",
-                "Very flexible, with elongation rate of 800%",
                 "Instant high strength; bonds well to many surfaces",
-                "Maintains adhesion at subzero temperatures",
                 "Long aging, resists hardening or embrittlement",
                 "Flexible and compressible",
                 "Shockproof and soundproof characteristics"
@@ -8306,7 +8377,20 @@
                 "Bonds plastics, metals, woods, papers, and silicones used in the automotive, electronics, advertising, hardware, and construction industries where permanent flexibility is needed.",
                 "Ideal for replacing screws, rivets, and welding in trailer side skin applications."
               ],
-              "technical": [],
+              "technical": [
+                {
+                  "property": "Elongation",
+                  "value": "Very flexible, with elongation rate of 800%"
+                },
+                {
+                  "property": "Temperature",
+                  "value": "Can withstand a wide range of weathering and temperature conditions without losing adhesion"
+                },
+                {
+                  "property": "Temperature",
+                  "value": "Maintains adhesion at subzero temperatures"
+                }
+              ],
               "sizing": [
                 ".5 x 108",
                 ".25 x 108",
@@ -8335,12 +8419,9 @@
               "url": "https://forzabuilt.com/product/t220/",
               "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/T220 Tape.webp",
               "benefits": [
-                "Can withstand a wide range of weathering and temperature conditions without losing adhesion",
                 "Replaces screw, riveting and welding",
                 "High strength bond resists moisture, chemicals, dust and UV",
-                "Very flexible, with elongation rate of 800%",
                 "Instant high strength; bonds well to many surfaces",
-                "Maintains adhesion at subzero temperatures",
                 "Long aging, resists hardening or embrittlement",
                 "Flexible and compressible",
                 "Shockproof and soundproof characteristics"
@@ -8349,7 +8430,20 @@
                 "Bonds plastics, metals, woods, papers, and silicones used in the automotive, electronics, advertising, hardware, and construction industries where permanent flexibility is needed.",
                 "Ideal for replacing screws, rivets, and welding in trailer side skin applications."
               ],
-              "technical": [],
+              "technical": [
+                {
+                  "property": "Elongation",
+                  "value": "Very flexible, with elongation rate of 800%"
+                },
+                {
+                  "property": "Temperature",
+                  "value": "Can withstand a wide range of weathering and temperature conditions without losing adhesion"
+                },
+                {
+                  "property": "Temperature",
+                  "value": "Maintains adhesion at subzero temperatures"
+                }
+              ],
               "sizing": [
                 ".5 x 108",
                 ".25 x 108",
@@ -8379,10 +8473,8 @@
               "url": "",
               "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/T226 Tape.webp",
               "benefits": [
-                "Can withstand a wide range of weathering and temperature conditions without losing adhesion",
                 "Reduces weight & replaces screw, riveting and welding",
                 "High strength bond resists moisture, chemicals, dust, and UV",
-                "Very flexible, with elongation rate of 800%",
                 "Instant high strength; bonds well to many surfaces",
                 "Long aging, resists hardening or embrittlement",
                 "Flexible and compressible",
@@ -8395,7 +8487,16 @@
                 "Bonds parts where static load is high in the transportation, electronics, advertising, hardware, and construction industries",
                 "Also bonds parts in the solar PV and elevator industries"
               ],
-              "technical": [],
+              "technical": [
+                {
+                  "property": "Elongation",
+                  "value": "Very flexible, with elongation rate of 800%"
+                },
+                {
+                  "property": "Temperature",
+                  "value": "Can withstand a wide range of weathering and temperature conditions without losing adhesion"
+                }
+              ],
               "sizing": [
                 "5/8 x 18 yards"
               ],
@@ -8480,13 +8581,17 @@
               "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/T310 Tape.webp",
               "benefits": [
                 "Low density foam",
-                "Remains pliable at temperatures of -20ºC to 82ºC",
                 "Excellent fungi, oxidization and weather resistance"
               ],
               "applications": [
                 "Used as a thermal break in the construction of metal buildings."
               ],
-              "technical": [],
+              "technical": [
+                {
+                  "property": "Temperature",
+                  "value": "Remains pliable at temperatures of -20ºC to 82ºC"
+                }
+              ],
               "sizing": [
                 "2″ x 100′",
                 "2″ x 75″"
@@ -8511,13 +8616,17 @@
                 "The polyethylene foam tape is coated with a high tack rubber adhesive, ensuring a strong and immediate bond upon application.",
                 "This adhesive offers exceptional gripping power, making it perfect for applications where secure adhesion is crucial.",
                 "The polyethylene foam provides excellent cushioning and impact resistance, protecting surfaces from damage and reducing noise and vibration.",
-                "The foam tape is designed for easy and hassle-free application.",
-                "The combination of polyethylene foam and high tack rubber adhesive results in a durable and reliable tape. It can withstand various environmental conditions, including temperature changes, moisture, and UV exposure, without losing its adhesive properties or degrading over time."
+                "The foam tape is designed for easy and hassle-free application."
               ],
               "applications": [
                 "Excellent performance in applications that require: High impact resistance, noise reduction, and reducing vibration."
               ],
-              "technical": [],
+              "technical": [
+                {
+                  "property": "Temperature",
+                  "value": "The combination of polyethylene foam and high tack rubber adhesive results in a durable and reliable tape. It can withstand various environmental conditions, including temperature changes, moisture, and UV exposure, without losing its adhesive properties or degrading over time."
+                }
+              ],
               "sizing": [
                 ".18 x 3 x 1000",
                 ".125 x 3 x 100",
@@ -8561,7 +8670,7 @@
             {
               "product_id": "T449",
               "name": "T449 - Double-Coated PET Tape",
-              "description": "Ideal for use in general purpose mounting & bonding applications including:",
+              "description": "Ideal for use in general purpose mounting & bonding applications.",
               "brand": "forza_tape",
               "industry": "industrial_industry",
               "chemistry": "Acrylic Foam",
@@ -8634,15 +8743,19 @@
               "benefits": [
                 "Offers excellent adhesion to a wide range of surfaces, including plastics, metals, glass, and more.",
                 "Provides a strong and reliable bond",
-                "Delivers long-lasting adhesion.",
-                "Withstand both high and low temperatures,"
+                "Delivers long-lasting adhesion."
               ],
               "applications": [
                 "Used for mounting trim and insulation panels",
                 "Used for fixing edging, signs, decorative edging and panels",
                 "Effectively bonds different materials together, versatile option for various applications."
               ],
-              "technical": [],
+              "technical": [
+                {
+                  "property": "Temperature",
+                  "value": "Withstand both high and low temperatures,"
+                }
+              ],
               "sizing": [
                 ".75” x 100’",
                 "1” x 100’"
@@ -8782,7 +8895,7 @@
             {
               "product_id": "T532",
               "name": "T532 - Double-Coated PE Foam Tape",
-              "description": "An aggressive mounting tape ideally suiting for applications involving these types of surfaces:",
+              "description": "An aggressive mounting tape ideally suiting for applications involving these types of surfaces.",
               "brand": "forza_tape",
               "industry": "industrial_industry",
               "chemistry": "NA",
@@ -8804,11 +8917,11 @@
               ],
               "technical": [],
               "sizing": [
-                "*  1/4 x 1/32 x 216 yards",
-                "*  1/2 x 1/32 x 216 yards",
-                "*  3/4 x 1/32 x 216 yards",
-                "*  1 x 1/32 x 216 yards",
-                "*  2 x 1/32 x 216 yards"
+                "1/4 x 1/32 x 216 yards",
+                "1/2 x 1/32 x 216 yards",
+                "3/4 x 1/32 x 216 yards",
+                "1 x 1/32 x 216 yards",
+                "2 x 1/32 x 216 yards"
               ],
               "color": "",
               "cleanup": "",
@@ -8829,13 +8942,17 @@
               "benefits": [
                 "3/16″ Thick Foam",
                 "Low density foam",
-                "Remains pliable at temperatures of -20°C to 82°C",
                 "Excellent fungi, oxidization and weather resistance"
               ],
               "applications": [
                 "Used in applications requiring a seal for tight radius curves"
               ],
-              "technical": [],
+              "technical": [
+                {
+                  "property": "Temperature",
+                  "value": "Remains pliable at temperatures of -20°C to 82°C"
+                }
+              ],
               "sizing": [
                 "2″ x 100′",
                 "2″ x 75″"
@@ -8959,7 +9076,6 @@
               "url": "",
               "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/T950 FSK Bonding Tape.webp",
               "benefits": [
-                "Cold weather adhesive performs well over a wide temperature range",
                 "Excellent performance in demanding heat and humidity conditions",
                 "Conforms well to irregular surfaces"
               ],
@@ -8967,7 +9083,12 @@
                 "Sealing applications for fibrous ductboard, FSK-faced duct wrap and sheet metal ducts.",
                 "Vapor seal for reinforced aluminum faced fiberglass or mineral wool thermal insulation."
               ],
-              "technical": [],
+              "technical": [
+                {
+                  "property": "Temperature",
+                  "value": "Cold weather adhesive performs well over a wide temperature range"
+                }
+              ],
               "sizing": [
                 "Sizing available upon request"
               ],
@@ -9079,7 +9200,7 @@
             {
               "product_id": "R-T860",
               "name": "R-T860 - COLD TEMPERATURE DOUBLE COATED TAPE",
-              "description": "Specifically designed and engineered for cold weather applications where excellent initial tack and extreme temperature requirements are necessary. Ideally suited for:",
+              "description": "Specifically designed and engineered for cold weather applications where excellent initial tack and extreme temperature requirements are necessary. Ideally suited for.",
               "brand": "forza_tape",
               "industry": "insulation_industry",
               "chemistry": "Double Coated",
@@ -9096,7 +9217,7 @@
               "technical": [],
               "sizing": [
                 "3/4in x 180 ft",
-                "1   x 180 ft",
+                "1 x 180 ft",
                 "1 1/2in x 1080 ft",
                 "1 1/2in x 1800 ft",
                 "custom sizes available upon request"
@@ -9176,7 +9297,6 @@
                 "1/4 in x 108ft",
                 "3/4 in x 108ft",
                 "1 in x 108ft",
-                "1  in x 108ft",
                 "3/8in x 108ft"
               ],
               "color": "",
@@ -9249,7 +9369,6 @@
                 "1/4 in x 108ft",
                 "3/4 in x 108ft",
                 "1 in x 108ft",
-                "1  in x 108ft",
                 "3/8in x 108ft"
               ],
               "color": "",
@@ -9321,7 +9440,6 @@
                 "tight seal",
                 "Easy to die",
                 "cut",
-                "Long",
                 "lasting bond for indoor and outdoor applications",
                 "Durable backing is abrasion resistant",
                 "Immediately paintable"
@@ -9353,10 +9471,8 @@
               "url": "",
               "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Transportation/T-T246 Tape.webp",
               "benefits": [
-                "Can withstand a wide range of weathering and temperature conditions without losing adhesion",
                 "Reduces weight & replaces screw, riveting and welding",
                 "High strength bond resists moisture, chemicals, dust, and UV",
-                "Very flexible, with elongation rate of 800%",
                 "Instant high strength; bonds well to many surfaces",
                 "Long aging, resists hardening or embrittlement",
                 "Flexible and compressible",
@@ -9369,9 +9485,18 @@
                 "Bonds parts where static load is high in the transportation, electronics, advertising, hardware, and construction industries",
                 "Also bonds parts in the solar PV and elevator industries"
               ],
-              "technical": [],
+              "technical": [
+                {
+                  "property": "Elongation",
+                  "value": "Very flexible, with elongation rate of 800%"
+                },
+                {
+                  "property": "Temperature",
+                  "value": "Can withstand a wide range of weathering and temperature conditions without losing adhesion"
+                }
+              ],
               "sizing": [
-                "5/8” x  18 Yards"
+                "5/8” x 18 Yards"
               ],
               "color": "",
               "cleanup": "",
@@ -9587,7 +9712,7 @@
                 }
               ],
               "sizing": [
-                "7/8  x 30",
+                "7/8 x 30",
                 "Custom Sizing Available"
               ],
               "color": "",
@@ -9608,14 +9733,18 @@
               "image": "https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Transportation/T-T1200 Tape.png",
               "benefits": [
                 "Low density foam",
-                "Remains pliable at temperatures of",
                 "20 C to 82 C",
                 "Excellent fungi, oxidization and weather resistance"
               ],
               "applications": [
                 "Used in transportation applications requiring a seal for tight radius curves"
               ],
-              "technical": [],
+              "technical": [
+                {
+                  "property": "Temperature",
+                  "value": "Remains pliable at temperatures of"
+                }
+              ],
               "sizing": [
                 "2? x 100?",
                 "2? x 75?",
@@ -9636,7 +9765,7 @@
             {
               "product_id": "C-T500",
               "name": "C-T500 - FOAM TAPE",
-              "description": "Used for gap filling and sealing in construction applications, including:",
+              "description": "Used for gap filling and sealing in construction applications.",
               "brand": "forza_tape",
               "industry": "construction_industry",
               "chemistry": "Acrylic Foam",
@@ -9704,7 +9833,7 @@
             {
               "product_id": "C-T5100",
               "name": "C-T5100 - DOUBLE-COATEDPET",
-              "description": "Used for bonding and mounting applications in construction, including:",
+              "description": "Used for bonding and mounting applications in construction.",
               "brand": "forza_tape",
               "industry": "construction_industry",
               "chemistry": "Double Coated",
@@ -9770,11 +9899,11 @@
               ],
               "sizing": [
                 "in x 180ft",
-                "1   in x 180ft",
-                "1   in x 1080ft",
+                "1 in x 180ft",
+                "1 in x 1080ft",
                 "60 in x 1080ft",
                 "60 in x 400ft",
-                "1   in x 1800ft"
+                "1 in x 1800ft"
               ],
               "color": "",
               "cleanup": "",
@@ -9786,7 +9915,7 @@
             {
               "product_id": "C-T550",
               "name": "C-T550 - DOUBLE-COATED ULTRA HIGH BOND ACRYLIC FOAM TAPE",
-              "description": "Specially designed for bonding and mounting to a broad range of substrates in various construction applications, including:",
+              "description": "Specially designed for bonding and mounting to a broad range of substrates in various construction applications.",
               "brand": "forza_tape",
               "industry": "construction_industry",
               "chemistry": "Acrylic Foam",
@@ -9851,7 +9980,6 @@
                 "1/2in x 108",
                 "1/4 in x 108",
                 "1 in x 108",
-                "1   in x 108",
                 "3/4in x 108",
                 "3/8in x 108",
                 "2in x 108"
@@ -9866,7 +9994,7 @@
             {
               "product_id": "C-T553",
               "name": "C-T553 - DOUBLE-COATED ULTRA HIGH BOND ACRYLIC FOAM TAPE",
-              "description": "Specially designed for bonding and mounting to a broad range of substrates across various construction applications, including:",
+              "description": "Specially designed for bonding and mounting to a broad range of substrates across various construction applications.",
               "brand": "forza_tape",
               "industry": "construction_industry",
               "chemistry": "Acrylic Foam",
@@ -9931,7 +10059,6 @@
                 "1/2in x 108",
                 "1/4 in x 108",
                 "1 in x 108",
-                "1   in x 108",
                 "3/4in x 108",
                 "3/8in x 108",
                 "2in x 108"
@@ -9946,7 +10073,7 @@
             {
               "product_id": "C-T557",
               "name": "C-T557 - DOUBLE-COATED ULTRA HIGH BOND ACRYLIC FOAM TAPE",
-              "description": "Specially designed for bonding and mounting to a broad range of substrates across various construction applications, including:",
+              "description": "Specially designed for bonding and mounting to a broad range of substrates across various construction applications.",
               "brand": "forza_tape",
               "industry": "construction_industry",
               "chemistry": "Acrylic Foam",
@@ -10011,7 +10138,6 @@
                 "1/2in x 108",
                 "1/4 in x 108",
                 "1 in x 108",
-                "1   in x 108",
                 "3/4in x 108",
                 "3/8in x 108"
               ],
@@ -10025,7 +10151,7 @@
             {
               "product_id": "C-T564",
               "name": "C-T564 - DOUBLE-COATED PE FOAM TAPE",
-              "description": "Used in various mounting applications in construction, including:",
+              "description": "Used in various mounting applications in construction.",
               "brand": "forza_tape",
               "industry": "construction_industry",
               "chemistry": "Acrylic Foam",
@@ -10060,10 +10186,9 @@
                 }
               ],
               "sizing": [
-                "1/4  x 1/32 x 216",
-                "x 1/32  x 216",
-                "x 1/32  x 216",
-                "1  x 1/32  x 216"
+                "1/4 x 1/32 x 216",
+                "x 1/32 x 216",
+                "1 x 1/32 x 216"
               ],
               "color": "",
               "cleanup": "",
@@ -10075,7 +10200,7 @@
             {
               "product_id": "C-T731",
               "name": "C-T731 - DOUBLE-SIDED TAPE",
-              "description": "Used for bonding and mounting applications across various construction projects, including:",
+              "description": "Used for bonding and mounting applications across various construction projects.",
               "brand": "forza_tape",
               "industry": "construction_industry",
               "chemistry": "Acrylic Foam",
@@ -10107,8 +10232,8 @@
               ],
               "sizing": [
                 "1/2 x 150",
-                "1   x 180",
-                "1   x 1080",
+                "1 x 180",
+                "1 x 1080",
                 "2 x 180"
               ],
               "color": "",
