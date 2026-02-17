@@ -145,7 +145,7 @@ class JsonToHerokuSync {
       
       if (!this.dryRun) {
         try {
-          await this.productModel.updateProduct(dbProduct.id, {
+          const updated = await this.productModel.updateProduct(dbProduct.product_id, {
             name: jsonProduct.name,
             full_name: jsonProduct.full_name || jsonProduct.name,
             description: jsonProduct.description,
@@ -157,6 +157,9 @@ class JsonToHerokuSync {
             cleanup: jsonProduct.cleanup || undefined,
             recommended_equipment: jsonProduct.recommended_equipment || undefined,
           });
+          if (!updated) {
+            throw new Error(`No row updated for product_id ${dbProduct.product_id}`);
+          }
           console.log(`   ✅ Updated successfully`);
           updateCount++;
           this.results.push({
