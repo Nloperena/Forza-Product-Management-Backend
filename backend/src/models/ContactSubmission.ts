@@ -14,6 +14,10 @@ export interface ContactSubmission {
   internal_email_sent_at?: string;
   confirmation_email_sent_at?: string;
   email_error?: string;
+  salesforce_synced: boolean;
+  salesforce_lead_id?: string;
+  salesforce_error?: string;
+  salesforce_synced_at?: string;
   created_at: string;
   updated_at: string;
 }
@@ -159,6 +163,68 @@ export class ContactSubmissionModel {
   }
 
   /**
+   * Update Salesforce sync status for a submission
+   */
+  async updateSalesforceStatus(
+    id: string,
+    updates: {
+      salesforce_synced?: boolean;
+      salesforce_lead_id?: string;
+      salesforce_error?: string;
+    }
+  ): Promise<ContactSubmission | null> {
+    if (!databaseService.isPostgres()) {
+      throw new Error('ContactSubmissionModel requires PostgreSQL');
+    }
+
+    const client = await databaseService.getClient();
+    try {
+      const setClauses: string[] = ['updated_at = NOW()'];
+      const values: any[] = [];
+      let paramIndex = 1;
+
+      if (updates.salesforce_synced !== undefined) {
+        setClauses.push(`salesforce_synced = $${paramIndex}`);
+        values.push(updates.salesforce_synced);
+        paramIndex++;
+        if (updates.salesforce_synced) {
+          setClauses.push('salesforce_synced_at = NOW()');
+        }
+      }
+
+      if (updates.salesforce_lead_id !== undefined) {
+        setClauses.push(`salesforce_lead_id = $${paramIndex}`);
+        values.push(updates.salesforce_lead_id);
+        paramIndex++;
+      }
+
+      if (updates.salesforce_error !== undefined) {
+        setClauses.push(`salesforce_error = $${paramIndex}`);
+        values.push(updates.salesforce_error);
+        paramIndex++;
+      }
+
+      values.push(id);
+
+      const sql = `
+        UPDATE contact_submissions
+        SET ${setClauses.join(', ')}
+        WHERE id = $${paramIndex}
+        RETURNING *
+      `;
+
+      const result = await client.query(sql, values);
+      if (result.rows.length === 0) {
+        return null;
+      }
+
+      return this.parseRow(result.rows[0]);
+    } finally {
+      client.release();
+    }
+  }
+
+  /**
    * Count recent submissions from an IP hash (for rate limiting)
    */
   async countRecentByIp(ipHash: string, minutesAgo: number = 1): Promise<number> {
@@ -259,6 +325,10 @@ export class ContactSubmissionModel {
       internal_email_sent_at: row.internal_email_sent_at?.toISOString(),
       confirmation_email_sent_at: row.confirmation_email_sent_at?.toISOString(),
       email_error: row.email_error,
+      salesforce_synced: row.salesforce_synced ?? false,
+      salesforce_lead_id: row.salesforce_lead_id,
+      salesforce_error: row.salesforce_error,
+      salesforce_synced_at: row.salesforce_synced_at?.toISOString(),
       created_at: row.created_at?.toISOString(),
       updated_at: row.updated_at?.toISOString()
     };

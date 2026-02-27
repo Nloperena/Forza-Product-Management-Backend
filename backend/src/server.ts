@@ -21,6 +21,7 @@ import adminRoutes from './routes/admin';
 // Import services
 import { databaseService } from './services/database';
 import { emailService } from './services/emailService';
+import { salesforceService } from './services/salesforceService';
 
 // Import middleware
 import { errorHandler } from './middleware/errorHandler';
@@ -49,6 +50,18 @@ function validateEnv() {
     console.warn('⚠️ Some features (email sending) will be disabled until these are set.');
   } else {
     console.log('✅ All required environment variables are set');
+  }
+
+  const salesforceRequired = [
+    'SALESFORCE_CLIENT_ID',
+    'SALESFORCE_CLIENT_SECRET',
+    'SALESFORCE_USERNAME',
+    'SALESFORCE_PASSWORD'
+  ];
+  const missingSalesforce = salesforceRequired.filter((key) => !process.env[key] && !process.env[key.replace('SALESFORCE_', 'SF_')]);
+  if (missingSalesforce.length > 0) {
+    console.warn(`⚠️ Missing Salesforce environment variables: ${missingSalesforce.join(', ')}`);
+    console.warn('⚠️ Contact submissions will not sync to Salesforce until these are set.');
   }
 }
 
@@ -246,7 +259,8 @@ app.get('/ready', async (_req, res) => {
     uptime: process.uptime(),
     checks: {
       database: false,
-      postmark: false
+      postmark: false,
+      salesforce: false
     },
     emailFeaturesEnabled
   };
@@ -274,6 +288,7 @@ app.get('/ready', async (_req, res) => {
 
     // Check Postmark
     readiness.checks.postmark = emailService.isConfigured();
+    readiness.checks.salesforce = salesforceService.isConfigured();
 
     // Determine readiness status
     // Database must always be connected
@@ -287,6 +302,13 @@ app.get('/ready', async (_req, res) => {
     if (emailFeaturesEnabled && !readiness.checks.postmark) {
       readiness.ok = false;
       readiness.status = 'Not Ready - Email configuration missing';
+      return res.status(503).json(readiness);
+    }
+
+    // If email features are enabled, Salesforce must also be configured for contact notifications.
+    if (emailFeaturesEnabled && !readiness.checks.salesforce) {
+      readiness.ok = false;
+      readiness.status = 'Not Ready - Salesforce configuration missing';
       return res.status(503).json(readiness);
     }
 

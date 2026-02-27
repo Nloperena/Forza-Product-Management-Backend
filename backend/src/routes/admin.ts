@@ -10,6 +10,7 @@
 import express, { Request, Response, NextFunction } from 'express';
 import { databaseService } from '../services/database';
 import { emailService } from '../services/emailService';
+import { salesforceService } from '../services/salesforceService';
 import { contactSubmissionModel } from '../models/ContactSubmission';
 import { newsletterSubscriberModel } from '../models/NewsletterSubscriber';
 
@@ -132,8 +133,10 @@ router.get('/health/details', async (_req: Request, res: Response) => {
     email: {
       featuresEnabled: emailFeaturesEnabled,
       postmarkConfigured: emailService.isConfigured(),
+      salesforceConfigured: salesforceService.isConfigured(),
       fromEmail: process.env.EMAIL_FROM ? '(set)' : 'not set',
-      teamEmail: process.env.TEAM_EMAIL ? '(set)' : 'not set'
+      teamEmail: process.env.TEAM_EMAIL ? '(set)' : 'not set',
+      salesforceLoginUrl: process.env.SALESFORCE_LOGIN_URL || process.env.SF_INSTANCE_URL || 'https://login.salesforce.com'
     },
     security: {
       ipHashSaltConfigured: !!process.env.IP_HASH_SALT,

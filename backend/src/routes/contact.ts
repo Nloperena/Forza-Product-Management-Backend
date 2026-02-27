@@ -14,6 +14,7 @@ import express, { Request, Response } from 'express';
 import crypto from 'crypto';
 import { contactSubmissionModel } from '../models/ContactSubmission';
 import { emailService } from '../services/emailService';
+import { salesforceService } from '../services/salesforceService';
 
 const router = express.Router();
 
@@ -178,13 +179,15 @@ router.post('/', async (req: Request, res: Response) => {
 
     // Send emails asynchronously (don't block the response)
     setImmediate(async () => {
-      let internalSent = false;
+      let salesforceSynced = false;
+      let salesforceLeadId: string | undefined;
+      let salesforceError: string | undefined;
       let confirmationSent = false;
-      let emailError: string | undefined;
+      let confirmationError: string | undefined;
 
       try {
-        // Send internal notification to team
-        const internalResult = await emailService.sendContactInternalNotification({
+        // Create Salesforce Lead, then Salesforce Flow notifies internal recipients.
+        const salesforceResult = await salesforceService.createLeadFromContact({
           submissionId: submission.id,
           firstName: sanitizedFirstName,
           lastName: sanitizedLastName,
@@ -192,13 +195,14 @@ router.post('/', async (req: Request, res: Response) => {
           message: sanitizedMessage,
           pageUrl: sanitize(pageUrl)
         });
-        internalSent = internalResult.success;
-        if (!internalResult.success) {
-          emailError = internalResult.errorMessage;
+        salesforceSynced = salesforceResult.success;
+        salesforceLeadId = salesforceResult.leadId;
+        if (!salesforceResult.success) {
+          salesforceError = salesforceResult.errorMessage;
         }
       } catch (err: any) {
-        console.error('[Contact] Failed to send internal notification:', err.message);
-        emailError = err.message;
+        console.error('[Contact] Failed to sync submission to Salesforce:', err.message);
+        salesforceError = err.message;
       }
 
       try {
@@ -209,23 +213,29 @@ router.post('/', async (req: Request, res: Response) => {
           email: sanitizedEmail
         });
         confirmationSent = confirmResult.success;
-        if (!confirmResult.success && !emailError) {
-          emailError = confirmResult.errorMessage;
+        if (!confirmResult.success) {
+          confirmationError = confirmResult.errorMessage;
         }
       } catch (err: any) {
         console.error('[Contact] Failed to send confirmation email:', err.message);
-        if (!emailError) emailError = err.message;
+        confirmationError = err.message;
       }
 
-      // Update submission with email status
+      // Update submission with Salesforce + email status
       try {
+        await contactSubmissionModel.updateSalesforceStatus(submission.id, {
+          salesforce_synced: salesforceSynced,
+          salesforce_lead_id: salesforceLeadId,
+          salesforce_error: salesforceError
+        });
+
+        const combinedError = [salesforceError, confirmationError].filter(Boolean).join(' | ');
         await contactSubmissionModel.updateEmailStatus(submission.id, {
-          internal_email_sent: internalSent,
           confirmation_email_sent: confirmationSent,
-          email_error: emailError
+          email_error: combinedError || undefined
         });
       } catch (err: any) {
-        console.error('[Contact] Failed to update email status:', err.message);
+        console.error('[Contact] Failed to update contact delivery status:', err.message);
       }
     });
 
