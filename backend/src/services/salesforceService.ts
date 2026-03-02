@@ -33,6 +33,7 @@ type Config = {
   loginUrl: string;
   instanceUrl?: string;
   scope?: string;
+  contactObjectApiName: string;
 };
 
 class SalesforceService {
@@ -53,7 +54,8 @@ class SalesforceService {
         process.env.SF_INSTANCE_URL ||
         ''
       ).replace(/\/$/, '') || undefined,
-      scope: process.env.SALESFORCE_SCOPE || process.env.SF_SCOPE
+      scope: process.env.SALESFORCE_SCOPE || process.env.SF_SCOPE,
+      contactObjectApiName: process.env.SALESFORCE_CONTACT_OBJECT_API || 'Website_Contact__c'
     };
   }
 
@@ -70,12 +72,13 @@ class SalesforceService {
     }
 
     try {
+      const config = this.getConfig();
       const auth = await this.authenticate();
-      const leadPayload = this.mapContactToLead(input);
+      const leadPayload = this.mapContactToSalesforceObject(input);
 
       const response = await this.requestWithRetry<{ id: string }>({
         method: 'POST',
-        url: `${auth.instance_url}/services/data/${this.apiVersion}/sobjects/Lead`,
+        url: `${auth.instance_url}/services/data/${this.apiVersion}/sobjects/${config.contactObjectApiName}`,
         headers: {
           Authorization: `Bearer ${auth.access_token}`,
           'Content-Type': 'application/json'
@@ -121,22 +124,17 @@ class SalesforceService {
     };
   }
 
-  private mapContactToLead(input: ContactLeadInput): Record<string, string> {
-    const descriptionLines = [
-      `Website contact form submission ID: ${input.submissionId}`,
-      input.pageUrl ? `Page URL: ${input.pageUrl}` : undefined,
-      '',
-      'Message:',
-      input.message
-    ].filter(Boolean);
-
+  private mapContactToSalesforceObject(input: ContactLeadInput): Record<string, string> {
+    const recordName = `${input.firstName} ${input.lastName} - ${input.submissionId.substring(0, 8)}`.substring(0, 80);
+    const message = input.pageUrl ? `${input.message}\n\nSubmitted from: ${input.pageUrl}` : input.message;
     return {
-      FirstName: input.firstName,
-      LastName: input.lastName,
-      Email: input.email,
-      Company: 'Forza Built Website',
-      LeadSource: 'Website Contact Form',
-      Description: descriptionLines.join('\n')
+      Name: recordName,
+      First_Name__c: input.firstName,
+      Last_Name__c: input.lastName,
+      Email__c: input.email,
+      Company__c: 'Forza Built Website',
+      Message__c: message.substring(0, 131072),
+      Submission_ID__c: input.submissionId
     };
   }
 
