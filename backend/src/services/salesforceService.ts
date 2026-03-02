@@ -6,6 +6,12 @@ interface SalesforceAuthResponse {
   token_type: string;
 }
 
+interface SalesforceTokenResponse {
+  access_token: string;
+  instance_url?: string;
+  token_type: string;
+}
+
 interface ContactLeadInput {
   submissionId: string;
   firstName: string;
@@ -24,10 +30,9 @@ interface SalesforceLeadResult {
 type Config = {
   clientId: string;
   clientSecret: string;
-  username: string;
-  password: string;
-  securityToken?: string;
   loginUrl: string;
+  instanceUrl?: string;
+  scope?: string;
 };
 
 class SalesforceService {
@@ -39,20 +44,22 @@ class SalesforceService {
     return {
       clientId: process.env.SALESFORCE_CLIENT_ID || process.env.SF_CLIENT_ID || '',
       clientSecret: process.env.SALESFORCE_CLIENT_SECRET || process.env.SF_CLIENT_SECRET || '',
-      username: process.env.SALESFORCE_USERNAME || process.env.SF_USERNAME || '',
-      password: process.env.SALESFORCE_PASSWORD || process.env.SF_PASSWORD || '',
-      securityToken: process.env.SALESFORCE_SECURITY_TOKEN || process.env.SF_SECURITY_TOKEN,
       loginUrl: (
         process.env.SALESFORCE_LOGIN_URL ||
-        process.env.SF_INSTANCE_URL ||
         'https://login.salesforce.com'
-      ).replace(/\/$/, '')
+      ).replace(/\/$/, ''),
+      instanceUrl: (
+        process.env.SALESFORCE_INSTANCE_URL ||
+        process.env.SF_INSTANCE_URL ||
+        ''
+      ).replace(/\/$/, '') || undefined,
+      scope: process.env.SALESFORCE_SCOPE || process.env.SF_SCOPE
     };
   }
 
   isConfigured(): boolean {
     const config = this.getConfig();
-    return !!(config.clientId && config.clientSecret && config.username && config.password);
+    return !!(config.clientId && config.clientSecret);
   }
 
   async createLeadFromContact(input: ContactLeadInput): Promise<SalesforceLeadResult> {
@@ -88,21 +95,30 @@ class SalesforceService {
   private async authenticate(): Promise<SalesforceAuthResponse> {
     const config = this.getConfig();
     const params = new URLSearchParams({
-      grant_type: 'password',
+      grant_type: 'client_credentials',
       client_id: config.clientId,
-      client_secret: config.clientSecret,
-      username: config.username,
-      password: `${config.password}${config.securityToken || ''}`
+      client_secret: config.clientSecret
     });
+    if (config.scope) {
+      params.set('scope', config.scope);
+    }
 
-    const response = await this.requestWithRetry<SalesforceAuthResponse>({
+    const response = await this.requestWithRetry<SalesforceTokenResponse>({
       method: 'POST',
       url: `${config.loginUrl}/services/oauth2/token`,
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       data: params.toString()
     });
 
-    return response.data;
+    const instanceUrl = response.data.instance_url || config.instanceUrl;
+    if (!instanceUrl) {
+      throw new Error('Salesforce token response missing instance_url. Set SALESFORCE_INSTANCE_URL.');
+    }
+
+    return {
+      ...response.data,
+      instance_url: instanceUrl
+    };
   }
 
   private mapContactToLead(input: ContactLeadInput): Record<string, string> {

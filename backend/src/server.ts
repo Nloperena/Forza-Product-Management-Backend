@@ -54,9 +54,7 @@ function validateEnv() {
 
   const salesforceRequired = [
     'SALESFORCE_CLIENT_ID',
-    'SALESFORCE_CLIENT_SECRET',
-    'SALESFORCE_USERNAME',
-    'SALESFORCE_PASSWORD'
+    'SALESFORCE_CLIENT_SECRET'
   ];
   const missingSalesforce = salesforceRequired.filter((key) => !process.env[key] && !process.env[key.replace('SALESFORCE_', 'SF_')]);
   if (missingSalesforce.length > 0) {
