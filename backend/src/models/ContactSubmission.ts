@@ -5,6 +5,7 @@ export interface ContactSubmission {
   first_name: string;
   last_name: string;
   email: string;
+  company?: string;
   message: string;
   page_url?: string;
   ip_hash?: string;
@@ -26,6 +27,7 @@ export interface CreateContactSubmissionInput {
   first_name: string;
   last_name: string;
   email: string;
+  company?: string;
   message: string;
   page_url?: string;
   ip_hash?: string;
@@ -51,8 +53,8 @@ export class ContactSubmissionModel {
     try {
       const sql = `
         INSERT INTO contact_submissions (
-          first_name, last_name, email, message, page_url, ip_hash
-        ) VALUES ($1, $2, $3, $4, $5, $6)
+          first_name, last_name, email, company, message, page_url, ip_hash
+        ) VALUES ($1, $2, $3, $4, $5, $6, $7)
         RETURNING *
       `;
 
@@ -60,6 +62,7 @@ export class ContactSubmissionModel {
         input.first_name,
         input.last_name,
         input.email,
+        input.company || null,
         input.message,
         input.page_url || null,
         input.ip_hash || null
@@ -273,7 +276,7 @@ export class ContactSubmissionModel {
 
     if (search) {
       whereParts.push(
-        `(first_name ILIKE $${paramIndex} OR last_name ILIKE $${paramIndex} OR email ILIKE $${paramIndex} OR message ILIKE $${paramIndex})`
+        `(first_name ILIKE $${paramIndex} OR last_name ILIKE $${paramIndex} OR email ILIKE $${paramIndex} OR company ILIKE $${paramIndex} OR message ILIKE $${paramIndex})`
       );
       whereValues.push(`%${search}%`);
       paramIndex++;
@@ -316,6 +319,7 @@ export class ContactSubmissionModel {
       first_name: row.first_name,
       last_name: row.last_name,
       email: row.email,
+      company: row.company,
       message: row.message,
       page_url: row.page_url,
       ip_hash: row.ip_hash,

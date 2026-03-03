@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS contact_submissions (
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,
     email VARCHAR(255) NOT NULL,
+    company VARCHAR(255),
     message TEXT NOT NULL,
     page_url TEXT,
     ip_hash VARCHAR(64),
@@ -31,6 +32,7 @@ CREATE INDEX IF NOT EXISTS idx_contact_submissions_email ON contact_submissions(
 CREATE INDEX IF NOT EXISTS idx_contact_submissions_created_at ON contact_submissions(created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_contact_submissions_status ON contact_submissions(status);
 CREATE INDEX IF NOT EXISTS idx_contact_submissions_ip_hash ON contact_submissions(ip_hash);
+CREATE INDEX IF NOT EXISTS idx_contact_submissions_company ON contact_submissions(company);
 
 COMMENT ON TABLE contact_submissions IS 'Stores contact form submissions from the website';
 

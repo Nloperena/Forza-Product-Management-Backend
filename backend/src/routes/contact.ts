@@ -171,6 +171,7 @@ router.post('/', async (req: Request, res: Response) => {
       first_name: sanitizedFirstName,
       last_name: sanitizedLastName,
       email: sanitizedEmail,
+      company: sanitizedCompany || undefined,
       message: sanitizedMessage,
       page_url: sanitize(pageUrl) || undefined,
       ip_hash: ipHash
