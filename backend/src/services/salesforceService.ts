@@ -17,6 +17,7 @@ interface ContactLeadInput {
   firstName: string;
   lastName: string;
   email: string;
+  company?: string;
   message: string;
   pageUrl?: string;
 }
@@ -127,15 +128,21 @@ class SalesforceService {
   private mapContactToSalesforceObject(input: ContactLeadInput): Record<string, string> {
     const recordName = `${input.firstName} ${input.lastName} - ${input.submissionId.substring(0, 8)}`.substring(0, 80);
     const message = input.pageUrl ? `${input.message}\n\nSubmitted from: ${input.pageUrl}` : input.message;
-    return {
+    const payload: Record<string, string> = {
       Name: recordName,
       First_Name__c: input.firstName,
       Last_Name__c: input.lastName,
       Email__c: input.email,
-      Company__c: 'Forza Built Website',
       Message__c: message.substring(0, 131072),
       Submission_ID__c: input.submissionId
     };
+
+    // Only send company when the user actually provided one.
+    if (input.company && input.company.trim()) {
+      payload.Company__c = input.company.trim();
+    }
+
+    return payload;
   }
 
   private async requestWithRetry<T>(requestConfig: {

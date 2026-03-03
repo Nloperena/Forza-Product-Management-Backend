@@ -96,7 +96,7 @@ function sanitize(input: string | undefined): string {
  */
 router.post('/', async (req: Request, res: Response) => {
   try {
-    const { firstName, lastName, email, message, pageUrl, website } = req.body;
+    const { firstName, lastName, email, message, company, pageUrl, website } = req.body;
 
     // Honeypot check - if filled, return silent success (bot trap)
     // Field named "website" to appear legitimate but hidden on frontend
@@ -110,6 +110,7 @@ router.post('/', async (req: Request, res: Response) => {
     const sanitizedLastName = sanitize(lastName);
     const sanitizedEmail = sanitize(email)?.toLowerCase();
     const sanitizedMessage = sanitize(message);
+    const sanitizedCompany = sanitize(company);
 
     const errors: string[] = [];
 
@@ -192,6 +193,7 @@ router.post('/', async (req: Request, res: Response) => {
           firstName: sanitizedFirstName,
           lastName: sanitizedLastName,
           email: sanitizedEmail,
+          company: sanitizedCompany || undefined,
           message: sanitizedMessage,
           pageUrl: sanitize(pageUrl)
         });
