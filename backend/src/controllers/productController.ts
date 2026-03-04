@@ -5,6 +5,51 @@ import * as XLSX from 'xlsx';
 import { isProductAllowed, ALLOWED_PRODUCT_IDS } from '../config/allowedProducts';
 import { auditLogModel } from '../models/AuditLog';
 
+function normalizeHowToUseSteps(input: unknown): string[] {
+  const rawLines = (Array.isArray(input) ? input : [input])
+    .flatMap((value) => (typeof value === 'string' ? value.split(/\r?\n/) : []))
+    .map((line) => line.replace(/\s+/g, ' ').trim())
+    .filter(Boolean);
+
+  const steps: string[] = [];
+  let current = '';
+
+  const pushCurrent = () => {
+    const cleaned = current.replace(/^\d+\s*[).:-]\s*/, '').trim();
+    if (cleaned) steps.push(cleaned);
+    current = '';
+  };
+
+  for (const line of rawLines) {
+    const isNumberedStart = /^\d+\s*[).:-]\s*/.test(line);
+    if (isNumberedStart) {
+      if (current) pushCurrent();
+      current = line.replace(/^\d+\s*[).:-]\s*/, '').trim();
+      continue;
+    }
+
+    if (!current) {
+      current = line;
+      continue;
+    }
+
+    const isContinuation = /^[a-z]/.test(line) || /[,;:]$/.test(current);
+    if (isContinuation) {
+      current = `${current} ${line}`;
+    } else {
+      pushCurrent();
+      current = line;
+    }
+  }
+
+  if (current) pushCurrent();
+
+  return [...new Set(steps.map((s) => s.toLowerCase()))].map((lower) => {
+    const original = steps.find((s) => s.toLowerCase() === lower);
+    return original || lower;
+  });
+}
+
 export class ProductController {
   private productModel: ProductModel;
 
@@ -117,7 +162,7 @@ export class ProductController {
         image: image || '/placeholder-product.svg',
         benefits: Array.isArray(benefits) ? benefits : [],
         applications: Array.isArray(applications) ? applications : [],
-        how_to_use: Array.isArray(how_to_use) ? how_to_use : [],
+        how_to_use: normalizeHowToUseSteps(how_to_use),
         technical: Array.isArray(technical) ? technical : [],
         sizing: Array.isArray(sizing) ? sizing : [],
         color: color || '',
@@ -196,6 +241,9 @@ export class ProductController {
       // Recalculate benefits_count if benefits are being updated
       if (updates.benefits !== undefined && Array.isArray(updates.benefits)) {
         updates.benefits_count = updates.benefits.length;
+      }
+      if (updates.how_to_use !== undefined) {
+        updates.how_to_use = normalizeHowToUseSteps(updates.how_to_use);
       }
 
       console.log(`[UpdateProduct Controller] Updating product with ID: ${id}`);
