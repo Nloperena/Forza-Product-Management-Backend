@@ -1,0 +1,164 @@
+{
+  "contentTypeId": "cleaningProductData",
+  "entries": [
+    {
+      "product_id": "rr_household_cleaner_degreaser",
+      "fields": {
+        "productTitle": "Cleaner & Degreaser",
+        "productHeroImage": "/product-images/ruggedred/rr_household_cleaner_degreaser.webp",
+        "price": null,
+        "buyNowButtonUrl": "https://ruggedred.com/household/product/household/cleaner-degreaser",
+        "keyFeatures": [
+          "Effortless Heavy-Duty Cleaning – Quickly breaks down tough grease, oil, and grime for easy wipe-away cleaning",
+          "Time-Saving Formula – Fast-acting degreaser cuts cleaning time in half.",
+          "Eliminates Odors – Fresh citrus scent removes foul smells and leaves a clean, crisp aroma.",
+          "Grease-Free, Streak-Free Shine – Cleans without leaving behind sticky residue or streaks."
+        ],
+        "shortProductDescription": "RuggedRed Cleaner & Degreaser is a heavy-duty, industrial-strength formula designed to tackle tough grease, oil, and grime in kitchens, garages, appliances, and more. Safe for stainless steel, countertops, grills, and heavy-use areas, it wipes away messes without streaks or sticky residue. Non-toxic, eco-friendly, and made in the USA, RuggedRed makes deep cleaning effortless.",
+        "detailedProductDescription": "RuggedRed Cleaner & Degreaser is a heavy-duty, industrial-strength formula designed to tackle tough grease, oil, and grime in kitchens, garages, appliances, and more. Safe for stainless steel, countertops, grills, and heavy-use areas, it wipes away messes without streaks or sticky residue. Non-toxic, eco-friendly, and made in the USA, RuggedRed makes deep cleaning effortless.",
+        "keyBenefits": [
+          "Effortless Heavy-Duty Cleaning – Quickly breaks down tough grease, oil, and grime for easy wipe-away cleaning",
+          "Time-Saving Formula – Fast-acting degreaser cuts cleaning time in half.",
+          "Eliminates Odors – Fresh citrus scent removes foul smells and leaves a clean, crisp aroma.",
+          "Grease-Free, Streak-Free Shine – Cleans without leaving behind sticky residue or streaks."
+        ],
+        "productInUseImages": [],
+        "slogan": ""
+      }
+    },
+    {
+      "product_id": "rr_household_all_purpose_cleaner",
+      "fields": {
+        "productTitle": "All-Purpose Cleaner",
+        "productHeroImage": "/product-images/ruggedred/rr_household_all_purpose_cleaner.webp",
+        "price": null,
+        "buyNowButtonUrl": "https://ruggedred.com/household/product/household/all-purpose-cleaner",
+        "keyFeatures": [
+          "Effortless Deep Cleaning – Quickly breaks down tough grease, grime, and stains so you don’t have to scrub hard.",
+          "Streak-Free Shine – Leaves surfaces spotless, clear, and polished with no filmy residue or streaks.",
+          "Fresh & Clean Home – The citrus scent eliminates odors, leaving your kitchen and home smelling fresh.",
+          "Saves Time & Effort – Cuts through messes fast, so you clean less and enjoy your space more."
+        ],
+        "shortProductDescription": "Our RuggedRed All-Purpose Cleaner is the ultimate industrial-strength cleaner designed to tackle even the toughest grease, grime, and stains. Perfect for kitchens, bathrooms, countertops, and appliances, this multi-surface cleaner works on stainless steel, tile, glass, and wood while leaving a streak-free shine. Plus, it’s non-toxic, eco-friendly, and proudly made in the USA.",
+        "detailedProductDescription": "Our RuggedRed All-Purpose Cleaner is the ultimate industrial-strength cleaner designed to tackle even the toughest grease, grime, and stains. Perfect for kitchens, bathrooms, countertops, and appliances, this multi-surface cleaner works on stainless steel, tile, glass, and wood while leaving a streak-free shine. Plus, it’s non-toxic, eco-friendly, and proudly made in the USA.",
+        "keyBenefits": [
+          "Effortless Deep Cleaning – Quickly breaks down tough grease, grime, and stains so you don’t have to scrub hard.",
+          "Streak-Free Shine – Leaves surfaces spotless, clear, and polished with no filmy residue or streaks.",
+          "Fresh & Clean Home – The citrus scent eliminates odors, leaving your kitchen and home smelling fresh.",
+          "Saves Time & Effort – Cuts through messes fast, so you clean less and enjoy your space more."
+        ],
+        "productInUseImages": [],
+        "slogan": ""
+      }
+    },
+    {
+      "product_id": "rr_household_glass_cleaner",
+      "fields": {
+        "productTitle": "Glass Cleaner",
+        "productHeroImage": "/product-images/ruggedred/rr_household_glass_cleaner.webp",
+        "price": null,
+        "buyNowButtonUrl": "https://ruggedred.com/household/product/household/glass-cleaner",
+        "keyFeatures": [
+          "Fast & Easy Use – Just spray, wipe, and enjoy sparkling glass in seconds.",
+          "Fresh & Clean Scent – Eliminates odors while providing a refreshing, crisp fragrance.",
+          "Streak-Free Clarity – Leaves glass surfaces crystal clear with no streaks or haze.",
+          "Effortless Glass Cleaning – Removes smudges, fingerprints, and grime with minimal effort."
+        ],
+        "shortProductDescription": "RuggedRed Glass Cleaner is the ultimate solution for crystal-clear surfaces. Designed to cut through smudges, dirt, and streaks effortlessly, this industrial-strength formula is safe for windows, mirrors, glass tabletops, and shower doors. Enjoy a streak-free shine with a non-toxic, eco-friendly formula that’s proudly made in the USA.",
+        "detailedProductDescription": "RuggedRed Glass Cleaner is the ultimate solution for crystal-clear surfaces. Designed to cut through smudges, dirt, and streaks effortlessly, this industrial-strength formula is safe for windows, mirrors, glass tabletops, and shower doors. Enjoy a streak-free shine with a non-toxic, eco-friendly formula that’s proudly made in the USA.",
+        "keyBenefits": [
+          "Fast & Easy Use – Just spray, wipe, and enjoy sparkling glass in seconds.",
+          "Fresh & Clean Scent – Eliminates odors while providing a refreshing, crisp fragrance.",
+          "Streak-Free Clarity – Leaves glass surfaces crystal clear with no streaks or haze.",
+          "Effortless Glass Cleaning – Removes smudges, fingerprints, and grime with minimal effort."
+        ],
+        "productInUseImages": [],
+        "slogan": ""
+      }
+    },
+    {
+      "product_id": "rr_household_odor_remover",
+      "fields": {
+        "productTitle": "Odor Remover",
+        "productHeroImage": "/product-images/ruggedred/rr_household_odor_remover.webp",
+        "price": null,
+        "buyNowButtonUrl": "https://ruggedred.com/household/product/household/odor-remover",
+        "keyFeatures": [
+          "All-Terrain Tough – Safe on fabrics, floors, and whatever else stinks.",
+          "Family-First Safety – No toxic junk, just clean for kids and critters.",
+          "Pure Fresh Vibes – Leaves your space crisp, not chemically coated.",
+          "Earth-Friendly Edge – Sustainable power that doesn’t punk the planet."
+        ],
+        "shortProductDescription": "Rugged Red Odor Remover doesn’t mess around—it wipes out stubborn stench from carpets, cars, and couches with a fast-acting, professional-strength formula. Forget masking; this technology neutralizes odors at their core. Safe for kids, pets, and your sanity, it leaves nothing but a crisp, clean finish.",
+        "detailedProductDescription": "Rugged Red Odor Remover doesn’t mess around—it wipes out stubborn stench from carpets, cars, and couches with a fast-acting, professional-strength formula. Forget masking; this technology neutralizes odors at their core. Safe for kids, pets, and your sanity, it leaves nothing but a crisp, clean finish.",
+        "keyBenefits": [
+          "All-Terrain Tough – Safe on fabrics, floors, and whatever else stinks.",
+          "Family-First Safety – No toxic junk, just clean for kids and critters.",
+          "Pure Fresh Vibes – Leaves your space crisp, not chemically coated.",
+          "Earth-Friendly Edge – Sustainable power that doesn’t punk the planet."
+        ],
+        "productInUseImages": [],
+        "slogan": ""
+      }
+    },
+    {
+      "product_id": "rr_household_spot_stain_remover",
+      "fields": {
+        "productTitle": "Spot & Stain Remover",
+        "productHeroImage": "/product-images/ruggedred/rr_household_spot_stain_remover.webp",
+        "price": null,
+        "buyNowButtonUrl": "https://ruggedred.com/household/product/household/spot-stain-remover",
+        "keyFeatures": [
+          "Stain Buster – Crushes marks before they dig in.",
+          "Surface Master – Safe on fabrics, tile, and more.",
+          "Quick & Strong – Zaps stains fast, holds the line.",
+          "Family-Ready – Non-toxic, perfect for your pack.",
+          "Fresh Finish – No residue, just pure clean vibes.",
+          "Eco-Friendly Edge – Tough on stains, kind to the earth"
+        ],
+        "shortProductDescription": "Spot & Stain Remover takes on tough messes with a bold, fast-acting formula. Carpets, fabrics, and soft surfaces — it instantly removes stains, leaving nothing behind. Safe for families and pets, it’s made in the USA for quality you can trust.",
+        "detailedProductDescription": "Spot & Stain Remover takes on tough messes with a bold, fast-acting formula. Carpets, fabrics, and soft surfaces — it instantly removes stains, leaving nothing behind. Safe for families and pets, it’s made in the USA for quality you can trust.",
+        "keyBenefits": [
+          "Stain Buster – Crushes marks before they dig in.",
+          "Surface Master – Safe on fabrics, tile, and more.",
+          "Quick & Strong – Zaps stains fast, holds the line.",
+          "Family-Ready – Non-toxic, perfect for your pack.",
+          "Fresh Finish – No residue, just pure clean vibes.",
+          "Eco-Friendly Edge – Tough on stains, kind to the earth",
+          "Born in the USA – Built with pride and American grit."
+        ],
+        "productInUseImages": [],
+        "slogan": ""
+      }
+    },
+    {
+      "product_id": "rr_household_mold_mildew_stain_cleaner",
+      "fields": {
+        "productTitle": "Mold & Mildew Stain Cleaner",
+        "productHeroImage": "/product-images/ruggedred/rr_household_mold_mildew_stain_cleaner.webp",
+        "price": null,
+        "buyNowButtonUrl": "https://ruggedred.com/household/product/household/mold-mildew-stain-cleaner",
+        "keyFeatures": [
+          "Mold Crusher – Stops growth dead in its tracks.",
+          "Surface Ace – Safe on tile, vinyl, and beyond.",
+          "Family-Safe – Non-toxic, gentle on your crew",
+          "Fresh Reset – Leaves no mess, just clean air.",
+          "Eco-Strong – Earth-friendly with serious grit.",
+          "Born in the USA – Crafted with American backbone."
+        ],
+        "shortProductDescription": "Mold & Mildew Stain Cleaner works hard, wiping out mold and mildew stains from tiles, showers, and damp corners. This fast-acting formula cuts through stains and grime, leaving surfaces fresh and clean. Made in the USA for quality you can trust",
+        "detailedProductDescription": "Mold & Mildew Stain Cleaner works hard, wiping out mold and mildew stains from tiles, showers, and damp corners. This fast-acting formula cuts through stains and grime, leaving surfaces fresh and clean. Made in the USA for quality you can trust",
+        "keyBenefits": [
+          "Mold Crusher – Stops growth dead in its tracks.",
+          "Surface Ace – Safe on tile, vinyl, and beyond.",
+          "Family-Safe – Non-toxic, gentle on your crew",
+          "Fresh Reset – Leaves no mess, just clean air.",
+          "Eco-Strong – Earth-friendly with serious grit.",
+          "Born in the USA – Crafted with American backbone."
+        ],
+        "productInUseImages": [],
+        "slogan": ""
+      }
+    }
+  ]
+}

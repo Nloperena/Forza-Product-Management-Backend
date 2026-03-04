@@ -1,0 +1,617 @@
+{
+  "contentTypeId": "b2bCleaningProductData",
+  "entries": [
+    {
+      "product_id": "rr_industrial_cleaner_degreaser",
+      "fields": {
+        "productTitle": "Cleaner & Degreaser",
+        "productHeroImage": "/product-images/ruggedred/rr_industrial_cleaner_degreaser.webp",
+        "price": null,
+        "buyNowButtonUrl": "https://ruggedred.com/industrial/product/industrial/cleaner-degreaser",
+        "keyFeatures": [
+          "Powerful, ultra-concentrated solvent cleaner, degreaser, and adhesive remover",
+          "Non-toxic",
+          "Non-corrosive",
+          "Compatible with most plastics",
+          "Biodegradable",
+          "Safe on most surfaces: wood, glass, tile, stone, upholstery, and much more."
+        ],
+        "shortProductDescription": "RuggedRed Cleaner & Degreaser is a heavy-duty, industrial-strength formula designed to tackle tough grease, oil, and grime in kitchens, garages, appliances, and more. Safe for stainless steel, countertops, grills, and heavy-use areas, it wipes away messes without streaks or sticky residue. Non-toxic, eco-friendly, and made in the USA, RuggedRed makes deep cleaning effortless.",
+        "detailedProductDescription": "RuggedRed™ is a powerful, heavy-duty cleaner & degreaser concentrated for maximum grease-cutting strength. It is ideal for indoor and outdoor use in commercial, industrial, and residential settings. It is safe for use on most surfaces, including:\nAppliances\nCountertops\nTools\nEquipment\nVents\nWork areas and much more",
+        "keyBenefits": [
+          "Powerful, ultra-concentrated solvent cleaner, degreaser, and adhesive remover",
+          "Non-toxic",
+          "Non-corrosive",
+          "Compatible with most plastics",
+          "Biodegradable",
+          "Safe on most surfaces: wood, glass, tile, stone, upholstery, and much more.",
+          "Pleasant citrus scent"
+        ],
+        "productInUseImages": [],
+        "slogan": "",
+        "frontLabelCallOuts": [
+          "Powerful, ultra-concentrated solvent cleaner, degreaser, and adhesive remover",
+          "Non-toxic",
+          "Non-corrosive",
+          "Compatible with most plastics",
+          "Biodegradable"
+        ],
+        "applications": "RuggedRed™ is a powerful, heavy-duty cleaner & degreaser concentrated for maximum grease-cutting strength. It is ideal for indoor and outdoor use in commercial, industrial, and residential settings. It is safe for use on most surfaces, including:\nAppliances\nCountertops\nTools\nEquipment\nVents\nWork areas and much more",
+        "howToUse": "",
+        "productMockupVariations": [],
+        "bottleSizing": "32oz + 1gal Bottle"
+      }
+    },
+    {
+      "product_id": "rr_industrial_all_purpose_cleaner",
+      "fields": {
+        "productTitle": "All-Purpose Cleaner",
+        "productHeroImage": "/product-images/ruggedred/rr_industrial_all_purpose_cleaner.webp",
+        "price": null,
+        "buyNowButtonUrl": "https://ruggedred.com/industrial/product/industrial/all-purpose-cleaner",
+        "keyFeatures": [
+          "Powerful, ultra-concentrated cleaner",
+          "Cuts through grease, dirt, and grime easily",
+          "Non-Toxic",
+          "Non-corrosive",
+          "Biodegradable",
+          "Safe on most surfaces: wood, glass, tile, stone, upholstery, and much more."
+        ],
+        "shortProductDescription": "Our RuggedRed All-Purpose Cleaner is the ultimate industrial-strength cleaner designed to tackle even the toughest grease, grime, and stains. Perfect for kitchens, bathrooms, countertops, and appliances, this multi-surface cleaner works on stainless steel, tile, glass, and wood while leaving a streak-free shine. Plus, it’s non-toxic, eco-friendly, and proudly made in the USA.",
+        "detailedProductDescription": "RuggedRed™ is a powerful, heavy-duty, all-purpose cleaner concentrated for maximum cleaning strength. It is ideal for commercial, industrial, and residential use. It is safe for use on most surfaces, including:\nPorcelain\nGranite\nStainless steel\nWood\nGlass\nTile\nStone\nUpholstery and much more",
+        "keyBenefits": [
+          "Powerful, ultra-concentrated cleaner",
+          "Cuts through grease, dirt, and grime easily",
+          "Non-Toxic",
+          "Non-corrosive",
+          "Biodegradable",
+          "Safe on most surfaces: wood, glass, tile, stone, upholstery, and much more."
+        ],
+        "productInUseImages": [],
+        "slogan": "",
+        "frontLabelCallOuts": [
+          "Powerful, ultra-concentrated cleaner",
+          "Cuts through grease, dirt, and grime easily",
+          "Non-Toxic",
+          "Non-corrosive",
+          "Biodegradable"
+        ],
+        "applications": "RuggedRed™ is a powerful, heavy-duty, all-purpose cleaner concentrated for maximum cleaning strength. It is ideal for commercial, industrial, and residential use. It is safe for use on most surfaces, including:\nPorcelain\nGranite\nStainless steel\nWood\nGlass\nTile\nStone\nUpholstery and much more",
+        "howToUse": "",
+        "productMockupVariations": [],
+        "bottleSizing": "32oz + 1gal Bottle"
+      }
+    },
+    {
+      "product_id": "rr_industrial_glass_cleaner",
+      "fields": {
+        "productTitle": "Glass Cleaner",
+        "productHeroImage": "/product-images/ruggedred/rr_industrial_glass_cleaner.webp",
+        "price": null,
+        "buyNowButtonUrl": "https://ruggedred.com/industrial/product/industrial/glass-cleaner",
+        "keyFeatures": [
+          "Powerful, ultra concentrated glass cleaning formula",
+          "Non streaking or staining",
+          "REsidue Free",
+          "Ammonia Free",
+          "Non Toxic",
+          "Bioddegraddable"
+        ],
+        "shortProductDescription": "RuggedRed Glass Cleaner is the ultimate solution for crystal-clear surfaces. Designed to cut through smudges, dirt, and streaks effortlessly, this industrial-strength formula is safe for windows, mirrors, glass tabletops, and shower doors. Enjoy a streak-free shine with a non-toxic, eco-friendly formula that’s proudly made in the USA.",
+        "detailedProductDescription": "RuggedRed™ is a powerful, heavy-duty, glass cleaner concentrated for maximum cleaning strength. Its strong yet safe formula* is ammonia-free and biodegradable. It is made to provide streak-free cleaning in Commercial, Industrial, and Residential facilities. It’s ideal for daily use to help clean, shine, brighten, and polish:\nWindows\nMirrors\nGlass tabletops\nChrome\nStainless steel\nOther glass surfaces",
+        "keyBenefits": [
+          "Powerful, ultra concentrated glass cleaning formula",
+          "Non streaking or staining",
+          "REsidue Free",
+          "Ammonia Free",
+          "Non Toxic",
+          "Bioddegraddable"
+        ],
+        "productInUseImages": [],
+        "slogan": "",
+        "frontLabelCallOuts": [
+          "Powerful, ultra concentrated glass cleaning formula",
+          "Non streaking or staining",
+          "REsidue Free",
+          "Ammonia Free",
+          "Non Toxic"
+        ],
+        "applications": "RuggedRed™ is a powerful, heavy-duty, glass cleaner concentrated for maximum cleaning strength. Its strong yet safe formula* is ammonia-free and biodegradable. It is made to provide streak-free cleaning in Commercial, Industrial, and Residential facilities. It’s ideal for daily use to help clean, shine, brighten, and polish:\nWindows\nMirrors\nGlass tabletops\nChrome\nStainless steel\nOther glass surfaces",
+        "howToUse": "",
+        "productMockupVariations": [],
+        "bottleSizing": "32oz + 1gal Bottle"
+      }
+    },
+    {
+      "product_id": "rr_industrial_heavy_duty_degreaser",
+      "fields": {
+        "productTitle": "Heavy Duty Degreaser",
+        "productHeroImage": "/product-images/ruggedred/rr_industrial_heavy_duty_degreaser.webp",
+        "price": null,
+        "buyNowButtonUrl": "https://ruggedred.com/industrial/product/industrial/heavy-duty-degreaser",
+        "keyFeatures": [
+          "Safe on most surfaces: wood, glass, tile, stone, upholstery, and much more.",
+          "Powerful, ultra concentrated solvent cleaner degreaser, and adhesive remover",
+          "Non-toxic",
+          "Non-corrosive",
+          "Compatible with most plastics",
+          "Biodegradable"
+        ],
+        "shortProductDescription": "RuggedRed® Cleaner & Degreaser is a powerful citrus-based adhesive remover that’s concentrated to quickly clean and remove adhesive residue and other tough materials on many hard and porous surfaces. It is ideal for commercial, industrial, and residential use. It is safe for us on most surfaces.",
+        "detailedProductDescription": "RuggedRed® Cleaner & Degreaser is a powerful citrus-based adhesive remover that’s concentrated to quickly clean and remove adhesive residue and other tough materials on many hard and porous surfaces. It is ideal for commercial, industrial, and residential use. It is safe for use on most surfaces including:\nEquipment\nTools\nVehicles\nCounters\nVents\nShop floors\nCarpeting",
+        "keyBenefits": [
+          "Safe on most surfaces: wood, glass, tile, stone, upholstery, and much more.",
+          "Powerful, ultra concentrated solvent cleaner degreaser, and adhesive remover",
+          "Non-toxic",
+          "Non-corrosive",
+          "Compatible with most plastics",
+          "Biodegradable",
+          "Pleasant citrus scent"
+        ],
+        "productInUseImages": [],
+        "slogan": "",
+        "frontLabelCallOuts": [
+          "Safe on most surfaces: wood, glass, tile, stone, upholstery, and much more.",
+          "Powerful, ultra concentrated solvent cleaner degreaser, and adhesive remover",
+          "Non-toxic",
+          "Non-corrosive",
+          "Compatible with most plastics"
+        ],
+        "applications": "RuggedRed® Cleaner & Degreaser is a powerful citrus-based adhesive remover that’s concentrated to quickly clean and remove adhesive residue and other tough materials on many hard and porous surfaces. It is ideal for commercial, industrial, and residential use. It is safe for use on most surfaces including:\nEquipment\nTools\nVehicles\nCounters\nVents\nShop floors\nCarpeting",
+        "howToUse": "",
+        "productMockupVariations": [],
+        "bottleSizing": "32oz + 1gal Bottle"
+      }
+    },
+    {
+      "product_id": "rr_industrial_foaming_glass_cleaner",
+      "fields": {
+        "productTitle": "Foaming Glass Cleaner",
+        "productHeroImage": "/product-images/ruggedred/rr_industrial_foaming_glass_cleaner.webp",
+        "price": null,
+        "buyNowButtonUrl": "https://ruggedred.com/industrial/product/industrial/foaming-glass-cleaner",
+        "keyFeatures": [
+          "Powerful, ultra concentrated glass cleaning formula",
+          "No streaking or staining",
+          "No drip application",
+          "Residue free",
+          "Ammonia free",
+          "Non-toxic"
+        ],
+        "shortProductDescription": "RuggedRed™ is a powerful, heavy-duty, foaming glass cleaner concentrated for maximum cleaning strength. Its strong yet safe formula* is ammonia-free and biodegradable. Its unique No-Drip Foaming Tecnholody makes it ideal for daily use on windows, mirrors, and glass surfaces, helping to clean, shine, brighten, and polish. It is made to provide streak-free cleaning in Commercial, Industrial, and Residential facilities.",
+        "detailedProductDescription": "RuggedRed™ is a powerful, heavy-duty, foaming glass cleaner concentrated for maximum cleaning strength. Its strong yet safe formula* is ammonia-free and biodegradable. It is made to provide streak-free cleaning in Commercial, Industrial, and Residential facilities. Its unique No-Drip Foaming Technology makes it ideal for daily use to help clean, shine, brighten, and polish:\nWindows\nMirrors\nOther glass surfaces",
+        "keyBenefits": [
+          "Powerful, ultra concentrated glass cleaning formula",
+          "No streaking or staining",
+          "No drip application",
+          "Residue free",
+          "Ammonia free",
+          "Non-toxic",
+          "Biodegradable",
+          "Safe on most surfaces: wood, glass, tile, stone, upholstery, and much more."
+        ],
+        "productInUseImages": [],
+        "slogan": "",
+        "frontLabelCallOuts": [
+          "Powerful, ultra concentrated glass cleaning formula",
+          "No streaking or staining",
+          "No drip application",
+          "Residue free",
+          "Ammonia free"
+        ],
+        "applications": "RuggedRed™ is a powerful, heavy-duty, foaming glass cleaner concentrated for maximum cleaning strength. Its strong yet safe formula* is ammonia-free and biodegradable. It is made to provide streak-free cleaning in Commercial, Industrial, and Residential facilities. Its unique No-Drip Foaming Technology makes it ideal for daily use to help clean, shine, brighten, and polish:\nWindows\nMirrors\nOther glass surfaces",
+        "howToUse": "",
+        "productMockupVariations": [],
+        "bottleSizing": "32oz Bottle"
+      }
+    },
+    {
+      "product_id": "rr_industrial_instant_odor_remover",
+      "fields": {
+        "productTitle": "Instant Odor Remover",
+        "productHeroImage": "/product-images/ruggedred/rr_industrial_instant_odor_remover.webp",
+        "price": null,
+        "buyNowButtonUrl": "https://ruggedred.com/industrial/product/industrial/instant-odor-remover",
+        "keyFeatures": [
+          "Ultra-Concentrated",
+          "Safely eliminates odors instantly",
+          "Patented technology stops odors at the source",
+          "Stops odors from: smoke, food, animals, humans, chemicals, & more",
+          "Ideal for offices, homes, bathrooms, trash bins, kitchens, commercial facilities, & vehicles"
+        ],
+        "shortProductDescription": "Rugged Red Odor Remover doesn’t mess around—it wipes out stubborn stench from carpets, cars, and couches with a fast-acting, professional-strength formula. Forget masking; this technology neutralizes odors at their core. Safe for kids, pets, and your sanity, it leaves nothing but a crisp, clean finish.",
+        "detailedProductDescription": "RuggedRed™ Professional Instant Odor Remover is an ultra-concentrated, fast-acting formula designed to eliminate unwanted odors instantly. Using patented technology, it neutralizes odors at the source rather than masking them. Made for use in Commercial, Industrial, and Residential facilities, this unscented formula is ideal for homes, offices, bathrooms, kitchens, trash bins, vehicles, and more. Effectively eliminates odors caused by:\nSmoke\nFood\nPets\nChemicals\nOther common sources",
+        "keyBenefits": [
+          "Ultra-Concentrated",
+          "Safely eliminates odors instantly",
+          "Patented technology stops odors at the source",
+          "Stops odors from: smoke, food, animals, humans, chemicals, & more",
+          "Ideal for offices, homes, bathrooms, trash bins, kitchens, commercial facilities, & vehicles"
+        ],
+        "productInUseImages": [],
+        "slogan": "",
+        "frontLabelCallOuts": [
+          "Ultra-Concentrated",
+          "Safely eliminates odors instantly",
+          "Patented technology stops odors at the source",
+          "Stops odors from: smoke, food, animals, humans, chemicals, & more",
+          "Ideal for offices, homes, bathrooms, trash bins, kitchens, commercial facilities, & vehicles"
+        ],
+        "applications": "RuggedRed™ Professional Instant Odor Remover is an ultra-concentrated, fast-acting formula designed to eliminate unwanted odors instantly. Using patented technology, it neutralizes odors at the source rather than masking them. Made for use in Commercial, Industrial, and Residential facilities, this unscented formula is ideal for homes, offices, bathrooms, kitchens, trash bins, vehicles, and more. Effectively eliminates odors caused by:\nSmoke\nFood\nPets\nChemicals\nOther common sources",
+        "howToUse": "",
+        "productMockupVariations": [],
+        "bottleSizing": "32oz + 1gal Bottle"
+      }
+    },
+    {
+      "product_id": "rr_industrial_mold_mildew_stain_cleaner",
+      "fields": {
+        "productTitle": "Mold & Mildew Stain Cleaner",
+        "productHeroImage": "/product-images/ruggedred/rr_industrial_mold_mildew_stain_cleaner.webp",
+        "price": null,
+        "buyNowButtonUrl": "https://ruggedred.com/industrial/product/industrial/mold-mildew-stain-cleaner",
+        "keyFeatures": [
+          "Powerful, ultra concentrated formula",
+          "Spray-and-walk-away - No scrubbing required",
+          "Removes mold and mildew stains quickly and safely",
+          "Non Toxic",
+          "Unscented",
+          "Works on tile, grout, and painted surfaces"
+        ],
+        "shortProductDescription": "RuggedRed™ Professional Mold & Mildew Stain Cleaner is a powerful, ultra-concentrated formula built to tackle stubborn mold and mildew stains fast. Formulated for Indoor and Outdoor use. This spray-and-walk-away solution requires no scrubbing, making it ideal for those who need effective results with minimal effort.",
+        "detailedProductDescription": "RuggedRed™ Professional Mold & Mildew Stain Cleaner is a powerful, ultra-concentrated formula built to tackle stubborn mold and mildew stains fast. Formulated for Indoor and Outdoor use. This spray-and-walk-away solution requires no scrubbing, making it ideal for those who need effective results with minimal effort. Works on surfaces including:\nTile\nShowers\nGrout\nVinyl\nPainted surfaces\nDamp corners",
+        "keyBenefits": [
+          "Powerful, ultra concentrated formula",
+          "Spray-and-walk-away - No scrubbing required",
+          "Removes mold and mildew stains quickly and safely",
+          "Non Toxic",
+          "Unscented",
+          "Works on tile, grout, and painted surfaces"
+        ],
+        "productInUseImages": [],
+        "slogan": "",
+        "frontLabelCallOuts": [
+          "Powerful, ultra concentrated formula",
+          "Spray-and-walk-away - No scrubbing required",
+          "Removes mold and mildew stains quickly and safely",
+          "Non Toxic",
+          "Unscented"
+        ],
+        "applications": "RuggedRed™ Professional Mold & Mildew Stain Cleaner is a powerful, ultra-concentrated formula built to tackle stubborn mold and mildew stains fast. Formulated for Indoor and Outdoor use. This spray-and-walk-away solution requires no scrubbing, making it ideal for those who need effective results with minimal effort. Works on surfaces including:\nTile\nShowers\nGrout\nVinyl\nPainted surfaces\nDamp corners",
+        "howToUse": "Spray-and-walk-away - No scrubbing required",
+        "productMockupVariations": [],
+        "bottleSizing": "32oz Bottle"
+      }
+    },
+    {
+      "product_id": "rr_industrial_spot_stain_remover",
+      "fields": {
+        "productTitle": "Spot & Stain Remover",
+        "productHeroImage": "/product-images/ruggedred/rr_industrial_spot_stain_remover.webp",
+        "price": null,
+        "buyNowButtonUrl": "https://ruggedred.com/industrial/product/industrial/spot-stain-remover",
+        "keyFeatures": [
+          "Powerful, ultra-concentrated cleaning formula",
+          "Residue-free, non-sticky,",
+          "Works instantly",
+          "Non-toxic",
+          "Non-flammable",
+          "Biodegradable"
+        ],
+        "shortProductDescription": "RuggedRed™ is a powerful, heavy-duty, spot and stain remover concentrated for maximum cleaning strength. It is ideal for commercial, industrial, and residential use.",
+        "detailedProductDescription": "RuggedRed™ is a powerful, heavy-duty, spot and stain remover concentrated for maximum cleaning strength. It is ideal for commercial, industrial, and residential use. It is ideal for use on:\nMost carpets - especially high traffic areas\nUpholstery\nFabrics",
+        "keyBenefits": [
+          "Powerful, ultra-concentrated cleaning formula",
+          "Residue-free, non-sticky,",
+          "Works instantly",
+          "Non-toxic",
+          "Non-flammable",
+          "Biodegradable",
+          "Doesn't require rinsing or vacuuming",
+          "Easily removes nasty spots and stains like: pet accidents, grease, oils, blood, red wine, coffee, ink, rust, dirt, grime, cosmetics, food.",
+          "Safe for humans and pets"
+        ],
+        "productInUseImages": [],
+        "slogan": "",
+        "frontLabelCallOuts": [
+          "Powerful, ultra-concentrated cleaning formula",
+          "Residue-free, non-sticky,",
+          "Works instantly",
+          "Non-toxic",
+          "Non-flammable"
+        ],
+        "applications": "RuggedRed™ is a powerful, heavy-duty, spot and stain remover concentrated for maximum cleaning strength. It is ideal for commercial, industrial, and residential use. It is ideal for use on:\nMost carpets - especially high traffic areas\nUpholstery\nFabrics",
+        "howToUse": "",
+        "productMockupVariations": [],
+        "bottleSizing": "32oz Bottle"
+      }
+    },
+    {
+      "product_id": "rr_industrial_carpet_cleaner",
+      "fields": {
+        "productTitle": "Carpet Cleaner",
+        "productHeroImage": "/product-images/ruggedred/rr_industrial_carpet_cleaner.webp",
+        "price": null,
+        "buyNowButtonUrl": "https://ruggedred.com/industrial/product/industrial/carpet-cleaner",
+        "keyFeatures": [
+          "Powerful, ultra-concentrated cleaning formula",
+          "Residue-free",
+          "Non-sticky",
+          "Non-toxic",
+          "Non-flammable",
+          "Biodegradable"
+        ],
+        "shortProductDescription": "RuggedRed™ is a powerful, heavy-duty, carpet cleaner concentrated for maximum cleaning strength. It is ideal for commercial, industrial, and residential use.",
+        "detailedProductDescription": "RuggedRed™ is a powerful, heavy-duty, carpet cleaner concentrated for maximum cleaning strength. It is ideal for commercial, industrial, and residential use. It is ideal for use on:\nMost carpets - especially high traffic areas\nUpholstery\nFabrics",
+        "keyBenefits": [
+          "Powerful, ultra-concentrated cleaning formula",
+          "Residue-free",
+          "Non-sticky",
+          "Non-toxic",
+          "Non-flammable",
+          "Biodegradable",
+          "Doesn't require rinsing or vacuuming",
+          "Provides deep cleaning from pet accidents, grease, oils, blood, red wine, coffee, ink, rust, dirt, grime, cosmetics, food.",
+          "Safe for humans and pets"
+        ],
+        "productInUseImages": [],
+        "slogan": "",
+        "frontLabelCallOuts": [
+          "Powerful, ultra-concentrated cleaning formula",
+          "Residue-free",
+          "Non-sticky",
+          "Non-toxic",
+          "Non-flammable"
+        ],
+        "applications": "RuggedRed™ is a powerful, heavy-duty, carpet cleaner concentrated for maximum cleaning strength. It is ideal for commercial, industrial, and residential use. It is ideal for use on:\nMost carpets - especially high traffic areas\nUpholstery\nFabrics",
+        "howToUse": "",
+        "productMockupVariations": [],
+        "bottleSizing": "32oz Bottle"
+      }
+    },
+    {
+      "product_id": "rr_industrial_hard_surface_cleaner",
+      "fields": {
+        "productTitle": "Hard Surface Cleaner",
+        "productHeroImage": "/product-images/ruggedred/rr_industrial_hard_surface_cleaner.webp",
+        "price": null,
+        "buyNowButtonUrl": "https://ruggedred.com/industrial/product/industrial/hard-surface-cleaner",
+        "keyFeatures": [
+          "Powerful, ultra-concentrated cleaner",
+          "Cuts through grease, dirt, and grime easily",
+          "Non-toxic",
+          "Non-corrosive",
+          "Biodegradable",
+          "Safe on most surfaces: wood, glass, tile, stone, upholstery, and much more."
+        ],
+        "shortProductDescription": "RuggedRed™ is a powerful, heavy-duty, hard surface cleaner concentrated for maximum results. It is ideal for commercial, industrial, and residential use. It cleans, polishes and restores shine.",
+        "detailedProductDescription": "RuggedRed™ is a powerful, heavy-duty, hard surface cleaner concentrated for maximum results. It is ideal for commercial, industrial, and residential use. It cleans, polishes and restores shine. It is safe for use on most hard surfaces, including:\nSealed hardwood\nEngineered wood\nVinyl surfaces",
+        "keyBenefits": [
+          "Powerful, ultra-concentrated cleaner",
+          "Cuts through grease, dirt, and grime easily",
+          "Non-toxic",
+          "Non-corrosive",
+          "Biodegradable",
+          "Safe on most surfaces: wood, glass, tile, stone, upholstery, and much more."
+        ],
+        "productInUseImages": [],
+        "slogan": "",
+        "frontLabelCallOuts": [
+          "Powerful, ultra-concentrated cleaner",
+          "Cuts through grease, dirt, and grime easily",
+          "Non-toxic",
+          "Non-corrosive",
+          "Biodegradable"
+        ],
+        "applications": "RuggedRed™ is a powerful, heavy-duty, hard surface cleaner concentrated for maximum results. It is ideal for commercial, industrial, and residential use. It cleans, polishes and restores shine. It is safe for use on most hard surfaces, including:\nSealed hardwood\nEngineered wood\nVinyl surfaces",
+        "howToUse": "",
+        "productMockupVariations": [],
+        "bottleSizing": "32oz Bottle"
+      }
+    },
+    {
+      "product_id": "rr_industrial_concrete_floor_cleaner",
+      "fields": {
+        "productTitle": "Concrete Floor Cleaner",
+        "productHeroImage": "/product-images/ruggedred/rr_industrial_concrete_floor_cleaner.webp",
+        "price": null,
+        "buyNowButtonUrl": "https://ruggedred.com/industrial/product/industrial/concrete-floor-cleaner",
+        "keyFeatures": [
+          "Powerful, ultra concentrated cleaning formula",
+          "Cuts through grease, dirt, and grime easily",
+          "Non-Toxic",
+          "Biodegradable",
+          "Safe*",
+          "Effective on sealed porous concrete"
+        ],
+        "shortProductDescription": "RuggedRed™ is a powerful, heavy-duty, cement cleaner concentrated for maximum results. It is ideal for indoor and outdoor cleaning in Industrial, Commercial, and Residential Facilities.",
+        "detailedProductDescription": "RuggedRed™ is a powerful, heavy-duty, cement cleaner concentrated for maximum results. It is ideal for indoor and outdoor cleaning in Industrial, Commercial, and Residential Facilities. It is formulated to safely remove:\nDirt\nGrime\nGrease\nOther tough materials",
+        "keyBenefits": [
+          "Powerful, ultra concentrated cleaning formula",
+          "Cuts through grease, dirt, and grime easily",
+          "Non-Toxic",
+          "Biodegradable",
+          "Safe*",
+          "Effective on sealed porous concrete",
+          "Mild fresh scent"
+        ],
+        "productInUseImages": [],
+        "slogan": "",
+        "frontLabelCallOuts": [
+          "Powerful, ultra concentrated cleaning formula",
+          "Cuts through grease, dirt, and grime easily",
+          "Non-Toxic",
+          "Biodegradable",
+          "Safe*"
+        ],
+        "applications": "RuggedRed™ is a powerful, heavy-duty, cement cleaner concentrated for maximum results. It is ideal for indoor and outdoor cleaning in Industrial, Commercial, and Residential Facilities. It is formulated to safely remove:\nDirt\nGrime\nGrease\nOther tough materials",
+        "howToUse": "",
+        "productMockupVariations": [],
+        "bottleSizing": "32oz Bottle"
+      }
+    },
+    {
+      "product_id": "rr_industrial_citrus_adhesive_remover",
+      "fields": {
+        "productTitle": "Citrus Adhesive Remover",
+        "productHeroImage": "/product-images/ruggedred/rr_industrial_citrus_adhesive_remover.webp",
+        "price": null,
+        "buyNowButtonUrl": "https://ruggedred.com/industrial/product/industrial/citrus-adhesive-remover",
+        "keyFeatures": [
+          "Powerful, ultra concentrated cleaning formula",
+          "Non-Toxic",
+          "Non-corrosive",
+          "Compatible with most plastics",
+          "Biodegradable",
+          "Safe*"
+        ],
+        "shortProductDescription": "RuggedRed™ is a powerful, heavy-duty, citrus-based adhesive remover concentrated for maximum results. It is ideal for commercial, industrial, and residential use.",
+        "detailedProductDescription": "RuggedRed™ is a powerful, heavy-duty, citrus-based adhesive remover concentrated for maximum results. It is ideal for commercial, industrial, and residential use. It is formulated to safely clean and remove adhesive residue on materials including:\nGuns\nHoses\nOther adhesive equipment\nMost plastics\nMany hard and porous surfaces",
+        "keyBenefits": [
+          "Powerful, ultra concentrated cleaning formula",
+          "Non-Toxic",
+          "Non-corrosive",
+          "Compatible with most plastics",
+          "Biodegradable",
+          "Safe*",
+          "Pleasant citrus scent"
+        ],
+        "productInUseImages": [],
+        "slogan": "",
+        "frontLabelCallOuts": [
+          "Powerful, ultra concentrated cleaning formula",
+          "Non-Toxic",
+          "Non-corrosive",
+          "Compatible with most plastics",
+          "Biodegradable"
+        ],
+        "applications": "RuggedRed™ is a powerful, heavy-duty, citrus-based adhesive remover concentrated for maximum results. It is ideal for commercial, industrial, and residential use. It is formulated to safely clean and remove adhesive residue on materials including:\nGuns\nHoses\nOther adhesive equipment\nMost plastics\nMany hard and porous surfaces",
+        "howToUse": "",
+        "productMockupVariations": [],
+        "bottleSizing": "32oz Bottle"
+      }
+    },
+    {
+      "product_id": "rr_industrial_hand_cleaner",
+      "fields": {
+        "productTitle": "Hand Cleaner",
+        "productHeroImage": "/product-images/ruggedred/rr_industrial_hand_cleaner.webp",
+        "price": null,
+        "buyNowButtonUrl": "https://ruggedred.com/industrial/product/industrial/hand-cleaner",
+        "keyFeatures": [
+          "Powerful, ultra concentrated cleaner",
+          "Made with Vitamin E",
+          "Gentle on hands",
+          "Won't dry out skin even with frequent use",
+          "Free of harsh or unsafe chemicals",
+          "Non Toxic"
+        ],
+        "shortProductDescription": "RuggedRed™ is an effective ultra-concentrated hand cleaner that delivers superior hand cleaning results. Its formula is gentle with all natural cleaning and moisturizing agents.\nIt safey and quickly washes away dirt, grime, and germs. Its ideal for every day commercial, professional, and residential use.",
+        "detailedProductDescription": "RuggedRed™ is an effective ultra-concentrated hand cleaner that delivers superior hand cleaning results. It's ideal for every day commercial, professional, and residential use. Its formula is gentle with all natural cleaning and moisturizing agents.\nIt safely and quickly washes away:\nDirt\nGrime\nGerms",
+        "keyBenefits": [
+          "Powerful, ultra concentrated cleaner",
+          "Made with Vitamin E",
+          "Gentle on hands",
+          "Won't dry out skin even with frequent use",
+          "Free of harsh or unsafe chemicals",
+          "Non Toxic",
+          "Biodegradable"
+        ],
+        "productInUseImages": [],
+        "slogan": "",
+        "frontLabelCallOuts": [
+          "Powerful, ultra concentrated cleaner",
+          "Made with Vitamin E",
+          "Gentle on hands",
+          "Won't dry out skin even with frequent use",
+          "Free of harsh or unsafe chemicals"
+        ],
+        "applications": "RuggedRed™ is an effective ultra-concentrated hand cleaner that delivers superior hand cleaning results. It's ideal for every day commercial, professional, and residential use. Its formula is gentle with all natural cleaning and moisturizing agents.\nIt safely and quickly washes away:\nDirt\nGrime\nGerms",
+        "howToUse": "Won't dry out skin even with frequent use",
+        "productMockupVariations": [],
+        "bottleSizing": "1gal Bottle"
+      }
+    },
+    {
+      "product_id": "rr_industrial_heavy_duty_hand_cleaner",
+      "fields": {
+        "productTitle": "Heavy Duty Hand Cleaner",
+        "productHeroImage": "/product-images/ruggedred/rr_industrial_heavy_duty_hand_cleaner.webp",
+        "price": null,
+        "buyNowButtonUrl": "https://ruggedred.com/industrial/product/industrial/heavy-duty-hand-cleaner",
+        "keyFeatures": [
+          "Powerful, ultra-concentrated cleaner",
+          "Gentle Micro Scrubbers remove tough grease & grime",
+          "Gentle on hands",
+          "Effective on oil, grease, tar, light adhesives, epoxies and sealants, as well as water and oil-based paints",
+          "Ideal for technicians in automotive, manufacturing, and other shops",
+          "Citrus scent"
+        ],
+        "shortProductDescription": "RuggedRed™ is an effective ultra-concentrated hand cleaner that delivers superior hand cleaning results. Its formula is gentle with all natural cleaning and moisturizing agents.\nIt safey and quickly washes away dirt, grime, and germs. Its ideal for every day commercial, professional, and residential use.",
+        "detailedProductDescription": "RuggedRed™ is an effective ultra-concentrated hand cleaner that delivers superior hand cleaning results. Its ideal for every day commercial, professional, and residential use. Its formula is gentle with all natural cleaning and moisturizing agents. It safely and quickly washes away:\nDirt\nGrime\nGerms",
+        "keyBenefits": [
+          "Powerful, ultra-concentrated cleaner",
+          "Gentle Micro Scrubbers remove tough grease & grime",
+          "Gentle on hands",
+          "Effective on oil, grease, tar, light adhesives, epoxies and sealants, as well as water and oil-based paints",
+          "Ideal for technicians in automotive, manufacturing, and other shops",
+          "Citrus scent",
+          "Biodegradable"
+        ],
+        "productInUseImages": [],
+        "slogan": "",
+        "frontLabelCallOuts": [
+          "Powerful, ultra-concentrated cleaner",
+          "Gentle Micro Scrubbers remove tough grease & grime",
+          "Gentle on hands",
+          "Effective on oil, grease, tar, light adhesives, epoxies and sealants, as well as water and oil-based paints",
+          "Ideal for technicians in automotive, manufacturing, and other shops"
+        ],
+        "applications": "RuggedRed™ is an effective ultra-concentrated hand cleaner that delivers superior hand cleaning results. Its ideal for every day commercial, professional, and residential use. Its formula is gentle with all natural cleaning and moisturizing agents. It safely and quickly washes away:\nDirt\nGrime\nGerms",
+        "howToUse": "",
+        "productMockupVariations": [],
+        "bottleSizing": "1gal Bottle"
+      }
+    },
+    {
+      "product_id": "rr_industrial_tough_towels",
+      "fields": {
+        "productTitle": "Tough Towels",
+        "productHeroImage": "/product-images/ruggedred/rr_industrial_tough_towels.webp",
+        "price": null,
+        "buyNowButtonUrl": "https://ruggedred.com/industrial/product/industrial/tough-towels",
+        "keyFeatures": [
+          "Ultra large, heavy-duty towels",
+          "Triple-action: scrubbing, wiping, and cleaning",
+          "Durable and tear-resistant",
+          "Pleasant citrus scent",
+          "Safe",
+          "Moisturizing formula that is gentle on hands"
+        ],
+        "shortProductDescription": "RuggedRed™ are ultra-large, heavy-duty wipes built for the messiest jobs. Designed for techs in automotive, manufacturing, machining, and shop environments, these towels deliver fast, effective cleanup—no water needed. Their triple-action design makes them ideal for removing grease, oil, tar, epoxies, sealants, paint, and more from hands, tools, and surfaces.",
+        "detailedProductDescription": "RuggedRed™ are ultra-large, heavy-duty wipes built for the messiest jobs. Designed for techs in automotive, manufacturing, machining, and shop environments, these towels deliver fast, effective cleanup—no water needed. Their triple-action design makes them ideal for removing:\nGrease\nOil\nTar\nEpoxies\nSealants\nPaint\nHands\nTools\nOther surfaces",
+        "keyBenefits": [
+          "Ultra large, heavy-duty towels",
+          "Triple-action: scrubbing, wiping, and cleaning",
+          "Durable and tear-resistant",
+          "Pleasant citrus scent",
+          "Safe",
+          "Moisturizing formula that is gentle on hands"
+        ],
+        "productInUseImages": [],
+        "slogan": "",
+        "frontLabelCallOuts": [
+          "Ultra large, heavy-duty towels",
+          "Triple-action: scrubbing, wiping, and cleaning",
+          "Durable and tear-resistant",
+          "Pleasant citrus scent",
+          "Safe"
+        ],
+        "applications": "RuggedRed™ are ultra-large, heavy-duty wipes built for the messiest jobs. Designed for techs in automotive, manufacturing, machining, and shop environments, these towels deliver fast, effective cleanup—no water needed. Their triple-action design makes them ideal for removing:\nGrease\nOil\nTar\nEpoxies\nSealants\nPaint\nHands\nTools\nOther surfaces",
+        "howToUse": "",
+        "productMockupVariations": [],
+        "bottleSizing": "1gal Bottle"
+      }
+    }
+  ]
+}
