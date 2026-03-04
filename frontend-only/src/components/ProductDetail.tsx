@@ -92,6 +92,44 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onProductUpdated
     return [];
   };
 
+  const normalizeHowToUse = (howToUse: any): string[] => {
+    const rawLines = (Array.isArray(howToUse) ? howToUse : [howToUse])
+      .flatMap((v) => (typeof v === 'string' ? v.split(/\r?\n/) : []))
+      .map((line) => line.replace(/\s+/g, ' ').trim())
+      .filter(Boolean);
+
+    const steps: string[] = [];
+    let current = '';
+    const pushCurrent = () => {
+      const cleaned = current.replace(/^\d+\s*[).:-]\s*/, '').trim();
+      if (cleaned) steps.push(cleaned);
+      current = '';
+    };
+
+    for (const line of rawLines) {
+      if (/^\d+\s*[).:-]\s*/.test(line)) {
+        if (current) pushCurrent();
+        current = line.replace(/^\d+\s*[).:-]\s*/, '').trim();
+        continue;
+      }
+      if (!current) {
+        current = line;
+        continue;
+      }
+      const isContinuation = /^[a-z]/.test(line) || /[,;:]$/.test(current);
+      if (isContinuation) current = `${current} ${line}`;
+      else {
+        pushCurrent();
+        current = line;
+      }
+    }
+    if (current) pushCurrent();
+
+    return Array.from(new Set(steps.map((s) => s.toLowerCase()))).map((lower) =>
+      steps.find((s) => s.toLowerCase() === lower) || lower
+    );
+  };
+
   const [formData, setFormData] = useState<ProductFormData>({
     product_id: product.product_id,
     name: product.name,
@@ -105,6 +143,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onProductUpdated
     published: product.published,
     benefits: Array.isArray(product.benefits) ? product.benefits : [],
     applications: Array.isArray(product.applications) ? product.applications : [],
+    how_to_use: normalizeHowToUse(product.how_to_use),
     technical: normalizeTechnical(product.technical),
     sizing: normalizeSizing(product.sizing),
     color: product.color || '',
@@ -129,6 +168,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onProductUpdated
       published: product.published,
       benefits: Array.isArray(product.benefits) ? product.benefits : [],
       applications: Array.isArray(product.applications) ? product.applications : [],
+      how_to_use: normalizeHowToUse(product.how_to_use),
       technical: normalizeTechnical(product.technical),
       sizing: normalizeSizing(product.sizing),
       color: product.color || '',
@@ -142,17 +182,17 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onProductUpdated
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleArrayItemAdd = (field: 'benefits' | 'applications' | 'sizing') => {
+  const handleArrayItemAdd = (field: 'benefits' | 'applications' | 'how_to_use' | 'sizing') => {
     setFormData(prev => ({
       ...prev,
-      [field]: [...prev[field], '']
+      [field]: [...((prev[field] as string[]) || []), '']
     }));
   };
 
-  const handleArrayItemRemove = (field: 'benefits' | 'applications' | 'sizing', index: number) => {
+  const handleArrayItemRemove = (field: 'benefits' | 'applications' | 'how_to_use' | 'sizing', index: number) => {
     setFormData(prev => ({
       ...prev,
-      [field]: prev[field].filter((_, i) => i !== index)
+      [field]: ((prev[field] as string[]) || []).filter((_: string, i: number) => i !== index)
     }));
   };
 
@@ -238,6 +278,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onProductUpdated
         ...formData,
         benefits: formData.benefits.filter(b => b.trim() !== ''),
         applications: formData.applications.filter(a => a.trim() !== ''),
+        how_to_use: (formData.how_to_use || []).filter((s: string) => s.trim() !== ''),
         technical: formData.technical.filter(t => t.property.trim() !== '' && t.value.trim() !== ''),
       };
       
@@ -306,10 +347,12 @@ Check the browser console (F12) for more details.`;
     { value: 'forza_bond', label: 'Bond' },
     { value: 'forza_seal', label: 'Seal' },
     { value: 'forza_tape', label: 'Tape' },
+    { value: 'rugged_red', label: 'Rugged Red' },
   ];
 
   const industries = [
     { value: 'industrial_industry', label: 'Industrial' },
+    { value: 'household_industry', label: 'Household' },
     { value: 'construction_industry', label: 'Construction' },
     { value: 'marine_industry', label: 'Marine' },
     { value: 'transportation_industry', label: 'Transportation' },
@@ -424,6 +467,7 @@ Check the browser console (F12) for more details.`;
                         published: product.published,
                         benefits: Array.isArray(product.benefits) ? product.benefits : [],
                         applications: Array.isArray(product.applications) ? product.applications : [],
+                        how_to_use: normalizeHowToUse(product.how_to_use),
                         technical: normalizeTechnical(product.technical),
                         sizing: normalizeSizing(product.sizing),
                         color: product.color || '',
@@ -1038,7 +1082,7 @@ Check the browser console (F12) for more details.`;
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Sizing</h2>
           {isEditing ? (
             <div className="space-y-3">
-              {formData.sizing.map((size, index) => (
+              {(formData.sizing as string[]).map((size: string, index: number) => (
                 <div key={index} className="flex items-start gap-3">
                   <input
                     type="text"
@@ -1183,6 +1227,51 @@ Check the browser console (F12) for more details.`;
                 </li>
               ))}
             </ul>
+          )}
+        </section>
+
+        {/* How To Use */}
+        <section className="mb-8 bg-white p-6 rounded-lg shadow-sm">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">How To Use</h2>
+          {isEditing ? (
+            <div className="space-y-3">
+              {(formData.how_to_use || []).map((step: string, index: number) => (
+                <div key={index} className="flex items-start gap-3">
+                  <input
+                    type="text"
+                    value={step}
+                    onChange={(e) => {
+                      const newSteps = [...(formData.how_to_use || [])];
+                      newSteps[index] = e.target.value;
+                      handleInputChange('how_to_use', newSteps);
+                    }}
+                    className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
+                  />
+                  <button
+                    onClick={() => handleArrayItemRemove('how_to_use', index)}
+                    className="p-2 text-red-600 hover:bg-red-50 rounded-lg"
+                  >
+                    <Trash2 className="h-5 w-5" />
+                  </button>
+                </div>
+              ))}
+              <button
+                onClick={() => handleArrayItemAdd('how_to_use')}
+                className="flex items-center gap-2 px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-lg"
+              >
+                <Plus className="h-5 w-5" />
+                Add Step
+              </button>
+            </div>
+          ) : (
+            <ol className="space-y-3 list-decimal list-inside">
+              {(product.how_to_use || []).map((step, index) => (
+                <li key={index} className="text-lg text-gray-700">{step}</li>
+              ))}
+              {(!product.how_to_use || product.how_to_use.length === 0) && (
+                <p className="text-lg text-gray-500 italic">No instructions available</p>
+              )}
+            </ol>
           )}
         </section>
 

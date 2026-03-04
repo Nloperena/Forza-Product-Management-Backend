@@ -65,10 +65,12 @@ const ProductEditPage: React.FC = () => {
     { value: 'forza_bond', label: 'Bond' },
     { value: 'forza_seal', label: 'Seal' },
     { value: 'forza_tape', label: 'Tape' },
+    { value: 'rugged_red', label: 'Rugged Red' },
   ];
 
   const industries = [
     { value: 'industrial_industry', label: 'Industrial' },
+    { value: 'household_industry', label: 'Household' },
     { value: 'construction_industry', label: 'Construction' },
     { value: 'marine_industry', label: 'Marine' },
     { value: 'transportation_industry', label: 'Transportation' },
@@ -202,21 +204,21 @@ const ProductEditPage: React.FC = () => {
   const handlePackagingAdd = () => {
     setFormData(prev => ({
       ...prev,
-      packaging: [...prev.packaging, '']
+      packaging: [...(prev.packaging || []), '']
     }));
   };
 
   const handlePackagingUpdate = (index: number, value: string) => {
     setFormData(prev => ({
       ...prev,
-      packaging: prev.packaging.map((item, i) => i === index ? value : item)
+      packaging: (prev.packaging || []).map((item, i) => i === index ? value : item)
     }));
   };
 
   const handlePackagingRemove = (index: number) => {
     setFormData(prev => ({
       ...prev,
-      packaging: prev.packaging.filter((_, i) => i !== index)
+      packaging: (prev.packaging || []).filter((_, i) => i !== index)
     }));
   };
 
@@ -765,7 +767,7 @@ const ProductEditPage: React.FC = () => {
           {/* Packaging Information */}
           <Card>
             <CardHeader className="flex flex-row items-center justify-between">
-              <CardTitle>Packaging Information ({formData.packaging.length})</CardTitle>
+              <CardTitle>Packaging Information ({(formData.packaging || []).length})</CardTitle>
               <Button
                 variant="outline"
                 size="sm"
@@ -777,13 +779,13 @@ const ProductEditPage: React.FC = () => {
               </Button>
             </CardHeader>
             <CardContent>
-              {formData.packaging.length === 0 ? (
+              {(formData.packaging || []).length === 0 ? (
                 <p className="text-gray-500 text-center py-4">
                   No packaging information added yet. Click "Add Packaging" to get started.
                 </p>
               ) : (
                 <div className="space-y-3">
-                  {formData.packaging.map((item, index) => (
+                  {(formData.packaging || []).map((item, index) => (
                     <div key={index} className="flex items-center gap-2">
                       <Input
                         value={item}

@@ -17,18 +17,23 @@ export interface Product {
   image?: string;
   benefits: string[];
   applications: string[];
+  how_to_use?: string[];
   technical: TechnicalProperty[];
-  sizing: string[];
+  sizing: any;
+  packaging?: string[];
+  tds_pdf?: string;
+  sds_pdf?: string;
   color?: string;
   cleanup?: string;
   recommended_equipment?: string;
   published: boolean;
-  benefits_count: number;
+  benefits_count?: number;
   last_edited?: string;
 }
 
 export interface ProductStats {
   total_products: number;
+  total_benefits?: number;
   organized_date: string;
   hierarchy: string;
   notes: string;
@@ -56,7 +61,7 @@ export interface ProductFilters {
 
 export interface ProductFormData {
   product_id: string;
-  name: string;
+  name?: string;
   full_name: string;
   description: string;
   brand: string;
@@ -66,10 +71,15 @@ export interface ProductFormData {
   image: string;
   benefits: string[];
   applications: string[];
+  how_to_use?: string[];
   technical: TechnicalProperty[];
-  sizing: string[];
-  color: string;
-  cleanup: string;
-  recommended_equipment: string;
+  sizing: any;
+  packaging?: string[];
+  tds_pdf?: string;
+  sds_pdf?: string;
+  color?: string;
+  cleanup?: string;
+  recommended_equipment?: string;
   published: boolean;
+  last_edited?: string;
 }
