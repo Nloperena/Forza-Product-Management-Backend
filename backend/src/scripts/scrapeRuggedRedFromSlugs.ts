@@ -5,10 +5,13 @@
  * Run: npm run scrape-ruggedred-slugs
  * First run: npx playwright install chromium
  */
-import { chromium } from 'playwright';
 import fs from 'fs';
 import path from 'path';
 import axios from 'axios';
+
+// Keep playwright as runtime-only dependency for this script.
+// This avoids production build failures when dev-only packages are pruned.
+const { chromium } = require('playwright');
 
 const BASE_URL = 'https://ruggedred.com';
 const SLUGS_PATH = path.join(__dirname, '../../data/ruggedred_slugs.json');
