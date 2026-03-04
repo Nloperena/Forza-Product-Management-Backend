@@ -170,6 +170,7 @@ class DatabaseService {
             image TEXT,
             benefits TEXT,
             applications TEXT,
+            how_to_use TEXT,
             technical TEXT,
             sizing TEXT,
             color TEXT,
@@ -186,6 +187,13 @@ class DatabaseService {
             console.error('Error creating products table:', err);
           } else {
             console.log('Products table ensured in SQLite');
+          }
+        });
+
+        // Add newer columns for existing SQLite DBs
+        this.db!.run(`ALTER TABLE products ADD COLUMN how_to_use TEXT`, (alterErr) => {
+          if (alterErr && !String(alterErr.message || '').includes('duplicate column name')) {
+            console.warn('Could not add how_to_use column to SQLite products table:', alterErr.message);
           }
         });
 
@@ -260,6 +268,7 @@ class DatabaseService {
           image TEXT,
           benefits JSONB DEFAULT '[]',
           applications JSONB DEFAULT '[]',
+          how_to_use JSONB DEFAULT '[]',
           technical JSONB DEFAULT '[]',
           sizing JSONB DEFAULT '[]',
           color TEXT,
@@ -419,7 +428,8 @@ class DatabaseService {
         await client.query(`
           ALTER TABLE products ADD COLUMN IF NOT EXISTS color TEXT,
           ADD COLUMN IF NOT EXISTS cleanup TEXT,
-          ADD COLUMN IF NOT EXISTS recommended_equipment TEXT
+          ADD COLUMN IF NOT EXISTS recommended_equipment TEXT,
+          ADD COLUMN IF NOT EXISTS how_to_use JSONB DEFAULT '[]'
         `);
       } catch (alterError) {
         console.warn('Error adding new columns (may already exist):', alterError);

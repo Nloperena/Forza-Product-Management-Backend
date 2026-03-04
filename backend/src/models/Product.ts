@@ -21,6 +21,7 @@ export interface Product {
   image?: string;
   benefits: string[];
   applications: string[];
+  how_to_use?: string[];
   technical: TechnicalProperty[];
   sizing: string[];
   color?: string;
@@ -83,6 +84,7 @@ export class ProductModel {
         image TEXT,
         benefits TEXT NOT NULL,
         applications TEXT NOT NULL,
+        how_to_use TEXT NOT NULL,
         technical TEXT NOT NULL,
         sizing TEXT NOT NULL,
         color TEXT,
@@ -196,8 +198,9 @@ export class ProductModel {
           INSERT INTO products (
             product_id, name, full_name, description, brand, industry,
             chemistry, url, image, benefits, applications, technical, sizing,
+            how_to_use,
             color, cleanup, recommended_equipment, published, benefits_count, last_edited
-          ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19)
+          ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20)
           RETURNING *
         `;
         
@@ -205,7 +208,7 @@ export class ProductModel {
           product.product_id, product.name, product.full_name || product.name, product.description,
           product.brand, product.industry, product.chemistry, product.url, product.image,
           JSON.stringify(product.benefits), JSON.stringify(product.applications),
-          JSON.stringify(product.technical), JSON.stringify(product.sizing),
+          JSON.stringify(product.technical), JSON.stringify(product.sizing), JSON.stringify(product.how_to_use || []),
           product.color, product.cleanup, product.recommended_equipment,
           product.published, product.benefits_count || 0, product.last_edited
         ];
@@ -221,16 +224,16 @@ export class ProductModel {
       const sql = `
         INSERT INTO products (
           product_id, name, full_name, description, brand, industry,
-          chemistry, url, image, benefits, applications, technical, sizing,
+          chemistry, url, image, benefits, applications, technical, sizing, how_to_use,
           color, cleanup, recommended_equipment, published, benefits_count, last_edited
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       `;
       
       const params = [
         product.product_id, product.name, product.full_name || product.name, product.description,
         product.brand, product.industry, product.chemistry, product.url, product.image,
         JSON.stringify(product.benefits), JSON.stringify(product.applications),
-        JSON.stringify(product.technical), JSON.stringify(product.sizing),
+        JSON.stringify(product.technical), JSON.stringify(product.sizing), JSON.stringify(product.how_to_use || []),
         product.color, product.cleanup, product.recommended_equipment,
         product.published ? 1 : 0, product.benefits_count || 0, product.last_edited
       ];
@@ -277,6 +280,7 @@ export class ProductModel {
           }
         }
         if (updates.applications !== undefined) { fields.push(`applications = $${paramIndex++}`); values.push(JSON.stringify(updates.applications)); }
+        if (updates.how_to_use !== undefined) { fields.push(`how_to_use = $${paramIndex++}`); values.push(JSON.stringify(updates.how_to_use)); }
         if (updates.technical !== undefined) { fields.push(`technical = $${paramIndex++}`); values.push(JSON.stringify(updates.technical)); }
         if (updates.sizing !== undefined) { fields.push(`sizing = $${paramIndex++}`); values.push(JSON.stringify(updates.sizing)); }
         if (updates.color !== undefined) { fields.push(`color = $${paramIndex++}`); values.push(updates.color); }
@@ -327,6 +331,7 @@ export class ProductModel {
         values.push(updates.benefits.length);
       }
       if (updates.applications) { fields.push('applications = ?'); values.push(JSON.stringify(updates.applications)); }
+      if (updates.how_to_use) { fields.push('how_to_use = ?'); values.push(JSON.stringify(updates.how_to_use)); }
       if (updates.technical) { fields.push('technical = ?'); values.push(JSON.stringify(updates.technical)); }
       if (updates.sizing) { fields.push('sizing = ?'); values.push(JSON.stringify(updates.sizing)); }
       if (updates.color) { fields.push('color = ?'); values.push(updates.color); }
@@ -497,6 +502,7 @@ export class ProductModel {
         image: row.image,
         benefits: this.parseJsonField(row.benefits, 'benefits'),
         applications: this.parseJsonField(row.applications, 'applications'),
+        how_to_use: this.parseJsonField(row.how_to_use, 'how_to_use'),
         technical: this.parseJsonField(row.technical, 'technical'),
         sizing: this.parseJsonField(row.sizing, 'sizing'),
         color: row.color,

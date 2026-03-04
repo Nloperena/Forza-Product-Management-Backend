@@ -85,6 +85,7 @@ export class ProductController {
         image,
         benefits,
         applications,
+        how_to_use,
         technical,
         sizing,
         color,
@@ -116,6 +117,7 @@ export class ProductController {
         image: image || '/placeholder-product.svg',
         benefits: Array.isArray(benefits) ? benefits : [],
         applications: Array.isArray(applications) ? applications : [],
+        how_to_use: Array.isArray(how_to_use) ? how_to_use : [],
         technical: Array.isArray(technical) ? technical : [],
         sizing: Array.isArray(sizing) ? sizing : [],
         color: color || '',
@@ -412,6 +414,9 @@ export class ProductController {
         const applications = Array.isArray(product.applications) 
           ? product.applications.join('; ') 
           : '';
+        const howToUse = Array.isArray((product as any).how_to_use)
+          ? (product as any).how_to_use.join('; ')
+          : '';
         const sizing = Array.isArray(product.sizing) 
           ? product.sizing.join('; ') 
           : '';
@@ -440,6 +445,7 @@ export class ProductController {
           'Image': product.image || '',
           'Benefits': benefits,
           'Applications': applications,
+          'How To Use': howToUse,
           'Technical Properties': technical,
           'Sizing': sizing,
           'Color': product.color || '',

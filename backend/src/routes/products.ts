@@ -34,7 +34,7 @@ router.get('/debug', async (req, res) => {
     if (databaseService.isPostgres()) {
       const client = await databaseService.getClient();
       try {
-        const result = await client.query('SELECT product_id, name, benefits, applications, technical, published FROM products ORDER BY created_at DESC');
+        const result = await client.query('SELECT product_id, name, benefits, applications, how_to_use, technical, published FROM products ORDER BY created_at DESC');
         res.json({
           success: true,
           raw_data: result.rows,
@@ -121,6 +121,7 @@ router.post('/seed', async (req, res) => {
             image TEXT,
             benefits JSONB DEFAULT '[]',
             applications JSONB DEFAULT '[]',
+            how_to_use JSONB DEFAULT '[]',
             technical JSONB DEFAULT '[]',
             sizing JSONB DEFAULT '[]',
             published BOOLEAN DEFAULT false,
@@ -148,6 +149,7 @@ router.post('/seed', async (req, res) => {
             image: 'sample1.jpg',
             benefits: ['Benefit 1', 'Benefit 2'],
             applications: ['Application 1', 'Application 2'],
+            how_to_use: ['Step 1', 'Step 2'],
             technical: [{ property: 'Property 1', value: 'Value 1' }],
             sizing: ['Size 1', 'Size 2'],
             published: true,
@@ -165,6 +167,7 @@ router.post('/seed', async (req, res) => {
             image: 'sample2.jpg',
             benefits: ['Benefit A', 'Benefit B'],
             applications: ['Application A', 'Application B'],
+            how_to_use: ['Step A', 'Step B'],
             technical: [{ property: 'Property A', value: 'Value A' }],
             sizing: ['Size A', 'Size B'],
             published: true,
@@ -176,13 +179,14 @@ router.post('/seed', async (req, res) => {
           await client.query(`
             INSERT INTO products (
               product_id, name, full_name, description, brand, industry,
-              chemistry, url, image, benefits, applications, technical, sizing,
+              chemistry, url, image, benefits, applications, how_to_use, technical, sizing,
               published, benefits_count
-            ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
+            ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)
           `, [
             product.product_id, product.name, product.full_name, product.description,
             product.brand, product.industry, product.chemistry, product.url, product.image,
             JSON.stringify(product.benefits), JSON.stringify(product.applications),
+            JSON.stringify((product as any).how_to_use || []),
             JSON.stringify(product.technical), JSON.stringify(product.sizing),
             product.published, product.benefits_count
           ]);
