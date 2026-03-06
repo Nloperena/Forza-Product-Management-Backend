@@ -80,6 +80,8 @@ const allowedOrigins = [
   'http://localhost:8080', // Local development on 8080
   'https://product-mangement-system-template-s.vercel.app', // Current Vercel domain
   'https://forza-built-com.vercel.app', // Forza Built app
+  'https://ruggedred.com',
+  'https://www.ruggedred.com',
   process.env['FRONTEND_URL'] || 'http://localhost:3000'
 ];
 
